@@ -15,14 +15,25 @@ int main(){
 
     // cout << area <<endl;
 
-    auto price = 99.99;
+    // auto price = 99.99;
 
-    auto isVaild = false;
+    // auto isVaild = false;
        
-     cout <<isVaild;
-    int number {};
+    //  cout <<isVaild;
+    // int number {};
 
-    cout <<"Returns a zero bcs of {} "<<number <<endl;
+    // cout <<"Returns a zero bcs of {} "<<number <<endl;
+
+    // int guess [10] ={1,2,3,4};
+
+    // cout << guess[0];
+
+
+    //// petlja
+
+    for(int i =0;i<8;i++){
+        cout << "*" <<endl;
+    }
 
     return 0;
 } 
