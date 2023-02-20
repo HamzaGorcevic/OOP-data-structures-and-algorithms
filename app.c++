@@ -3,6 +3,22 @@
 #include <cmath>
 
 using namespace std;
+
+void moveFunc(int matrica[200][200],int n){
+    int i,j;
+    for( i=0;i<n;i++){
+        for( j=0;j<n;j++){
+           if(i>j){
+
+            int temp = matrica[i][j];
+            matrica[i][j] = matrica[n-1][j];
+            matrica[n-1][j] = temp;
+    
+        
+           }
+
+    }}
+}
 int main(){
 
     // cout << "Enter radius" <<endl;
@@ -36,50 +52,45 @@ int main(){
     // }
 
     int n;
-
+int k;
     cout << "Unesite dimenziju"<<endl;
     cin >> n;
+        cout << "Unesite dimenziju k"<<endl;
+        cin >> k;
+
     int matrica[200][200];
-int i,j,k;
+int i,j;
     for( i =0;i<n;i++){
         for( j=0;j<n;j++){
             cin >> matrica[i][j];
         }
 
     }
-     for( i=0;i<n;i++){
-        for( j=0;j<n;j++){
-           if(i>j){
 
-              for(int k=0;k<n-i;k+=3){
+     
 
-                if(k>j){
-                cout <<i<<"nes"<< endl;
-                int temp = matrica[k][j];
-                                cout <<temp<<"temp"<< endl;
+for(i=0;i<k;i++){
+    moveFunc(matrica,n);
 
-                matrica[k][j] = matrica[k+1][j];
-                                cout <<matrica[k][j]<<"[k][j]"<< endl;
-
-                matrica[k+1][j] = temp;
-                }
-                 
-
-              }
-
-           }else{
-           }
-        }
-        cout << endl;
-
-    }
-
-     for(i =0;i<n;i++){
-        for(int j=0;j<n;j++){
+}
+     for( i =0;i<n;i++){
+        for(j=0;j<n;j++){
             cout << matrica[i][j]<<" ";
         }
         cout << endl;
     }
 
     return 0;
-} 
+}
+
+
+// [
+//     1 2 3 4
+//     5 6 7 8
+//     9 10 11 12
+//     13 14 15 16
+
+
+
+
+// ]
