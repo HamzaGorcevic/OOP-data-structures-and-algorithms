@@ -156,26 +156,51 @@ int main(){
     //     }
     // }
    
-    char rec[100];
-    int polindrom;
-    cin>>rec;
-    int duzina= strlen(rec);
-    if(duzina == 1){
-        cout<<"Unesite drugu rec";
-    }
-    for(int i =0;i<duzina;i++){
-        if(rec[i] == rec[duzina-1]){
-            duzina-=1;
-        }
-    }
-    if(duzina == strlen(rec)/2){
-        cout<<"rec je polindrom";
-    }else{
-        cout<<"rec nije polindrom";
-    }
+    // char rec[100];
+    // int polindrom;
+    // cin>>rec;
+    // int duzina= strlen(rec);
+    
+    // for(int i =0;i<duzina;i++){
+    //     if(rec[i] == rec[duzina-1]){
+    //         duzina-=1;
+    //     }
+    // }
+    // if(duzina == strlen(rec)/2){
+    //     cout<<"rec je polindrom";
+    // }else{
+    //     cout<<"rec nije polindrom";
+    // }
     
 
-    return 0;
+
+    int nizA[100];
+    int nizB[100];
+    int i,n;
+    cout<<"unesite broj elemenata";
+    cin>>n;
+    cout<<"unesite elemente niza";
+    for(i=0;i<n;i++){
+        cin>>nizA[i];
+        nizB[i] =i;
+    }
+
+    for(i=0;i<n;i++){
+        for(int j=0;j<i;j++){       
+            if(nizA[i] > nizA[j]){
+                int pom = nizB[i];
+                nizB[i] = nizB[j];
+                nizB[j] = pom;
+            }
+
+        }
+    }
+     for(i=0;i<n;i++){
+        cout<<nizA[nizB[i]]<<endl;
+    }
+
+
+    // return 0;
 }
 
 
