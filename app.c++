@@ -174,12 +174,16 @@ int main(){
     
 
 
-    int nizA[100];
-    int nizB[100];
+   
     int i,n;
+ 
+
     cout<<"unesite broj elemenata";
     cin>>n;
+       int *nizA = new int [n];
+    int *nizB = new int [n];
     cout<<"unesite elemente niza";
+
     for(i=0;i<n;i++){
         cin>>nizA[i];
         nizB[i] =i;
@@ -195,12 +199,19 @@ int main(){
 
         }
     }
+      for(i=0;i<n;i++){
+        cout<<nizA[i]<<endl;
+    }
+
      for(i=0;i<n;i++){
         cout<<nizA[nizB[i]]<<endl;
     }
 
+    delete[] nizA;
+    delete[] nizB;
 
-    // return 0;
+
+    return 0;
 }
 
 
