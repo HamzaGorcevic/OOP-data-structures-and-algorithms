@@ -537,6 +537,87 @@ int main(){
 //}
 
 
+// OOP
+
+
+// #include <iostream>
+// #include <string.h>
+// /* run this program using the console pauser or add your own getch, system("pause") or input loop */
+
+// using namespace std;
+// //class Student{
+// //	private:
+// //		char* name;
+// //		int age;
+// //	public:
+// //		Student(char*aName,int aAge){
+// //			name = new char[strlen(aName) + 1];
+// //			strcpy(name,aName);
+// //			age = aAge;
+// //			
+// //			
+// //		}
+// //		~Student(){
+// //			delete[]name;
+// //		}
+// //		char* getName(){
+// //			return name;
+// //		}
+// //		int getAge(){
+// //			return age;
+// //		}
+// //		void setName(char*aName){
+// //			delete[] name;
+// //			name = new char[strlen(aName)+1];
+// //			strcpy(name,aName);
+// //		}
+// //		void setAge(int aAge){
+// //			age = aAge;
+// //			
+// //		}
+// //};
+
+// class Artikal{
+// private:
+// 	string naziv;
+// 	int cena;
+// 	double popust=0;
+// public:
+// 	Artikal(string aNaziv,int aCena,double aPopust):naziv(aNaziv),cena(aCena),popust(aPopust){	}
+	
+// 	Artikal(const Artikal& other):naziv(other.naziv),cena(other.cena),popust(other.popust){
+// 		cout<<"is copied";	}
+
+// 	string getNaziv(){
+// 		return naziv;
+// 	}
+// 	int cenaSaPopustom(){
+// 		return cena = cena - (cena * (popust/100));
+	
+// 	}
+// 	void setNaziv(string noviNaziv){
+// 		naziv = noviNaziv;
+		
+// 	}
+
+	
+		
+// };
+
+// ostream& operator <<(ostream& COUT,Artikal& artikal){
+// 	 COUT<<artikal.getNaziv()<<'('<<artikal.cenaSaPopustom()<<')'<<endl;
+// 	 return COUT;
+// }
+
+// int main(int argc, char** argv) {
+// 	Artikal a1("Jaje",20,7);
+// 	Artikal acpy = a1;
+// 	cout<<a1<<endl;
+	
+// 		return 0;
+
+// }
+
     return 0;
 }
 
