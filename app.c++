@@ -744,3 +744,55 @@ int main(){
 	
 	return 0;
 }
+
+
+
+
+class Node{
+	public:
+	string Data;
+	Node*Next;
+	
+	
+};
+
+
+void addAfterSpecificElement(Node ** first,string insertName,string afterName){
+	Node*newNode = new Node();
+	
+	newNode->Data =insertName;
+	cout<<"Function calld"<<endl;
+	
+	Node *temp = *first;
+	if(*first == NULL){
+		*first = newNode;
+	}
+	
+	while(temp->Data != afterName){
+		cout<<(*first)->Data << "In func"<<endl;
+		temp = temp->Next;
+	}
+	Node*help = temp->Next;
+	temp->Next = newNode;
+	newNode->Next = help;
+}
+
+int main(){
+	Node*first= new Node();
+	first->Data = "Hamza";
+	Node*second=new Node();
+	Node *third = new Node();
+	second->Data="Haris";
+	first->Next = second;
+	third->Data = "Semra";
+	second->Next = third;
+	
+	
+	addAfterSpecificElement(&first,"-Aga","Haris");
+	
+	
+	while(first != NULL){
+		cout<<first->Data<<endl;
+		first = first->Next;
+	}
+}
