@@ -623,7 +623,7 @@
 
 #include <iostream>
 #include <string>
-
+#include <cstring>
 using namespace std;
 
 class Nalepnica{
@@ -667,10 +667,8 @@ class Flasa{
 	string vrstaPica;
 	
 	public:
-		Flasa(){
-			vrstaPica = "BEZALKOHOLNO";
-		}
-		Flasa(Nalepnica&N,int CenaBezKaucije,float Zapremina,string VrstaPica):n(N),cenaBezKaucije(CenaBezKaucije),zapremina(Zapremina),vrstaPica(VrstaPica){
+//		
+		Flasa(Nalepnica&N,int CenaBezKaucije,double Zapremina =0.33,string VrstaPica="BEZALKOHOLNO"):n(N),cenaBezKaucije(CenaBezKaucije),zapremina(Zapremina),vrstaPica(VrstaPica){
 			
 		}
 		Nalepnica getNalepnicu(){
@@ -680,7 +678,7 @@ class Flasa{
 			return cenaBezKaucije;
 		}
 		void setCenuBezKaucije(int novaCena){
-			cenaBezKacuije = novaCena;
+			cenaBezKaucije = novaCena;
 			
 		}
 		
@@ -690,23 +688,29 @@ class Flasa{
 		string getVrstuPica(){
 			return vrstaPica;
 		}
+		string Tip;
+		
 		int getFlasaSaKauciom(string tip){
-			if(!strcpy("staklena",tip) && zapremina < 0.5){
+			Tip=tip;
+			if("staklena"==tip && zapremina < 0.5){
 				return  cenaBezKaucije * (5 / 100);
 				
-			}else if(!strcpy("plasticna",tip) && zapremina >= 0.5){
+			}else if("plasticna"==tip && zapremina >= 0.5){
 				return cenaBezKaucije * (10 / 100);
 				
 			}
-			if(!strcpy("plasticna",tip)){
+			if("plasticna"==tip){
 				return cenaBezKaucije;
 			}
 			
 		}
 		
 		void Provera(Flasa&f1,Flasa&f2){
-			if(!strcpy(f1.getNalepnicu().getNaziv(),f2.getNalepnicu().getNaziv()) && f1.getFlasaSaKauciom() == f2.getFlasaSaKauciom){
+			
+			if(f1.getNalepnicu().getNaziv()==f2.getNalepnicu().getNaziv() && f1.getFlasaSaKauciom(Tip) == f2.getFlasaSaKauciom(Tip)){
 				cout<<"flase su iste";
+			}else{
+				cout<<"Nisu iste"<<endl<<f1.getNalepnicu().getNaziv()<<" "<<f2.getNalepnicu().getNaziv();
 			}
 			
 		}
@@ -723,10 +727,18 @@ int main(){
 	cout<<"Unesite naziv nalepnice"<<endl;
 	string nazivNalepnice;
 	cin>>nazivNalepnice;
+	
 	Nalepnica n1(nazivNalepnice);
-	Nalepnica n4 = n1;	
+	Nalepnica n4("Viski");
+	
 	
 	cout<<n1<<endl<<n4;
+	
+	Flasa f1(n1,30,0.6);
+	Flasa f2(n4,30,0.2,"ALKOHOLNO");
+	
+	f1.Provera(f1,f2);
+	
 	
 	
 	
