@@ -786,6 +786,7 @@ int main(){
 	first->Next = second;
 	third->Data = "Semra";
 	second->Next = third;
+	cout<<"check";
 	
 	
 	addAfterSpecificElement(&first,"-Aga","Haris");
