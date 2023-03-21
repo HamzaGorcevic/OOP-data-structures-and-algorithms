@@ -797,3 +797,30 @@ int main(){
 		first = first->Next;
 	}
 }
+void sortedList(node* first) {
+    node* temp = first;
+    node* loop = first;
+    int sorted = 0;
+
+    while (!sorted) {
+        sorted = 1;
+        loop = first;
+
+        while (loop->Next != NULL) {
+            if (loop->Data > loop->Next->Data) {
+                int tempData = loop->Data;
+                loop->Data = loop->Next->Data;
+                loop->Next->Data = tempData;
+                sorted = 0;
+            }
+            loop = loop->Next;
+        }
+    }
+
+    // Print the sorted list
+    temp = first;
+    while (temp != NULL) {
+        printf("%d ", temp->Data);
+        temp = temp->Next;
+    }
+}
