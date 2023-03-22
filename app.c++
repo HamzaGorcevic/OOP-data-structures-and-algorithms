@@ -824,3 +824,110 @@ void sortedList(node* first) {
         temp = temp->Next;
     }
 }
+
+//////////////////////
+
+
+
+#include <stdio.h>
+#include <stdlib.h>
+
+
+
+
+typedef struct NODE{
+	int Data;
+	struct NODE* Next;
+}node;
+
+
+
+
+node* presekListi(node*firstList ,node*secondList){
+	
+	if(firstList == NULL || secondList == NULL){
+		return NULL;
+	}
+	node*newList = NULL;
+	node*travel = NULL;
+	node*tempFirst = firstList;
+	
+	while(tempFirst!=NULL){	
+			node*tempSecond =secondList;
+		while(tempSecond != NULL){
+			if(tempFirst->Data == tempSecond->Data){
+				if(newList == NULL){
+					newList = (node*)malloc(sizeof(node));
+					travel =(node*)malloc(sizeof(node));
+					node *newListTail = (node*)malloc(sizeof(node));
+					newList->Data = tempFirst->Data;
+					newList->Next = NULL;
+					newListTail = newList;
+					travel = newList;
+				
+					
+				}
+				else{	
+					node*newElement = (node*)malloc(sizeof(node));
+					newElement->Data = tempFirst->Data;
+					newList->Next = newElement;
+					newList = newList->Next;
+					
+				}
+				
+			
+			}
+			tempSecond = tempSecond->Next;
+				
+		}
+		tempFirst = tempFirst->Next;
+
+	}
+	return travel;
+	
+}
+int main(){
+	
+	node*first=(node*)malloc(sizeof(node));
+	node*second=(node*)malloc(sizeof(node));
+	node*third=(node*)malloc(sizeof(node));
+	node*forth=(node*)malloc(sizeof(node));
+	
+	node*firstLi=(node*)malloc(sizeof(node));
+	node*secondLi=(node*)malloc(sizeof(node));
+	node*thirdLi=(node*)malloc(sizeof(node));
+	node*forthLi=(node*)malloc(sizeof(node));
+	
+	first->Data = 1;
+	first->Next = second;
+	
+	second->Data =2;
+	second->Next = third;
+	
+	third->Data=7;
+	third->Next = forth;
+
+	forth->Data=4;
+	forth->Next = NULL;
+	
+	
+	
+	
+	firstLi->Data = 1;
+	firstLi->Next = secondLi;
+	
+	secondLi->Data =7;
+	secondLi->Next = thirdLi;
+	
+	thirdLi->Data=2;
+	thirdLi->Next = forthLi;
+
+	forthLi->Data=6;
+	forthLi->Next = NULL;
+	node* presecnaLista = presekListi(first,firstLi);
+	
+	printf("%d",presecnaLista->Next->Data);
+	
+	return 0;
+	
+}
