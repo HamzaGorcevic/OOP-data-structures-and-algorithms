@@ -970,7 +970,7 @@
 // }
 
 
-// ///////////// addBefore() function withou **head as argument
+// ///////////// addBefore() function without **head as argument
 
 // void addBefore(Node*current,int newValue){
 // 	Node*newNode=(Node*)malloc(sizeof(Node));
@@ -985,6 +985,32 @@
 // 		current->Next=newNode;
 // 		newNode->Next=temp;	
 // 	}
+	
+	
+// }
+
+/////////////////////////////// createNodes() function to create nodes to specific value
+// Node* createNodes(int value){
+// 	int i;
+// 	Node*iterate=NULL;
+// 	Node*first = NULL;
+// 	for(i=1;i<=value;i++){
+// 		Node*newNode = (Node*)malloc(sizeof(Node));
+// 		newNode->Data= i;
+// 		newNode->Next = NULL;
+		
+// 		if(iterate == NULL){
+// 			iterate=newNode;
+// 			first=newNode;
+			
+// 		}else{
+// 			iterate->Next= newNode;
+// 			iterate = iterate->Next;
+// 		}
+		
+		
+// 	}
+// 	return first;
 	
 	
 // }
