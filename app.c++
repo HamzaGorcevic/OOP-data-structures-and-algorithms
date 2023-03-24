@@ -621,354 +621,370 @@
 //     return 0;
 // }
 
-#include <iostream>
-#include <string>
-#include <cstring>
-using namespace std;
+// #include <iostream>
+// #include <string>
+// #include <cstring>
+// using namespace std;
 
-class Nalepnica{
-	string naziv;
-	int id;
-	static int idCounter;
-	public:
+// class Nalepnica{
+// 	string naziv;
+// 	int id;
+// 	static int idCounter;
+// 	public:
 		
-		Nalepnica(string Naziv):naziv(Naziv){	
-		id = ++idCounter;
+// 		Nalepnica(string Naziv):naziv(Naziv){	
+// 		id = ++idCounter;
 		
-		}
+// 		}
 		
-		Nalepnica(const Nalepnica&other):naziv(other.naziv){
+// 		Nalepnica(const Nalepnica&other):naziv(other.naziv){
 			
-			id=(++idCounter);
+// 			id=(++idCounter);
 			
-		}
+// 		}
 		
-		string getNaziv(){
-			return naziv;
-		}
-		int getId(){
-			return id;
-		}
-		void setNaziv(string noviNaziv){
-			naziv = noviNaziv;
-		}
-		void setID(int ID){
-			id = ID;
-		}
+// 		string getNaziv(){
+// 			return naziv;
+// 		}
+// 		int getId(){
+// 			return id;
+// 		}
+// 		void setNaziv(string noviNaziv){
+// 			naziv = noviNaziv;
+// 		}
+// 		void setID(int ID){
+// 			id = ID;
+// 		}
 	
 		
-};
-int Nalepnica::idCounter = 100;
+// };
+// int Nalepnica::idCounter = 100;
 
-class Flasa{
-	Nalepnica n;
-	int cenaBezKaucije;
-	float zapremina;
-	string vrstaPica;
+// class Flasa{
+// 	Nalepnica n;
+// 	int cenaBezKaucije;
+// 	float zapremina;
+// 	string vrstaPica;
 	
-	public:
-//		
-		Flasa(Nalepnica&N,int CenaBezKaucije,double Zapremina =0.33,string VrstaPica="BEZALKOHOLNO"):n(N),cenaBezKaucije(CenaBezKaucije),zapremina(Zapremina),vrstaPica(VrstaPica){
+// 	public:
+// //		
+// 		Flasa(Nalepnica&N,int CenaBezKaucije,double Zapremina =0.33,string VrstaPica="BEZALKOHOLNO"):n(N),cenaBezKaucije(CenaBezKaucije),zapremina(Zapremina),vrstaPica(VrstaPica){
 			
-		}
-		Nalepnica getNalepnicu(){
-			return n;
-		}
-		int getCenuBezKaucije(){
-			return cenaBezKaucije;
-		}
-		void setCenuBezKaucije(int novaCena){
-			cenaBezKaucije = novaCena;
+// 		}
+// 		Nalepnica getNalepnicu(){
+// 			return n;
+// 		}
+// 		int getCenuBezKaucije(){
+// 			return cenaBezKaucije;
+// 		}
+// 		void setCenuBezKaucije(int novaCena){
+// 			cenaBezKaucije = novaCena;
 			
-		}
+// 		}
 		
-		float getZapreminu(){
-			return zapremina;
-		}
-		string getVrstuPica(){
-			return vrstaPica;
-		}
-		string Tip;
+// 		float getZapreminu(){
+// 			return zapremina;
+// 		}
+// 		string getVrstuPica(){
+// 			return vrstaPica;
+// 		}
+// 		string Tip;
 		
-		int getFlasaSaKauciom(string tip){
-			Tip=tip;
-			if("staklena"==tip && zapremina < 0.5){
-				return  cenaBezKaucije * (5 / 100);
+// 		int getFlasaSaKauciom(string tip){
+// 			Tip=tip;
+// 			if("staklena"==tip && zapremina < 0.5){
+// 				return  cenaBezKaucije * (5 / 100);
 				
-			}else if("plasticna"==tip && zapremina >= 0.5){
-				return cenaBezKaucije * (10 / 100);
+// 			}else if("plasticna"==tip && zapremina >= 0.5){
+// 				return cenaBezKaucije * (10 / 100);
 				
-			}
-			if("plasticna"==tip){
-				return cenaBezKaucije;
-			}
+// 			}
+// 			if("plasticna"==tip){
+// 				return cenaBezKaucije;
+// 			}
 			
-		}
+// 		}
 		
-		void Provera(Flasa&f1,Flasa&f2){
+// 		void Provera(Flasa&f1,Flasa&f2){
 			
-			if(f1.getNalepnicu().getNaziv()==f2.getNalepnicu().getNaziv() && f1.getFlasaSaKauciom(Tip) == f2.getFlasaSaKauciom(Tip)){
-				cout<<"flase su iste";
-			}else{
-				cout<<"Nisu iste"<<endl<<f1.getNalepnicu().getNaziv()<<" "<<f2.getNalepnicu().getNaziv();
-			}
+// 			if(f1.getNalepnicu().getNaziv()==f2.getNalepnicu().getNaziv() && f1.getFlasaSaKauciom(Tip) == f2.getFlasaSaKauciom(Tip)){
+// 				cout<<"flase su iste";
+// 			}else{
+// 				cout<<"Nisu iste"<<endl<<f1.getNalepnicu().getNaziv()<<" "<<f2.getNalepnicu().getNaziv();
+// 			}
 			
-		}
+// 		}
 	
-};
-ostream&operator<<(ostream&COUT,Nalepnica&n){
+// };
+// ostream&operator<<(ostream&COUT,Nalepnica&n){
 	
-	COUT<<"Naziv:"<<n.getNaziv()<<" ID "<<n.getId()<<endl;
-	return COUT;
-}
+// 	COUT<<"Naziv:"<<n.getNaziv()<<" ID "<<n.getId()<<endl;
+// 	return COUT;
+// }
 
-int main(){
+// int main(){
 	
-	cout<<"Unesite naziv nalepnice"<<endl;
-	string nazivNalepnice;
-	cin>>nazivNalepnice;
+// 	cout<<"Unesite naziv nalepnice"<<endl;
+// 	string nazivNalepnice;
+// 	cin>>nazivNalepnice;
 	
-	Nalepnica n1(nazivNalepnice);
-	Nalepnica n4("Viski");
-	
-	
-	cout<<n1<<endl<<n4;
-	
-	Flasa f1(n1,30,0.6);
-	Flasa f2(n4,30,0.2,"ALKOHOLNO");
-	
-	f1.Provera(f1,f2);
+// 	Nalepnica n1(nazivNalepnice);
+// 	Nalepnica n4("Viski");
 	
 	
+// 	cout<<n1<<endl<<n4;
+	
+// 	Flasa f1(n1,30,0.6);
+// 	Flasa f2(n4,30,0.2,"ALKOHOLNO");
+	
+// 	f1.Provera(f1,f2);
 	
 	
-	return 0;
-}
-
-
-
-
-class Node{
-	public:
-	string Data;
-	Node*Next;
 	
 	
-};
-
-
-void addAfterSpecificElement(Node ** first,string insertName,string afterName){
-	Node*newNode = new Node();
-	
-	newNode->Data =insertName;
-	cout<<"Function calld"<<endl;
-	
-	Node *temp = *first;
-	if(*first == NULL){
-		*first = newNode;
-	}
-	
-	while(temp->Data != afterName){
-		cout<<(*first)->Data << "In func"<<endl;
-		temp = temp->Next;
-	}
-	Node*help = temp->Next;
-	temp->Next = newNode;
-	newNode->Next = help;
-}
-
-int main(){
-	Node*first= new Node();
-	first->Data = "Hamza";
-	Node*second=new Node();
-	Node *third = new Node();
-	second->Data="Haris";
-	first->Next = second;
-	third->Data = "Semra";
-	second->Next = third;
-	cout<<"check";
-	
-	
-	addAfterSpecificElement(&first,"-Aga","Haris");
-	
-	
-	while(first != NULL){
-		cout<<first->Data<<endl;
-		first = first->Next;
-	}
-}
-void sortedList(node* first) {
-    node* temp = first;
-    node* loop = first;
-    int sorted = 0;
-
-    while (!sorted) {
-        sorted = 1;
-        loop = first;
-
-        while (loop->Next != NULL) {
-            if (loop->Data > loop->Next->Data) {
-                int tempData = loop->Data;
-                loop->Data = loop->Next->Data;
-                loop->Next->Data = tempData;
-                sorted = 0;
-            }
-            loop = loop->Next;
-        }
-    }
-
-    // Print the sorted list
-    temp = first;
-    while (temp != NULL) {
-        printf("%d ", temp->Data);
-        temp = temp->Next;
-    }
-}
-
-//////////////////////
-
-
-
-#include <stdio.h>
-#include <stdlib.h>
+// 	return 0;
+// }
 
 
 
 
-typedef struct NODE{
-	int Data;
-	struct NODE* Next;
-}node;
-
-
-
-
-node* presekListi(node*firstList ,node*secondList){
+// class Node{
+// 	public:
+// 	string Data;
+// 	Node*Next;
 	
-	if(firstList == NULL || secondList == NULL){
-		return NULL;
-	}
-	node*newList = NULL;
-	node*travel = NULL;
-	node*tempFirst = firstList;
 	
-	while(tempFirst!=NULL){	
-			node*tempSecond =secondList;
-		while(tempSecond != NULL){
-			if(tempFirst->Data == tempSecond->Data){
-				if(newList == NULL){
-					newList = (node*)malloc(sizeof(node));
-					travel =(node*)malloc(sizeof(node));
-					node *newListTail = (node*)malloc(sizeof(node));
-					newList->Data = tempFirst->Data;
-					newList->Next = NULL;
-					newListTail = newList;
-					travel = newList;
+// };
+
+
+// void addAfterSpecificElement(Node ** first,string insertName,string afterName){
+// 	Node*newNode = new Node();
+	
+// 	newNode->Data =insertName;
+// 	cout<<"Function calld"<<endl;
+	
+// 	Node *temp = *first;
+// 	if(*first == NULL){
+// 		*first = newNode;
+// 	}
+	
+// 	while(temp->Data != afterName){
+// 		cout<<(*first)->Data << "In func"<<endl;
+// 		temp = temp->Next;
+// 	}
+// 	Node*help = temp->Next;
+// 	temp->Next = newNode;
+// 	newNode->Next = help;
+// }
+
+// int main(){
+// 	Node*first= new Node();
+// 	first->Data = "Hamza";
+// 	Node*second=new Node();
+// 	Node *third = new Node();
+// 	second->Data="Haris";
+// 	first->Next = second;
+// 	third->Data = "Semra";
+// 	second->Next = third;
+// 	cout<<"check";
+	
+	
+// 	addAfterSpecificElement(&first,"-Aga","Haris");
+	
+	
+// 	while(first != NULL){
+// 		cout<<first->Data<<endl;
+// 		first = first->Next;
+// 	}
+// }
+// void sortedList(node* first) {
+//     node* temp = first;
+//     node* loop = first;
+//     int sorted = 0;
+
+//     while (!sorted) {
+//         sorted = 1;
+//         loop = first;
+
+//         while (loop->Next != NULL) {
+//             if (loop->Data > loop->Next->Data) {
+//                 int tempData = loop->Data;
+//                 loop->Data = loop->Next->Data;
+//                 loop->Next->Data = tempData;
+//                 sorted = 0;
+//             }
+//             loop = loop->Next;
+//         }
+//     }
+
+//     // Print the sorted list
+//     temp = first;
+//     while (temp != NULL) {
+//         printf("%d ", temp->Data);
+//         temp = temp->Next;
+//     }
+// }
+
+// //////////////////////
+
+
+
+// #include <stdio.h>
+// #include <stdlib.h>
+
+
+
+
+// typedef struct NODE{
+// 	int Data;
+// 	struct NODE* Next;
+// }node;
+
+
+
+
+// node* presekListi(node*firstList ,node*secondList){
+	
+// 	if(firstList == NULL || secondList == NULL){
+// 		return NULL;
+// 	}
+// 	node*newList = NULL;
+// 	node*travel = NULL;
+// 	node*tempFirst = firstList;
+	
+// 	while(tempFirst!=NULL){	
+// 			node*tempSecond =secondList;
+// 		while(tempSecond != NULL){
+// 			if(tempFirst->Data == tempSecond->Data){
+// 				if(newList == NULL){
+// 					newList = (node*)malloc(sizeof(node));
+// 					travel =(node*)malloc(sizeof(node));
+// 					node *newListTail = (node*)malloc(sizeof(node));
+// 					newList->Data = tempFirst->Data;
+// 					newList->Next = NULL;
+// 					newListTail = newList;
+// 					travel = newList;
 				
 					
-				}
-				else{	
-					node*newElement = (node*)malloc(sizeof(node));
-					newElement->Data = tempFirst->Data;
-					newList->Next = newElement;
-					newList = newList->Next;
+// 				}
+// 				else{	
+// 					node*newElement = (node*)malloc(sizeof(node));
+// 					newElement->Data = tempFirst->Data;
+// 					newList->Next = newElement;
+// 					newList = newList->Next;
 					
-				}
+// 				}
 				
 			
-			}
-			tempSecond = tempSecond->Next;
+// 			}
+// 			tempSecond = tempSecond->Next;
 				
-		}
-		tempFirst = tempFirst->Next;
+// 		}
+// 		tempFirst = tempFirst->Next;
 
-	}
-	return travel;
+// 	}
+// 	return travel;
 	
-}
-int main(){
+// }
+// int main(){
 	
-	node*first=(node*)malloc(sizeof(node));
-	node*second=(node*)malloc(sizeof(node));
-	node*third=(node*)malloc(sizeof(node));
-	node*forth=(node*)malloc(sizeof(node));
+// 	node*first=(node*)malloc(sizeof(node));
+// 	node*second=(node*)malloc(sizeof(node));
+// 	node*third=(node*)malloc(sizeof(node));
+// 	node*forth=(node*)malloc(sizeof(node));
 	
-	node*firstLi=(node*)malloc(sizeof(node));
-	node*secondLi=(node*)malloc(sizeof(node));
-	node*thirdLi=(node*)malloc(sizeof(node));
-	node*forthLi=(node*)malloc(sizeof(node));
+// 	node*firstLi=(node*)malloc(sizeof(node));
+// 	node*secondLi=(node*)malloc(sizeof(node));
+// 	node*thirdLi=(node*)malloc(sizeof(node));
+// 	node*forthLi=(node*)malloc(sizeof(node));
 	
-	first->Data = 1;
-	first->Next = second;
+// 	first->Data = 1;
+// 	first->Next = second;
 	
-	second->Data =2;
-	second->Next = third;
+// 	second->Data =2;
+// 	second->Next = third;
 	
-	third->Data=7;
-	third->Next = forth;
+// 	third->Data=7;
+// 	third->Next = forth;
 
-	forth->Data=4;
-	forth->Next = NULL;
+// 	forth->Data=4;
+// 	forth->Next = NULL;
 	
 	
 	
 	
-	firstLi->Data = 1;
-	firstLi->Next = secondLi;
+// 	firstLi->Data = 1;
+// 	firstLi->Next = secondLi;
 	
-	secondLi->Data =7;
-	secondLi->Next = thirdLi;
+// 	secondLi->Data =7;
+// 	secondLi->Next = thirdLi;
 	
-	thirdLi->Data=2;
-	thirdLi->Next = forthLi;
+// 	thirdLi->Data=2;
+// 	thirdLi->Next = forthLi;
 
-	forthLi->Data=6;
-	forthLi->Next = NULL;
-	node* presecnaLista = presekListi(first,firstLi);
+// 	forthLi->Data=6;
+// 	forthLi->Next = NULL;
+// 	node* presecnaLista = presekListi(first,firstLi);
 	
-	printf("%d",presecnaLista->Next->Data);
+// 	printf("%d",presecnaLista->Next->Data);
 	
-	return 0;
+// 	return 0;
 	
-}
+// }
 
-////////////////////////////////////////////////////////////////
-#include<stdio.h>
-#include<stdlib.h>
+// ////////////////////////////////////////////////////////////////
+// #include<stdio.h>
+// #include<stdlib.h>
 
 
 
-typedef struct node{
-	int Data;
-	struct node*Next;
-}Node;
+// typedef struct node{
+// 	int Data;
+// 	struct node*Next;
+// }Node;
 
-//Treba da napravimo i prolazimo kroz sve te elemente koje napravimo
-Node* createNodes(int value){
-	int i;
-	Node*iterate=NULL;
-	Node*first = NULL;
-	for(i=1;i<=value;i++){
-		Node*newNode = (Node*)malloc(sizeof(Node));
-		newNode->Data= i;
-		newNode->Next = NULL;
+// //Treba da napravimo i prolazimo kroz sve te elemente koje napravimo
+// Node* createNodes(int value){
+// 	int i;
+// 	Node*iterate=NULL;
+// 	Node*first = NULL;
+// 	for(i=1;i<=value;i++){
+// 		Node*newNode = (Node*)malloc(sizeof(Node));
+// 		newNode->Data= i;
+// 		newNode->Next = NULL;
 		
-		if(iterate == NULL){
-			iterate=newNode;
-			first=newNode;
+// 		if(iterate == NULL){
+// 			iterate=newNode;
+// 			first=newNode;
 			
-		}else{
-			iterate->Next= newNode;
-			iterate = iterate->Next;
-		}
+// 		}else{
+// 			iterate->Next= newNode;
+// 			iterate = iterate->Next;
+// 		}
 		
 		
-	}
-	return first;
+// 	}
+// 	return first;
 	
 	
-}
-int main(){
-    Node* myList = createNodes(4);
-    // print values of nodes in the list
-    Node* current = myList;
+// }
+
+
+// ///////////// addBefore() function withou **head as argument
+
+// void addBefore(Node*current,int newValue){
+// 	Node*newNode=(Node*)malloc(sizeof(Node));
+// 	newNode->Data=newValue;
+// 	newNode->Next=NULL;
+// 	if(current==NULL){
+// 		current =newNode;
+// 	}else{
+// 		Node*temp = current->Next;
+// 		newNode->Data=current->Data;
+// 		current->Data = newValue;
+// 		current->Next=newNode;
+// 		newNode->Next=temp;	
+// 	}
+	
+	
+// }
