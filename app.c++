@@ -931,3 +931,44 @@ int main(){
 	return 0;
 	
 }
+
+////////////////////////////////////////////////////////////////
+#include<stdio.h>
+#include<stdlib.h>
+
+
+
+typedef struct node{
+	int Data;
+	struct node*Next;
+}Node;
+
+//Treba da napravimo i prolazimo kroz sve te elemente koje napravimo
+Node* createNodes(int value){
+	int i;
+	Node*iterate=NULL;
+	Node*first = NULL;
+	for(i=1;i<=value;i++){
+		Node*newNode = (Node*)malloc(sizeof(Node));
+		newNode->Data= i;
+		newNode->Next = NULL;
+		
+		if(iterate == NULL){
+			iterate=newNode;
+			first=newNode;
+			
+		}else{
+			iterate->Next= newNode;
+			iterate = iterate->Next;
+		}
+		
+		
+	}
+	return first;
+	
+	
+}
+int main(){
+    Node* myList = createNodes(4);
+    // print values of nodes in the list
+    Node* current = myList;
