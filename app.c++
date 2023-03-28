@@ -1011,6 +1011,101 @@
 		
 // 	}
 // 	return first;
-	s
+	// s
 	
 // }
+
+#include <iostream>
+#include <string.h>
+/* run this program using the console pauser or add your own getch, system("pause") or input loop */
+
+
+using namespace std;
+
+class Artikal {
+public:
+    string ime;
+    int cena;
+    float popust;
+    
+    Artikal(string Ime, int Cena, float Popust = 0) {
+        ime = Ime;
+        cena = Cena;
+        popust = Popust;
+    }
+    
+    int cenaSaPopustom() const {
+        return cena - cena * (popust / 100);
+    }
+};
+
+class Stavka {
+public:
+    Artikal artikal;
+    int kolicina;
+    int redniBroj;
+    static int counter;
+	
+	
+    Stavka(Artikal& art, int Kolicina = 0):artikal(art) {
+        kolicina = Kolicina;
+        redniBroj = ++counter;
+    }
+
+    Stavka(Stavka* other):artikal(other->artikal){
+        kolicina = other->kolicina;
+        redniBroj = ++counter;
+    }
+
+    int ukupanIznos() {
+        return artikal.cenaSaPopustom() * kolicina;
+    }
+
+    void ispis() {
+        cout << artikal.ime;
+    }
+};
+class Racun{
+	Stavka*stavke;
+	int dodatniPopust;
+	int brojStavki;
+	public:
+		Racun(){
+			stavke = new Stavka[0];
+			dodatniPopust = 0;
+			brojStavki=0;
+		}
+		
+		  void operator+=(const Stavka& novaStavka) {
+        Stavka* noveStavke = new Stavka[brojStavki + 1];
+        for (int i = 0; i < brojStavki; i++) {
+            noveStavke[i] = stavke[i];
+        }
+        noveStavke[brojStavki] = novaStavka;
+        brojStavki++;
+        delete[] stavke;
+        stavke = noveStavke;
+    }
+};
+
+int Stavka::counter = 0;
+
+ostream& operator<<(ostream& COUT, Artikal& artikal) {
+    COUT << artikal.ime << "(" << artikal.cenaSaPopustom() << ")" << endl;
+    return COUT;
+}
+
+ostream& operator<<(ostream& COUT, Stavka& stavka) {
+    COUT << stavka.redniBroj << "(" << stavka.artikal.ime << ")" << stavka.ukupanIznos() << "|" << stavka.kolicina << endl;
+    return COUT;
+}
+
+int main(int argc, char** argv) {
+    Artikal pivo("pivo", 100, 20);
+    Stavka stavka1(pivo, 3);
+    Stavka stavka2(&stavka1);
+
+    cout << stavka2 << stavka1;
+    
+    return 0;
+}
