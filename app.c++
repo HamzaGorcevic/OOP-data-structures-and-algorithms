@@ -1015,97 +1015,177 @@
 	
 // }
 
-#include <iostream>
-#include <string.h>
-/* run this program using the console pauser or add your own getch, system("pause") or input loop */
+/////////////////////////////
+/////////////////////////////
+/////////////////////////////
+/////////////////////////////
+/////////////////////////////
+/////////////////////////////
+/////////////////////////////
+/////////////////////////////
+/////////////////////////////
 
 
-using namespace std;
+// ISPIS IZ OOP FEB 
+// #include <iostream>
+// #include <string.h>
+// /* run this program using the console pauser or add your own getch, system("pause") or input loop */
 
-class Artikal {
-public:
-    string ime;
-    int cena;
-    float popust;
+
+// using namespace std;
+
+// class Artikal {
+// public:
+//     string ime;
+//     int cena;
+//     float popust;
+//     Artikal():ime("Default"),cena(0),popust(0.0){
+// 	}
+//     Artikal(string Ime, int Cena, float Popust = 0) {
+//         ime = Ime;
+//         cena = Cena;
+//         popust = Popust;
+//     }
     
-    Artikal(string Ime, int Cena, float Popust = 0) {
-        ime = Ime;
-        cena = Cena;
-        popust = Popust;
-    }
-    
-    int cenaSaPopustom() const {
-        return cena - cena * (popust / 100);
-    }
-};
-
-class Stavka {
-public:
-    Artikal artikal;
-    int kolicina;
-    int redniBroj;
-    static int counter;
-	
-	
-    Stavka(Artikal& art, int Kolicina = 0):artikal(art) {
-        kolicina = Kolicina;
-        redniBroj = ++counter;
-    }
-
-    Stavka(Stavka* other):artikal(other->artikal){
-        kolicina = other->kolicina;
-        redniBroj = ++counter;
-    }
-
-    int ukupanIznos() {
-        return artikal.cenaSaPopustom() * kolicina;
-    }
-
-    void ispis() {
-        cout << artikal.ime;
-    }
-};
-class Racun{
-	Stavka*stavke;
-	int dodatniPopust;
-	int brojStavki;
-	public:
-		Racun(){
-			stavke = new Stavka[0];
-			dodatniPopust = 0;
-			brojStavki=0;
-		}
+//     void cenaSaPopustom(double dodatniPopust =0)  {
+//     	if(popust == 0){
+//     		cena -=cena*(dodatniPopust/100);
+    		
+// 		}else{
+// 			cena -= cena * (popust / 100);
 		
-		  void operator+=(const Stavka& novaStavka) {
-        Stavka* noveStavke = new Stavka[brojStavki + 1];
-        for (int i = 0; i < brojStavki; i++) {
-            noveStavke[i] = stavke[i];
-        }
-        noveStavke[brojStavki] = novaStavka;
-        brojStavki++;
-        delete[] stavke;
-        stavke = noveStavke;
-    }
-};
-
-int Stavka::counter = 0;
-
-ostream& operator<<(ostream& COUT, Artikal& artikal) {
-    COUT << artikal.ime << "(" << artikal.cenaSaPopustom() << ")" << endl;
-    return COUT;
-}
-
-ostream& operator<<(ostream& COUT, Stavka& stavka) {
-    COUT << stavka.redniBroj << "(" << stavka.artikal.ime << ")" << stavka.ukupanIznos() << "|" << stavka.kolicina << endl;
-    return COUT;
-}
-
-int main(int argc, char** argv) {
-    Artikal pivo("pivo", 100, 20);
-    Stavka stavka1(pivo, 3);
-    Stavka stavka2(&stavka1);
-
-    cout << stavka2 << stavka1;
+// 		}
+//     }
+//     int getCenu(){
+//     	return cena;
+// 	}
     
-    return 0;
-}
+// };
+
+// class Stavka {
+// public:
+//     Artikal artikal;
+//     int kolicina;
+//     int redniBroj;
+//     static int counter;
+// 	Stavka() : kolicina(0), redniBroj(++counter) {}
+
+	
+//     Stavka(Artikal& art, int Kolicina = 0):artikal(art) {
+//         kolicina = Kolicina;
+//         redniBroj = ++counter;
+//     }
+
+//     Stavka(Stavka* other):artikal(other->artikal){
+//         kolicina = other->kolicina;
+//         redniBroj = ++counter;
+//     }
+
+//     int ukupanIznos() {
+    
+//         return artikal.getCenu()* kolicina;
+//     }
+
+//     void ispis() {
+//         cout << artikal.ime;
+//     }
+// };
+// class Racun{
+// 	Stavka*stavke;
+// 	int dodatniPopust;
+// 	int brojStavki;
+// 	public:
+// 		Racun(){
+// 			stavke = new Stavka[0];
+// 			dodatniPopust = 0;
+// 			brojStavki=0;
+// 		}
+// 		Racun(int DodatniPopust){
+// 			stavke = new Stavka[0];
+// 			dodatniPopust = DodatniPopust;
+// 			brojStavki=0;
+// 		}
+		
+// 		void operator+=(const Stavka& novaStavka) {
+// 		    Stavka *temp = new Stavka[brojStavki + 1];
+// 		    for(int i = 0; i < brojStavki; i++){
+// 		        temp[i] = stavke[i];
+// 		    }
+// 		    temp[brojStavki] = novaStavka;
+// 		    temp[brojStavki].artikal.cenaSaPopustom(dodatniPopust);
+// 		    brojStavki++;
+// 		    delete[] stavke;
+// 		    stavke = temp;
+
+		    
+// }
+// //	Funckija za ispis
+//     void ispis(){
+//     	for(int i=0;i<brojStavki;i++){
+//     		cout<<stavke[i].artikal.ime<<"["<<stavke[i].artikal.getCenu()<<"]"<<endl;
+// 		}
+// 	}
+//     int sumaRacuna(){
+//     	int suma=0;
+//     	for(int i =0;i<brojStavki;i++){
+    		
+//     		suma+=stavke[i].ukupanIznos();
+// 		}
+// 		return suma;
+// 	}
+	
+// };
+
+// int Stavka::counter = 0;
+
+// ostream& operator<<(ostream& COUT, Artikal& artikal) {
+//     COUT << artikal.ime << "(" << artikal.getCenu() << ")" << endl;
+//     return COUT;
+// }
+
+// ostream& operator<<(ostream& COUT, Stavka& stavka) {
+//     COUT << stavka.redniBroj << "(" << stavka.artikal.ime << ")" << stavka.ukupanIznos() << "|" << stavka.kolicina << endl;
+//     return COUT;
+// }
+// ostream& operator<<(ostream&COUT,Racun&racun){
+// 	racun.ispis();
+// 	COUT<<"Racun: "<<racun.sumaRacuna()<<endl;
+		
+	
+// 	return COUT;
+// }
+
+// int main(int argc, char** argv) {
+//     Artikal pivo("pivo", 100, 20);
+//     Artikal voda("voda",100,0);
+//     Artikal cips("cips",80,0);
+//     Artikal cola("cola",130,32);
+//     Stavka stavka1(pivo, 3);
+    
+//     Racun racun1(32);
+    
+    
+//     Stavka stavka2(cola,1);
+    
+//     racun1+= stavka1;
+//     racun1+=stavka2;
+//     Stavka stavka3(voda,2);
+//     Stavka stavka4(cips,1);
+    
+//     racun1+=stavka3;
+//     racun1+=stavka4;
+//     cout<<racun1;
+    
+
+    
+//     return 0;
+// }
+
+/////////////////////////////
+/////////////////////////////
+/////////////////////////////
+/////////////////////////////
+/////////////////////////////
+/////////////////////////////
+/////////////////////////////
+/////////////////////////////
