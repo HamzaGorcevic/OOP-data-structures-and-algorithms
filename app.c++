@@ -1223,13 +1223,21 @@ void createNode(int value){
 
 void reverseNode() {
     Node* temp = head;
+    printf("head is %d \n",head->prev->data);
     while (temp != NULL) {
         Node* help = temp->prev;
         temp->prev = temp->next;
         temp->next = help;
         temp = help;
     }
-	
+	printf("head is %d \n",head->next->data);
+
+    while (head->next !=nullptr){
+        head = head->next;
+
+    }
+    
+    
 }
 
 int main(int argc, char *argv[]) {
@@ -1243,7 +1251,7 @@ int main(int argc, char *argv[]) {
     Node* temp = head;
     while(temp != NULL){
         printf("%d \n",temp->data);
-        temp = temp->next;
+        temp = temp->prev;
     }
     return 0;
 }
