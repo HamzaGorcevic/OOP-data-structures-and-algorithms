@@ -1195,63 +1195,152 @@
 
 
 
-#include <stdio.h>
-#include <stdlib.h>
+// #include <stdio.h>
+// #include <stdlib.h>
 
-typedef struct NODE{
-    int data;
-    struct NODE* next;
-    struct NODE *prev;
-} Node;
+// typedef struct NODE{
+//     int data;
+//     struct NODE* next;
+//     struct NODE *prev;
+// } Node;
 
-Node* head = NULL;
+// Node* head = NULL;
 
-void createNode(int value){
-    Node* newNode = (Node*)malloc(sizeof(Node));
-    newNode->data = value;
-    newNode->prev = NULL;
-    newNode->next = NULL;
-    if(head == NULL){
+// void createNode(int value){
+//     Node* newNode = (Node*)malloc(sizeof(Node));
+//     newNode->data = value;
+//     newNode->prev = NULL;
+//     newNode->next = NULL;
+//     if(head == NULL){
+//         head = newNode;
+//     }else{
+//         head->next = newNode;
+//         newNode->prev = head;
+//         head = newNode;
+//     }
+// }
+
+
+// void reverseNode() {
+//     Node* temp = head;
+//     printf("head is %d \n",head->prev->data);
+//     while (temp != NULL) {
+//         Node* help = temp->prev;
+//         temp->prev = temp->next;
+//         temp->next = help;
+//         temp = help;
+//     }
+// 	printf("head is %d \n",head->next->data);
+
+//     while (head->next !=nullptr){
+//         head = head->next;
+
+//     }
+    
+    
+// }
+
+// int main(int argc, char *argv[]) {
+//     createNode(1);
+//     createNode(3);
+//     createNode(4);
+//     createNode(6);
+//     createNode(10);
+    
+//     reverseNode();
+//     Node* temp = head;
+//     while(temp != NULL){
+//         printf("%d \n",temp->data);
+//         temp = temp->prev;
+//     }
+//     return 0;
+// }
+
+
+
+
+
+
+
+
+
+
+
+/////////////
+
+// Write a function that takes a double linked list as input, 
+// and returns a new double linked list that contains only the even elements of the original list, in the same order.
+//  For example, if the input list is 1 <-> 2 <-> 3 <-> 4 <-> 5, 
+// the output list should be 2 <-> 4. If there are no even elements in the input list, the function should return an empty list.
+
+#include <iostream>
+
+typedef struct NODE
+{
+    int Data;
+    struct NODE *Prev;
+    struct NODE *Next;
+    
+}Node;
+
+Node*head = NULL;
+
+void createNode(int x){
+    Node*newNode = (Node*)malloc(sizeof(Node));
+    newNode->Data = x;
+    newNode->Next = NULL;
+    newNode->Prev  = NULL;
+    if(head==NULL){
         head = newNode;
     }else{
-        head->next = newNode;
-        newNode->prev = head;
+        head->Next = newNode;
+        newNode->Prev = head;
         head = newNode;
     }
 }
 
+Node*parnaLista(){
+    Node*newList = NULL;
+    Node*temp = head;
+    while (temp!=NULL)
+    {
+        if(temp->Data % 2==0){
+            Node*newNode = (Node*)malloc(sizeof(Node));
+            newNode->Data = temp->Data;
+            newNode->Next=NULL;
+            newNode->Prev = NULL;
+            if(newList==NULL){
+                newList=newNode;
+            }else{
+                newList->Next=newNode;
+                newNode->Prev = newList;
+                newList = newNode;
+            }
 
-void reverseNode() {
-    Node* temp = head;
-    printf("head is %d \n",head->prev->data);
-    while (temp != NULL) {
-        Node* help = temp->prev;
-        temp->prev = temp->next;
-        temp->next = help;
-        temp = help;
+        }
+        temp = temp->Prev;
     }
-	printf("head is %d \n",head->next->data);
-
-    while (head->next !=nullptr){
-        head = head->next;
-
-    }
-    
+    return newList;
     
 }
+int main(){
+    printf("Unesite elemente dok ne pritisnete 0 kao kraj");
+    int x;
+    do{
+        scanf("%d",&x);
+        if(x!=0){
+            createNode(x);
+        }
 
-int main(int argc, char *argv[]) {
-    createNode(1);
-    createNode(3);
-    createNode(4);
-    createNode(6);
-    createNode(10);
-    
-    reverseNode();
-    Node* temp = head;
-    while(temp != NULL){
-        printf("%d \n",temp->data);
-        temp = temp->prev;
+    }while(x!=0);
+
+    Node*newList = parnaLista();
+    printf("newlist el = %d \n",newList->Data );
+    Node*temp = head;
+    while(temp!=NULL){
+        printf("el = %d \n",temp->Data);
+        temp = temp->Prev;
+
     }
-    return 0;
+
 }
