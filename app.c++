@@ -1189,3 +1189,61 @@
 /////////////////////////////
 /////////////////////////////
 /////////////////////////////
+
+
+
+
+
+
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct NODE{
+    int data;
+    struct NODE* next;
+    struct NODE *prev;
+} Node;
+
+Node* head = NULL;
+
+void createNode(int value){
+    Node* newNode = (Node*)malloc(sizeof(Node));
+    newNode->data = value;
+    newNode->prev = NULL;
+    newNode->next = NULL;
+    if(head == NULL){
+        head = newNode;
+    }else{
+        head->next = newNode;
+        newNode->prev = head;
+        head = newNode;
+    }
+}
+
+
+void reverseNode() {
+    Node* temp = head;
+    while (temp != NULL) {
+        Node* help = temp->prev;
+        temp->prev = temp->next;
+        temp->next = help;
+        temp = help;
+    }
+	
+}
+
+int main(int argc, char *argv[]) {
+    createNode(1);
+    createNode(3);
+    createNode(4);
+    createNode(6);
+    createNode(10);
+    
+    reverseNode();
+    Node* temp = head;
+    while(temp != NULL){
+        printf("%d \n",temp->data);
+        temp = temp->next;
+    }
+    return 0;
+}
