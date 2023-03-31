@@ -1273,74 +1273,126 @@
 //  For example, if the input list is 1 <-> 2 <-> 3 <-> 4 <-> 5, 
 // the output list should be 2 <-> 4. If there are no even elements in the input list, the function should return an empty list.
 
+// #include <iostream>
+
+// typedef struct NODE
+// {
+//     int Data;
+//     struct NODE *Prev;
+//     struct NODE *Next;
+    
+// }Node;
+
+// Node*head = NULL;
+
+// void createNode(int x){
+//     Node*newNode = (Node*)malloc(sizeof(Node));
+//     newNode->Data = x;
+//     newNode->Next = NULL;
+//     newNode->Prev  = NULL;
+//     if(head==NULL){
+//         head = newNode;
+//     }else{
+//         head->Next = newNode;
+//         newNode->Prev = head;
+//         head = newNode;
+//     }
+// }
+
+// Node*parnaLista(){
+//     Node*newList = NULL;
+//     Node*temp = head;
+//     while (temp!=NULL)
+//     {
+//         if(temp->Data % 2==0){
+//             Node*newNode = (Node*)malloc(sizeof(Node));
+//             newNode->Data = temp->Data;
+//             newNode->Next=NULL;
+//             newNode->Prev = NULL;
+//             if(newList==NULL){
+//                 newList=newNode;
+//             }else{
+//                 newList->Next=newNode;
+//                 newNode->Prev = newList;
+//                 newList = newNode;
+//             }
+
+//         }
+//         temp = temp->Prev;
+//     }
+//     return newList;
+    
+// }
+// int main(){
+//     printf("Unesite elemente dok ne pritisnete 0 kao kraj");
+//     int x;
+//     do{
+//         scanf("%d",&x);
+//         if(x!=0){
+//             createNode(x);
+//         }
+
+//     }while(x!=0);
+
+//     Node*newList = parnaLista();
+//     printf("newlist el = %d \n",newList->Data );
+//     Node*temp = head;
+//     while(temp!=NULL){
+//         printf("el = %d \n",temp->Data);
+//         temp = temp->Prev;
+
+//     }
+
+// }
+
+
 #include <iostream>
+#include <string>
+#include <string.h>
 
-typedef struct NODE
-{
-    int Data;
-    struct NODE *Prev;
-    struct NODE *Next;
-    
-}Node;
+class Redovni{
+	private:
+	char*polazna;
+	char*dolazna;
+	char*vreme;
+	int brojMesta;
+	int brojRezervisanih;
+	public:
+	Redovni(){
 
-Node*head = NULL;
+	}
+	Redovni(const char*Polazna,const char*Dolazna,const char*Vreme,int BrojMesta,int BrojRezervisanih){
+		polazna = new char[strlen(Polazna)+1];
+		strcpy(polazna,Polazna);
+		dolazna = new char[strlen(Dolazna)+1];
+		strcpy(dolazna,Dolazna);
+		
+		vreme = new char[strlen(Vreme)+1];
+		strcpy(vreme,Vreme);
+		brojMesta = BrojMesta;
+		brojRezervisanih = BrojRezervisanih;
+	}
+	~Redovni(){
+		delete [] polazna;
+		delete [] dolazna;
+		delete [] vreme;
+	}
 
-void createNode(int x){
-    Node*newNode = (Node*)malloc(sizeof(Node));
-    newNode->Data = x;
-    newNode->Next = NULL;
-    newNode->Prev  = NULL;
-    if(head==NULL){
-        head = newNode;
-    }else{
-        head->Next = newNode;
-        newNode->Prev = head;
-        head = newNode;
-    }
-}
+};
 
-Node*parnaLista(){
-    Node*newList = NULL;
-    Node*temp = head;
-    while (temp!=NULL)
-    {
-        if(temp->Data % 2==0){
-            Node*newNode = (Node*)malloc(sizeof(Node));
-            newNode->Data = temp->Data;
-            newNode->Next=NULL;
-            newNode->Prev = NULL;
-            if(newList==NULL){
-                newList=newNode;
-            }else{
-                newList->Next=newNode;
-                newNode->Prev = newList;
-                newList = newNode;
-            }
-
-        }
-        temp = temp->Prev;
-    }
-    return newList;
-    
-}
 int main(){
-    printf("Unesite elemente dok ne pritisnete 0 kao kraj");
-    int x;
-    do{
-        scanf("%d",&x);
-        if(x!=0){
-            createNode(x);
-        }
+	printf("HE:");
+	Redovni let1("bec","turska","1/3/2023/15:30",100,100);
 
-    }while(x!=0);
+	Redovni let2("srbija","finska","2023/07/09",100,50);
+	
+	Redovni let3("bosna","turska","2023/07/09",100,80);
 
-    Node*newList = parnaLista();
-    printf("newlist el = %d \n",newList->Data );
-    Node*temp = head;
-    while(temp!=NULL){
-        printf("el = %d \n",temp->Data);
-        temp = temp->Prev;
+	char*place;
+	char*time;
+	
+	
 
-    }
 
+	return 0;
 }
