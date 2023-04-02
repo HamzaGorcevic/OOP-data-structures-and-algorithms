@@ -1354,6 +1354,9 @@ using namespace std;
 class Let{
 	public:
 	virtual void ispis() = 0;
+	virtual char* getPolazna()=0;
+	virtual char*getDolazna()=0;
+	virtual void reserveSit()=0;
 
 
 };
@@ -1399,11 +1402,24 @@ class sistemLetova{
 			
 		}
 		
+	}
+	
 
+	void reservePlace(string polazna,string dolazna){
+		for(int i=0;i<brojLetova;i++){
+			cout<<Letovi[i]->getDolazna();
+			if(Letovi[i]->getDolazna() == dolazna && Letovi[i]->getPolazna() == polazna){
+				Letovi[i]->reserveSit();
+				printf("\n Uspesno ste rezervisali mesto ! \n");
+				break;
+
+			}else{
+				cout<<"Takvo mesto nemamo trenutno";
+				break;
+			}
+		}
 
 	}
-
-
 
 	void ispisSvihLetova(){
 		for(int i =0;i<brojLetova;i++){
@@ -1434,13 +1450,20 @@ class Redovni:public Let{
 		brojMesta = BrojMesta;
 		brojRezervisanih = BrojRezervisanih;
 	}
-	string getPolazna(){
-		return polazna;
+	char* getPolazna() override {
+    return polazna;
+}
+char* getDolazna() override {
+    return dolazna;
+}
+
+	void reserveSit(){
+		brojRezervisanih++;
 	}
 	
 
 	void ispis() override {
-		printf("Avion polece iz %s u %s ( %s ) ,broj rezervisanih mesta je %d ,broj slobodnih mesta je %d \n",polazna,dolazna,vreme,brojRezervisanih,brojMesta-brojRezervisanih);
+		printf("Redovni avion polece iz %s u %s ( %s ) ,broj rezervisanih mesta je %d ,broj slobodnih mesta je %d \n",polazna,dolazna,vreme,brojRezervisanih,brojMesta-brojRezervisanih);
 	}
 	~Redovni(){
 		delete [] polazna;
@@ -1458,16 +1481,33 @@ class Charter:public Let{
 	int brojMesta;
 	int brojRezervisanih;
 	public:
-	Charter(){}
 
-
-	void reservePlace(int x){
-		if(brojMesta - brojRezervisanih ==0){
-
-		}
-
+	Charter(const char*Polazna,const char*Dolazna,const char*Vreme,int BrojMesta,int BrojRezervisanih){
+		polazna = new char[strlen(Polazna)+1];
+		strcpy(polazna,Polazna);
+		dolazna = new char[strlen(Dolazna)+1];
+		strcpy(dolazna,Dolazna);
+		
+		vreme = new char[strlen(Vreme)+1];
+		strcpy(vreme,Vreme);
+		brojMesta = BrojMesta;
+		brojRezervisanih = BrojRezervisanih;
+	};
+	void reserveSit(){
+		brojRezervisanih++;
 	}
+	
 
+	char* getPolazna() override{
+		return polazna;
+	};
+
+	char* getDolazna() override{
+		return dolazna;
+	};
+	void ispis() override {
+		printf("Vandredni avion polece iz %s u %s ( %s ) ,broj rezervisanih mesta je %d ,broj slobodnih mesta je %d \n",polazna,dolazna,vreme,brojRezervisanih,brojMesta-brojRezervisanih);
+	}
 
 
 };
@@ -1479,18 +1519,28 @@ int main(){
 	
 	Redovni let3("bosna","turska","2023/07/09",100,80);
 
+	Charter let10("bec","turska","1/3/2023",100,80);
+
+
 	sistemLetova sistem1;
 	sistem1.dodajLet(&let1);
 	sistem1.dodajLet(&let2);
 	sistem1.deleteLet(&let1);
+	sistem1.dodajLet(&let10);
+
+
+	sistem1.reservePlace("srbija","finska");
 	sistem1.ispisSvihLetova();
-	
 
 
 	string polazna;
 	string dolazna;
+	// cout<<"Rezervisite vas unesite destinaciju";
 
-	scanf("%s",&polazna);
+	// int x;
+	// cin>>x;
+
+	// scanf("%s",&polazna);
 	
 
 
