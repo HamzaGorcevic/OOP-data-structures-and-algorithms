@@ -1350,7 +1350,70 @@
 #include <string>
 #include <string.h>
 
-class Redovni{
+using namespace std;
+class Let{
+	public:
+	virtual void ispis() = 0;
+
+
+};
+class sistemLetova{
+	private:
+	int brojLetova=0;
+	Let**Letovi;
+
+	public:
+	sistemLetova(){
+		Letovi = NULL;
+	};
+
+	void dodajLet(Let *let){
+		Let** temp = new Let*[brojLetova + 1];
+		for(int i = 0; i < brojLetova; i++){
+			temp[i] = Letovi[i];
+		}
+		temp[brojLetova] = let;
+		brojLetova++;
+		delete [] Letovi;
+		Letovi = temp;
+	}
+	void deleteLet(Let*let){
+		for(int i =0;i<brojLetova;i++){
+			if(let == Letovi[i]){
+				delete Letovi[i];
+				for(int j=i;j<brojLetova-1;j++){
+					Letovi[j] = Letovi[j+1];
+				}
+
+				brojLetova--;
+				Let ** temp=new Let*[brojLetova+1];
+				for(int j=0;j<brojLetova;j++){
+					temp[j] = Letovi[j];
+				}
+				delete []Letovi;
+				Letovi = temp;
+				
+			}else{
+				cout<<endl<<"let nije pronadjen"<<endl;
+			}
+			
+		}
+		
+
+
+	}
+
+
+
+	void ispisSvihLetova(){
+		for(int i =0;i<brojLetova;i++){
+			Letovi[i]->ispis();
+		}
+	}
+
+};
+
+class Redovni:public Let{
 	private:
 	char*polazna;
 	char*dolazna;
@@ -1358,9 +1421,8 @@ class Redovni{
 	int brojMesta;
 	int brojRezervisanih;
 	public:
-	Redovni(){
+	Redovni(){}
 
-	}
 	Redovni(const char*Polazna,const char*Dolazna,const char*Vreme,int BrojMesta,int BrojRezervisanih){
 		polazna = new char[strlen(Polazna)+1];
 		strcpy(polazna,Polazna);
@@ -1372,6 +1434,14 @@ class Redovni{
 		brojMesta = BrojMesta;
 		brojRezervisanih = BrojRezervisanih;
 	}
+	string getPolazna(){
+		return polazna;
+	}
+	
+
+	void ispis() override {
+		printf("Avion polece iz %s u %s ( %s ) ,broj rezervisanih mesta je %d ,broj slobodnih mesta je %d \n",polazna,dolazna,vreme,brojRezervisanih,brojMesta-brojRezervisanih);
+	}
 	~Redovni(){
 		delete [] polazna;
 		delete [] dolazna;
@@ -1380,18 +1450,49 @@ class Redovni{
 
 };
 
+class Charter:public Let{
+	private:
+	char*polazna;
+	char*dolazna;
+	char*vreme;
+	int brojMesta;
+	int brojRezervisanih;
+	public:
+	Charter(){}
+
+
+	void reservePlace(int x){
+		if(brojMesta - brojRezervisanih ==0){
+
+		}
+
+	}
+
+
+
+};
+
 int main(){
-	printf("HE:");
 	Redovni let1("bec","turska","1/3/2023/15:30",100,100);
 
 	Redovni let2("srbija","finska","2023/07/09",100,50);
 	
 	Redovni let3("bosna","turska","2023/07/09",100,80);
 
-	char*place;
-	char*time;
+	sistemLetova sistem1;
+	sistem1.dodajLet(&let1);
+	sistem1.dodajLet(&let2);
+	sistem1.deleteLet(&let1);
+	sistem1.ispisSvihLetova();
 	
+
+
+	string polazna;
+	string dolazna;
+
+	scanf("%s",&polazna);
 	
+
 
 
 	return 0;
