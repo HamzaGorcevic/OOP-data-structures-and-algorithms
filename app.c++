@@ -1346,204 +1346,315 @@
 // }
 
 
-#include <iostream>
-#include <string>
-#include <string.h>
+// #include <iostream>
+// #include <string>
+// #include <string.h>
 
-using namespace std;
-class Let{
-	public:
-	virtual void ispis() = 0;
-	virtual char* getPolazna()=0;
-	virtual char*getDolazna()=0;
-	virtual void reserveSit()=0;
+// using namespace std;
+// class Let{
+// 	public:
+// 	virtual void ispis() = 0;
+// 	virtual char* getPolazna()=0;
+// 	virtual char*getDolazna()=0;
+// 	virtual void reserveSit()=0;
 
 
-};
-class sistemLetova{
-	private:
-	int brojLetova=0;
-	Let**Letovi;
+// };
+// class sistemLetova{
+// 	private:
+// 	int brojLetova=0;
+// 	Let**Letovi;
 
-	public:
-	sistemLetova(){
-		Letovi = NULL;
-	};
+// 	public:
+// 	sistemLetova(){
+// 		Letovi = NULL;
+// 	};
 
-	void dodajLet(Let *let){
-		Let** temp = new Let*[brojLetova + 1];
-		for(int i = 0; i < brojLetova; i++){
-			temp[i] = Letovi[i];
-		}
-		temp[brojLetova] = let;
-		brojLetova++;
-		delete [] Letovi;
-		Letovi = temp;
-	}
-	void deleteLet(Let*let){
-		for(int i =0;i<brojLetova;i++){
-			if(let == Letovi[i]){
-				delete Letovi[i];
-				for(int j=i;j<brojLetova-1;j++){
-					Letovi[j] = Letovi[j+1];
-				}
+// 	void dodajLet(Let *let){
+// 		Let** temp = new Let*[brojLetova + 1];
+// 		for(int i = 0; i < brojLetova; i++){
+// 			temp[i] = Letovi[i];
+// 		}
+// 		temp[brojLetova] = let;
+// 		brojLetova++;
+// 		delete [] Letovi;
+// 		Letovi = temp;
+// 	}
+// 	void deleteLet(Let*let){
+// 		for(int i =0;i<brojLetova;i++){
+// 			if(let == Letovi[i]){
+// 				delete Letovi[i];
+// 				for(int j=i;j<brojLetova-1;j++){
+// 					Letovi[j] = Letovi[j+1];
+// 				}
 
-				brojLetova--;
-				Let ** temp=new Let*[brojLetova+1];
-				for(int j=0;j<brojLetova;j++){
-					temp[j] = Letovi[j];
-				}
-				delete []Letovi;
-				Letovi = temp;
+// 				brojLetova--;
+// 				Let ** temp=new Let*[brojLetova+1];
+// 				for(int j=0;j<brojLetova;j++){
+// 					temp[j] = Letovi[j];
+// 				}
+// 				delete []Letovi;
+// 				Letovi = temp;
 				
-			}else{
-				cout<<endl<<"let nije pronadjen"<<endl;
-			}
+// 			}else{
+// 				cout<<endl<<"let nije pronadjen"<<endl;
+// 			}
+			
+// 		}
+		
+// 	}
+	
+
+// 	void reservePlace(string polazna,string dolazna){
+// 		for(int i=0;i<brojLetova;i++){
+// 			cout<<Letovi[i]->getDolazna();
+// 			if(Letovi[i]->getDolazna() == dolazna && Letovi[i]->getPolazna() == polazna){
+// 				Letovi[i]->reserveSit();
+// 				printf("\n Uspesno ste rezervisali mesto ! \n");
+// 				break;
+
+// 			}else{
+// 				cout<<"Takvo mesto nemamo trenutno";
+// 				break;
+// 			}
+// 		}
+
+// 	}
+
+// 	void ispisSvihLetova(){
+// 		for(int i =0;i<brojLetova;i++){
+// 			Letovi[i]->ispis();
+// 		}
+// 	}
+
+// };
+
+// class Redovni:public Let{
+// 	private:
+// 	char*polazna;
+// 	char*dolazna;
+// 	char*vreme;
+// 	int brojMesta;
+// 	int brojRezervisanih;
+// 	public:
+// 	Redovni(){}
+
+// 	Redovni(const char*Polazna,const char*Dolazna,const char*Vreme,int BrojMesta,int BrojRezervisanih){
+// 		polazna = new char[strlen(Polazna)+1];
+// 		strcpy(polazna,Polazna);
+// 		dolazna = new char[strlen(Dolazna)+1];
+// 		strcpy(dolazna,Dolazna);
+		
+// 		vreme = new char[strlen(Vreme)+1];
+// 		strcpy(vreme,Vreme);
+// 		brojMesta = BrojMesta;
+// 		brojRezervisanih = BrojRezervisanih;
+// 	}
+// 	char* getPolazna() override {
+//     return polazna;
+// }
+// char* getDolazna() override {
+//     return dolazna;
+// }
+
+// 	void reserveSit(){
+// 		brojRezervisanih++;
+// 	}
+	
+
+// 	void ispis() override {
+// 		printf("Redovni avion polece iz %s u %s ( %s ) ,broj rezervisanih mesta je %d ,broj slobodnih mesta je %d \n",polazna,dolazna,vreme,brojRezervisanih,brojMesta-brojRezervisanih);
+// 	}
+// 	~Redovni(){
+// 		delete [] polazna;
+// 		delete [] dolazna;
+// 		delete [] vreme;
+// 	}
+
+// };
+
+// class Charter:public Let{
+// 	private:
+// 	char*polazna;
+// 	char*dolazna;
+// 	char*vreme;
+// 	int brojMesta;
+// 	int brojRezervisanih;
+// 	public:
+
+// 	Charter(const char*Polazna,const char*Dolazna,const char*Vreme,int BrojMesta,int BrojRezervisanih){
+// 		polazna = new char[strlen(Polazna)+1];
+// 		strcpy(polazna,Polazna);
+// 		dolazna = new char[strlen(Dolazna)+1];
+// 		strcpy(dolazna,Dolazna);
+		
+// 		vreme = new char[strlen(Vreme)+1];
+// 		strcpy(vreme,Vreme);
+// 		brojMesta = BrojMesta;
+// 		brojRezervisanih = BrojRezervisanih;
+// 	};
+// 	void reserveSit(){
+// 		brojRezervisanih++;
+// 	}
+	
+
+// 	char* getPolazna() override{
+// 		return polazna;
+// 	};
+
+// 	char* getDolazna() override{
+// 		return dolazna;
+// 	};
+// 	void ispis() override {
+// 		printf("Vandredni avion polece iz %s u %s ( %s ) ,broj rezervisanih mesta je %d ,broj slobodnih mesta je %d \n",polazna,dolazna,vreme,brojRezervisanih,brojMesta-brojRezervisanih);
+// 	}
+
+
+// };
+
+// int main(){
+// 	Redovni let1("bec","turska","1/3/2023/15:30",100,100);
+
+// 	Redovni let2("srbija","finska","2023/07/09",100,50);
+	
+// 	Redovni let3("bosna","turska","2023/07/09",100,80);
+
+// 	Charter let10("bec","turska","1/3/2023",100,80);
+
+
+// 	sistemLetova sistem1;
+// 	sistem1.dodajLet(&let1);
+// 	sistem1.dodajLet(&let2);
+// 	sistem1.deleteLet(&let1);
+// 	sistem1.dodajLet(&let10);
+
+
+// 	sistem1.reservePlace("srbija","finska");
+// 	sistem1.ispisSvihLetova();
+
+
+// 	string polazna;
+// 	string dolazna;
+// 	// cout<<"Rezervisite vas unesite destinaciju";
+
+// 	// int x;
+// 	// cin>>x;
+
+// 	// scanf("%s",&polazna);
+	
+
+
+
+// 	return 0;
+// }
+
+
+
+
+
+
+
+
+// Stecovi i redovi
+
+
+// Kruzna lista
+
+
+#include <iostream>
+using namespace std;
+typedef struct NODE
+{
+	int data;
+	struct NODE*next;
+}Node;
+
+Node*head = NULL,*rear=NULL;
+
+void create(int x){
+	Node*newNode = (Node*)malloc(sizeof(Node));
+	newNode->data = x;
+	newNode->next = NULL;
+	if(rear == NULL){
+		head = rear = newNode;
+	}else{
+		rear->next = newNode;
+		rear = newNode;
+	}
+	rear->next = head;
+}
+void del(){
+	if(rear == NULL){
+		printf("Nema elemenata");
+		return;
+	}else{
+		if(head == rear){
+		delete head;
+		head = rear = NULL;
+	}else{
+
+		Node*temp = head;
+		head = head->next;
+		rear->next = head;
+
+		
+		delete temp;
+
+	}
+
+	}
+	
+
+
+	
+
+}
+
+void insertAtEnd(int x){
+	Node*newNode=(Node*)malloc(sizeof(Node));
+	newNode->data = x;
+	newNode->next = NULL;
+	if(rear == NULL){
+		rear = head=newNode;
+
+	}else{
+			rear->next = newNode;
+			rear = rear->next;
+			rear->next = head;
 			
 		}
-		
-	}
-	
-
-	void reservePlace(string polazna,string dolazna){
-		for(int i=0;i<brojLetova;i++){
-			cout<<Letovi[i]->getDolazna();
-			if(Letovi[i]->getDolazna() == dolazna && Letovi[i]->getPolazna() == polazna){
-				Letovi[i]->reserveSit();
-				printf("\n Uspesno ste rezervisali mesto ! \n");
-				break;
-
-			}else{
-				cout<<"Takvo mesto nemamo trenutno";
-				break;
-			}
-		}
-
-	}
-
-	void ispisSvihLetova(){
-		for(int i =0;i<brojLetova;i++){
-			Letovi[i]->ispis();
-		}
-	}
-
-};
-
-class Redovni:public Let{
-	private:
-	char*polazna;
-	char*dolazna;
-	char*vreme;
-	int brojMesta;
-	int brojRezervisanih;
-	public:
-	Redovni(){}
-
-	Redovni(const char*Polazna,const char*Dolazna,const char*Vreme,int BrojMesta,int BrojRezervisanih){
-		polazna = new char[strlen(Polazna)+1];
-		strcpy(polazna,Polazna);
-		dolazna = new char[strlen(Dolazna)+1];
-		strcpy(dolazna,Dolazna);
-		
-		vreme = new char[strlen(Vreme)+1];
-		strcpy(vreme,Vreme);
-		brojMesta = BrojMesta;
-		brojRezervisanih = BrojRezervisanih;
-	}
-	char* getPolazna() override {
-    return polazna;
-}
-char* getDolazna() override {
-    return dolazna;
 }
 
-	void reserveSit(){
-		brojRezervisanih++;
+void insertAtStart(int x){
+	Node*newNode=(Node*)malloc(sizeof(Node));
+	newNode->data=x;
+	newNode->next=NULL;
+	if(rear == NULL){
+		rear = head = newNode;
+		rear->next = head;
+	}else{
+		newNode->next = head;
+		head = newNode;
+		rear->next = head;
 	}
-	
-
-	void ispis() override {
-		printf("Redovni avion polece iz %s u %s ( %s ) ,broj rezervisanih mesta je %d ,broj slobodnih mesta je %d \n",polazna,dolazna,vreme,brojRezervisanih,brojMesta-brojRezervisanih);
-	}
-	~Redovni(){
-		delete [] polazna;
-		delete [] dolazna;
-		delete [] vreme;
-	}
-
-};
-
-class Charter:public Let{
-	private:
-	char*polazna;
-	char*dolazna;
-	char*vreme;
-	int brojMesta;
-	int brojRezervisanih;
-	public:
-
-	Charter(const char*Polazna,const char*Dolazna,const char*Vreme,int BrojMesta,int BrojRezervisanih){
-		polazna = new char[strlen(Polazna)+1];
-		strcpy(polazna,Polazna);
-		dolazna = new char[strlen(Dolazna)+1];
-		strcpy(dolazna,Dolazna);
-		
-		vreme = new char[strlen(Vreme)+1];
-		strcpy(vreme,Vreme);
-		brojMesta = BrojMesta;
-		brojRezervisanih = BrojRezervisanih;
-	};
-	void reserveSit(){
-		brojRezervisanih++;
-	}
-	
-
-	char* getPolazna() override{
-		return polazna;
-	};
-
-	char* getDolazna() override{
-		return dolazna;
-	};
-	void ispis() override {
-		printf("Vandredni avion polece iz %s u %s ( %s ) ,broj rezervisanih mesta je %d ,broj slobodnih mesta je %d \n",polazna,dolazna,vreme,brojRezervisanih,brojMesta-brojRezervisanih);
-	}
-
-
-};
+}
 
 int main(){
-	Redovni let1("bec","turska","1/3/2023/15:30",100,100);
-
-	Redovni let2("srbija","finska","2023/07/09",100,50);
+	create(3);
+	create(4);
+	create(5);
+	create(6);
+	create(7);
+	del();
+	insertAtEnd(11);
+	insertAtStart(1);
 	
-	Redovni let3("bosna","turska","2023/07/09",100,80);
-
-	Charter let10("bec","turska","1/3/2023",100,80);
-
-
-	sistemLetova sistem1;
-	sistem1.dodajLet(&let1);
-	sistem1.dodajLet(&let2);
-	sistem1.deleteLet(&let1);
-	sistem1.dodajLet(&let10);
-
-
-	sistem1.reservePlace("srbija","finska");
-	sistem1.ispisSvihLetova();
-
-
-	string polazna;
-	string dolazna;
-	// cout<<"Rezervisite vas unesite destinaciju";
-
-	// int x;
-	// cin>>x;
-
-	// scanf("%s",&polazna);
+	Node*temp = head;
+	while (temp != rear){
+		cout<<"temp-data "<<temp->data<<endl;
+		temp = temp->next;
+	}
+	cout<<"temp-data "<<temp->data;
 	
-
-
-
-	return 0;
+	
 }
