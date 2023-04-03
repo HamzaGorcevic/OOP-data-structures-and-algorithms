@@ -13,7 +13,7 @@
 //             int temp = matrica[i][j];
 //             matrica[i][j] = matrica[n-1][j];
 //             matrica[n-1][j] = temp;
-        
+
 //            }
 
 //     }}
@@ -24,7 +24,7 @@
 
 //     // double radius;
 //     // cin >> radius;
-    
+
 //     // const double pi = 3.14;
 //     // double area = pi*pow(radius,2);
 
@@ -33,7 +33,7 @@
 //     // auto price = 99.99;
 
 //     // auto isVaild = false;
-       
+
 //     //  cout <<isVaild;
 //     // int number {};
 
@@ -42,7 +42,6 @@
 //     // int guess [10] ={1,2,3,4};
 
 //     // cout << guess[0];
-
 
 //     //// petlja
 
@@ -65,8 +64,6 @@
 // //         }
 
 // //     }
-
-     
 
 // // for(i=0;i<k;i++){
 // //     moveFunc(matrica,n);
@@ -93,32 +90,30 @@
 //     // cin>>unetoPoljeChar>>unetoPoljeInt;
 //     // cout<<"Unesite polje figure koju pokusavate izbaciti"<<endl;
 //     //  cin>>izabranoPoljeChar>>izabranoPoljeInt;
-     
+
 //     // if(figura == "pawn"){
-        
+
 //     //  int saveChosenI;
 //     //         int saveI;
 //     //     for(i=0;i<8;i++){
-           
+
 //     //         int fieldHeCanPlay = unetoPoljeInt + 1;
-            
+
 //     //         if(unetoPoljeChar == polja[i] && fieldHeCanPlay == izabranoPoljeInt){
 //     //             saveI = i;
 //     //         }
 //     //         if(izabranoPoljeChar == polja[i]){
 //     //              saveChosenI = i;
 //     //         }
-           
+
 //     //     }
 //     //      if(saveI == saveChosenI -1 || saveI == saveChosenI +1){
 //     //             cout<<"Pawn can take figure";
 //     //         }else{
 //     //             cout<<"Pawn can't take figure";
 
-
 //     //         }
 //     // }
-
 
 //     // if(figura == "bishop"){
 //     //     if(unetoPoljeChar == izabranoPoljeChar || unetoPoljeInt == izabranoPoljeInt){
@@ -126,7 +121,6 @@
 
 //     //     }else{
 //     //                     cout<<"Bishop can't take figure";
-
 
 //     //     }
 //     // }
@@ -153,12 +147,12 @@
 //     //         }
 //     //     }
 //     // }
-   
+
 //     // char rec[100];
 //     // int polindrom;
 //     // cin>>rec;
 //     // int duzina= strlen(rec);
-    
+
 //     // for(int i =0;i<duzina;i++){
 //     //     if(rec[i] == rec[duzina-1]){
 //     //         duzina-=1;
@@ -169,12 +163,8 @@
 //     // }else{
 //     //     cout<<"rec nije polindrom";
 //     // }
-    
 
-
-   
 //     // int i,n;
- 
 
 //     // cout<<"unesite broj elemenata";
 //     // cin>>n;
@@ -188,7 +178,7 @@
 //     // }
 
 //     // for(i=0;i<n;i++){
-//     //     for(int j=0;j<i;j++){       
+//     //     for(int j=0;j<i;j++){
 //     //         if(nizA[i] > nizA[j]){
 //     //             int pom = nizB[i];
 //     //             nizB[i] = nizB[j];
@@ -207,9 +197,8 @@
 
 //     // delete[] nizA;
 //     // delete[] nizB;
-    
-//     // int n,k;
 
+//     // int n,k;
 
 //     // cout<<"Unesite dimenziju N"<<endl;
 //     // cin>>n;
@@ -224,7 +213,7 @@
 //     //           cin>>matrica[i][j];
 
 //     //     }
-       
+
 //     // }
 //     // cout<<"Unesite k";
 //     // cin>>k;
@@ -234,18 +223,17 @@
 //     //           cout<<matrica[i][j]<<" ";
 
 //     //     }
-       
+
 //     // }
 //     // for(int i=0;i<k;i++){
 //     //     moveFunc(matrica,n);
 //     // }
 
-
 //     // for(int i=0;i<n;i++){
 //     //     delete[] matrica[i];
 //     // }
 //     // delete[] matrica;
-      
+
 //       //LINKED LISTS
 // //       #include <iostream>
 
@@ -258,7 +246,7 @@
 // // 	Node* Next;
 // // };
 
-// // void printList(Node*first){	
+// // void printList(Node*first){
 // // 	Node * iterate = first;
 // // 	while(iterate != NULL){
 // // 		cout<<(iterate)->Data<<endl;
@@ -270,45 +258,43 @@
 // // 	newNode->Data = newValue;
 // // 	newNode->Next = *head;
 // // 	*head = newNode;
-	
-	
+
 // // }
 // // void addAtTheEnd(Node** head,int newValue){
 // // 	cout<<"head"<<*head;
 // // 	Node* newNode = new Node();
 // // 	newNode->Data = newValue;
 // // 	newNode->Next=NULL;
-	
+
 // // 	if(*head == NULL){
 // // 		*head = newNode;
 // // 	}
 // // 	Node*I = *head;
 // // 	while(I->Next!=NULL){
 // // 		I = I->Next;
-		
+
 // // 	}
 // // 	I->Next = newNode;
 // // }
-
 
 // // // Deleting specific item from list
 // // void deleteByValue(Node ** head,int deleteValue){
 // // //	To delete specific element by value ,we need our head(first element) and value wich should be deleted in this case last(20) , we need to check
 // // //	if element even exists first(*head == NULL) ,then when we check we go in while loop wich is going through list until it finds value wich should
 // // //	be deleted , we need two pointer :current and prev, current will help us to go through loop and prev will alywas be one step behind current
-// // //	,when we find value wich should be deleted in our array we check value of prev , because we need previous value so we can set its value to next of 
-// // //	value wich should be deleted ,if value of prev is null we know that use want to delete first element so we can use our *head and set its value to 
-// // //	*head->Next , and we should break our loop there , if prev is not null , that means that our value to be delete is second or more element so we 
-// // //	need to go through loop until we find current and prev value , when we find we should set our prev->Next to be current->Next so we skip value wich 
+// // //	,when we find value wich should be deleted in our array we check value of prev , because we need previous value so we can set its value to next of
+// // //	value wich should be deleted ,if value of prev is null we know that use want to delete first element so we can use our *head and set its value to
+// // //	*head->Next , and we should break our loop there , if prev is not null , that means that our value to be delete is second or more element so we
+// // //	need to go through loop until we find current and prev value , when we find we should set our prev->Next to be current->Next so we skip value wich
 // // //	should be deleted in this case it is current ,then we break and delete current
 // // 	Node *current = *head;
 // // 	Node *prev = NULL;
 // // 	if(*head == NULL){
 // // 		cout<<"List is empty";
-		
+
 // // 	}
 // // 	while(current != NULL){
-	
+
 // // 		if(current->Data == deleteValue){
 // // 			if(prev == NULL){
 // // 				*head = (*head)->Next;
@@ -321,7 +307,7 @@
 // // 		}
 // // 		prev = current;
 // // 		current = current->Next;
-				
+
 // // }
 
 // // }
@@ -331,57 +317,55 @@
 // // 	newNode->Data = newValue;
 // // 	newNode->Next = insertBef;
 // // 	Node*current = *head;
-// // //	We need to see when we will get last element , we use current instead of *head because current will point only on one elemtn ,in this 
-// // //	case element we are looking for is third , so current will take place of that element,we made prev to be null so when we find current we 
-// // //	need another poinet to point on current before he goes to next , then we have element before third and we have next element in third 
+// // //	We need to see when we will get last element , we use current instead of *head because current will point only on one elemtn ,in this
+// // //	case element we are looking for is third , so current will take place of that element,we made prev to be null so when we find current we
+// // //	need another poinet to point on current before he goes to next , then we have element before third and we have next element in third
 // // 	Node*prev=NULL;
-	
+
 // // 	if(*head == NULL){
 // // 		cout<<"Lista je prazna";
 // // 	}
-	
+
 // // 	while(current->Data != insertBef->Data){
 // // 		prev = current;
 // // 		current = current->Next;
-		
+
 // // 	}
 // // 	prev->Next = newNode;
 // // }
 
-
 // // void insertAfter(Node*insertAft,int newValue){
-// // //	User sends us place after where his new value should go , we create new node for that value and if it is after last element we just set our 
+// // //	User sends us place after where his new value should go , we create new node for that value and if it is after last element we just set our
 // // //	last elemtnt->next to be that vlaue , if it is not then we save our next value  to temp , and on its place we put newNode then newNode->Next
 // // //	shoud be that value
 // // 	Node*newNode=new Node();
 // // 	newNode->Data = newValue;
-	
+
 // // 	if(insertAft->Next == NULL){
-// // 		insertAft->Next = newNode;	
+// // 		insertAft->Next = newNode;
 // // 	}else{
 // // 		Node *temp = insertAft->Next;
 // // 		insertAft->Next = newNode;
 // // 		newNode->Next = temp;
 // // 	}
-	
-	
+
 // // }
 // // void deleteLastEl(Node *head){
 // // 	Node *temp = head;
 // // 	while(temp->Next->Next != NULL){
 // // 		temp = temp->Next;
 // // 	}
-	
+
 // // 	temp->Next = NULL;
 // // 	delete temp;
-	
+
 // // }
 // // int main(int argc, char** argv) {
-	
-// // 	Node* first=new Node(); 
+
+// // 	Node* first=new Node();
 // // 	Node* second = new Node();
 // // 	Node* third = new Node();
-	
+
 // // 	first->Data = 1;
 // // 	first->Next = second;
 // // 	second->Data = 2;
@@ -399,15 +383,9 @@
 // // 	cout<<"head"<<first;
 
 // // 	printList(first);
-	
+
 // // 	return 0;
 // // }
-
-
-
-
-
-
 
 // // Why this code works
 // //#include <iostream>
@@ -421,7 +399,7 @@
 // //	Node* Next;
 // //};
 // //
-// //void printList(Node*first){	
+// //void printList(Node*first){
 // //	Node * iterate = first;
 // //	cout<<"Printing"<<endl;
 // //	while(iterate != NULL){
@@ -434,22 +412,22 @@
 // //	newNode->Data = newValue;
 // //	newNode->Next = head;
 // //	head = newNode;
-// //	
-// //	
+// //
+// //
 // //}
 // //void addAtTheEnd(Node* head,int newValue){
 // //	cout<<"head"<<head;
 // //	Node* newNode = new Node();
 // //	newNode->Data = newValue;
 // //	newNode->Next=NULL;
-// //	
+// //
 // //	if(head == NULL){
 // //		head = newNode;
 // //	}
 // //	Node*I = head;
 // //	while(I->Next!=NULL){
 // //		I = I->Next;
-// //		
+// //
 // //	}
 // //	I->Next = newNode;
 // //}
@@ -460,19 +438,19 @@
 // ////	To delete specific element by value ,we need our head(first element) and value wich should be deleted in this case last(20) , we need to check
 // ////	if element even exists first(*head == NULL) ,then when we check we go in while loop wich is going through list until it finds value wich should
 // ////	be deleted , we need two pointer :current and prev, current will help us to go through loop and prev will alywas be one step behind current
-// ////	,when we find value wich should be deleted in our array we check value of prev , because we need previous value so we can set its value to next of 
-// ////	value wich should be deleted ,if value of prev is null we know that use want to delete first element so we can use our *head and set its value to 
-// ////	*head->Next , and we should break our loop there , if prev is not null , that means that our value to be delete is second or more element so we 
-// ////	need to go through loop until we find current and prev value , when we find we should set our prev->Next to be current->Next so we skip value wich 
+// ////	,when we find value wich should be deleted in our array we check value of prev , because we need previous value so we can set its value to next of
+// ////	value wich should be deleted ,if value of prev is null we know that use want to delete first element so we can use our *head and set its value to
+// ////	*head->Next , and we should break our loop there , if prev is not null , that means that our value to be delete is second or more element so we
+// ////	need to go through loop until we find current and prev value , when we find we should set our prev->Next to be current->Next so we skip value wich
 // ////	should be deleted in this case it is current ,then we break and delete current
 // //	Node *current = head;
 // //	Node *prev = NULL;
 // //	if(head == NULL){
 // //		cout<<"List is empty";
-// //		
+// //
 // //	}
 // //	while(current != NULL){
-// //	
+// //
 // //		if(current->Data == deleteValue){
 // //			if(prev == NULL){
 // //				head = (head)->Next;
@@ -485,7 +463,7 @@
 // //		}
 // //		prev = current;
 // //		current = current->Next;
-// //				
+// //
 // //}
 // //
 // //}
@@ -495,28 +473,28 @@
 // //	newNode->Data = newValue;
 // //	newNode->Next = insertBef;
 // //	Node*current = head;
-// ////	We need to see when we will get last element , we use current instead of *head because current will point only on one elemtn ,in this 
-// ////	case element we are looking for is third , so current will take place of that element,we made prev to be null so when we find current we 
-// ////	need another poinet to point on current before he goes to next , then we have element before third and we have next element in third 
+// ////	We need to see when we will get last element , we use current instead of *head because current will point only on one elemtn ,in this
+// ////	case element we are looking for is third , so current will take place of that element,we made prev to be null so when we find current we
+// ////	need another poinet to point on current before he goes to next , then we have element before third and we have next element in third
 // //	Node*prev=NULL;
-// //	
+// //
 // //	if(head == NULL){
 // //		cout<<"Lista je prazna";
 // //	}
-// //	
+// //
 // //	while(current->Data != insertBef->Data){
 // //		prev = current;
 // //		current = current->Next;
-// //		
+// //
 // //	}
 // //	prev->Next = newNode;
 // //}
 // //int main(int argc, char** argv) {
-// //	
-// //	Node* first=new Node(); 
+// //
+// //	Node* first=new Node();
 // //	Node* second = new Node();
 // //	Node* third = new Node();
-// //	
+// //
 // //	first->Data = 1;
 // //	first->Next = second;
 // //	second->Data = 2;
@@ -532,13 +510,11 @@
 // //	cout<<"head"<<first;
 // //
 // //	printList(first);
-// //	
+// //
 // //	return 0;
 // //}
 
-
 // // OOP
-
 
 // // #include <iostream>
 // // #include <string.h>
@@ -554,8 +530,8 @@
 // // //			name = new char[strlen(aName) + 1];
 // // //			strcpy(name,aName);
 // // //			age = aAge;
-// // //			
-// // //			
+// // //
+// // //
 // // //		}
 // // //		~Student(){
 // // //			delete[]name;
@@ -573,7 +549,7 @@
 // // //		}
 // // //		void setAge(int aAge){
 // // //			age = aAge;
-// // //			
+// // //
 // // //		}
 // // //};
 
@@ -584,7 +560,7 @@
 // // 	double popust=0;
 // // public:
 // // 	Artikal(string aNaziv,int aCena,double aPopust):naziv(aNaziv),cena(aCena),popust(aPopust){	}
-	
+
 // // 	Artikal(const Artikal& other):naziv(other.naziv),cena(other.cena),popust(other.popust){
 // // 		cout<<"is copied";	}
 
@@ -593,15 +569,13 @@
 // // 	}
 // // 	int cenaSaPopustom(){
 // // 		return cena = cena - (cena * (popust/100));
-	
+
 // // 	}
 // // 	void setNaziv(string noviNaziv){
 // // 		naziv = noviNaziv;
-		
+
 // // 	}
 
-	
-		
 // // };
 
 // // ostream& operator <<(ostream& COUT,Artikal& artikal){
@@ -613,7 +587,7 @@
 // // 	Artikal a1("Jaje",20,7);
 // // 	Artikal acpy = a1;
 // // 	cout<<a1<<endl;
-	
+
 // // 		return 0;
 
 // // }
@@ -631,18 +605,18 @@
 // 	int id;
 // 	static int idCounter;
 // 	public:
-		
-// 		Nalepnica(string Naziv):naziv(Naziv){	
+
+// 		Nalepnica(string Naziv):naziv(Naziv){
 // 		id = ++idCounter;
-		
+
 // 		}
-		
+
 // 		Nalepnica(const Nalepnica&other):naziv(other.naziv){
-			
+
 // 			id=(++idCounter);
-			
+
 // 		}
-		
+
 // 		string getNaziv(){
 // 			return naziv;
 // 		}
@@ -655,8 +629,7 @@
 // 		void setID(int ID){
 // 			id = ID;
 // 		}
-	
-		
+
 // };
 // int Nalepnica::idCounter = 100;
 
@@ -665,11 +638,11 @@
 // 	int cenaBezKaucije;
 // 	float zapremina;
 // 	string vrstaPica;
-	
+
 // 	public:
-// //		
+// //
 // 		Flasa(Nalepnica&N,int CenaBezKaucije,double Zapremina =0.33,string VrstaPica="BEZALKOHOLNO"):n(N),cenaBezKaucije(CenaBezKaucije),zapremina(Zapremina),vrstaPica(VrstaPica){
-			
+
 // 		}
 // 		Nalepnica getNalepnicu(){
 // 			return n;
@@ -679,9 +652,9 @@
 // 		}
 // 		void setCenuBezKaucije(int novaCena){
 // 			cenaBezKaucije = novaCena;
-			
+
 // 		}
-		
+
 // 		float getZapreminu(){
 // 			return zapremina;
 // 		}
@@ -689,85 +662,76 @@
 // 			return vrstaPica;
 // 		}
 // 		string Tip;
-		
+
 // 		int getFlasaSaKauciom(string tip){
 // 			Tip=tip;
 // 			if("staklena"==tip && zapremina < 0.5){
 // 				return  cenaBezKaucije * (5 / 100);
-				
+
 // 			}else if("plasticna"==tip && zapremina >= 0.5){
 // 				return cenaBezKaucije * (10 / 100);
-				
+
 // 			}
 // 			if("plasticna"==tip){
 // 				return cenaBezKaucije;
 // 			}
-			
+
 // 		}
-		
+
 // 		void Provera(Flasa&f1,Flasa&f2){
-			
+
 // 			if(f1.getNalepnicu().getNaziv()==f2.getNalepnicu().getNaziv() && f1.getFlasaSaKauciom(Tip) == f2.getFlasaSaKauciom(Tip)){
 // 				cout<<"flase su iste";
 // 			}else{
 // 				cout<<"Nisu iste"<<endl<<f1.getNalepnicu().getNaziv()<<" "<<f2.getNalepnicu().getNaziv();
 // 			}
-			
+
 // 		}
-	
+
 // };
 // ostream&operator<<(ostream&COUT,Nalepnica&n){
-	
+
 // 	COUT<<"Naziv:"<<n.getNaziv()<<" ID "<<n.getId()<<endl;
 // 	return COUT;
 // }
 
 // int main(){
-	
+
 // 	cout<<"Unesite naziv nalepnice"<<endl;
 // 	string nazivNalepnice;
 // 	cin>>nazivNalepnice;
-	
+
 // 	Nalepnica n1(nazivNalepnice);
 // 	Nalepnica n4("Viski");
-	
-	
+
 // 	cout<<n1<<endl<<n4;
-	
+
 // 	Flasa f1(n1,30,0.6);
 // 	Flasa f2(n4,30,0.2,"ALKOHOLNO");
-	
+
 // 	f1.Provera(f1,f2);
-	
-	
-	
-	
+
 // 	return 0;
 // }
-
-
-
 
 // class Node{
 // 	public:
 // 	string Data;
 // 	Node*Next;
-	
-	
-// };
 
+// };
 
 // void addAfterSpecificElement(Node ** first,string insertName,string afterName){
 // 	Node*newNode = new Node();
-	
+
 // 	newNode->Data =insertName;
 // 	cout<<"Function calld"<<endl;
-	
+
 // 	Node *temp = *first;
 // 	if(*first == NULL){
 // 		*first = newNode;
 // 	}
-	
+
 // 	while(temp->Data != afterName){
 // 		cout<<(*first)->Data << "In func"<<endl;
 // 		temp = temp->Next;
@@ -787,11 +751,9 @@
 // 	third->Data = "Semra";
 // 	second->Next = third;
 // 	cout<<"check";
-	
-	
+
 // 	addAfterSpecificElement(&first,"-Aga","Haris");
-	
-	
+
 // 	while(first != NULL){
 // 		cout<<first->Data<<endl;
 // 		first = first->Next;
@@ -827,32 +789,24 @@
 
 // //////////////////////
 
-
-
 // #include <stdio.h>
 // #include <stdlib.h>
-
-
-
 
 // typedef struct NODE{
 // 	int Data;
 // 	struct NODE* Next;
 // }node;
 
-
-
-
 // node* presekListi(node*firstList ,node*secondList){
-	
+
 // 	if(firstList == NULL || secondList == NULL){
 // 		return NULL;
 // 	}
 // 	node*newList = NULL;
 // 	node*travel = NULL;
 // 	node*tempFirst = firstList;
-	
-// 	while(tempFirst!=NULL){	
+
+// 	while(tempFirst!=NULL){
 // 			node*tempSecond =secondList;
 // 		while(tempSecond != NULL){
 // 			if(tempFirst->Data == tempSecond->Data){
@@ -864,79 +818,72 @@
 // 					newList->Next = NULL;
 // 					newListTail = newList;
 // 					travel = newList;
-				
-					
+
 // 				}
-// 				else{	
+// 				else{
 // 					node*newElement = (node*)malloc(sizeof(node));
 // 					newElement->Data = tempFirst->Data;
 // 					newList->Next = newElement;
 // 					newList = newList->Next;
-					
+
 // 				}
-				
-			
+
 // 			}
 // 			tempSecond = tempSecond->Next;
-				
+
 // 		}
 // 		tempFirst = tempFirst->Next;
 
 // 	}
 // 	return travel;
-	
+
 // }
 // int main(){
-	
+
 // 	node*first=(node*)malloc(sizeof(node));
 // 	node*second=(node*)malloc(sizeof(node));
 // 	node*third=(node*)malloc(sizeof(node));
 // 	node*forth=(node*)malloc(sizeof(node));
-	
+
 // 	node*firstLi=(node*)malloc(sizeof(node));
 // 	node*secondLi=(node*)malloc(sizeof(node));
 // 	node*thirdLi=(node*)malloc(sizeof(node));
 // 	node*forthLi=(node*)malloc(sizeof(node));
-	
+
 // 	first->Data = 1;
 // 	first->Next = second;
-	
+
 // 	second->Data =2;
 // 	second->Next = third;
-	
+
 // 	third->Data=7;
 // 	third->Next = forth;
 
 // 	forth->Data=4;
 // 	forth->Next = NULL;
-	
-	
-	
-	
+
 // 	firstLi->Data = 1;
 // 	firstLi->Next = secondLi;
-	
+
 // 	secondLi->Data =7;
 // 	secondLi->Next = thirdLi;
-	
+
 // 	thirdLi->Data=2;
 // 	thirdLi->Next = forthLi;
 
 // 	forthLi->Data=6;
 // 	forthLi->Next = NULL;
 // 	node* presecnaLista = presekListi(first,firstLi);
-	
+
 // 	printf("%d",presecnaLista->Next->Data);
-	
+
 // 	return 0;
-	
+
 // }
 
 // ////////////////////////////////////////////////////////////////
 // #include<stdio.h>
 // #include<stdlib.h>
-
-
 
 // typedef struct node{
 // 	int Data;
@@ -952,23 +899,20 @@
 // 		Node*newNode = (Node*)malloc(sizeof(Node));
 // 		newNode->Data= i;
 // 		newNode->Next = NULL;
-		
+
 // 		if(iterate == NULL){
 // 			iterate=newNode;
 // 			first=newNode;
-			
+
 // 		}else{
 // 			iterate->Next= newNode;
 // 			iterate = iterate->Next;
 // 		}
-		
-		
+
 // 	}
 // 	return first;
-	
-	
-// }
 
+// }
 
 // ///////////// addBefore() function without **head as argument
 
@@ -983,10 +927,9 @@
 // 		newNode->Data=current->Data;
 // 		current->Data = newValue;
 // 		current->Next=newNode;
-// 		newNode->Next=temp;	
+// 		newNode->Next=temp;
 // 	}
-	
-	
+
 // }
 
 /////////////////////////////// createNodes() function to create nodes to specific value
@@ -998,21 +941,20 @@
 // 		Node*newNode = (Node*)malloc(sizeof(Node));
 // 		newNode->Data= i;
 // 		newNode->Next = NULL;
-		
+
 // 		if(iterate == NULL){
 // 			iterate=newNode;
 // 			first=newNode;
-			
+
 // 		}else{
 // 			iterate->Next= newNode;
 // 			iterate = iterate->Next;
 // 		}
-		
-		
+
 // 	}
 // 	return first;
-	// s
-	
+// s
+
 // }
 
 /////////////////////////////
@@ -1025,12 +967,10 @@
 /////////////////////////////
 /////////////////////////////
 
-
-// ISPIS IZ OOP FEB 
+// ISPIS IZ OOP FEB
 // #include <iostream>
 // #include <string.h>
 // /* run this program using the console pauser or add your own getch, system("pause") or input loop */
-
 
 // using namespace std;
 
@@ -1046,20 +986,20 @@
 //         cena = Cena;
 //         popust = Popust;
 //     }
-    
+
 //     void cenaSaPopustom(double dodatniPopust =0)  {
 //     	if(popust == 0){
 //     		cena -=cena*(dodatniPopust/100);
-    		
+
 // 		}else{
 // 			cena -= cena * (popust / 100);
-		
+
 // 		}
 //     }
 //     int getCenu(){
 //     	return cena;
 // 	}
-    
+
 // };
 
 // class Stavka {
@@ -1070,7 +1010,6 @@
 //     static int counter;
 // 	Stavka() : kolicina(0), redniBroj(++counter) {}
 
-	
 //     Stavka(Artikal& art, int Kolicina = 0):artikal(art) {
 //         kolicina = Kolicina;
 //         redniBroj = ++counter;
@@ -1082,7 +1021,7 @@
 //     }
 
 //     int ukupanIznos() {
-    
+
 //         return artikal.getCenu()* kolicina;
 //     }
 
@@ -1105,7 +1044,7 @@
 // 			dodatniPopust = DodatniPopust;
 // 			brojStavki=0;
 // 		}
-		
+
 // 		void operator+=(const Stavka& novaStavka) {
 // 		    Stavka *temp = new Stavka[brojStavki + 1];
 // 		    for(int i = 0; i < brojStavki; i++){
@@ -1117,7 +1056,6 @@
 // 		    delete[] stavke;
 // 		    stavke = temp;
 
-		    
 // }
 // //	Funckija za ispis
 //     void ispis(){
@@ -1128,12 +1066,12 @@
 //     int sumaRacuna(){
 //     	int suma=0;
 //     	for(int i =0;i<brojStavki;i++){
-    		
+
 //     		suma+=stavke[i].ukupanIznos();
 // 		}
 // 		return suma;
 // 	}
-	
+
 // };
 
 // int Stavka::counter = 0;
@@ -1150,8 +1088,7 @@
 // ostream& operator<<(ostream&COUT,Racun&racun){
 // 	racun.ispis();
 // 	COUT<<"Racun: "<<racun.sumaRacuna()<<endl;
-		
-	
+
 // 	return COUT;
 // }
 
@@ -1161,23 +1098,20 @@
 //     Artikal cips("cips",80,0);
 //     Artikal cola("cola",130,32);
 //     Stavka stavka1(pivo, 3);
-    
+
 //     Racun racun1(32);
-    
-    
+
 //     Stavka stavka2(cola,1);
-    
+
 //     racun1+= stavka1;
 //     racun1+=stavka2;
 //     Stavka stavka3(voda,2);
 //     Stavka stavka4(cips,1);
-    
+
 //     racun1+=stavka3;
 //     racun1+=stavka4;
 //     cout<<racun1;
-    
 
-    
 //     return 0;
 // }
 
@@ -1189,11 +1123,6 @@
 /////////////////////////////
 /////////////////////////////
 /////////////////////////////
-
-
-
-
-
 
 // #include <stdio.h>
 // #include <stdlib.h>
@@ -1220,7 +1149,6 @@
 //     }
 // }
 
-
 // void reverseNode() {
 //     Node* temp = head;
 //     printf("head is %d \n",head->prev->data);
@@ -1236,8 +1164,7 @@
 //         head = head->next;
 
 //     }
-    
-    
+
 // }
 
 // int main(int argc, char *argv[]) {
@@ -1246,7 +1173,7 @@
 //     createNode(4);
 //     createNode(6);
 //     createNode(10);
-    
+
 //     reverseNode();
 //     Node* temp = head;
 //     while(temp != NULL){
@@ -1256,21 +1183,11 @@
 //     return 0;
 // }
 
-
-
-
-
-
-
-
-
-
-
 /////////////
 
-// Write a function that takes a double linked list as input, 
+// Write a function that takes a double linked list as input,
 // and returns a new double linked list that contains only the even elements of the original list, in the same order.
-//  For example, if the input list is 1 <-> 2 <-> 3 <-> 4 <-> 5, 
+//  For example, if the input list is 1 <-> 2 <-> 3 <-> 4 <-> 5,
 // the output list should be 2 <-> 4. If there are no even elements in the input list, the function should return an empty list.
 
 // #include <iostream>
@@ -1280,7 +1197,7 @@
 //     int Data;
 //     struct NODE *Prev;
 //     struct NODE *Next;
-    
+
 // }Node;
 
 // Node*head = NULL;
@@ -1321,7 +1238,7 @@
 //         temp = temp->Prev;
 //     }
 //     return newList;
-    
+
 // }
 // int main(){
 //     printf("Unesite elemente dok ne pritisnete 0 kao kraj");
@@ -1345,7 +1262,6 @@
 
 // }
 
-
 // #include <iostream>
 // #include <string>
 // #include <string.h>
@@ -1357,7 +1273,6 @@
 // 	virtual char* getPolazna()=0;
 // 	virtual char*getDolazna()=0;
 // 	virtual void reserveSit()=0;
-
 
 // };
 // class sistemLetova{
@@ -1395,15 +1310,14 @@
 // 				}
 // 				delete []Letovi;
 // 				Letovi = temp;
-				
+
 // 			}else{
 // 				cout<<endl<<"let nije pronadjen"<<endl;
 // 			}
-			
+
 // 		}
-		
+
 // 	}
-	
 
 // 	void reservePlace(string polazna,string dolazna){
 // 		for(int i=0;i<brojLetova;i++){
@@ -1444,7 +1358,7 @@
 // 		strcpy(polazna,Polazna);
 // 		dolazna = new char[strlen(Dolazna)+1];
 // 		strcpy(dolazna,Dolazna);
-		
+
 // 		vreme = new char[strlen(Vreme)+1];
 // 		strcpy(vreme,Vreme);
 // 		brojMesta = BrojMesta;
@@ -1460,7 +1374,6 @@
 // 	void reserveSit(){
 // 		brojRezervisanih++;
 // 	}
-	
 
 // 	void ispis() override {
 // 		printf("Redovni avion polece iz %s u %s ( %s ) ,broj rezervisanih mesta je %d ,broj slobodnih mesta je %d \n",polazna,dolazna,vreme,brojRezervisanih,brojMesta-brojRezervisanih);
@@ -1487,7 +1400,7 @@
 // 		strcpy(polazna,Polazna);
 // 		dolazna = new char[strlen(Dolazna)+1];
 // 		strcpy(dolazna,Dolazna);
-		
+
 // 		vreme = new char[strlen(Vreme)+1];
 // 		strcpy(vreme,Vreme);
 // 		brojMesta = BrojMesta;
@@ -1496,7 +1409,6 @@
 // 	void reserveSit(){
 // 		brojRezervisanih++;
 // 	}
-	
 
 // 	char* getPolazna() override{
 // 		return polazna;
@@ -1509,18 +1421,16 @@
 // 		printf("Vandredni avion polece iz %s u %s ( %s ) ,broj rezervisanih mesta je %d ,broj slobodnih mesta je %d \n",polazna,dolazna,vreme,brojRezervisanih,brojMesta-brojRezervisanih);
 // 	}
 
-
 // };
 
 // int main(){
 // 	Redovni let1("bec","turska","1/3/2023/15:30",100,100);
 
 // 	Redovni let2("srbija","finska","2023/07/09",100,50);
-	
+
 // 	Redovni let3("bosna","turska","2023/07/09",100,80);
 
 // 	Charter let10("bec","turska","1/3/2023",100,80);
-
 
 // 	sistemLetova sistem1;
 // 	sistem1.dodajLet(&let1);
@@ -1528,10 +1438,8 @@
 // 	sistem1.deleteLet(&let1);
 // 	sistem1.dodajLet(&let10);
 
-
 // 	sistem1.reservePlace("srbija","finska");
 // 	sistem1.ispisSvihLetova();
-
 
 // 	string polazna;
 // 	string dolazna;
@@ -1541,120 +1449,161 @@
 // 	// cin>>x;
 
 // 	// scanf("%s",&polazna);
-	
-
-
 
 // 	return 0;
 // }
 
-
-
-
-
-
-
-
 // Stecovi i redovi
 
-
 // Kruzna lista
-
 
 #include <iostream>
 using namespace std;
 typedef struct NODE
 {
 	int data;
-	struct NODE*next;
-}Node;
+	struct NODE *next;
+} Node;
 
-Node*head = NULL,*rear=NULL;
+Node *head = NULL, *rear = NULL;
 
-void create(int x){
-	Node*newNode = (Node*)malloc(sizeof(Node));
+void create(int x)
+{
+	Node *newNode = (Node *)malloc(sizeof(Node));
 	newNode->data = x;
 	newNode->next = NULL;
-	if(rear == NULL){
+	if (rear == NULL)
+	{
 		head = rear = newNode;
-	}else{
+		rear->next = head;
+	}
+	else
+	{
 		rear->next = newNode;
 		rear = newNode;
 	}
 	rear->next = head;
 }
-void del(){
-	if(rear == NULL){
+void del()
+{
+	if (rear == NULL)
+	{
 		printf("Nema elemenata");
 		return;
-	}else{
-		if(head == rear){
-		delete head;
-		head = rear = NULL;
-	}else{
-
-		Node*temp = head;
-		head = head->next;
-		rear->next = head;
-
-		
-		delete temp;
-
 	}
+	else
+	{
+		if (head == rear)
+		{
+			delete head;
+			head = rear = NULL;
+		}
+		else
+		{
 
+			Node *temp = head;
+			head = head->next;
+			rear->next = head;
+
+			delete temp;
+		}
 	}
-	
-
-
-	
-
 }
 
-void insertAtEnd(int x){
-	Node*newNode=(Node*)malloc(sizeof(Node));
+void insertAtEnd(int x)
+{
+	Node *newNode = (Node *)malloc(sizeof(Node));
 	newNode->data = x;
 	newNode->next = NULL;
-	if(rear == NULL){
-		rear = head=newNode;
-
-	}else{
-			rear->next = newNode;
-			rear = rear->next;
-			rear->next = head;
-			
-		}
+	if (rear == NULL)
+	{
+		rear = head = newNode;
+	}
+	else
+	{
+		rear->next = newNode;
+		rear = rear->next;
+		rear->next = head;
+	}
 }
 
-void insertAtStart(int x){
-	Node*newNode=(Node*)malloc(sizeof(Node));
-	newNode->data=x;
-	newNode->next=NULL;
-	if(rear == NULL){
+void insertAtStart(int x)
+{
+	Node *newNode = (Node *)malloc(sizeof(Node));
+	newNode->data = x;
+	newNode->next = NULL;
+	if (rear == NULL)
+	{
 		rear = head = newNode;
 		rear->next = head;
-	}else{
+	}
+	else
+	{
 		newNode->next = head;
 		head = newNode;
 		rear->next = head;
 	}
 }
 
-int main(){
+void delValue(int x)
+{
+	if (rear == NULL)
+	{
+		printf("lista je prazna");
+	}
+	else
+	{
+
+		Node *temp = head;
+		Node *tail = NULL;
+		while (temp->data != x && temp != NULL)
+		{
+			tail = temp;
+			temp = temp->next;
+		}
+		if (temp == NULL)
+		{
+			printf("el not found");
+		}
+		else
+		{
+			if (temp == head)
+			{
+				head = head->next;
+				rear->next = head;
+			}
+			else if (temp == rear)
+			{
+				rear = tail;
+				rear->next = head;
+			}
+			else
+			{
+				tail->next = temp->next;
+			}
+		}
+	}
+}
+
+int main()
+{
 	create(3);
 	create(4);
 	create(5);
 	create(6);
 	create(7);
-	del();
-	insertAtEnd(11);
-	insertAtStart(1);
-	
-	Node*temp = head;
-	while (temp != rear){
-		cout<<"temp-data "<<temp->data<<endl;
+
+	delValue(6);
+
+	Node *temp = head;
+	printf("{temp = %d} \n", head->data);
+	printf("{rear= %d}", rear->data);
+
+	while (temp != rear)
+	{
+		cout << "\n temp-data"
+			 << temp->data << endl;
 		temp = temp->next;
 	}
-	cout<<"temp-data "<<temp->data;
-	
-	
+	cout << "temp-data " << temp->data;
 }
