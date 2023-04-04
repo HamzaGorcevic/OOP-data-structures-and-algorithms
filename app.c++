@@ -1459,151 +1459,256 @@
 
 #include <iostream>
 using namespace std;
+
+// typedef struct NODE
+// {
+// 	int data;
+// 	struct NODE *next;
+// } Node;
+
+// Node *head = NULL, *rear = NULL;
+
+// void create(int x)
+// {
+// 	Node *newNode = (Node *)malloc(sizeof(Node));
+// 	newNode->data = x;
+// 	newNode->next = NULL;
+// 	if (rear == NULL)
+// 	{
+// 		head = rear = newNode;
+// 		rear->next = head;
+// 	}
+// 	else
+// 	{
+// 		rear->next = newNode;
+// 		rear = newNode;
+// 	}
+// 	rear->next = head;
+// }
+// void del()
+// {
+// 	if (rear == NULL)
+// 	{
+// 		printf("Nema elemenata");
+// 		return;
+// 	}
+// 	else
+// 	{
+// 		if (head == rear)
+// 		{
+// 			delete head;
+// 			head = rear = NULL;
+// 		}
+// 		else
+// 		{
+
+// 			Node *temp = head;
+// 			head = head->next;
+// 			rear->next = head;
+
+// 			delete temp;
+// 		}
+// 	}
+// }
+
+// void insertAtEnd(int x)
+// {
+// 	Node *newNode = (Node *)malloc(sizeof(Node));
+// 	newNode->data = x;
+// 	newNode->next = NULL;
+// 	if (rear == NULL)
+// 	{
+// 		rear = head = newNode;
+// 	}
+// 	else
+// 	{
+// 		rear->next = newNode;
+// 		rear = rear->next;
+// 		rear->next = head;
+// 	}
+// }
+
+// void insertAtStart(int x)
+// {
+// 	Node *newNode = (Node *)malloc(sizeof(Node));
+// 	newNode->data = x;
+// 	newNode->next = NULL;
+// 	if (rear == NULL)
+// 	{
+// 		rear = head = newNode;
+// 		rear->next = head;
+// 	}
+// 	else
+// 	{
+// 		newNode->next = head;
+// 		head = newNode;
+// 		rear->next = head;
+// 	}
+// }
+
+// void delValue(int x)
+// {
+// 	if (rear == NULL)
+// 	{
+// 		printf("lista je prazna");
+// 	}
+// 	else
+// 	{
+// 		Node *temp = head;
+// 		Node *tail = NULL;
+
+// 		while (temp->data != x)
+// 		{
+// 			tail = temp;
+// 			temp = temp->next;
+// 		}
+// 		if (temp == head)
+// 		{
+// 			head = head->next;
+// 			rear->next = head;
+// 		}
+// 		else if (temp == rear)
+// 		{
+// 			rear = tail;
+// 			rear->next = head;
+// 		}
+// 		else
+// 		{
+// 			tail->next = rear->next;
+// 		}
+// 	}
+// }
+
+// int main()
+// {
+// 	create(3);
+// 	create(4);
+// 	create(5);
+// 	create(6);
+// 	create(7);
+
+// 	delValue(7);
+
+// 	Node *temp = head;
+// 	printf("{temp = %d} \n", head->data);
+// 	printf("{rear= %d}", rear->data);
+
+// 	while (temp != rear)
+// 	{
+// 		cout << "\n temp-data \n"
+// 			 << temp->data << endl;
+// 		temp = temp->next;
+// 	}
+// 	cout << "temp-data " << temp->data;
+// }
+
+// dbl linked
 typedef struct NODE
 {
 	int data;
 	struct NODE *next;
+	struct NODE *prev;
 } Node;
 
-Node *head = NULL, *rear = NULL;
+Node *head = NULL;
+Node *rear = NULL;
 
 void create(int x)
 {
 	Node *newNode = (Node *)malloc(sizeof(Node));
 	newNode->data = x;
 	newNode->next = NULL;
+	newNode->prev = NULL;
 	if (rear == NULL)
 	{
 		head = rear = newNode;
 		rear->next = head;
+		head->prev = rear;
 	}
 	else
 	{
 		rear->next = newNode;
-		rear = newNode;
-	}
-	rear->next = head;
-}
-void del()
-{
-	if (rear == NULL)
-	{
-		printf("Nema elemenata");
-		return;
-	}
-	else
-	{
-		if (head == rear)
-		{
-			delete head;
-			head = rear = NULL;
-		}
-		else
-		{
-
-			Node *temp = head;
-			head = head->next;
-			rear->next = head;
-
-			delete temp;
-		}
-	}
-}
-
-void insertAtEnd(int x)
-{
-	Node *newNode = (Node *)malloc(sizeof(Node));
-	newNode->data = x;
-	newNode->next = NULL;
-	if (rear == NULL)
-	{
-		rear = head = newNode;
-	}
-	else
-	{
-		rear->next = newNode;
+		newNode->prev = rear;
+		newNode->next = head;
 		rear = rear->next;
-		rear->next = head;
+		head->prev = rear;
 	}
 }
-
 void insertAtStart(int x)
 {
 	Node *newNode = (Node *)malloc(sizeof(Node));
 	newNode->data = x;
 	newNode->next = NULL;
+	newNode->prev = NULL;
 	if (rear == NULL)
 	{
 		rear = head = newNode;
 		rear->next = head;
+		head->prev = rear;
 	}
 	else
 	{
 		newNode->next = head;
 		head = newNode;
+		head->prev = rear;
 		rear->next = head;
 	}
 }
 
-void delValue(int x)
+void insertAfter(int elem, int newElem)
 {
+	Node *newNode = (Node *)malloc(sizeof(Node *));
+	newNode->data = newElem;
+	newNode->next = NULL;
+	newNode->prev = NULL;
 	if (rear == NULL)
 	{
-		printf("lista je prazna");
+		rear = head = newNode;
+		rear->next = head;
+		head->prev = rear;
 	}
 	else
 	{
-
 		Node *temp = head;
-		Node *tail = NULL;
-		while (temp->data != x && temp != NULL)
+		while (temp != rear)
 		{
-			tail = temp;
+			if (temp->data == elem)
+			{
+				newNode->prev = temp;
+				newNode->next = temp->next->next;
+				temp->next = newNode;
+			}
 			temp = temp->next;
 		}
-		if (temp == NULL)
+
+		if (temp == rear)
 		{
-			printf("el not found");
-		}
-		else
-		{
-			if (temp == head)
-			{
-				head = head->next;
-				rear->next = head;
-			}
-			else if (temp == rear)
-			{
-				rear = tail;
-				rear->next = head;
-			}
-			else
-			{
-				tail->next = temp->next;
-			}
+			cout << "tu smo" << temp->data << endl;
+			rear->next = newNode;
+			newNode->prev = rear;
+			rear = rear->next;
+			rear->next = head;
+			head->prev = rear;
 		}
 	}
 }
 
 int main()
 {
+	create(1);
+	create(2);
 	create(3);
 	create(4);
 	create(5);
-	create(6);
-	create(7);
-
-	delValue(6);
+	insertAtStart(0);
+	insertAfter(5, 19);
 
 	Node *temp = head;
-	printf("{temp = %d} \n", head->data);
-	printf("{rear= %d}", rear->data);
 
 	while (temp != rear)
 	{
-		cout << "\n temp-data"
-			 << temp->data << endl;
+		printf("temp->data = %d \n", temp->data);
 		temp = temp->next;
 	}
-	cout << "temp-data " << temp->data;
+	printf("temp->data = %d", temp->data);
 }
