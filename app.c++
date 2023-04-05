@@ -1603,112 +1603,200 @@ using namespace std;
 // }
 
 // dbl linked
-typedef struct NODE
-{
-	int data;
-	struct NODE *next;
-	struct NODE *prev;
-} Node;
+// typedef struct NODE
+// {
+// 	int data;
+// 	struct NODE *next;
+// 	struct NODE *prev;
+// } Node;
 
-Node *head = NULL;
-Node *rear = NULL;
+// Node *head = NULL;
+// Node *rear = NULL;
 
-void create(int x)
+// void create(int x)
+// {
+// 	Node *newNode = (Node *)malloc(sizeof(Node));
+// 	newNode->data = x;
+// 	newNode->next = NULL;
+// 	newNode->prev = NULL;
+// 	if (rear == NULL)
+// 	{
+// 		head = rear = newNode;
+// 		rear->next = head;
+// 		head->prev = rear;
+// 	}
+// 	else
+// 	{
+// 		rear->next = newNode;
+// 		newNode->prev = rear;
+// 		newNode->next = head;
+// 		rear = rear->next;
+// 		head->prev = rear;
+// 	}
+// }
+// void insertAtStart(int x)
+// {
+// 	Node *newNode = (Node *)malloc(sizeof(Node));
+// 	newNode->data = x;
+// 	newNode->next = NULL;
+// 	newNode->prev = NULL;
+// 	if (rear == NULL)
+// 	{
+// 		rear = head = newNode;
+// 		rear->next = head;
+// 		head->prev = rear;
+// 	}
+// 	else
+// 	{
+// 		newNode->next = head;
+// 		head = newNode;
+// 		head->prev = rear;
+// 		rear->next = head;
+// 	}
+// }
+
+// void insertAfter(int elem, int newElem)
+// {
+// 	Node *newNode = (Node *)malloc(sizeof(Node *));
+// 	newNode->data = newElem;
+// 	newNode->next = NULL;
+// 	newNode->prev = NULL;
+// 	if (rear == NULL)
+// 	{
+// 		rear = head = newNode;
+// 		rear->next = head;
+// 		head->prev = rear;
+// 	}
+// 	else
+// 	{
+// 		Node *temp = head;
+// 		while (temp != rear)
+// 		{
+// 			if (temp->data == elem)
+// 			{
+// 				newNode->prev = temp;
+// 				newNode->next = temp->next->next;
+// 				temp->next = newNode;
+// 			}
+// 			temp = temp->next;
+// 		}
+
+// 		if (temp == rear)
+// 		{
+// 			cout << "tu smo" << temp->data << endl;
+// 			rear->next = newNode;
+// 			newNode->prev = rear;
+// 			rear = rear->next;
+// 			rear->next = head;
+// 			head->prev = rear;
+// 		}
+// 	}
+// }
+
+// int main()
+// {
+// 	create(1);
+// 	create(2);
+// 	create(3);
+// 	create(4);
+// 	create(5);
+// 	insertAtStart(0);
+// 	insertAfter(5, 19);
+
+// 	Node *temp = head;
+
+// 	while (temp != rear)
+// 	{
+// 		printf("temp->data = %d \n", temp->data);
+// 		temp = temp->next;
+// 	}
+// 	printf("temp->data = %d", temp->data);
+// }
+
+/// stekovi
+#define SIZE 10
+int s[SIZE], top[2] = {-1, SIZE};
+
+int isEmpty(int x)
 {
-	Node *newNode = (Node *)malloc(sizeof(Node));
-	newNode->data = x;
-	newNode->next = NULL;
-	newNode->prev = NULL;
-	if (rear == NULL)
+	switch (x)
 	{
-		head = rear = newNode;
-		rear->next = head;
-		head->prev = rear;
-	}
-	else
-	{
-		rear->next = newNode;
-		newNode->prev = rear;
-		newNode->next = head;
-		rear = rear->next;
-		head->prev = rear;
+	case 1:
+		if (top[0] == 0)
+		{
+			cout << "Priv stek je prazan";
+			return 1;
+		}
+		else
+		{
+			return 0;
+		}
+		break;
+
+	case 2:
+		if (top[1] == SIZE)
+		{
+			cout << "drugi stek je prazan";
+			return 1;
+		}
+		else
+		{
+			return 0;
+		}
+		break;
 	}
 }
-void insertAtStart(int x)
+
+int isFull()
 {
-	Node *newNode = (Node *)malloc(sizeof(Node));
-	newNode->data = x;
-	newNode->next = NULL;
-	newNode->prev = NULL;
-	if (rear == NULL)
+	if (top[0] == top[1] - 1)
 	{
-		rear = head = newNode;
-		rear->next = head;
-		head->prev = rear;
+		cout << "Stack je pun";
+		return 1;
 	}
 	else
 	{
-		newNode->next = head;
-		head = newNode;
-		head->prev = rear;
-		rear->next = head;
+		return 0;
 	}
 }
-
-void insertAfter(int elem, int newElem)
+void push(int x, int value)
 {
-	Node *newNode = (Node *)malloc(sizeof(Node *));
-	newNode->data = newElem;
-	newNode->next = NULL;
-	newNode->prev = NULL;
-	if (rear == NULL)
-	{
-		rear = head = newNode;
-		rear->next = head;
-		head->prev = rear;
-	}
-	else
-	{
-		Node *temp = head;
-		while (temp != rear)
-		{
-			if (temp->data == elem)
-			{
-				newNode->prev = temp;
-				newNode->next = temp->next->next;
-				temp->next = newNode;
-			}
-			temp = temp->next;
-		}
 
-		if (temp == rear)
+	switch (x)
+	{
+	case 1:
+		if (!isFull())
 		{
-			cout << "tu smo" << temp->data << endl;
-			rear->next = newNode;
-			newNode->prev = rear;
-			rear = rear->next;
-			rear->next = head;
-			head->prev = rear;
+			top[0] += 1;
+			s[top[0]] = x;
 		}
+		break;
+
+	case 2:
+		if (!isFull())
+		{
+			top[1] -= 1;
+			s[top[1]] = x;
+		}
+		break;
 	}
 }
 
 int main()
 {
-	create(1);
-	create(2);
-	create(3);
-	create(4);
-	create(5);
-	insertAtStart(0);
-	insertAfter(5, 19);
 
-	Node *temp = head;
+	push(1, 2);
+	push(1, 3);
+	push(1, 5);
 
-	while (temp != rear)
+	push(1, 7);
+	push(2, 1);
+	push(2, 4);
+	push(2, 6);
+	push(2, 2);
+
+	for (int i = 0; i < SIZE; i++)
 	{
-		printf("temp->data = %d \n", temp->data);
-		temp = temp->next;
+		cout << s[i] << endl;
 	}
-	printf("temp->data = %d", temp->data);
 }
