@@ -1519,6 +1519,8 @@ using namespace std;
 // 	if (rear == NULL)
 // 	{
 // 		rear = head = newNode;
+// rear->next=head;
+
 // 	}
 // 	else
 // 	{
@@ -1768,7 +1770,7 @@ void push(int x, int value)
 		if (!isFull())
 		{
 			top[0] += 1;
-			s[top[0]] = x;
+			s[top[0]] = value;
 		}
 		break;
 
@@ -1776,27 +1778,51 @@ void push(int x, int value)
 		if (!isFull())
 		{
 			top[1] -= 1;
-			s[top[1]] = x;
+			s[top[1]] = value;
 		}
 		break;
 	}
 }
 
+int pop(int x)
+{
+	switch (x)
+	{
+	case 1:
+
+		if (top[0] != -1)
+		{
+			top[0]--;
+			return s[top[0] + 1];
+		}
+		else
+		{
+			cout << "stek je prazan";
+		}
+		break;
+
+	case 2:
+		if (top[1] != SIZE)
+		{
+			top[1]++;
+			return s[top[1] - 1];
+		}
+		break;
+	}
+}
 int main()
 {
 
 	push(1, 2);
 	push(1, 3);
 	push(1, 5);
-
 	push(1, 7);
+
 	push(2, 1);
 	push(2, 4);
 	push(2, 6);
 	push(2, 2);
+	push(2, 60);
 
-	for (int i = 0; i < SIZE; i++)
-	{
-		cout << s[i] << endl;
-	}
+	cout << pop(1) << pop(2);
 }
