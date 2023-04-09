@@ -1716,113 +1716,132 @@ using namespace std;
 // }
 
 /// stekovi
-#define SIZE 10
-int s[SIZE], top[2] = {-1, SIZE};
+// #define SIZE 10
+// int s[SIZE], top[2] = {-1, SIZE};
 
-int isEmpty(int x)
-{
-	switch (x)
-	{
-	case 1:
-		if (top[0] == 0)
-		{
-			cout << "Priv stek je prazan";
-			return 1;
-		}
-		else
-		{
-			return 0;
-		}
-		break;
+// int isEmpty(int x)
+// {
+// 	switch (x)
+// 	{
+// 	case 1:
+// 		if (top[0] == 0)
+// 		{
+// 			cout << "Priv stek je prazan";
+// 			return 1;
+// 		}
+// 		else
+// 		{
+// 			return 0;
+// 		}
+// 		break;
 
-	case 2:
-		if (top[1] == SIZE)
-		{
-			cout << "drugi stek je prazan";
-			return 1;
-		}
-		else
-		{
-			return 0;
-		}
-		break;
-	}
-}
+// 	case 2:
+// 		if (top[1] == SIZE)
+// 		{
+// 			cout << "drugi stek je prazan";
+// 			return 1;
+// 		}
+// 		else
+// 		{
+// 			return 0;
+// 		}
+// 		break;
+// 	}
+// }
 
-int isFull()
-{
-	if (top[0] == top[1] - 1)
-	{
-		cout << "Stack je pun";
-		return 1;
-	}
-	else
-	{
-		return 0;
-	}
-}
-void push(int x, int value)
-{
+// int isFull()
+// {
+// 	if (top[0] == top[1] - 1)
+// 	{
+// 		cout << "Stack je pun";
+// 		return 1;
+// 	}
+// 	else
+// 	{
+// 		return 0;
+// 	}
+// }
+// void push(int x, int value)
+// {
 
-	switch (x)
-	{
-	case 1:
-		if (!isFull())
-		{
-			top[0] += 1;
-			s[top[0]] = value;
-		}
-		break;
+// 	switch (x)
+// 	{
+// 	case 1:
+// 		if (!isFull())
+// 		{
+// 			top[0] += 1;
+// 			s[top[0]] = value;
+// 		}
+// 		break;
 
-	case 2:
-		if (!isFull())
-		{
-			top[1] -= 1;
-			s[top[1]] = value;
-		}
-		break;
-	}
-}
+// 	case 2:
+// 		if (!isFull())
+// 		{
+// 			top[1] -= 1;
+// 			s[top[1]] = value;
+// 		}
+// 		break;
+// 	}
+// }
 
-int pop(int x)
-{
-	switch (x)
-	{
-	case 1:
+// int pop(int x)
+// {
+// 	switch (x)
+// 	{
+// 	case 1:
 
-		if (top[0] != -1)
-		{
-			top[0]--;
-			return s[top[0] + 1];
-		}
-		else
-		{
-			cout << "stek je prazan";
-		}
-		break;
+// 		if (top[0] != -1)
+// 		{
+// 			top[0]--;
+// 			return s[top[0] + 1];
+// 		}
+// 		else
+// 		{
+// 			cout << "stek je prazan";
+// 		}
+// 		break;
 
-	case 2:
-		if (top[1] != SIZE)
-		{
-			top[1]++;
-			return s[top[1] - 1];
-		}
-		break;
-	}
-}
+// 	case 2:
+// 		if (top[1] != SIZE)
+// 		{
+// 			top[1]++;
+// 			return s[top[1] - 1];
+// 		}
+// 		break;
+// 	}
+// }
+// int main()
+// {
+
+// 	push(1, 2);
+// 	push(1, 3);
+// 	push(1, 5);
+// 	push(1, 7);
+
+// 	push(2, 1);
+// 	push(2, 4);
+// 	push(2, 6);
+// 	push(2, 2);
+// 	push(2, 60);
+
+// 	cout << pop(1) << pop(2);
+// }
+
 int main()
 {
+	int knjiga = 1000;
 
-	push(1, 2);
-	push(1, 3);
-	push(1, 5);
-	push(1, 7);
+	int stranica = 256;
 
-	push(2, 1);
-	push(2, 4);
-	push(2, 6);
-	push(2, 2);
-	push(2, 60);
-
-	cout << pop(1) << pop(2);
+	for (int i = 0; i < 1000; i++)
+	{
+		if (i == stranica)
+		{
+			break;
+		}
+		else if (i < (stranica - i))
+		{
+			i = stranica;
+		}
+	}
 }
