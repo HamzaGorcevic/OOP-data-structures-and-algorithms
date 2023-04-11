@@ -1827,21 +1827,29 @@ using namespace std;
 // 	cout << pop(1) << pop(2);
 // }
 
+/////// insertion sort
 int main()
 {
-	int knjiga = 1000;
 
-	int stranica = 256;
+	int arr[5] = {4, 2, 7, 16, 5};
 
-	for (int i = 0; i < 1000; i++)
+	for (int i = 1; i < 5; i++)
 	{
-		if (i == stranica)
+
+		int temp = arr[i];
+		int j = i - 1;
+
+		while (j >= 0 && temp < arr[j])
 		{
-			break;
+			arr[j + 1] = arr[j];
+			j--;
 		}
-		else if (i < (stranica - i))
-		{
-			i = stranica;
-		}
+		arr[j + 1] = temp;
 	}
+
+	for (int i = 0; i < 5; i++)
+	{
+		cout << arr[i] << endl;
+	}
+	return 0;
 }
