@@ -1828,28 +1828,83 @@ using namespace std;
 // }
 
 /////// insertion sort
+// int main()
+// {
+// 	//            j j+1
+// 	//            j  t
+// 	int arr[8] = {3, 4, 6, 2, 4, 2, 1, 6};
+
+// 	for (int i = 1; i < 8; i++)
+// 	{
+// 		int temp = arr[i];
+// 		int j = i - 1;
+// 		while (temp < arr[j] && j >= 0)
+// 		{
+// 			arr[j + 1] = arr[j];
+// 			j--;
+// 		}
+// 		arr[j + 1] = temp;
+// 	}
+// 	for (int i = 0; i < 8; i++)
+// 	{
+// 		cout << arr[i] << endl;
+// 	}
+// }
+
+// Redovi
+/// redovi preko nizova
+
+#define SIZE 5
+int CQ[SIZE], r = -1, f = -1;
+
+int CQfull()
+{
+	if ((r == SIZE - 1) || f == r + 1)
+	{
+
+		return 1;
+	}
+	else
+	{
+		return 0;
+	}
+}
+int CQempty()
+{
+	if (f == -1)
+	{
+		return 1;
+	}
+	else
+	{
+		return 0;
+	}
+}
+void CQinsert(int x)
+{
+	if (CQfull())
+	{
+		cout << "Overfllow";
+	}
+	else
+	{
+		if (CQempty())
+		{
+			f = 0;
+		}
+
+		r = (r + 1) % SIZE;
+		CQ[r] = x;
+	}
+}
 int main()
 {
-
-	int arr[5] = {4, 2, 7, 16, 5};
-
-	for (int i = 1; i < 5; i++)
+	CQinsert(1);
+	CQinsert(2);
+	CQinsert(3);
+	CQinsert(4);
+	for (int i = 0; i < SIZE; i++)
 	{
-
-		int temp = arr[i];
-		int j = i - 1;
-
-		while (j >= 0 && temp < arr[j])
-		{
-			arr[j + 1] = arr[j];
-			j--;
-		}
-		arr[j + 1] = temp;
+		cout << CQ[i] << endl;
 	}
-
-	for (int i = 0; i < 5; i++)
-	{
-		cout << arr[i] << endl;
-	}
-	return 0;
 }

@@ -1,6 +1,1 @@
-
-		// if (temp == rear)
-		// {
-		// 	rear = tail;
-		// 	rear->next = head;
-		// }
+		f = 0;
