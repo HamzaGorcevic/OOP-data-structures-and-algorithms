@@ -1855,46 +1855,55 @@ using namespace std;
 /// redovi preko nizova
 
 #define SIZE 5
-int CQ[SIZE], r = -1, f = -1;
+int CQ[SIZE], f = -1, r = -1;
 
 int CQfull()
 {
-	if ((r == SIZE - 1) || f == r + 1)
+	if ((r + 1) % SIZE == f)
 	{
-
 		return 1;
 	}
 	else
 	{
-		return 0;
+		return -1;
 	}
 }
+
 int CQempty()
 {
-	if (f == -1)
+	if (r == -1 && f == -1)
 	{
 		return 1;
 	}
 	else
 	{
-		return 0;
+		return -1;
 	}
 }
 void CQinsert(int x)
 {
 	if (CQfull())
 	{
-		cout << "Overfllow";
+		cout << "Red je pun";
 	}
 	else
 	{
 		if (CQempty())
 		{
-			f = 0;
+			f++;
 		}
-
-		r = (r + 1) % SIZE;
-		CQ[r] = x;
+	}
+}
+int CQdelete()
+{
+	if (CQempty())
+	{
+		cout << "Red je prazan";
+		return -1;
+	}
+	else
+	{
+		f = (f + 1) % SIZE;
 	}
 }
 int main()
@@ -1903,8 +1912,13 @@ int main()
 	CQinsert(2);
 	CQinsert(3);
 	CQinsert(4);
-	for (int i = 0; i < SIZE; i++)
+	cout << CQdelete();
+	cout << CQdelete();
+	cout << CQdelete();
+
+	for (int i = f; i <= r; i++)
 	{
-		cout << CQ[i] << endl;
+		cout << endl
+			 << CQ[i] << endl;
 	}
 }
