@@ -1854,71 +1854,115 @@ using namespace std;
 // Redovi
 /// redovi preko nizova
 
-#define SIZE 5
-int CQ[SIZE], f = -1, r = -1;
+// #define SIZE 5
+// int CQ[SIZE], f = -1, r = -1;
 
-int CQfull()
+// int CQfull()
+// {
+// 	if ((r + 1) % SIZE == f)
+// 	{
+// 		return 1;
+// 	}
+// 	else
+// 	{
+// 		return -1;
+// 	}
+// }
+
+// int CQempty()
+// {
+// 	if (r == -1 && f == -1)
+// 	{
+// 		return 1;
+// 	}
+// 	else
+// 	{
+// 		return -1;
+// 	}
+// }
+// void CQinsert(int x)
+// {
+// 	if (CQfull())
+// 	{
+// 		cout << "Red je pun";
+// 	}
+// 	else
+// 	{
+// 		if (CQempty())
+// 		{
+// 			f++;
+// 		}
+// 	}
+// }
+// int CQdelete()
+// {
+// 	if (CQempty())
+// 	{
+// 		cout << "Red je prazan";
+// 		return -1;
+// 	}
+// 	else
+// 	{
+// 		f = (f + 1) % SIZE;
+// 	}
+// }
+// int main()
+// {
+// 	CQinsert(1);
+// 	CQinsert(2);
+// 	CQinsert(3);
+// 	CQinsert(4);
+// 	cout << CQdelete();
+// 	cout << CQdelete();
+// 	cout << CQdelete();
+
+// 	for (int i = f; i <= r; i++)
+// 	{
+// 		cout << endl
+// 			 << CQ[i] << endl;
+// 	}
+// }
+
+#define SIZE 3
+
+int stack[SIZE], top = -1;
+
+void push(int x)
 {
-	if ((r + 1) % SIZE == f)
+	if (top != SIZE)
 	{
-		return 1;
-	}
-	else
-	{
-		return -1;
+		top++;
+		stack[top] = x;
 	}
 }
 
-int CQempty()
+int *pop()
 {
-	if (r == -1 && f == -1)
+	if (top - 2 >= -1)
 	{
-		return 1;
+		int elem1 = stack[top--];
+		int elem2 = stack[top--];
+
+		int *arr = new int[2];
+		arr[0] = elem1;
+		arr[1] = elem2;
+		return arr;
 	}
 	else
 	{
-		return -1;
-	}
-}
-void CQinsert(int x)
-{
-	if (CQfull())
-	{
-		cout << "Red je pun";
-	}
-	else
-	{
-		if (CQempty())
-		{
-			f++;
-		}
-	}
-}
-int CQdelete()
-{
-	if (CQempty())
-	{
-		cout << "Red je prazan";
-		return -1;
-	}
-	else
-	{
-		f = (f + 1) % SIZE;
+		printf("Ne moguce je izrbisati dva elementa");
+		return nullptr;
 	}
 }
 int main()
 {
-	CQinsert(1);
-	CQinsert(2);
-	CQinsert(3);
-	CQinsert(4);
-	cout << CQdelete();
-	cout << CQdelete();
-	cout << CQdelete();
 
-	for (int i = f; i <= r; i++)
+	push(1);
+	push(2);
+	pop();
+
+	for (int i = 0; i <= top; i++)
 	{
-		cout << endl
-			 << CQ[i] << endl;
+		printf("i=%d\n", stack[i]);
 	}
 }
