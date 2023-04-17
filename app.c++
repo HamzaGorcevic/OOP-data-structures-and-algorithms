@@ -1966,3 +1966,179 @@ int main()
 		printf("i=%d\n", stack[i]);
 	}
 }
+
+#define SIZE 13
+
+int red[SIZE], first1 = -1, rear1 = -1, first2 = SIZE, rear2 = SIZE;
+
+void dodajElement(int x, int broj)
+{
+
+	switch (x)
+	{
+	case 1:
+		if (rear1 + 1 == rear2)
+		{
+			printf("Overflow \n");
+			break;
+		}
+		else
+		{
+			first1 = 0;
+			rear1++;
+			red[rear1] = broj;
+		}
+		break;
+	case 2:
+		if (rear1 + 1 == rear2)
+		{
+			printf("Overflow \n");
+			break;
+		}
+		else
+		{
+			first2 = SIZE - 1;
+			rear2--;
+			red[rear2] = broj;
+			printf("rear2=%d\n", red[rear2]);
+		}
+		break;
+	}
+}
+
+int main()
+{
+	int i;
+	dodajElement(1, 4);
+	dodajElement(1, 6);
+	dodajElement(1, 8);
+
+	dodajElement(1, 997);
+
+	dodajElement(1, 998);
+
+	dodajElement(2, 9);
+	dodajElement(2, 10);
+	dodajElement(2, 11);
+	dodajElement(2, 11);
+
+	dodajElement(2, 11);
+
+	dodajElement(2, 11);
+
+	dodajElement(2, 11);
+
+	dodajElement(2, 12);
+
+	for (i = first1; i <= rear1; i++)
+	{
+		printf("%d\n", red[i]);
+	}
+
+	printf("Drugi red \n");
+
+	for (i = first2; i >= rear2; i--)
+	{
+		printf("%d\n", red[i]);
+	}
+
+	return 0;
+}
+
+// Double linked list with double ended queue
+
+// typedef struct NODE{
+//	int data;
+//	struct NODE*next;
+//	struct NODE*prev;
+// }Node;
+//
+// Node*first=NULL,*rear=NULL;
+//
+// Node*createNode(int x){
+//	Node*newNode = (Node*)malloc(sizeof(Node));
+//	newNode->data = x;
+//	newNode->next = NULL;
+//	newNode->prev = NULL;
+//	return newNode;
+// }
+// void insertRear(int x){
+//	Node*newNode = createNode(x);
+//
+//	if(rear==NULL){
+//		first=rear=newNode;
+//	}else{
+//		rear->next = newNode;
+//		newNode->prev = rear;
+//		rear = newNode;
+//	}
+// }
+// int deleteFirst(){
+//	if(first==NULL){
+//		printf("queue is empty \n");
+//	}else{
+//		int elem = first->data;
+//		first = first->next;
+//		return elem;
+//
+//	}
+// }
+//
+// void insertFirst(int x){
+//	Node*newNode = createNode(x);
+//	if(first == NULL){
+//		first=rear=newNode;
+//	}else{
+//		newNode->next = first;
+//		first->prev = newNode;
+//		first = newNode;
+//
+//	}
+// }
+//
+// int deleteRear(){
+//	if(rear==NULL){
+//		printf("Queue is empty\n");
+//		return -1;
+//	}else{
+//		int elem = rear->data;
+//		rear=rear->prev;
+//		return elem;
+//	}
+// }
+//
+//
+// int main(){
+//	insertRear(1);
+//	insertRear(2);
+//	insertRear(3);
+//	insertRear(4);
+//	insertRear(5);
+//	deleteFirst();
+//
+//
+//	Node*temp = first;
+//	printf("From first\n");
+//	while(temp!=rear){
+//		printf("temp = %d \n",temp->data);
+//		temp=temp->next;
+//	}
+//	printf("temp = %d\n",temp->data);
+//
+//
+//
+//	printf("From rear\n");
+//
+//	insertFirst(9);
+//
+//	deleteRear();
+//
+//	Node*temp2 = rear;
+//	while(temp2!=first){
+//		printf("temp2=%d\n",temp2->data);
+//		temp2=temp2->prev;
+//	}
+//	printf("temp2=%d\n",temp2->data);
+//
+//	return 0;
+// }
