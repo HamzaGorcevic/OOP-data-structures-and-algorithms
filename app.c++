@@ -1923,127 +1923,127 @@ using namespace std;
 // 	}
 // }
 
-#define SIZE 3
+// #define SIZE 3
 
-int stack[SIZE], top = -1;
+// int stack[SIZE], top = -1;
 
-void push(int x)
-{
-	if (top != SIZE)
-	{
-		top++;
-		stack[top] = x;
-	}
-}
+// void push(int x)
+// {
+// 	if (top != SIZE)
+// 	{
+// 		top++;
+// 		stack[top] = x;
+// 	}
+// }
 
-int *pop()
-{
-	if (top - 2 >= -1)
-	{
-		int elem1 = stack[top--];
-		int elem2 = stack[top--];
+// int *pop()
+// {
+// 	if (top - 2 >= -1)
+// 	{
+// 		int elem1 = stack[top--];
+// 		int elem2 = stack[top--];
 
-		int *arr = new int[2];
-		arr[0] = elem1;
-		arr[1] = elem2;
-		return arr;
-	}
-	else
-	{
-		printf("Ne moguce je izrbisati dva elementa");
-		return nullptr;
-	}
-}
-int main()
-{
+// 		int *arr = new int[2];
+// 		arr[0] = elem1;
+// 		arr[1] = elem2;
+// 		return arr;
+// 	}
+// 	else
+// 	{
+// 		printf("Ne moguce je izrbisati dva elementa");
+// 		return nullptr;
+// 	}
+// }
+// int main()
+// {
 
-	push(1);
-	push(2);
-	pop();
+// 	push(1);
+// 	push(2);
+// 	pop();
 
-	for (int i = 0; i <= top; i++)
-	{
-		printf("i=%d\n", stack[i]);
-	}
-}
+// 	for (int i = 0; i <= top; i++)
+// 	{
+// 		printf("i=%d\n", stack[i]);
+// 	}
+// }
 
-#define SIZE 13
+// #define SIZE 13
 
-int red[SIZE], first1 = -1, rear1 = -1, first2 = SIZE, rear2 = SIZE;
+// int red[SIZE], first1 = -1, rear1 = -1, first2 = SIZE, rear2 = SIZE;
 
-void dodajElement(int x, int broj)
-{
+// void dodajElement(int x, int broj)
+// {
 
-	switch (x)
-	{
-	case 1:
-		if (rear1 + 1 == rear2)
-		{
-			printf("Overflow \n");
-			break;
-		}
-		else
-		{
-			first1 = 0;
-			rear1++;
-			red[rear1] = broj;
-		}
-		break;
-	case 2:
-		if (rear1 + 1 == rear2)
-		{
-			printf("Overflow \n");
-			break;
-		}
-		else
-		{
-			first2 = SIZE - 1;
-			rear2--;
-			red[rear2] = broj;
-			printf("rear2=%d\n", red[rear2]);
-		}
-		break;
-	}
-}
+// 	switch (x)
+// 	{
+// 	case 1:
+// 		if (rear1 + 1 == rear2)
+// 		{
+// 			printf("Overflow \n");
+// 			break;
+// 		}
+// 		else
+// 		{
+// 			first1 = 0;
+// 			rear1++;
+// 			red[rear1] = broj;
+// 		}
+// 		break;
+// 	case 2:
+// 		if (rear1 + 1 == rear2)
+// 		{
+// 			printf("Overflow \n");
+// 			break;
+// 		}
+// 		else
+// 		{
+// 			first2 = SIZE - 1;
+// 			rear2--;
+// 			red[rear2] = broj;
+// 			printf("rear2=%d\n", red[rear2]);
+// 		}
+// 		break;
+// 	}
+// }
 
-int main()
-{
-	int i;
-	dodajElement(1, 4);
-	dodajElement(1, 6);
-	dodajElement(1, 8);
+// int main()
+// {
+// 	int i;
+// 	dodajElement(1, 4);
+// 	dodajElement(1, 6);
+// 	dodajElement(1, 8);
 
-	dodajElement(1, 997);
+// 	dodajElement(1, 997);
 
-	dodajElement(1, 998);
+// 	dodajElement(1, 998);
 
-	dodajElement(2, 9);
-	dodajElement(2, 10);
-	dodajElement(2, 11);
-	dodajElement(2, 11);
+// 	dodajElement(2, 9);
+// 	dodajElement(2, 10);
+// 	dodajElement(2, 11);
+// 	dodajElement(2, 11);
 
-	dodajElement(2, 11);
+// 	dodajElement(2, 11);
 
-	dodajElement(2, 11);
+// 	dodajElement(2, 11);
 
-	dodajElement(2, 11);
+// 	dodajElement(2, 11);
 
-	dodajElement(2, 12);
+// 	dodajElement(2, 12);
 
-	for (i = first1; i <= rear1; i++)
-	{
-		printf("%d\n", red[i]);
-	}
+// 	for (i = first1; i <= rear1; i++)
+// 	{
+// 		printf("%d\n", red[i]);
+// 	}
 
-	printf("Drugi red \n");
+// 	printf("Drugi red \n");
 
-	for (i = first2; i >= rear2; i--)
-	{
-		printf("%d\n", red[i]);
-	}
+// 	for (i = first2; i >= rear2; i--)
+// 	{
+// 		printf("%d\n", red[i]);
+// 	}
 
-	return 0;
-}
+// 	return 0;
+// }
 
 // Double linked list with double ended queue
 
@@ -2142,3 +2142,124 @@ int main()
 //
 //	return 0;
 // }
+
+// Klasa Ponuđeni odgovor se sastoji od teksta odgovora(string), koji se zadaje pri stvaranju (podrazumevano ""), informacije da li je tačan i
+// procentualnog udela poena koji taj odgovor nosi (u opsegu od -100 do 100). Svi podaci su
+//  privatni. Svi podaci se mogu dohvatiti, a informacija o tačnosti i procentualni udeo se
+//  mogu postavljati(prilikom postavljanja proveriti da li su uneti ispravni procenti). Odgovor može da se
+//  ispiše na glavnom izlazu (out<<odgovor) u obliku tekst: udeo%.
+
+#include <string.h>
+using namespace std;
+class Ponudjeni
+{
+	string odgovor;
+	bool tacan;
+	float procenat;
+
+public:
+	Ponudjeni()
+	{
+		odgovor = "";
+	}
+	Ponudjeni(string Odgovor, bool Tacan, float Procenat)
+	{
+		odgovor = Odgovor;
+		tacan = Tacan;
+		procenat = Procenat;
+	}
+	string getOdgovor()
+	{
+		return odgovor;
+	}
+	bool getTacan()
+	{
+		return tacan;
+	}
+	float getProcenat()
+	{
+		return procenat;
+	}
+	void setProcenat(int pro)
+	{
+		if (pro < -100 || pro > 100)
+		{
+			printf("Uneli ste nevazeci procenat \n");
+			procenat = 0;
+		}
+		else
+		{
+			procenat = pro;
+		}
+	}
+	void setTacan(bool tac)
+	{
+		tacan = tac;
+	}
+
+	friend ostream &operator<<(ostream &COUT, Ponudjeni &pon)
+	{
+		COUT << pon.odgovor << ":" << pon.procenat << "%";
+		return COUT;
+	}
+};
+// };
+// // ) Klasa Pitanje sadrži zadate podatke koji su zaštićeni: tekst, broj poena koji nosi,
+// broj ponuđenih odgovora (podrazumevano 5), kao i ponuđene odgovore(dinamičko alocirani niz odgovora).
+//  Stvara se bez ponuđenih odgovora, nakon čega se oni dodaju pojedinačno (pitanje+=odgovor). Prilikom dodavanja
+//   ponuđenog odgovora računaju se jednaki procentualni udeli svih tačnih odgovora dodatih u dato pitanje(u zbiru daju 100%),
+//    dok svaki netačan odgovor nosi -100%. Pomoću polimorfne metode može da se odgovori na pitanje, tada se zadaje niz koji sadrži
+//     redne brojeve ponuđenih odgovora koje ispitanik smatra tačnim i dužina tog niza(odgovori(int niz[],int br);).
+// 	 Tada se računa koliko je procentualno tačno odgovoreno na to pitanje. Na glavnom izlazu se ispisuje (out<<pitanje)
+// 	 tako što se u prvom redu ispiše tekst: poeni(maksimalni koje pitanje nosi), a potom se u zasebnim redovima ispišu sadržani ponuđeni odgovori.
+
+class Pitanje
+{
+	string tekst;
+	int poeni;
+	int brojPonudjenih;
+	int counter;
+	Ponudjeni *ponudjeni;
+
+public:
+	Pitanje(string Tekst, int poeni, int brojPonudjenih = 5)
+	{
+		tekst = Tekst;
+		this->poeni = poeni;
+		this->brojPonudjenih = brojPonudjenih;
+		counter = 0;
+		ponudjeni = new Ponudjeni[brojPonudjenih];
+	}
+
+	friend Pitanje &operator+=(Pitanje &pit, Ponudjeni &pon)
+	{
+		if (pit.counter < pit.brojPonudjenih)
+		{
+			pit.ponudjeni[pit.counter] = pon;
+			pit.counter++;
+		}
+	}
+	void ispis()
+	{
+		for (int i = 0; i < counter; i++)
+		{
+			cout << ponudjeni[i].getOdgovor() << endl;
+		}
+	}
+	~Pitanje()
+	{
+		delete[] ponudjeni;
+	}
+};
+
+main()
+{
+	Ponudjeni pon1("HAmza", true, 23.2);
+	Ponudjeni pon2("HAris", true, 32.2);
+
+	Pitanje pit("ko je babo", 10);
+	pit += pon1;
+	pit += pon2;
+	pit.ispis();
+	return 0;
+}
