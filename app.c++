@@ -2162,7 +2162,7 @@ public:
 	{
 		odgovor = "";
 	}
-	Ponudjeni(string Odgovor, bool Tacan, float Procenat)
+	Ponudjeni(string Odgovor, bool Tacan, float Procenat = -100)
 	{
 		odgovor = Odgovor;
 		tacan = Tacan;
@@ -2219,9 +2219,12 @@ class Pitanje
 	int poeni;
 	int brojPonudjenih;
 	int counter;
+	int ukupanProcenat;
+	int osvojeniPoeni;
 	Ponudjeni *ponudjeni;
 
 public:
+	Pitanje() {}
 	Pitanje(string Tekst, int poeni, int brojPonudjenih = 5)
 	{
 		tekst = Tekst;
@@ -2229,6 +2232,7 @@ public:
 		this->brojPonudjenih = brojPonudjenih;
 		counter = 0;
 		ponudjeni = new Ponudjeni[brojPonudjenih];
+		ukupanProcenat = 0;
 	}
 
 	friend Pitanje &operator+=(Pitanje &pit, Ponudjeni &pon)
@@ -2238,28 +2242,106 @@ public:
 			pit.ponudjeni[pit.counter] = pon;
 			pit.counter++;
 		}
-	}
-	void ispis()
-	{
-		for (int i = 0; i < counter; i++)
+		else
 		{
-			cout << ponudjeni[i].getOdgovor() << endl;
+			cout << "Presli ste dozvoljeno" << endl;
 		}
 	}
+
+	void ispis()
+	{
+		cout << tekst << " (" << poeni << ")" << endl;
+		for (int i = 0; i < counter; i++)
+		{
+			cout << i << " " << ponudjeni[i].getOdgovor() << endl;
+		}
+	}
+	friend ostream &operator<<(ostream &COUT, Pitanje &pit)
+	{
+		pit.ispis();
+	}
+
+	void odgovori(int *niz, int br)
+	{
+		for (int j = 0; j < br; j++)
+		{
+			cout << j << endl;
+			if (ponudjeni[niz[j]].getTacan())
+			{
+
+				ukupanProcenat += ponudjeni[niz[j]].getProcenat();
+				osvojeniPoeni = poeni / (100 / ukupanProcenat);
+			}
+			else
+			{
+				ukupanProcenat = -100;
+				osvojeniPoeni = 0;
+			}
+		}
+	}
+	int getPoene()
+	{
+		return osvojeniPoeni;
+	}
+
 	~Pitanje()
 	{
 		delete[] ponudjeni;
 	}
 };
 
+class Student : Pitanje
+{
+	int indeks;
+	string ime;
+	double studentPoeni;
+
+public:
+	Student(int indeks, string ime)
+	{
+		this->indeks = indeks;
+		this->ime = ime;
+		studentPoeni = 0;
+	}
+	void Osvoio()
+	{
+		studentPoeni += getPoene();
+	}
+
+	friend ostream &operator<<(ostream &COUT, Student &stu)
+	{
+		COUT << stu.ime << "," << stu.indeks << "," << stu.studentPoeni << endl;
+		stu.ispis();
+	}
+};
+
 main()
 {
-	Ponudjeni pon1("HAmza", true, 23.2);
-	Ponudjeni pon2("HAris", true, 32.2);
+	Ponudjeni pon1("HAmza", true, 50.0);
+	Ponudjeni pon2("HAris", true, 50.0);
+	Ponudjeni pon3("Semra", false);
 
 	Pitanje pit("ko je babo", 10);
 	pit += pon1;
 	pit += pon2;
-	pit.ispis();
+	pit += pon3;
+	cout << pit;
+	int *izabrani;
+	int x;
+	int i = 0;
+	Student s1(23, "hamdija");
+
+	while (x != -1)
+	{
+		cout << "Izaberite " << i << ". odgovor" << endl;
+		cin >> x;
+		izabrani[i] = x;
+		i++;
+	}
+
+	s1.odgovori(izabrani, i - 1);
+
+	cout << s1 << endl;
+
 	return 0;
 }
