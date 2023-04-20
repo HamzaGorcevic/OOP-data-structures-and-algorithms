@@ -2149,199 +2149,319 @@ using namespace std;
 //  mogu postavljati(prilikom postavljanja proveriti da li su uneti ispravni procenti). Odgovor može da se
 //  ispiše na glavnom izlazu (out<<odgovor) u obliku tekst: udeo%.
 
-#include <string.h>
+// #include <string.h>
+// using namespace std;
+// class Ponudjeni
+// {
+// 	string odgovor;
+// 	bool tacan;
+// 	float procenat;
+
+// public:
+// 	Ponudjeni()
+// 	{
+// 		odgovor = "";
+// 	}
+// 	Ponudjeni(string Odgovor, bool Tacan, float Procenat = -100)
+// 	{
+// 		odgovor = Odgovor;
+// 		tacan = Tacan;
+// 		procenat = Procenat;
+// 	}
+// 	string getOdgovor()
+// 	{
+// 		return odgovor;
+// 	}
+// 	bool getTacan()
+// 	{
+// 		return tacan;
+// 	}
+// 	float getProcenat()
+// 	{
+// 		return procenat;
+// 	}
+// 	void setProcenat(int pro)
+// 	{
+// 		if (pro < -100 || pro > 100)
+// 		{
+// 			printf("Uneli ste nevazeci procenat \n");
+// 			procenat = 0;
+// 		}
+// 		else
+// 		{
+// 			procenat = pro;
+// 		}
+// 	}
+// 	void setTacan(bool tac)
+// 	{
+// 		tacan = tac;
+// 	}
+
+// 	friend ostream &operator<<(ostream &COUT, Ponudjeni &pon)
+// 	{
+// 		COUT << pon.odgovor << ":" << pon.procenat << "%";
+// 		return COUT;
+// 	}
+// };
+// // };
+// // // ) Klasa Pitanje sadrži zadate podatke koji su zaštićeni: tekst, broj poena koji nosi,
+// // broj ponuđenih odgovora (podrazumevano 5), kao i ponuđene odgovore(dinamičko alocirani niz odgovora).
+// //  Stvara se bez ponuđenih odgovora, nakon čega se oni dodaju pojedinačno (pitanje+=odgovor). Prilikom dodavanja
+// //   ponuđenog odgovora računaju se jednaki procentualni udeli svih tačnih odgovora dodatih u dato pitanje(u zbiru daju 100%),
+// //    dok svaki netačan odgovor nosi -100%. Pomoću polimorfne metode može da se odgovori na pitanje, tada se zadaje niz koji sadrži
+// //     redne brojeve ponuđenih odgovora koje ispitanik smatra tačnim i dužina tog niza(odgovori(int niz[],int br);).
+// // 	 Tada se računa koliko je procentualno tačno odgovoreno na to pitanje. Na glavnom izlazu se ispisuje (out<<pitanje)
+// // 	 tako što se u prvom redu ispiše tekst: poeni(maksimalni koje pitanje nosi), a potom se u zasebnim redovima ispišu sadržani ponuđeni odgovori.
+
+// class Pitanje
+// {
+// 	string tekst;
+// 	int poeni;
+// 	int brojPonudjenih;
+// 	int counter;
+// 	int ukupanProcenat;
+// 	int osvojeniPoeni;
+// 	Ponudjeni *ponudjeni;
+
+// public:
+// 	Pitanje() {}
+// 	Pitanje(string Tekst, int poeni, int brojPonudjenih = 5)
+// 	{
+// 		tekst = Tekst;
+// 		this->poeni = poeni;
+// 		this->brojPonudjenih = brojPonudjenih;
+// 		counter = 0;
+// 		ponudjeni = new Ponudjeni[brojPonudjenih];
+// 		ukupanProcenat = 0;
+// 	}
+
+// 	friend Pitanje &operator+=(Pitanje &pit, Ponudjeni &pon)
+// 	{
+// 		if (pit.counter < pit.brojPonudjenih)
+// 		{
+// 			pit.ponudjeni[pit.counter] = pon;
+// 			pit.counter++;
+// 		}
+// 		else
+// 		{
+// 			cout << "Presli ste dozvoljeno" << endl;
+// 		}
+// 	}
+
+// 	void ispis()
+// 	{
+// 		cout << tekst << " (" << poeni << ")" << endl;
+// 		for (int i = 0; i < counter; i++)
+// 		{
+// 			cout << i << " " << ponudjeni[i].getOdgovor() << endl;
+// 		}
+// 	}
+// 	friend ostream &operator<<(ostream &COUT, Pitanje &pit)
+// 	{
+// 		pit.ispis();
+// 	}
+
+// 	void odgovori(int *niz, int br)
+// 	{
+// 		for (int j = 0; j < br; j++)
+// 		{
+// 			cout << j << endl;
+// 			if (ponudjeni[niz[j]].getTacan())
+// 			{
+
+// 				ukupanProcenat += ponudjeni[niz[j]].getProcenat();
+// 				osvojeniPoeni = poeni / (100 / ukupanProcenat);
+// 			}
+// 			else
+// 			{
+// 				ukupanProcenat = -100;
+// 				osvojeniPoeni = 0;
+// 			}
+// 		}
+// 	}
+// 	int getPoene()
+// 	{
+// 		return osvojeniPoeni;
+// 	}
+
+// 	~Pitanje()
+// 	{
+// 		delete[] ponudjeni;
+// 	}
+// };
+
+// class Student : Pitanje
+// {
+// 	int indeks;
+// 	string ime;
+// 	double studentPoeni;
+
+// public:
+// 	Student(int indeks, string ime)
+// 	{
+// 		this->indeks = indeks;
+// 		this->ime = ime;
+// 		studentPoeni = 0;
+// 	}
+// 	void Osvoio()
+// 	{
+// 		studentPoeni += getPoene();
+// 	}
+
+// 	friend ostream &operator<<(ostream &COUT, Student &stu)
+// 	{
+// 		COUT << stu.ime << "," << stu.indeks << "," << stu.studentPoeni << endl;
+// 		stu.ispis();
+// 	}
+// };
+
+// main()
+// {
+// 	Ponudjeni pon1("HAmza", true, 50.0);
+// 	Ponudjeni pon2("HAris", true, 50.0);
+// 	Ponudjeni pon3("Semra", false);
+
+// 	Pitanje pit("ko je babo", 10);
+// 	pit += pon1;
+// 	pit += pon2;
+// 	pit += pon3;
+// 	cout << pit;
+// 	int *izabrani;
+// 	int x;
+// 	int i = 0;
+// 	Student s1(23, "hamdija");
+
+// 	while (x != -1)
+// 	{
+// 		cout << "Izaberite " << i << ". odgovor" << endl;
+// 		cin >> x;
+// 		izabrani[i] = x;
+// 		i++;
+// 	}
+
+// 	s1.odgovori(izabrani, i - 1);
+
+// 	cout << s1 << endl;
+
+// 	return 0;
+// }
+
+// ⦁	Klasa Sastojak sadrži zadato ime i cenu po kilogramu.Pomoću metoda može da se dohvati vrsta sastojka i da se izračuna cena za
+// zadatu količinu sastojka u gramima(količina dolazi kao argument metode). Upisuje se u izlazni tok (cout<<s)  u obliku ime-cena/kg.
+// Vrste slanog, slatkog i neutralnog sastojka su SLAN, SLADiNEUT, respektivno. (Odraditi pomoću enumeracije)
+
 using namespace std;
-class Ponudjeni
+enum Vrsta
 {
-	string odgovor;
-	bool tacan;
-	float procenat;
+	SLAN,
+	SLAD,
+	NEUT
+};
+
+class Sastojak
+{
+	string ime;
+	int cenaKg;
+	Vrsta vrsta;
 
 public:
-	Ponudjeni()
+	int cena;
+
+	Sastojak() {}
+	Sastojak(string Ime, int CenaKg, Vrsta Vrs = SLAD)
 	{
-		odgovor = "";
-	}
-	Ponudjeni(string Odgovor, bool Tacan, float Procenat = -100)
-	{
-		odgovor = Odgovor;
-		tacan = Tacan;
-		procenat = Procenat;
-	}
-	string getOdgovor()
-	{
-		return odgovor;
-	}
-	bool getTacan()
-	{
-		return tacan;
-	}
-	float getProcenat()
-	{
-		return procenat;
-	}
-	void setProcenat(int pro)
-	{
-		if (pro < -100 || pro > 100)
-		{
-			printf("Uneli ste nevazeci procenat \n");
-			procenat = 0;
-		}
-		else
-		{
-			procenat = pro;
-		}
-	}
-	void setTacan(bool tac)
-	{
-		tacan = tac;
+		ime = Ime;
+		cenaKg = CenaKg;
+		vrsta = Vrs;
+		cena = 0;
 	}
 
-	friend ostream &operator<<(ostream &COUT, Ponudjeni &pon)
+	Vrsta getVrstu()
 	{
-		COUT << pon.odgovor << ":" << pon.procenat << "%";
+		return vrsta;
+	}
+	float getCenaGm(int kolicina)
+	{
+		int procenaCene = cenaKg * (kolicina / 1000.0);
+		cena = procenaCene;
+		return procenaCene;
+	}
+	string getIme()
+	{
+		return ime;
+	}
+	int getCenaKG()
+	{
+		return cenaKg;
+	}
+
+	friend ostream &operator<<(ostream &COUT, Sastojak &sastojak)
+	{
+		COUT << sastojak.getCenaKG() << "/" << sastojak.getIme() << endl;
+
 		return COUT;
 	}
 };
-// };
-// // ) Klasa Pitanje sadrži zadate podatke koji su zaštićeni: tekst, broj poena koji nosi,
-// broj ponuđenih odgovora (podrazumevano 5), kao i ponuđene odgovore(dinamičko alocirani niz odgovora).
-//  Stvara se bez ponuđenih odgovora, nakon čega se oni dodaju pojedinačno (pitanje+=odgovor). Prilikom dodavanja
-//   ponuđenog odgovora računaju se jednaki procentualni udeli svih tačnih odgovora dodatih u dato pitanje(u zbiru daju 100%),
-//    dok svaki netačan odgovor nosi -100%. Pomoću polimorfne metode može da se odgovori na pitanje, tada se zadaje niz koji sadrži
-//     redne brojeve ponuđenih odgovora koje ispitanik smatra tačnim i dužina tog niza(odgovori(int niz[],int br);).
-// 	 Tada se računa koliko je procentualno tačno odgovoreno na to pitanje. Na glavnom izlazu se ispisuje (out<<pitanje)
-// 	 tako što se u prvom redu ispiše tekst: poeni(maksimalni koje pitanje nosi), a potom se u zasebnim redovima ispišu sadržani ponuđeni odgovori.
 
-class Pitanje
+class Jelo
 {
-	string tekst;
-	int poeni;
-	int brojPonudjenih;
-	int counter;
-	int ukupanProcenat;
-	int osvojeniPoeni;
-	Ponudjeni *ponudjeni;
+	string ime;
+	Sastojak *sastojci;
+	int brojSastojaka;
+	int kolicinaGrama;
 
 public:
-	Pitanje() {}
-	Pitanje(string Tekst, int poeni, int brojPonudjenih = 5)
+	int cena;
+	Jelo(string Ime)
 	{
-		tekst = Tekst;
-		this->poeni = poeni;
-		this->brojPonudjenih = brojPonudjenih;
-		counter = 0;
-		ponudjeni = new Ponudjeni[brojPonudjenih];
-		ukupanProcenat = 0;
+		ime = Ime;
+		brojSastojaka = 0;
+		kolicinaGrama = 0;
+		cena = 0;
+		sastojci = nullptr; // initialize to nullptr
 	}
 
-	friend Pitanje &operator+=(Pitanje &pit, Ponudjeni &pon)
+	int cenaJela()
 	{
-		if (pit.counter < pit.brojPonudjenih)
+		for (int i = 0; i < brojSastojaka; i++)
 		{
-			pit.ponudjeni[pit.counter] = pon;
-			pit.counter++;
+			cena += sastojci[i].getCenaKG();
 		}
-		else
-		{
-			cout << "Presli ste dozvoljeno" << endl;
-		}
+		return cena;
 	}
 
+	void dodajSastojak(Sastojak s)
+	{
+		Sastojak *noviSastojci = new Sastojak[brojSastojaka + 1]; // allocate new array
+		for (int i = 0; i < brojSastojaka; i++)
+		{
+			noviSastojci[i] = sastojci[i]; // copy existing elements
+		}
+		noviSastojci[brojSastojaka] = s; // add new ingredient
+		delete[] sastojci;				 // delete old array
+		sastojci = noviSastojci;		 // update pointer
+		brojSastojaka++;
+	}
 	void ispis()
 	{
-		cout << tekst << " (" << poeni << ")" << endl;
-		for (int i = 0; i < counter; i++)
+		for (int i = 0; i < brojSastojaka; i++)
 		{
-			cout << i << " " << ponudjeni[i].getOdgovor() << endl;
+			cout << sastojci[i];
 		}
-	}
-	friend ostream &operator<<(ostream &COUT, Pitanje &pit)
-	{
-		pit.ispis();
-	}
-
-	void odgovori(int *niz, int br)
-	{
-		for (int j = 0; j < br; j++)
-		{
-			cout << j << endl;
-			if (ponudjeni[niz[j]].getTacan())
-			{
-
-				ukupanProcenat += ponudjeni[niz[j]].getProcenat();
-				osvojeniPoeni = poeni / (100 / ukupanProcenat);
-			}
-			else
-			{
-				ukupanProcenat = -100;
-				osvojeniPoeni = 0;
-			}
-		}
-	}
-	int getPoene()
-	{
-		return osvojeniPoeni;
-	}
-
-	~Pitanje()
-	{
-		delete[] ponudjeni;
 	}
 };
 
-class Student : Pitanje
+int main()
 {
-	int indeks;
-	string ime;
-	double studentPoeni;
+	Sastojak s1("Secer", 120, SLAD);
+	Sastojak s2("Brasno", 200, SLAD);
+	Sastojak s3("Jaja", 80, SLAN);
 
-public:
-	Student(int indeks, string ime)
-	{
-		this->indeks = indeks;
-		this->ime = ime;
-		studentPoeni = 0;
-	}
-	void Osvoio()
-	{
-		studentPoeni += getPoene();
-	}
+	Jelo j1("Torta");
+	j1.dodajSastojak(s1);
+	j1.dodajSastojak(s2);
+	j1.dodajSastojak(s3);
 
-	friend ostream &operator<<(ostream &COUT, Student &stu)
-	{
-		COUT << stu.ime << "," << stu.indeks << "," << stu.studentPoeni << endl;
-		stu.ispis();
-	}
-};
-
-main()
-{
-	Ponudjeni pon1("HAmza", true, 50.0);
-	Ponudjeni pon2("HAris", true, 50.0);
-	Ponudjeni pon3("Semra", false);
-
-	Pitanje pit("ko je babo", 10);
-	pit += pon1;
-	pit += pon2;
-	pit += pon3;
-	cout << pit;
-	int *izabrani;
-	int x;
-	int i = 0;
-	Student s1(23, "hamdija");
-
-	while (x != -1)
-	{
-		cout << "Izaberite " << i << ". odgovor" << endl;
-		cin >> x;
-		izabrani[i] = x;
-		i++;
-	}
-
-	s1.odgovori(izabrani, i - 1);
-
-	cout << s1 << endl;
-
+	j1.ispis();
 	return 0;
 }
