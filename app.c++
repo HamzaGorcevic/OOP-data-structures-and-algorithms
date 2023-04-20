@@ -2409,45 +2409,59 @@ class Jelo
 	Sastojak *sastojci;
 	int brojSastojaka;
 	int kolicinaGrama;
+	int cenaJela;
+	int *grami;
 
 public:
-	int cena;
-	Jelo(string Ime)
+	Jelo(string Ime, int kolicinaGrama)
 	{
 		ime = Ime;
 		brojSastojaka = 0;
+		cenaJela = 0;
 		kolicinaGrama = 0;
-		cena = 0;
-		sastojci = nullptr; // initialize to nullptr
+		sastojci = nullptr;
+		grami = nullptr;
+		// initialize to nullptr
 	}
 
-	int cenaJela()
+	void dodajSastojak(Sastojak s, int kolicina)
 	{
-		for (int i = 0; i < brojSastojaka; i++)
+		kolicinaGrama -= kolicina;
+		if (kolicinaGrama >= 0)
 		{
-			cena += sastojci[i].getCenaKG();
+
+			int *noviGrami = new int[brojSastojaka + 1];
+
+			cenaJela += s.getCenaGm(kolicina);
+			Sastojak *noviSastojci = new Sastojak[brojSastojaka + 1]; // allocate new array
+			for (int i = 0; i < brojSastojaka; i++)
+			{
+				noviGrami[i] = grami[i];
+				noviSastojci[i] = sastojci[i]; // copy existing elements
+			}
+
+			noviGrami[brojSastojaka] = kolicina;
+			noviSastojci[brojSastojaka] = s;
+			delete[] grami;	   // add new ingredient
+			delete[] sastojci; // delete old array
+			sastojci = noviSastojci;
+			grami = noviGrami; // update pointer
+			brojSastojaka++;
 		}
-		return cena;
+		else
+		{
+			cout << "Uneli ste previse";
+		}
 	}
 
-	void dodajSastojak(Sastojak s)
+	friend ostream &operator<<(ostream &COUT, Jelo j)
 	{
-		Sastojak *noviSastojci = new Sastojak[brojSastojaka + 1]; // allocate new array
-		for (int i = 0; i < brojSastojaka; i++)
+		COUT << j.ime << ":" << j.cenaJela << endl;
+		for (int i = 0; i < j.brojSastojaka; i++)
 		{
-			noviSastojci[i] = sastojci[i]; // copy existing elements
+			cout << j.sastojci[i].getIme() << ":" << j.grami[i] << endl;
 		}
-		noviSastojci[brojSastojaka] = s; // add new ingredient
-		delete[] sastojci;				 // delete old array
-		sastojci = noviSastojci;		 // update pointer
-		brojSastojaka++;
-	}
-	void ispis()
-	{
-		for (int i = 0; i < brojSastojaka; i++)
-		{
-			cout << sastojci[i];
-		}
+		return COUT;
 	}
 };
 
@@ -2456,12 +2470,13 @@ int main()
 	Sastojak s1("Secer", 120, SLAD);
 	Sastojak s2("Brasno", 200, SLAD);
 	Sastojak s3("Jaja", 80, SLAN);
+	Jelo j1("Torta", 1000);
 
-	Jelo j1("Torta");
-	j1.dodajSastojak(s1);
-	j1.dodajSastojak(s2);
-	j1.dodajSastojak(s3);
+	j1.dodajSastojak(s1, 300);
+	j1.dodajSastojak(s2, 200);
+	j1.dodajSastojak(s3, 100);
 
-	j1.ispis();
+	cout << j1;
+
 	return 0;
 }
