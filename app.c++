@@ -2350,133 +2350,200 @@ using namespace std;
 // zadatu količinu sastojka u gramima(količina dolazi kao argument metode). Upisuje se u izlazni tok (cout<<s)  u obliku ime-cena/kg.
 // Vrste slanog, slatkog i neutralnog sastojka su SLAN, SLADiNEUT, respektivno. (Odraditi pomoću enumeracije)
 
-using namespace std;
-enum Vrsta
-{
-	SLAN,
-	SLAD,
-	NEUT
-};
+// using namespace std;
+// enum Vrsta
+// {
+// 	SLAN,
+// 	SLAD,
+// 	NEUT
+// };
 
-class Sastojak
+// class Sastojak
+// {
+// 	string ime;
+// 	int cenaKg;
+// 	Vrsta vrsta;
+
+// public:
+// 	int cena;
+
+// 	Sastojak() {}
+// 	Sastojak(string Ime, int CenaKg, Vrsta Vrs = SLAD)
+// 	{
+// 		ime = Ime;
+// 		cenaKg = CenaKg;
+// 		vrsta = Vrs;
+// 		cena = 0;
+// 	}
+
+// 	Vrsta getVrstu()
+// 	{
+// 		return vrsta;
+// 	}
+// 	float getCenaGm(int kolicina)
+// 	{
+// 		int procenaCene = cenaKg * (kolicina / 1000.0);
+// 		cena = procenaCene;
+// 		return procenaCene;
+// 	}
+// 	string getIme()
+// 	{
+// 		return ime;
+// 	}
+// 	int getCenaKG()
+// 	{
+// 		return cenaKg;
+// 	}
+
+// 	friend ostream &operator<<(ostream &COUT, Sastojak &sastojak)
+// 	{
+// 		COUT << sastojak.getCenaKG() << "/" << sastojak.getIme() << endl;
+
+// 		return COUT;
+// 	}
+// };
+
+// class Jelo
+// {
+// 	string ime;
+// 	Sastojak *sastojci;
+// 	int brojSastojaka;
+// 	int kolicinaGrama;
+// 	int cenaJela;
+// 	int *grami;
+
+// public:
+// 	Jelo(string Ime, int kolicinaGrama)
+// 	{
+// 		ime = Ime;
+// 		brojSastojaka = 0;
+// 		cenaJela = 0;
+// 		kolicinaGrama = 0;
+// 		sastojci = nullptr;
+// 		grami = nullptr;
+// 		// initialize to nullptr
+// 	}
+
+// 	void dodajSastojak(Sastojak s, int kolicina)
+// 	{
+// 		kolicinaGrama -= kolicina;
+// 		if (kolicinaGrama >= 0)
+// 		{
+
+// 			int *noviGrami = new int[brojSastojaka + 1];
+
+// 			cenaJela += s.getCenaGm(kolicina);
+// 			Sastojak *noviSastojci = new Sastojak[brojSastojaka + 1]; // allocate new array
+// 			for (int i = 0; i < brojSastojaka; i++)
+// 			{
+// 				noviGrami[i] = grami[i];
+// 				noviSastojci[i] = sastojci[i]; // copy existing elements
+// 			}
+
+// 			noviGrami[brojSastojaka] = kolicina;
+// 			noviSastojci[brojSastojaka] = s;
+// 			delete[] grami;	   // add new ingredient
+// 			delete[] sastojci; // delete old array
+// 			sastojci = noviSastojci;
+// 			grami = noviGrami; // update pointer
+// 			brojSastojaka++;
+// 		}
+// 		else
+// 		{
+// 			cout << "Uneli ste previse";
+// 		}
+// 	}
+
+// 	friend ostream &operator<<(ostream &COUT, Jelo j)
+// 	{
+// 		COUT << j.ime << ":" << j.cenaJela << endl;
+// 		for (int i = 0; i < j.brojSastojaka; i++)
+// 		{
+// 			cout << j.sastojci[i].getIme() << ":" << j.grami[i] << endl;
+// 		}
+// 		return COUT;
+// 	}
+// };
+
+// int main()
+// {
+// 	Sastojak s1("Secer", 120, SLAD);
+// 	Sastojak s2("Brasno", 200, SLAD);
+// 	Sastojak s3("Jaja", 80, SLAN);
+// 	Jelo j1("Torta", 1000);
+
+// 	j1.dodajSastojak(s1, 300);
+// 	j1.dodajSastojak(s2, 200);
+// 	j1.dodajSastojak(s3, 100);
+
+// 	cout << j1;
+
+// 	return 0;
+// }
+
+// KOLOKVIJUM
+
+// Kreirati klasu Vreme koja ima atribute sati, minuti i sekunde i metode:
+//   konstruktor bez argumenata, konstruktor sa 3 argumenta (sati, minuti i sekunde),
+//   konstruktor sa 2 argumenta (sati i minuti), Info sa argumentom tipa bool koji određuje da li će vreme
+//   biti ispisano u punom format (hh:mm:ss) ili u skraćenom formatu (hh:mm), Add koja kao rezultat vraća novi objekat
+//   tipa vreme koji predstavlja sumu vremena posleđenog kao parametar i instance this, Add koja kao rezultat vraća novi
+//    objekat tipa vreme koji predstavlja sumu parametra izraženog u minutama i vremena instance this, CompareTo koja vraća
+//     vrednost tipa int u zavisnosti od toga da li je vreme instance this pre, jednako ili posle vremena proslijeđenog kao
+//      parameter (-1 - vreme instance this nastupa pre vremena v2, 0 - vreme instance this je jednako vremenu v2, 1 - vreme
+//  	instance this nastupa nakon vremena v2). (10 poena)
+
+class Vreme
 {
-	string ime;
-	int cenaKg;
-	Vrsta vrsta;
+	int hours;
+	int minutes;
+	int seconds;
 
 public:
-	int cena;
-
-	Sastojak() {}
-	Sastojak(string Ime, int CenaKg, Vrsta Vrs = SLAD)
+	Vreme() {}
+	Vreme(int Hours, int Minutes)
 	{
-		ime = Ime;
-		cenaKg = CenaKg;
-		vrsta = Vrs;
-		cena = 0;
+		hours = Hours;
+		minutes = Minutes;
 	}
-
-	Vrsta getVrstu()
+	Vreme(int Hours, int Minutes, int Seconds)
 	{
-		return vrsta;
+		hours = Hours;
+		minutes = Minutes;
+		seconds = Seconds;
 	}
-	float getCenaGm(int kolicina)
+	void info(bool check)
 	{
-		int procenaCene = cenaKg * (kolicina / 1000.0);
-		cena = procenaCene;
-		return procenaCene;
-	}
-	string getIme()
-	{
-		return ime;
-	}
-	int getCenaKG()
-	{
-		return cenaKg;
-	}
-
-	friend ostream &operator<<(ostream &COUT, Sastojak &sastojak)
-	{
-		COUT << sastojak.getCenaKG() << "/" << sastojak.getIme() << endl;
-
-		return COUT;
-	}
-};
-
-class Jelo
-{
-	string ime;
-	Sastojak *sastojci;
-	int brojSastojaka;
-	int kolicinaGrama;
-	int cenaJela;
-	int *grami;
-
-public:
-	Jelo(string Ime, int kolicinaGrama)
-	{
-		ime = Ime;
-		brojSastojaka = 0;
-		cenaJela = 0;
-		kolicinaGrama = 0;
-		sastojci = nullptr;
-		grami = nullptr;
-		// initialize to nullptr
-	}
-
-	void dodajSastojak(Sastojak s, int kolicina)
-	{
-		kolicinaGrama -= kolicina;
-		if (kolicinaGrama >= 0)
+		if (check)
 		{
-
-			int *noviGrami = new int[brojSastojaka + 1];
-
-			cenaJela += s.getCenaGm(kolicina);
-			Sastojak *noviSastojci = new Sastojak[brojSastojaka + 1]; // allocate new array
-			for (int i = 0; i < brojSastojaka; i++)
-			{
-				noviGrami[i] = grami[i];
-				noviSastojci[i] = sastojci[i]; // copy existing elements
-			}
-
-			noviGrami[brojSastojaka] = kolicina;
-			noviSastojci[brojSastojaka] = s;
-			delete[] grami;	   // add new ingredient
-			delete[] sastojci; // delete old array
-			sastojci = noviSastojci;
-			grami = noviGrami; // update pointer
-			brojSastojaka++;
+			cout << hours << ":" << minutes << ":" << seconds;
 		}
 		else
 		{
-			cout << "Uneli ste previse";
+			cout << hours << ":" << minutes;
 		}
 	}
-
-	friend ostream &operator<<(ostream &COUT, Jelo j)
+	void add(Vreme v2)
 	{
-		COUT << j.ime << ":" << j.cenaJela << endl;
-		for (int i = 0; i < j.brojSastojaka; i++)
-		{
-			cout << j.sastojci[i].getIme() << ":" << j.grami[i] << endl;
-		}
-		return COUT;
+		int vremeUkupno = (v2.hours + hours) * 3600 + (minutes + v2.minutes) * 60 + seconds + v2.seconds;
+
+		int h = (vremeUkupno / 3600);
+		vremeUkupno -= h * 3600;
+		int m = (vremeUkupno / 60);
+		vremeUkupno -= m * 60;
+		int s = vremeUkupno;
+
+		cout << h % 24 << ":" << m % 60 << ":" << s % 60;
 	}
 };
 
+using namespace std;
 int main()
 {
-	Sastojak s1("Secer", 120, SLAD);
-	Sastojak s2("Brasno", 200, SLAD);
-	Sastojak s3("Jaja", 80, SLAN);
-	Jelo j1("Torta", 1000);
+	Vreme v1(4, 56, 20);
+	Vreme v2(23, 4, 20);
 
-	j1.dodajSastojak(s1, 300);
-	j1.dodajSastojak(s2, 200);
-	j1.dodajSastojak(s3, 100);
-
-	cout << j1;
+	v1.add(v2);
 
 	return 0;
 }
