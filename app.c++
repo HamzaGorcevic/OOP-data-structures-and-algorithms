@@ -2492,7 +2492,9 @@ using namespace std;
 //     vrednost tipa int u zavisnosti od toga da li je vreme instance this pre, jednako ili posle vremena proslijeđenog kao
 //      parameter (-1 - vreme instance this nastupa pre vremena v2, 0 - vreme instance this je jednako vremenu v2, 1 - vreme
 //  	instance this nastupa nakon vremena v2). (10 poena)
-
+#include <cstdlib>
+#include <cstring>
+using namespace std;
 class Vreme
 {
 	int hours;
@@ -2500,17 +2502,28 @@ class Vreme
 	int seconds;
 
 public:
-	Vreme() {}
+	int ukupnoVreme;
+	Vreme()
+	{
+		hours = 0;
+		minutes = 0;
+		seconds = 0;
+		ukupnoVreme = 0;
+	}
 	Vreme(int Hours, int Minutes)
 	{
+
 		hours = Hours;
 		minutes = Minutes;
+		seconds = 0;
+		ukupnoVreme = hours * 3600 + minutes * 60;
 	}
 	Vreme(int Hours, int Minutes, int Seconds)
 	{
 		hours = Hours;
 		minutes = Minutes;
 		seconds = Seconds;
+		ukupnoVreme = ukupnoVreme = hours * 3600 + minutes * 60 + seconds;
 	}
 	void info(bool check)
 	{
@@ -2523,27 +2536,109 @@ public:
 			cout << hours << ":" << minutes;
 		}
 	}
-	void add(Vreme v2)
+	Vreme add(Vreme v2)
 	{
-		int vremeUkupno = (v2.hours + hours) * 3600 + (minutes + v2.minutes) * 60 + seconds + v2.seconds;
+		int vremeUkupno = ukupnoVreme + v2.ukupnoVreme;
 
 		int h = (vremeUkupno / 3600);
 		vremeUkupno -= h * 3600;
 		int m = (vremeUkupno / 60);
 		vremeUkupno -= m * 60;
 		int s = vremeUkupno;
+		cout << "Time by another time " << h % 24 << ":" << m % 60 << ":" << s % 60 << endl;
 
-		cout << h % 24 << ":" << m % 60 << ":" << s % 60;
+		Vreme newV(h % 24, m % 60, s % 60);
+		return newV;
+	}
+	Vreme addByMin(int mins)
+	{
+
+		cout << mins << endl;
+		int m = mins + minutes;
+		int h = hours + m / 60;
+		int s = seconds;
+
+		cout << "time by min " << h % 24 << ":" << m % 60 << ":" << s % 60 << endl;
+		Vreme newV(h % 24, m % 60, s % 60);
+		return newV;
+	}
+	int compareTo(Vreme v)
+	{
+		if (ukupnoVreme == v.ukupnoVreme)
+		{
+			return 0;
+		}
+		else if (ukupnoVreme > v.ukupnoVreme)
+		{
+			return 1;
+		}
+		else
+		{
+			return -1;
+		}
+	}
+};
+class Datum
+{
+	int dan;
+	int mesec;
+	int godina;
+	Datum()
+	{
+		dan = 0;
+		mesec = 0;
+		godina = 0;
+	}
+	Datum(int Dan, int Mesec, int Godina)
+	{
+		dan = Dan;
+		mesec = Mesec;
+		godina = Godina;
+	}
+
+	~Datum()
+	{
 	}
 };
 
+enum TIP
+{
+	ADMIN,
+	GOST
+};
+
+class Korisnik
+{
+	char punoIme[30];
+	char ime[20];
+	string lozinka;
+	TIP tip;
+
+public:
+	Korisnik()
+	{
+		punoIme = "";
+		ime = "";
+		lozinka = "";
+	}
+
+	Korisnik(string PI = "", string I = "", string L = "", TIP tip = GOST)
+	{
+
+		lozinka = L;
+		this->tip = tip;
+	}
+};
 using namespace std;
 int main()
 {
+	system("cls");
 	Vreme v1(4, 56, 20);
 	Vreme v2(23, 4, 20);
+	Vreme v3 = v1.add(v2);
 
-	v1.add(v2);
+	Vreme v4 = v1.addByMin(25);
+	cout << "Poredjenje vremena " << v1.compareTo(v2) << endl;
 
 	return 0;
 }
