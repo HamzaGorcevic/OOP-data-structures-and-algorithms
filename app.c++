@@ -3012,17 +3012,37 @@ int main()
     Karta druga(PIK, K10);
     Karta treca(TREF, K5);
     Karta cetvrta(KARO, K7);
+
+    Karta prva1(HERC, K2);
+    Karta druga1(PIK, K1);
+    Karta treca1(TREF, K5);
+    Karta cetvrta1(KARO, K8);
+    Spil s;
+    Spil s1;
+
+    s1 += prva1;
+    s1 += druga1;
+    s1 += treca1;
+    s1 += cetvrta1;
+
+    cout << s1;
+
     // bool check = prva > druga;
     // cout << check;
     // cout << s;
 
-    Spil s;
     s += prva;
     s += druga;
     s += treca;
     s += cetvrta;
     s--;
-    cout << s;
+    cout
+        << s;
+
+    bool check = s1 > s;
+    bool dcheck = s1 >> s;
+    cout << "Da li je veca s1 od s" << check << endl
+         << "da li je najveca veca s1 od s" << dcheck << endl;
     // cout << "Broj karti:" << s() << endl;
 
     // cout << "Najveca karta u spilu :" << endl
