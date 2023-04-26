@@ -2797,3 +2797,235 @@
 // 	cout << c1;
 // 	return 0;
 // }
+
+// KOLOKVIJUM 2
+
+// (30 поена) Одговорити концизно (по једна или две реченице) и прецизно на следећа питaња:
+// а) Које наредбе су неисправне (преписати програм и подвући их):
+// int main() {int i=1; int *p1=new int(10); int &r1=i; int &r2=p1;
+//  int *p2=p1; int *p3=r1; int *p4=&r1; int &r3=r2; int &rn[10]; }
+
+// б) Да ли је дозвољено из методе класе А позване за објекат А а1 приступити: (1) приватном члану
+// објекта А а2; (2) јавном члану објекта B b1; (3) приватном члану објекта А а1; (4) приватном
+// члану објекта B b2?
+
+// в) Које особине стандардних оператора се подразумевају при њиховом преклапању?
+
+//  (5 поена) Тест се састоји од два шпила који се задају приликом стварања. Могуће је узети карту
+// (test--) из првог шпила, док се у случају да је први шпил празан, карта узима из другог
+// шпила. Тест је завршен када оба шпила постану празна. Може се проверити да ли је тест
+// завршен.
+// (10 поена) Написати на језику C++ програм који створи један шпил, дода неколико карата у њега и
+// затим га испише. Потом се направи нови шпил као копија претходног и у њега дода још једна карта, а
+// из постојећег шпила се избаци једна карта са краја шпила. Оба шпила је потребно исписати. Након
+// тога се направи тест помоћу претходна два шпила и редом узимају карте уз исписивање на
+// стандардном излазу све док се не дође до краја теста. Није потребно ништа учитавати с главног улаза.
+
+// 2) (укупно 70 поена) Написати на језику C++ следеће класе (класе опремити оним конструкторима,
+// деструктором и операторима доделе који су потребни за безбедно и ефикасно коришћење класа):
+//  (15 поена) Карта се задаје знаком (PIK, TREF, KARO, HERC) и бројем (К1=1, К2, К3, К4, К5,
+// К6, К7, К8, К9, К10=10, ZANDAR=12, DAMA=13, KRALJ=14). Може да се одреди вредност
+// карте према следећем критеријуму: жандар, дама, краљ, 1 и 10 = 1 поен, 2 треф = 1 поен, 10
+// каро = 2 поена, док све остале карте вреде 0 поена. Могуће је упоредити број на две карте
+// (karta1>karta2), као и вредност коју носе две карте (karta1>>karta2). Карту је могуће
+// уписати у излазни ток (it<<karta) у облику karta(број, знак).
+
+//  (40 поена) Шпил се састоји од произвољног броја карата. Ствара се празан после чега се карте
+// додају једна по једна на крај шпила (spil+=karta). Могуће је узети карту са краја шпила
+// (spil--), при чему било каква грешка приликом узимања карте доводи до прекида програма.
+// Може да се одреди укупан број карата у шпилу, укупна вредност свих карата у шпилу (spil())
+// и да се дохвати карта са највећим бројем.
+// Два шпила је могуће упоредити на основу укупне
+// вредности свих карата у њима (spil1>spil2) или на основу карте са највећим бројем
+// (spil1>>spil2) – први шпил је већи од другог ако је највећа карта у првом шпилу већа од
+// највеће карте у другом шпилу. Шпил се у излазни ток исписује (it<<spil) тако што се у првој
+// линији испише spil(број_карата), а затим се у засебним линијама исписују појединачне
+// карте из шпила.
+#include <iostream>
+#include <string.h>
+
+using namespace std;
+enum ZNAK
+{
+    PIK,
+    TREF,
+    KARO,
+    HERC
+};
+enum BROJ
+{
+    K1 = 1,
+    K2,
+    K3,
+    K4,
+    K5,
+    K6,
+    K7,
+    K8,
+    K9,
+    K10,
+    ZANDAR,
+    DAMA,
+    KRALJ
+};
+
+class Karta
+{
+    ZNAK znak;
+    BROJ broj;
+
+public:
+    Karta()
+    {
+        znak = PIK;
+        broj = K1;
+    }
+    Karta(ZNAK z, BROJ b)
+    {
+        znak = z;
+        broj = b;
+    }
+    int getBroj()
+    {
+        return broj;
+    }
+    int vrednost()
+    {
+        if (broj == KRALJ || broj == K10 || broj == DAMA || broj == ZANDAR || broj == K1)
+        {
+            return 1;
+        }
+        else if (broj == K10 && znak == KARO || (broj == K2 && znak == TREF))
+        {
+            return 2;
+        }
+        else
+        {
+            return 0;
+        }
+    }
+    string getZnak()
+    {
+        switch (znak)
+        {
+        case PIK:
+            return "pik";
+            break;
+        case HERC:
+            return "herc";
+            break;
+        case KARO:
+            return "karo";
+            break;
+        case TREF:
+            return "tref";
+            break;
+        default:
+            return "Netacna karta";
+            break;
+        }
+    }
+
+    bool operator>(const Karta &k)
+    {
+        return broj > k.broj;
+    }
+    bool operator>>(Karta &k)
+    {
+        return vrednost() > k.vrednost();
+    }
+
+    friend ostream &operator<<(ostream &COUT, Karta &k)
+    {
+        COUT << "Karta:"
+             << "(" << k.getZnak() << "," << k.broj << ")" << endl;
+
+        return COUT;
+    }
+};
+
+class Spil
+{
+    int brKarata;
+    Karta *karte;
+
+public:
+    Spil()
+    {
+        brKarata = 0;
+        karte = new Karta[brKarata + 1];
+    }
+    void operator+=(Karta k)
+    {
+        karte[brKarata] = k;
+
+        brKarata++;
+    }
+
+    void operator--(int)
+    {
+        brKarata--;
+    }
+
+    Karta getNajvecu()
+    {
+        int max = karte[0].getBroj();
+        for (int i = 0; i < brKarata; i++)
+        {
+            if (max > karte[i].getBroj())
+            {
+                max = karte[i].getBroj();
+                return karte[i];
+            }
+        }
+    }
+    int operator()()
+    {
+        return brKarata;
+    }
+
+    bool operator>(Spil &s1)
+    {
+        return brKarata > s1.brKarata;
+    }
+    bool operator>>(Spil &s1)
+    {
+        return getNajvecu().vrednost() > s1.getNajvecu().vrednost();
+    }
+
+    friend ostream &operator<<(ostream &COUT, Spil s)
+    {
+        COUT << "Spil"
+             << "(" << s.brKarata << ")" << endl;
+
+        for (int i = 0; i < s.brKarata; i++)
+        {
+            cout << s.karte[i];
+        }
+        return COUT;
+    }
+};
+int main()
+{
+    BROJ b1 = K2;
+    Karta prva(HERC, K1);
+    Karta druga(PIK, K10);
+    Karta treca(TREF, K5);
+    Karta cetvrta(KARO, K7);
+    // bool check = prva > druga;
+    // cout << check;
+    // cout << s;
+
+    Spil s;
+    s += prva;
+    s += druga;
+    s += treca;
+    s += cetvrta;
+    s--;
+    cout << s;
+    // cout << "Broj karti:" << s() << endl;
+
+    // cout << "Najveca karta u spilu :" << endl
+    //      << s.getNajvecu() << endl;
+    return 0;
+}
