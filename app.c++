@@ -2805,6 +2805,28 @@
 // int main() {int i=1; int *p1=new int(10); int &r1=i; int &r2=p1;
 //  int *p2=p1; int *p3=r1; int *p4=&r1; int &r3=r2; int &rn[10]; }
 
+// #include <iostream>
+// #include <string.h>
+
+// using namespace std;
+
+// int main()
+// {
+//     int i = 1;
+//     int *p1 = new int(10);
+//     int &r1 = i;
+//     r1 = 3;
+//     cout << i << endl;
+//     cout << "Trebala bi bita 1 ==" << &r1 << endl;
+
+// int &r2 = p1;
+// int *p2 = p1;
+// int *p3 = r1;
+// int *p4 = &r1;
+// int &r3 = r2;
+// int &rn[10];
+// }
+
 // б) Да ли је дозвољено из методе класе А позване за објекат А а1 приступити: (1) приватном члану
 // објекта А а2; (2) јавном члану објекта B b1; (3) приватном члану објекта А а1; (4) приватном
 // члану објекта B b2?
@@ -2841,211 +2863,360 @@
 // највеће карте у другом шпилу. Шпил се у излазни ток исписује (it<<spil) тако што се у првој
 // линији испише spil(број_карата), а затим се у засебним линијама исписују појединачне
 // карте из шпила.
+// #include <iostream>
+// #include <string.h>
+
+// using namespace std;
+// enum ZNAK
+// {
+//     PIK,
+//     TREF,
+//     KARO,
+//     HERC
+// };
+// enum BROJ
+// {
+//     K1 = 1,
+//     K2,
+//     K3,
+//     K4,
+//     K5,
+//     K6,
+//     K7,
+//     K8,
+//     K9,
+//     K10,
+//     ZANDAR,
+//     DAMA,
+//     KRALJ
+// };
+
+// class Karta
+// {
+//     ZNAK znak;
+//     BROJ broj;
+
+// public:
+//     Karta()
+//     {
+//         znak = PIK;
+//         broj = K1;
+//     }
+//     Karta(ZNAK z, BROJ b)
+//     {
+//         znak = z;
+//         broj = b;
+//     }
+//     int getBroj()
+//     {
+//         return broj;
+//     }
+//     int vrednost()
+//     {
+//         if (broj == KRALJ || broj == K10 || broj == DAMA || broj == ZANDAR || broj == K1)
+//         {
+//             return 1;
+//         }
+//         else if (broj == K10 && znak == KARO || (broj == K2 && znak == TREF))
+//         {
+//             return 2;
+//         }
+//         else
+//         {
+//             return 0;
+//         }
+//     }
+//     string getZnak()
+//     {
+//         switch (znak)
+//         {
+//         case PIK:
+//             return "pik";
+//             break;
+//         case HERC:
+//             return "herc";
+//             break;
+//         case KARO:
+//             return "karo";
+//             break;
+//         case TREF:
+//             return "tref";
+//             break;
+//         default:
+//             return "Netacna karta";
+//             break;
+//         }
+//     }
+
+//     bool operator>(const Karta &k)
+//     {
+//         return broj > k.broj;
+//     }
+//     bool operator>>(Karta &k)
+//     {
+//         return vrednost() > k.vrednost();
+//     }
+
+//     friend ostream &operator<<(ostream &COUT, Karta &k)
+//     {
+//         COUT << "Karta:"
+//              << "(" << k.getZnak() << "," << k.broj << ")" << endl;
+
+//         return COUT;
+//     }
+// };
+
+// class Spil
+// {
+//     int brKarata;
+//     Karta *karte;
+
+// public:
+//     Spil()
+//     {
+//         brKarata = 0;
+//         karte = new Karta[brKarata + 1];
+//     }
+//     void operator+=(Karta k)
+//     {
+//         karte[brKarata] = k;
+
+//         brKarata++;
+//     }
+
+//     void operator--(int)
+//     {
+//         brKarata--;
+//     }
+
+//     Karta getNajvecu()
+//     {
+//         int max = karte[0].getBroj();
+//         for (int i = 0; i < brKarata; i++)
+//         {
+//             if (max > karte[i].getBroj())
+//             {
+//                 max = karte[i].getBroj();
+//                 return karte[i];
+//             }
+//         }
+//     }
+//     int operator()()
+//     {
+//         return brKarata;
+//     }
+
+//     bool operator>(Spil &s1)
+//     {
+//         return brKarata > s1.brKarata;
+//     }
+//     bool operator>>(Spil &s1)
+//     {
+//         return getNajvecu().vrednost() > s1.getNajvecu().vrednost();
+//     }
+
+//     friend ostream &operator<<(ostream &COUT, Spil s)
+//     {
+//         COUT << "Spil"
+//              << "(" << s.brKarata << ")" << endl;
+
+//         for (int i = 0; i < s.brKarata; i++)
+//         {
+//             cout << s.karte[i];
+//         }
+//         return COUT;
+//     }
+// };
+// int main()
+// {
+//     BROJ b1 = K2;
+//     Karta prva(HERC, K1);
+//     Karta druga(PIK, K10);
+//     Karta treca(TREF, K5);
+//     Karta cetvrta(KARO, K7);
+
+//     Karta prva1(HERC, K2);
+//     Karta druga1(PIK, K1);
+//     Karta treca1(TREF, K5);
+//     Karta cetvrta1(KARO, K8);
+//     Spil s;
+//     Spil s1;
+
+//     s1 += prva1;
+//     s1 += druga1;
+//     s1 += treca1;
+//     s1 += cetvrta1;
+
+//     cout << s1;
+
+//     // bool check = prva > druga;
+//     // cout << check;
+//     // cout << s;
+
+//     s += prva;
+//     s += druga;
+//     s += treca;
+//     s += cetvrta;
+//     s--;
+//     cout
+//         << s;
+
+//     bool check = s1 > s;
+//     bool dcheck = s1 >> s;
+//     cout << "Da li je veca s1 od s    " << check << endl
+//          << "da li je najveca veca s1 od s  " << dcheck << endl;
+//     // cout << "Broj karti:" << s() << endl;
+
+//     // cout << "Najveca karta u spilu :" << endl
+//     //      << s.getNajvecu() << endl;
+//     return 0;
+// }
+
 #include <iostream>
 #include <string.h>
-
+#include <cmath>
 using namespace std;
-enum ZNAK
-{
-    PIK,
-    TREF,
-    KARO,
-    HERC
-};
-enum BROJ
-{
-    K1 = 1,
-    K2,
-    K3,
-    K4,
-    K5,
-    K6,
-    K7,
-    K8,
-    K9,
-    K10,
-    ZANDAR,
-    DAMA,
-    KRALJ
-};
 
-class Karta
+class Tacka
 {
-    ZNAK znak;
-    BROJ broj;
+    double x;
+    double y;
 
 public:
-    Karta()
+    Tacka(double X, double Y)
     {
-        znak = PIK;
-        broj = K1;
+        x = X;
+        y = Y;
     }
-    Karta(ZNAK z, BROJ b)
+
+    int rastojanje(Tacka t = Tacka(0, 0))
     {
-        znak = z;
-        broj = b;
+        return sqrt(pow(x - t.x, 2) + pow(y - t.y, 2));
     }
-    int getBroj()
+    friend ostream &operator<<(ostream &COUT, Tacka &t)
     {
-        return broj;
+        COUT << "(" << t.x << "," << t.y << ")";
+        return COUT;
     }
-    int vrednost()
+};
+
+class Trougao
+{
+    Tacka *temena[3];
+    string ime;
+
+public:
+    Trougao()
     {
-        if (broj == KRALJ || broj == K10 || broj == DAMA || broj == ZANDAR || broj == K1)
+        for (int i = 0; i < 3; i++)
         {
-            return 1;
+            temena[i];
         }
-        else if (broj == K10 && znak == KARO || (broj == K2 && znak == TREF))
+        ime = "";
+    }
+    Trougao(Tacka *tem[3], string i)
+    {
+        for (int i = 0; i < 3; i++)
         {
-            return 2;
+            temena[i] = tem[i];
+        }
+        ime = i;
+    }
+    Trougao(Trougao &t)
+    {
+        ime = t.ime + "_COPIED";
+
+        for (int i = 0; i < 3; i++)
+        {
+            temena[i] = t.temena[i];
+        }
+    }
+    Tacka *dohvatiTeme(int x)
+    {
+        if (x < 0 || x > 2)
+        {
+            return nullptr;
         }
         else
         {
-            return 0;
+            return temena[x];
         }
     }
-    string getZnak()
+    friend ostream &operator<<(ostream &COUT, Trougao trg)
     {
-        switch (znak)
+        int srRast = 0;
+        COUT << trg.ime << "(";
+        for (int i = 0; i < 3; i++)
         {
-        case PIK:
-            return "pik";
-            break;
-        case HERC:
-            return "herc";
-            break;
-        case KARO:
-            return "karo";
-            break;
-        case TREF:
-            return "tref";
-            break;
-        default:
-            return "Netacna karta";
-            break;
+            srRast += trg.temena[i]->rastojanje();
+            cout << ",";
+            cout << *trg.temena[i];
         }
-    }
-
-    bool operator>(const Karta &k)
-    {
-        return broj > k.broj;
-    }
-    bool operator>>(Karta &k)
-    {
-        return vrednost() > k.vrednost();
-    }
-
-    friend ostream &operator<<(ostream &COUT, Karta &k)
-    {
-        COUT << "Karta:"
-             << "(" << k.getZnak() << "," << k.broj << ")" << endl;
-
-        return COUT;
+        cout << ":" << srRast << ")" << endl;
     }
 };
 
-class Spil
+class Mreza
 {
-    int brKarata;
-    Karta *karte;
+    typedef struct ELEM
+    {
+        Trougao trg;
+        struct ELEM *next;
+    } Elem;
+
+    Elem *prvi;
+    Elem *last;
+    string ime;
 
 public:
-    Spil()
+    Mreza(string i)
     {
-        brKarata = 0;
-        karte = new Karta[brKarata + 1];
-    }
-    void operator+=(Karta k)
-    {
-        karte[brKarata] = k;
-
-        brKarata++;
+        prvi = NULL;
+        last = NULL;
+        ime = i;
     }
 
-    void operator--(int)
+    void dodajTrougao(Trougao t)
     {
-        brKarata--;
-    }
-
-    Karta getNajvecu()
-    {
-        int max = karte[0].getBroj();
-        for (int i = 0; i < brKarata; i++)
+        Elem *newElem = new Elem;
+        newElem->trg = t;
+        if (prvi == NULL)
         {
-            if (max > karte[i].getBroj())
-            {
-                max = karte[i].getBroj();
-                return karte[i];
-            }
+            prvi = last = newElem;
+            cout << "Prvi dodan";
+        }
+        else
+        {
+            cout << "elem dodan";
+            last->next = newElem;
         }
     }
-    int operator()()
+    void ispis()
     {
-        return brKarata;
-    }
-
-    bool operator>(Spil &s1)
-    {
-        return brKarata > s1.brKarata;
-    }
-    bool operator>>(Spil &s1)
-    {
-        return getNajvecu().vrednost() > s1.getNajvecu().vrednost();
-    }
-
-    friend ostream &operator<<(ostream &COUT, Spil s)
-    {
-        COUT << "Spil"
-             << "(" << s.brKarata << ")" << endl;
-
-        for (int i = 0; i < s.brKarata; i++)
+        cout << "ISPIS" << endl;
+        Elem *temp = prvi;
+        while (temp != nullptr)
         {
-            cout << s.karte[i];
+            cout << temp->trg;
+            temp = temp->next;
         }
-        return COUT;
     }
 };
 int main()
 {
-    BROJ b1 = K2;
-    Karta prva(HERC, K1);
-    Karta druga(PIK, K10);
-    Karta treca(TREF, K5);
-    Karta cetvrta(KARO, K7);
+    Tacka t1(3, 4);
+    Tacka t2(3, 2);
+    Tacka t3(6, 5);
 
-    Karta prva1(HERC, K2);
-    Karta druga1(PIK, K1);
-    Karta treca1(TREF, K5);
-    Karta cetvrta1(KARO, K8);
-    Spil s;
-    Spil s1;
+    Tacka *niz[] = {&t1, &t2, &t3};
 
-    s1 += prva1;
-    s1 += druga1;
-    s1 += treca1;
-    s1 += cetvrta1;
+    Trougao trg(niz, "Hamza");
+    cout << trg;
+    Trougao trg2(trg);
+    Mreza m("hamo");
+    m.dodajTrougao(trg);
 
-    cout << s1;
+    m.ispis();
 
-    // bool check = prva > druga;
-    // cout << check;
-    // cout << s;
-
-    s += prva;
-    s += druga;
-    s += treca;
-    s += cetvrta;
-    s--;
-    cout
-        << s;
-
-    bool check = s1 > s;
-    bool dcheck = s1 >> s;
-    cout << "Da li je veca s1 od s" << check << endl
-         << "da li je najveca veca s1 od s" << dcheck << endl;
-    // cout << "Broj karti:" << s() << endl;
-
-    // cout << "Najveca karta u spilu :" << endl
-    //      << s.getNajvecu() << endl;
     return 0;
 }
