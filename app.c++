@@ -3072,151 +3072,293 @@
 //     return 0;
 // }
 
+// #include <iostream>
+// #include <string.h>
+// #include <cmath>
+// using namespace std;
+
+// class Tacka
+// {
+//     double x;
+//     double y;
+
+// public:
+//     Tacka(double X, double Y)
+//     {
+//         x = X;
+//         y = Y;
+//     }
+
+//     int rastojanje(Tacka t = Tacka(0, 0))
+//     {
+//         return sqrt(pow(x - t.x, 2) + pow(y - t.y, 2));
+//     }
+//     friend ostream &operator<<(ostream &COUT, Tacka &t)
+//     {
+//         COUT << "(" << t.x << "," << t.y << ")";
+//         return COUT;
+//     }
+// };
+
+// class Trougao
+// {
+//     Tacka *temena[3];
+//     string ime;
+
+// public:
+//     Trougao()
+//     {
+//         for (int i = 0; i < 3; i++)
+//         {
+//             temena[i];
+//         }
+//         ime = "";
+//     }
+//     Trougao(Tacka *tem[3], string i)
+//     {
+//         for (int i = 0; i < 3; i++)
+//         {
+//             temena[i] = tem[i];
+//         }
+//         ime = i;
+//     }
+//     Trougao(Trougao &t)
+//     {
+//         ime = t.ime + "_COPIED";
+
+//         for (int i = 0; i < 3; i++)
+//         {
+//             temena[i] = t.temena[i];
+//         }
+//     }
+//     Tacka *dohvatiTeme(int x)
+//     {
+//         if (x < 0 || x > 2)
+//         {
+//             return nullptr;
+//         }
+//         else
+//         {
+//             return temena[x];
+//         }
+//     }
+//     friend ostream &operator<<(ostream &COUT, Trougao trg)
+//     {
+//         int srRast = 0;
+//         COUT << trg.ime << "(";
+//         for (int i = 0; i < 3; i++)
+//         {
+//             srRast += trg.temena[i]->rastojanje();
+//             cout << ",";
+//             cout << *trg.temena[i];
+//         }
+//         cout << ":" << srRast << ")" << endl;
+//     }
+// };
+
+// class Mreza
+// {
+//     typedef struct ELEM
+//     {
+//         Trougao trg;
+//         struct ELEM *next;
+//     } Elem;
+
+//     Elem *prvi;
+//     Elem *last;
+//     string ime;
+
+// public:
+//     Mreza(string i)
+//     {
+//         prvi = NULL;
+//         last = NULL;
+//         ime = i;
+//     }
+
+//     void dodajTrougao(Trougao t)
+//     {
+//         Elem *newElem = new Elem;
+//         newElem->trg = t;
+//         if (prvi == NULL)
+//         {
+//             prvi = last = newElem;
+//             cout << "Prvi dodan";
+//         }
+//         else
+//         {
+//             cout << "elem dodan";
+//             last->next = newElem;
+//         }
+//     }
+//     void ispis()
+//     {
+//         cout << "ISPIS" << endl;
+//         Elem *temp = prvi;
+//         while (temp != nullptr)
+//         {
+//             cout << temp->trg;
+//             temp = temp->next;
+//         }
+//     }
+// };
+// int main()
+// {
+//     Tacka t1(3, 4);
+//     Tacka t2(3, 2);
+//     Tacka t3(6, 5);
+
+//     Tacka *niz[] = {&t1, &t2, &t3};
+
+//     Trougao trg(niz, "Hamza");
+//     cout << trg;
+//     Trougao trg2(trg);
+//     Mreza m("hamo");
+//     m.dodajTrougao(trg);
+
+//     m.ispis();
+
+//     return 0;
+// }
+
+// #include <iostream>
+// #include <string.h>
+// #include <cmath>
+// using namespace std;
+
+// enum ZANR
+// {
+//     POP,
+//     REP,
+//     ROK
+// };
+// class Izvodjac
+// {
+//     string ime;
+//     ZANR zanr;
+
+// public:
+//     Izvodjac(string I = "", ZANR z = ROK)
+//     {
+//         ime = I;
+//         zanr = z;
+//     }
+//     string getZanr()
+//     {
+//         switch (zanr)
+//         {
+//         case 0:
+//             return "POP";
+//             break;
+//         case 1:
+//             return "REP";
+//             break;
+//         case 2:
+//             return "ROK";
+//             break;
+//         default:
+//             return "invalid";
+//             break;
+//         }
+//     }
+
+//     friend ostream &operator<<(ostream &COUT, Izvodjac &iz)
+//     {
+//         cout << iz.ime << "(" << iz.getZanr() << ")" << endl;
+//     }
+// };
+
+// class Pesma
+// {
+//     string naziv;
+//     int brMin;
+//     int brSek;
+//     int max;
+//     Izvodjac *izvodjaci;
+//     int counter;
+
+// public:
+//     Pesma(string N, int brM, int brS, int m)
+//     {
+//         naziv = N;
+//         brMin = brM;
+//         brSek = brS;
+//         max = m;
+//         counter = 0;
+//         izvodjaci = new Izvodjac[max];
+//     }
+
+//     void operator+=(Izvodjac iz)
+//     {
+//         if (counter < max)
+//         {
+//             izvodjaci[counter] = iz;
+//             counter++;
+//         }
+//         else
+//         {
+//             throw "Prekoracenje";
+//         }
+//     }
+// };
+// int main()
+// {
+//     Izvodjac iz1("AHmo", REP);
+//     cout << iz1;
+
+//     return 0;
+// }
+
+// Binarna stabla
+
+#include <stdlib.h>
 #include <iostream>
-#include <string.h>
-#include <cmath>
 using namespace std;
 
-class Tacka
+typedef struct NODE
 {
-    double x;
-    double y;
+    int data;
+    struct NODE *left;
+    struct NODE *right;
+} Node;
 
-public:
-    Tacka(double X, double Y)
-    {
-        x = X;
-        y = Y;
-    }
-
-    int rastojanje(Tacka t = Tacka(0, 0))
-    {
-        return sqrt(pow(x - t.x, 2) + pow(y - t.y, 2));
-    }
-    friend ostream &operator<<(ostream &COUT, Tacka &t)
-    {
-        COUT << "(" << t.x << "," << t.y << ")";
-        return COUT;
-    }
-};
-
-class Trougao
+Node *createNode(int x)
 {
-    Tacka *temena[3];
-    string ime;
+    Node *newNode = (Node *)malloc(sizeof(Node));
+    newNode->data = x;
+    newNode->left = nullptr;
+    newNode->right = nullptr;
+    return newNode;
+}
 
-public:
-    Trougao()
-    {
-        for (int i = 0; i < 3; i++)
-        {
-            temena[i];
-        }
-        ime = "";
-    }
-    Trougao(Tacka *tem[3], string i)
-    {
-        for (int i = 0; i < 3; i++)
-        {
-            temena[i] = tem[i];
-        }
-        ime = i;
-    }
-    Trougao(Trougao &t)
-    {
-        ime = t.ime + "_COPIED";
-
-        for (int i = 0; i < 3; i++)
-        {
-            temena[i] = t.temena[i];
-        }
-    }
-    Tacka *dohvatiTeme(int x)
-    {
-        if (x < 0 || x > 2)
-        {
-            return nullptr;
-        }
-        else
-        {
-            return temena[x];
-        }
-    }
-    friend ostream &operator<<(ostream &COUT, Trougao trg)
-    {
-        int srRast = 0;
-        COUT << trg.ime << "(";
-        for (int i = 0; i < 3; i++)
-        {
-            srRast += trg.temena[i]->rastojanje();
-            cout << ",";
-            cout << *trg.temena[i];
-        }
-        cout << ":" << srRast << ")" << endl;
-    }
-};
-
-class Mreza
+void printInOrder(Node *tree)
 {
-    typedef struct ELEM
-    {
-        Trougao trg;
-        struct ELEM *next;
-    } Elem;
 
-    Elem *prvi;
-    Elem *last;
-    string ime;
+    if (tree)
+    {
+        printInOrder(tree->left);
+        cout << tree->data << endl;
+        printInOrder(tree->right);
+    }
+    else
+    {
+        cout << "sad je ovde";
+    }
+}
 
-public:
-    Mreza(string i)
-    {
-        prvi = NULL;
-        last = NULL;
-        ime = i;
-    }
-
-    void dodajTrougao(Trougao t)
-    {
-        Elem *newElem = new Elem;
-        newElem->trg = t;
-        if (prvi == NULL)
-        {
-            prvi = last = newElem;
-            cout << "Prvi dodan";
-        }
-        else
-        {
-            cout << "elem dodan";
-            last->next = newElem;
-        }
-    }
-    void ispis()
-    {
-        cout << "ISPIS" << endl;
-        Elem *temp = prvi;
-        while (temp != nullptr)
-        {
-            cout << temp->trg;
-            temp = temp->next;
-        }
-    }
-};
 int main()
 {
-    Tacka t1(3, 4);
-    Tacka t2(3, 2);
-    Tacka t3(6, 5);
+    Node *s = createNode(1);
+    Node *f = createNode(2);
+    Node *k = createNode(3);
+    Node *m = createNode(4);
+    Node *l = createNode(5);
+    Node *n = createNode(6);
 
-    Tacka *niz[] = {&t1, &t2, &t3};
-
-    Trougao trg(niz, "Hamza");
-    cout << trg;
-    Trougao trg2(trg);
-    Mreza m("hamo");
-    m.dodajTrougao(trg);
-
-    m.ispis();
-
-    return 0;
+    s->left = f;
+    s->right = k;
+    k->left = m;
+    k->right = l;
+    m->left = n;
+    printInOrder(s);
 }
