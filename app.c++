@@ -3575,3 +3575,97 @@
 //     deltree(s);
 //     return 0;
 // }
+
+// Napiši program koji iz datoteke čita niz brojeva i stvara binarno stablo pretraživanja.
+//  Zatim, program treba da izvrši inorder obilazak stabla i pronađe dva čvora stabla čiji je zbir jednak zadatom broju.
+//  Nakon toga, program treba da ispiše vrijednosti tih čvorova.
+
+// Napomena: Ovo je samo primjer zadatka i može biti složen za rješavanje u zavisnosti od nivoa znanja programiranja u jeziku C.
+
+#include <iostream>
+#include <string.h>
+using namespace std;
+
+typedef struct NODE
+{
+    int data;
+    struct NODE *left;
+    struct NODE *right;
+} Node;
+Node *first = NULL;
+
+Node *createNode(int x)
+{
+    Node *newNode = (Node *)malloc(sizeof(Node));
+    newNode->data = x;
+    newNode->left = NULL;
+    newNode->right = NULL;
+    return newNode;
+}
+
+Node *madeUpTree(int *niz, int n, int i, Node *tree = NULL)
+{
+    if (i < n)
+    {
+        Node *temp = createNode(niz[i]);
+
+        tree = temp;
+        tree->left = madeUpTree(niz, n, 2 * i + 1, tree->left);
+        tree->right = madeUpTree(niz, n, 2 * i + 2, tree->right);
+    }
+    return tree;
+}
+
+Node *madeUpTreeAllOnLeft(int *niz, int i, int n, Node *tree)
+{
+    if (i < n)
+    {
+        Node *temp = createNode(niz[i]);
+        tree = temp;
+        tree->left = madeUpTreeAllOnLeft(niz, i + 1, n, tree->left);
+    }
+    return tree;
+}
+
+void printInOrder(Node *tree)
+{
+    if (tree)
+    {
+        printInOrder(tree->left);
+        cout << tree->data << endl;
+        printInOrder(tree->right);
+    }
+}
+void printLeafs(Node *tree)
+{
+    if (tree)
+    {
+        if (tree->left == NULL && tree->right == NULL)
+        {
+            cout << "Leaf" << tree->data << endl;
+        }
+        else
+        {
+            printLeafs(tree->left);
+            printLeafs(tree->right);
+        }
+    }
+}
+
+// another way of implementing
+
+int main()
+{
+    int n = 6;
+    int niz[6] = {2, 3, 6, 44, 3, 2};
+    Node *s = NULL;
+    Node *tree = madeUpTree(niz, n, 0, s);
+
+    Node *s1 = NULL;
+    Node *newTree = madeUpTreeAllOnLeft(niz, 0, n, s1);
+
+    printLeafs(newTree);
+    printInOrder(newTree);
+
+    return 0;
+}
