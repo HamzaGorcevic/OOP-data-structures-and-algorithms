@@ -3311,54 +3311,267 @@
 
 // Binarna stabla
 
-#include <stdlib.h>
-#include <iostream>
-using namespace std;
+// #include <stdlib.h>
+// #include <iostream>
+// using namespace std;
 
-typedef struct NODE
-{
-    int data;
-    struct NODE *left;
-    struct NODE *right;
-} Node;
+// typedef struct NODE
+// {
+//     int data;
+//     struct NODE *left;
+//     struct NODE *right;
+// } Node;
 
-Node *createNode(int x)
-{
-    Node *newNode = (Node *)malloc(sizeof(Node));
-    newNode->data = x;
-    newNode->left = nullptr;
-    newNode->right = nullptr;
-    return newNode;
-}
+// Node *createNode(int x)
+// {
+//     Node *newNode = (Node *)malloc(sizeof(Node));
+//     newNode->data = x;
+//     newNode->left = nullptr;
+//     newNode->right = nullptr;
+//     return newNode;
+// }
 
-void printInOrder(Node *tree)
-{
+// void printInOrder(Node *tree)
+// {
 
-    if (tree)
-    {
-        printInOrder(tree->left);
-        cout << tree->data << endl;
-        printInOrder(tree->right);
-    }
-    else
-    {
-        cout << "sad je ovde";
-    }
-}
+//     if (tree)
+//     {
+//         printInOrder(tree->left);
+//         cout << tree->data << endl;
+//         printInOrder(tree->right);
+//     }
+// }
+// void printPreOrder(Node *tree)
+// {
+//     if (tree)
+//     {
+//         cout << tree->data << endl;
+//         printPreOrder(tree->left);
+//         printPreOrder(tree->right);
+//     }
+// }
 
-int main()
-{
-    Node *s = createNode(1);
-    Node *f = createNode(2);
-    Node *k = createNode(3);
-    Node *m = createNode(4);
-    Node *l = createNode(5);
-    Node *n = createNode(6);
+// void printPostOrder(Node *tree)
+// {
+//     if (tree)
+//     {
+//         printPreOrder(tree->left);
+//         printPreOrder(tree->right);
+//         cout << tree->data << endl;
+//     }
+// }
 
-    s->left = f;
-    s->right = k;
-    k->left = m;
-    k->right = l;
-    m->left = n;
-    printInOrder(s);
-}
+// void deltree(Node *tree)
+// {
+//     if (tree)
+//     {
+//         deltree(tree->left);
+//         deltree(tree->right);
+//         free(tree);
+//     }
+// }
+
+// void printLeafs(Node *tree)
+// {
+
+//     if (tree)
+//     {
+//         printLeafs(tree->left);
+//         printLeafs(tree->right);
+//         if (tree->right == NULL && tree->left == NULL)
+//         {
+//             cout << tree->data << endl;
+//         }
+//     }
+// }
+
+// int suma(Node *tree)
+// {
+//     if (tree)
+//     {
+//         return tree->data + suma(tree->left) + suma(tree->right);
+//     }
+// }
+
+// int brojElementata(Node *tree)
+// {
+//     if (tree)
+//     {
+//         return 1 + brojElementata(tree->left) + brojElementata(tree->right);
+//     }
+// }
+
+// void search(int x, Node *tree)
+// {
+//     if (tree)
+//     {
+//         if (tree->data == x)
+//         {
+//             cout << "Postoji" << endl;
+//         }
+//         else
+//         {
+//             search(x, tree->left);
+//             search(x, tree->right);
+//         }
+//     }
+// }
+
+// bool searchBool(int x, Node *tree)
+// {
+//     if (tree)
+//     {
+//         if (tree->data == x)
+//         {
+//             return true;
+//         }
+//         else
+//         {
+//             return searchBool(x, tree->left) || searchBool(x, tree->right);
+//         }
+//     }
+// }
+
+// int maxDubina(Node *tree)
+// {
+//     if (tree == nullptr)
+//     {
+//         return 0;
+//     }
+//     int dubinaLijevogPodstabla = maxDubina(tree->left);
+//     int dubinaDesnogPodstabla = maxDubina(tree->right);
+//     return 1 + max(dubinaLijevogPodstabla, dubinaDesnogPodstabla);
+// }
+
+// int brojElemenataNaNivou(Node *tree, int n)
+// {
+//     if (tree == nullptr)
+//     {
+//         return 0;
+//     }
+//     if (n == 0)
+//     {
+//         return 1;
+//     }
+//     return brojElemenataNaNivou(tree->left, n - 1) + brojElemenataNaNivou(tree->right, n - 1);
+// }
+
+// void ispisElemenataNaNtomNivou(Node *tree, int n)
+// {
+
+//     if (tree)
+//     {
+//         if (n == 0)
+//         {
+//             cout << tree->data << endl;
+//         }
+//         else
+//         {
+
+//             ispisElemenataNaNtomNivou(tree->left, n - 1);
+//             ispisElemenataNaNtomNivou(tree->right, n - 1);
+//         }
+//     }
+// }
+
+// int zbirNaNtomNivout(Node *tree, int n)
+// {
+//     if (tree)
+//     {
+//         if (n == 0)
+//         {
+//             return tree->data;
+//         }
+//         else
+//         {
+//             return zbirNaNtomNivout(tree->left, n - 1) + zbirNaNtomNivout(tree->right, n - 1);
+//         }
+//     }
+//     else
+//         return 0;
+// }
+// int zbirListova(Node *tree)
+// {
+//     if (tree)
+//     {
+
+//         if (tree->left == NULL && tree->right == NULL)
+//         {
+//             return tree->data;
+//         }
+//         else
+//         {
+//             return zbirListova(tree->left) + zbirListova(tree->right);
+//         }
+//     }
+//     else
+//         return 0;
+// }
+// int maxElement(Node *tree)
+// {
+//     int max = tree->data;
+//     if (tree->left)
+//     {
+//         if (max < maxElement(tree->left))
+//         {
+//             max = maxElement(tree->left);
+//         }
+//     }
+//     if (tree->right)
+//     {
+//         if (max < maxElement(tree->right))
+//         {
+//             max = maxElement(tree->right);
+//         }
+//     }
+//     return max;
+// }
+// int main()
+// {
+//     Node *s = createNode(1);
+//     Node *f = createNode(2);
+//     Node *k = createNode(3);
+//     Node *m = createNode(4);
+//     Node *l = createNode(5);
+//     Node *n = createNode(6);
+//     Node *o = createNode(3);
+//     Node *h = createNode(43);
+//     s->left = f;
+//     s->right = k;
+//     f->left = h;
+//     k->left = m;
+//     k->right = l;
+//     m->left = n;
+//     m->right = o;
+
+//     cout << "Printed in order" << endl;
+//     printInOrder(s);
+//     cout << "Printed in pre order" << endl;
+//     printPreOrder(s);
+
+//     cout << "Printed in postorder" << endl;
+//     printPostOrder(s);
+
+//     cout << "Printing leafs" << endl;
+//     printLeafs(s);
+
+//     cout << "SUMA: " << suma(s) << endl;
+
+//     cout << "Br elementa: " << brojElementata(s) << endl;
+
+//     search(3, s);
+//     cout << "MAX dubina je :" << maxDubina(s) << endl;
+
+//     cout << "Broj el na nivou: " << brojElemenataNaNivou(s, 2) << endl;
+
+//     cout << "Ispis elemenata na n-tom nivou" << endl;
+//     ispisElemenataNaNtomNivou(s, 2);
+
+//     cout << "Zbir na ntom nivou elemenata je:" << zbirNaNtomNivout(s, 2) << endl;
+
+//     cout << "Zbir listova je:" << zbirListova(s) << endl;
+
+//     cout << "MAx element je :" << maxElement(s);
+//     deltree(s);
+//     return 0;
+// }
