@@ -3770,7 +3770,6 @@ int isEmpty()
         return 0;
     }
 }
-
 int isFull()
 {
     if (first == rear - 1)
@@ -3782,38 +3781,34 @@ int isFull()
         return 0;
     }
 }
-void addStart(int x)
+void addElement(int x)
 {
-    if (isFull())
+    if (x % 2 == 0)
     {
-        printf("Dek je pun \n");
-    }
-    else
-    {
-        if (isEmpty())
+        if (isFull())
         {
-            first = 0;
+            printf("stek je pun\n");
         }
         else
         {
             first++;
+            deck[first] = x;
         }
-        deck[first] = x;
-    }
-}
-
-void addEnd(int x)
-{
-    if (isFull())
-    {
-        printf("dek je pun\n");
     }
     else
     {
-        rear--;
-        deck[rear] = x;
+        if (isFull())
+        {
+            printf("stek je pun\n");
+        }
+        else
+        {
+            rear--;
+            deck[rear] = x;
+        }
     }
 }
+
 void ispis()
 {
     for (int i = 0; i < 12; i++)
@@ -3823,13 +3818,16 @@ void ispis()
 }
 int main()
 {
-    addStart(1);
-    addStart(2);
-    addStart(3);
-    addEnd(55);
-    addEnd(66);
-    addEnd(77);
-
+    printf("unesite broj elementa \n");
+    int n;
+    scanf("%d", &n);
+    int arr[n];
+    printf("unesite elemente\n");
+    for (int i = 0; i < n; i++)
+    {
+        scanf("%d", &arr[i]);
+        addElement(arr[i]);
+    }
     ispis();
     return 0;
 }
