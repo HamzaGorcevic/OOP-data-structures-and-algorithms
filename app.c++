@@ -3582,90 +3582,177 @@
 
 // Napomena: Ovo je samo primjer zadatka i može biti složen za rješavanje u zavisnosti od nivoa znanja programiranja u jeziku C.
 
+// #include <iostream>
+// #include <string.h>
+// using namespace std;
+
+// typedef struct NODE
+// {
+//     int data;
+//     struct NODE *left;
+//     struct NODE *right;
+// } Node;
+// Node *first = NULL;
+
+// Node *createNode(int x)
+// {
+//     Node *newNode = (Node *)malloc(sizeof(Node));
+//     newNode->data = x;
+//     newNode->left = NULL;
+//     newNode->right = NULL;
+//     return newNode;
+// }
+
+// Node *madeUpTree(int *niz, int n, int i, Node *tree = NULL)
+// {
+//     if (i < n)
+//     {
+//         Node *temp = createNode(niz[i]);
+
+//         tree = temp;
+//         tree->left = madeUpTree(niz, n, 2 * i + 1, tree->left);
+//         tree->right = madeUpTree(niz, n, 2 * i + 2, tree->right);
+//     }
+//     return tree;
+// }
+
+// Node *madeUpTreeAllOnLeft(int *niz, int i, int n, Node *tree)
+// {
+//     if (i < n)
+//     {
+//         Node *temp = createNode(niz[i]);
+//         tree = temp;
+//         tree->left = madeUpTreeAllOnLeft(niz, i + 1, n, tree->left);
+//     }
+//     return tree;
+// }
+
+// void printInOrder(Node *tree)
+// {
+//     if (tree)
+//     {
+//         printInOrder(tree->left);
+//         cout << tree->data << endl;
+//         printInOrder(tree->right);
+//     }
+// }
+// void printLeafs(Node *tree)
+// {
+//     if (tree)
+//     {
+//         if (tree->left == NULL && tree->right == NULL)
+//         {
+//             cout << "Leaf" << tree->data << endl;
+//         }
+//         else
+//         {
+//             printLeafs(tree->left);
+//             printLeafs(tree->right);
+//         }
+//     }
+// }
+
+// // another way of implementing
+
+// int main()
+// {
+//     int n = 6;
+//     int niz[6] = {2, 3, 6, 44, 3, 2};
+//     Node *s = NULL;
+//     Node *tree = madeUpTree(niz, n, 0, s);
+
+//     Node *s1 = NULL;
+//     Node *newTree = madeUpTreeAllOnLeft(niz, 0, n, s1);
+
+//     printLeafs(newTree);
+//     printInOrder(newTree);
+
+//     return 0;
+// }
+
 #include <iostream>
 #include <string.h>
 using namespace std;
-
 typedef struct NODE
 {
     int data;
-    struct NODE *left;
-    struct NODE *right;
+    struct NODE *next;
+    struct NODE *prev;
 } Node;
-Node *first = NULL;
+Node *first = NULL, *last = NULL;
 
-Node *createNode(int x)
+Node *createElement(int x)
 {
     Node *newNode = (Node *)malloc(sizeof(Node));
     newNode->data = x;
-    newNode->left = NULL;
-    newNode->right = NULL;
+    newNode->next = NULL;
+    newNode->prev = NULL;
     return newNode;
 }
 
-Node *madeUpTree(int *niz, int n, int i, Node *tree = NULL)
+void insertNode(int x)
 {
-    if (i < n)
-    {
-        Node *temp = createNode(niz[i]);
+    Node *newNode = createElement(x);
 
-        tree = temp;
-        tree->left = madeUpTree(niz, n, 2 * i + 1, tree->left);
-        tree->right = madeUpTree(niz, n, 2 * i + 2, tree->right);
+    if (first == NULL)
+    {
+        last = first = newNode;
     }
-    return tree;
-}
-
-Node *madeUpTreeAllOnLeft(int *niz, int i, int n, Node *tree)
-{
-    if (i < n)
+    else
     {
-        Node *temp = createNode(niz[i]);
-        tree = temp;
-        tree->left = madeUpTreeAllOnLeft(niz, i + 1, n, tree->left);
-    }
-    return tree;
-}
-
-void printInOrder(Node *tree)
-{
-    if (tree)
-    {
-        printInOrder(tree->left);
-        cout << tree->data << endl;
-        printInOrder(tree->right);
+        last->next = newNode;
+        newNode->prev = last;
+        last = newNode;
     }
 }
-void printLeafs(Node *tree)
+
+void deleteElement(int x)
 {
-    if (tree)
+
+    Node *temp = first;
+    if (first->data == x)
     {
-        if (tree->left == NULL && tree->right == NULL)
+        first = first->next;
+        first->prev = NULL;
+    }
+    else if (last->data == x)
+    {
+        last = last->prev;
+        last->next = NULL;
+    }
+    else
+    {
+        while (temp != NULL)
         {
-            cout << "Leaf" << tree->data << endl;
-        }
-        else
-        {
-            printLeafs(tree->left);
-            printLeafs(tree->right);
+            if (temp->data == x)
+            {
+
+                temp->prev->next = temp->next;
+            }
+            temp = temp->next;
         }
     }
 }
-
-// another way of implementing
-
+void ispis()
+{
+    Node *temp = first;
+    while (temp != NULL)
+    {
+        cout << temp->data << endl;
+        temp = temp->next;
+    }
+}
 int main()
 {
-    int n = 6;
-    int niz[6] = {2, 3, 6, 44, 3, 2};
-    Node *s = NULL;
-    Node *tree = madeUpTree(niz, n, 0, s);
 
-    Node *s1 = NULL;
-    Node *newTree = madeUpTreeAllOnLeft(niz, 0, n, s1);
+    insertNode(1);
+    insertNode(2);
+    insertNode(3);
+    insertNode(4);
+    deleteElement(4);
+    deleteElement(2);
 
-    printLeafs(newTree);
-    printInOrder(newTree);
-
+    ispis();
+    cout << "nes";
     return 0;
 }
