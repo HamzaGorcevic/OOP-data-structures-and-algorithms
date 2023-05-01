@@ -3670,89 +3670,166 @@
 //     return 0;
 // }
 
+// #include <iostream>
+// #include <string.h>
+// using namespace std;
+// typedef struct NODE
+// {
+//     int data;
+//     struct NODE *next;
+//     struct NODE *prev;
+// } Node;
+// Node *first = NULL, *last = NULL;
+
+// Node *createElement(int x)
+// {
+//     Node *newNode = (Node *)malloc(sizeof(Node));
+//     newNode->data = x;
+//     newNode->next = NULL;
+//     newNode->prev = NULL;
+//     return newNode;
+// }
+
+// void insertNode(int x)
+// {
+//     Node *newNode = createElement(x);
+
+//     if (first == NULL)
+//     {
+//         last = first = newNode;
+//     }
+//     else
+//     {
+//         last->next = newNode;
+//         newNode->prev = last;
+//         last = newNode;
+//     }
+// }
+// void deleteElement(int x)
+// {
+//     Node *temp = first;
+//     if (first->data == x)
+//     {
+//         first = first->next;
+//         first->prev = NULL;
+//     }
+//     else if (last->data == x)
+//     {
+//         last = last->prev;
+//         last->next = NULL;
+//     }
+//     else
+//     {
+//         while (temp != NULL)
+//         {
+//             if (temp->data == x)
+//             {
+//                 temp->prev->next = temp->next;
+//             }
+//             temp = temp->next;
+//         }
+//     }
+// }
+// void ispis()
+// {
+//     Node *temp = first;
+//     while (temp != NULL)
+//     {
+//         cout << temp->data << endl;
+//         temp = temp->next;
+//     }
+// }
+// int main()
+// {
+//     insertNode(1);
+//     insertNode(2);
+//     insertNode(3);
+//     insertNode(4);
+//     deleteElement(4);
+//     deleteElement(2);
+//     ispis();
+//     cout << "nes";
+//     return 0;
+// }
+
 #include <iostream>
 #include <string.h>
 using namespace std;
-typedef struct NODE
-{
-    int data;
-    struct NODE *next;
-    struct NODE *prev;
-} Node;
-Node *first = NULL, *last = NULL;
 
-Node *createElement(int x)
-{
-    Node *newNode = (Node *)malloc(sizeof(Node));
-    newNode->data = x;
-    newNode->next = NULL;
-    newNode->prev = NULL;
-    return newNode;
-}
+int deck[12];
+int first = -1, rear = 12;
 
-void insertNode(int x)
+int isEmpty()
 {
-    Node *newNode = createElement(x);
-
-    if (first == NULL)
+    if (first == -1)
     {
-        last = first = newNode;
+        return 1;
     }
     else
     {
-        last->next = newNode;
-        newNode->prev = last;
-        last = newNode;
+        return 0;
     }
 }
 
-void deleteElement(int x)
+int isFull()
 {
-
-    Node *temp = first;
-    if (first->data == x)
+    if (first == rear - 1)
     {
-        first = first->next;
-        first->prev = NULL;
-    }
-    else if (last->data == x)
-    {
-        last = last->prev;
-        last->next = NULL;
+        return 1;
     }
     else
     {
-        while (temp != NULL)
+        return 0;
+    }
+}
+void addStart(int x)
+{
+    if (isFull())
+    {
+        printf("Dek je pun \n");
+    }
+    else
+    {
+        if (isEmpty())
         {
-            if (temp->data == x)
-            {
-
-                temp->prev->next = temp->next;
-            }
-            temp = temp->next;
+            first = 0;
         }
+        else
+        {
+            first++;
+        }
+        deck[first] = x;
+    }
+}
+
+void addEnd(int x)
+{
+    if (isFull())
+    {
+        printf("dek je pun\n");
+    }
+    else
+    {
+        rear--;
+        deck[rear] = x;
     }
 }
 void ispis()
 {
-    Node *temp = first;
-    while (temp != NULL)
+    for (int i = 0; i < 12; i++)
     {
-        cout << temp->data << endl;
-        temp = temp->next;
+        printf("%d\n", deck[i]);
     }
 }
 int main()
 {
-
-    insertNode(1);
-    insertNode(2);
-    insertNode(3);
-    insertNode(4);
-    deleteElement(4);
-    deleteElement(2);
+    addStart(1);
+    addStart(2);
+    addStart(3);
+    addEnd(55);
+    addEnd(66);
+    addEnd(77);
 
     ispis();
-    cout << "nes";
     return 0;
 }
