@@ -3832,64 +3832,165 @@
 //     return 0;
 // }
 
-#include <iostream>
-#include <string.h>
-using namespace std;
+// #include <iostream>
+// #include <string.h>
+// using namespace std;
 
-//  3/7/2019
+// //  3/7/2019
 
-// 1.zadatak
+// // 1.zadatak
+// // Pomeranje ulevo i pomeranje udesno
+// typedef struct NODE
+// {
+//     int data;
+//     struct NODE *next;
+// } Node;
+// Node *first = NULL, *last = NULL;
 
-typedef struct NODE
+// void insertElement(int x)
+// {
+//     Node *newNode = (Node *)malloc(sizeof(Node));
+//     newNode->data = x;
+//     newNode->next = NULL;
+//     if (first == NULL)
+//     {
+//         last = first = newNode;
+//     }
+//     else
+//     {
+//         last->next = newNode;
+//         last = newNode;
+//         last->next = first;
+//     }
+// }
+
+// void shiftRight(int m, int i)
+// {
+//     if (m > i)
+//     {
+//         last = first;
+//         first = first->next;
+//         shiftRight(m, i + 1);
+//     }
+// }
+
+// void shiftLeft(int m, int i)
+// {
+//     if (m > i)
+//     {
+//         Node *temp = first;
+//         first = last;
+//         printf("last :%d \n", last->data);
+
+//         while (temp->next != last)
+//         {
+//             temp = temp->next;
+//         }
+//         last = temp;
+//         shiftLeft(m, i + 1);
+//     }
+// }
+
+// int main()
+// {
+//     insertElement(1);
+//     insertElement(2);
+//     insertElement(3);
+//     insertElement(4);
+//     shiftRight(2, 0);
+//     // shiftLeft(3, 0);
+
+//     Node *temp = first;
+
+//     for (int i = 0; i < 4; i++)
+//     {
+//         printf("i = %d\n", temp->data);
+//         temp = temp->next;
+//     }
+
+//     printf("Normalan print");
+//     Node *temp2 = first;
+//     while (temp2 != last)
+//     {
+//         printf("%d\n", temp2->data);
+//         temp2 = temp2->next;
+//     }
+
+//     return 0;
+// }
+
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct node
 {
     int data;
-    struct NODE *next;
+    struct node *next;
 } Node;
-Node *first = NULL, *last = NULL;
-
-void insertElement(int x)
+Node *firstList = NULL, *rearList = NULL;
+Node *first2 = NULL;
+Node *rear2 = NULL;
+Node *createElement(int x)
 {
     Node *newNode = (Node *)malloc(sizeof(Node));
     newNode->data = x;
     newNode->next = NULL;
-    if (first == NULL)
+}
+void insertElement(int x)
+{
+    Node *newElement = createElement(x);
+    if (firstList == NULL)
     {
-        last = first = newNode;
+        firstList = rearList = newElement;
+        rearList->next = firstList;
     }
     else
     {
-        last->next = newNode;
-        last = newNode;
-        last->next = first;
+        rearList->next = newElement;
+        rearList = newElement;
+        rearList->next = firstList;
     }
 }
 
-void shiftRight(int m, int i)
+void listFnc()
 {
-    if (m > i)
+    Node *temp = firstList;
+    do
     {
-        last = first;
-        first = first->next;
-        shiftRight(m, i + 1);
-    }
-}
 
-void shiftLeft(int m, int i)
-{
-    if (m > i)
-    {
-        Node *temp = first;
-        first = last;
-
-        printf("last :%d \n", last->data);
-
-        while (temp->next != last)
+        printf("i=%d\n", temp->data);
+        if (first2 == NULL)
         {
-            temp = temp->next;
+            Node *current = createElement(temp->data);
+            first2 = rear2 = current;
         }
-        last = temp;
-        shiftLeft(m, i + 1);
-    }
+        else
+        {
+            Node *help = first2;
+            int check = 1;
+            do
+            {
+                printf("temp%d == help%d\n", temp->data, help->data);
+                if (temp->data == help->data)
+                {
+                    check = 0;
+                    help = rear2;
+                    break;
+                }
+                help = help->next;
+            } while (help != rear2->next);
+
+            if (check)
+            {
+                Node *current = createElement(temp->data);
+                rear2->next = current;
+                rear2 = rear2->next;
+                rear2->next = first2;
+            }
+        }
+
+        temp = temp->next;
+    } while (temp != rearList->next);
 }
 
 int main()
@@ -3898,24 +3999,19 @@ int main()
     insertElement(2);
     insertElement(3);
     insertElement(4);
-    shiftRight(1, 0);
-    shiftLeft(3, 0);
+    insertElement(4);
+    insertElement(2);
+    insertElement(1);
+    insertElement(3);
+    insertElement(1);
+    insertElement(5);
 
-    Node *temp = first;
-
-    for (int i = 0; i < 4; i++)
+    listFnc();
+    printf("rear2=%d,first2=%d \n", rear2->data, first2->data);
+    do
     {
-        printf("i = %d\n", temp->data);
-        temp = temp->next;
-    }
-
-    printf("Normalan print");
-    Node *temp2 = first;
-    while (temp2 != last)
-    {
-        printf("%d\n", temp2->data);
-        temp2 = temp2->next;
-    }
-
+        printf("%d\n", first2->data);
+        first2 = first2->next;
+    } while (first2 != rear2->next);
     return 0;
 }
