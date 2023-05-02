@@ -3752,82 +3752,170 @@
 //     return 0;
 // }
 
+// #include <iostream>
+// #include <string.h>
+// using namespace std;
+
+// int deck[12];
+// int first = -1, rear = 12;
+
+// int isEmpty()
+// {
+//     if (first == -1)
+//     {
+//         return 1;
+//     }
+//     else
+//     {
+//         return 0;
+//     }
+// }
+// int isFull()
+// {
+//     if (first == rear - 1)
+//     {
+//         return 1;
+//     }
+//     else
+//     {
+//         return 0;
+//     }
+// }
+// void addElement(int x)
+// {
+//     if (x % 2 == 0)
+//     {
+//         if (isFull())
+//         {
+//             printf("stek je pun\n");
+//         }
+//         else
+//         {
+//             first++;
+//             deck[first] = x;
+//         }
+//     }
+//     else
+//     {
+//         if (isFull())
+//         {
+//             printf("stek je pun\n");
+//         }
+//         else
+//         {
+//             rear--;
+//             deck[rear] = x;
+//         }
+//     }
+// }
+
+// void ispis()
+// {
+//     for (int i = 0; i < 12; i++)
+//     {
+//         printf("%d\n", deck[i]);
+//     }
+// }
+// int main()
+// {
+//     printf("unesite broj elementa \n");
+//     int n;
+//     scanf("%d", &n);
+//     int arr[n];
+//     printf("unesite elemente\n");
+//     for (int i = 0; i < n; i++)
+//     {
+//         scanf("%d", &arr[i]);
+//         addElement(arr[i]);
+//     }
+//     ispis();
+//     return 0;
+// }
+
 #include <iostream>
 #include <string.h>
 using namespace std;
 
-int deck[12];
-int first = -1, rear = 12;
+//  3/7/2019
 
-int isEmpty()
+// 1.zadatak
+
+typedef struct NODE
 {
-    if (first == -1)
+    int data;
+    struct NODE *next;
+} Node;
+Node *first = NULL, *last = NULL;
+
+void insertElement(int x)
+{
+    Node *newNode = (Node *)malloc(sizeof(Node));
+    newNode->data = x;
+    newNode->next = NULL;
+    if (first == NULL)
     {
-        return 1;
+        last = first = newNode;
     }
     else
     {
-        return 0;
-    }
-}
-int isFull()
-{
-    if (first == rear - 1)
-    {
-        return 1;
-    }
-    else
-    {
-        return 0;
-    }
-}
-void addElement(int x)
-{
-    if (x % 2 == 0)
-    {
-        if (isFull())
-        {
-            printf("stek je pun\n");
-        }
-        else
-        {
-            first++;
-            deck[first] = x;
-        }
-    }
-    else
-    {
-        if (isFull())
-        {
-            printf("stek je pun\n");
-        }
-        else
-        {
-            rear--;
-            deck[rear] = x;
-        }
+        last->next = newNode;
+        last = newNode;
+        last->next = first;
     }
 }
 
-void ispis()
+void shiftRight(int m, int i)
 {
-    for (int i = 0; i < 12; i++)
+    if (m > i)
     {
-        printf("%d\n", deck[i]);
+        last = first;
+        first = first->next;
+        shiftRight(m, i + 1);
     }
 }
+
+void shiftLeft(int m, int i)
+{
+    if (m > i)
+    {
+        Node *temp = first;
+        first = last;
+
+        printf("last :%d \n", last->data);
+
+        while (temp->next != last)
+        {
+            temp = temp->next;
+        }
+        last = temp;
+        shiftLeft(m, i + 1);
+    }
+}
+
 int main()
 {
-    printf("unesite broj elementa \n");
-    int n;
-    scanf("%d", &n);
-    int arr[n];
-    printf("unesite elemente\n");
-    for (int i = 0; i < n; i++)
+    insertElement(1);
+    insertElement(2);
+    insertElement(3);
+    insertElement(4);
+    shiftRight(1, 0);
+    shiftLeft(3, 0);
+
+    Node *temp = first;
+
+    for (int i = 0; i < 4; i++)
     {
-        scanf("%d", &arr[i]);
-        addElement(arr[i]);
+        printf("i = %d\n", temp->data);
+        temp = temp->next;
     }
-    ispis();
+
+    printf("Normalan print");
+    Node *temp2 = first;
+    while (temp2 != last)
+    {
+        printf("%d\n", temp2->data);
+        temp2 = temp2->next;
+    }
+
     return 0;
 }
