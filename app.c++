@@ -4142,84 +4142,179 @@
 // }
 
 // Zadatak sa kvadriranjem kruzne lista
-#include <iostream>
-#include <string.h>
-#include <math.h>
-using namespace std;
 
-typedef struct NODE
-{
-    int data;
-    struct NODE *next;
-} Node;
-Node *first = NULL;
-Node *last = NULL;
-Node *temp2 = NULL;
-void insert(int x)
-{
-    Node *newNode = (Node *)malloc(sizeof(Node));
-    newNode->data = x;
-    newNode->next = NULL;
+// #include <iostream>
+// #include <string.h>
+// #include <math.h>
+// using namespace std;
 
-    if (first == NULL)
-    {
-        last = first = newNode;
-    }
-    else
-    {
-        last->next = newNode;
-        last = last->next;
-        last->next = first;
-    }
-}
+// typedef struct NODE
+// {
+//     int data;
+//     struct NODE *next;
+// } Node;
+// Node *first = NULL;
+// Node *last = NULL;
+// Node *temp2 = NULL;
+// void insert(int x)
+// {
+//     Node *newNode = (Node *)malloc(sizeof(Node));
+//     newNode->data = x;
+//     newNode->next = NULL;
 
-Node *povv(int x)
-{
-    Node *temp = first;
-    Node *newList = NULL;
-    do
-    {
-        Node *newNode = (Node *)malloc(sizeof(Node));
-        newNode->next = NULL;
-        newNode->data = pow(temp->data, x);
+//     if (first == NULL)
+//     {
+//         last = first = newNode;
+//     }
+//     else
+//     {
+//         last->next = newNode;
+//         last = last->next;
+//         last->next = first;
+//     }
+// }
 
-        if (newList == NULL)
-        {
-            temp2 = newList = newNode;
-        }
-        else
-        {
-            temp2->next = newNode;
-            temp2 = temp2->next;
-            temp2->next = newList;
-        }
-        temp = temp->next;
+// Node *povv(int x)
+// {
+//     Node *temp = first;
+//     Node *newList = NULL;
+//     do
+//     {
+//         Node *newNode = (Node *)malloc(sizeof(Node));
+//         newNode->next = NULL;
+//         newNode->data = pow(temp->data, x);
 
-    } while (temp != last->next);
-    return newList;
-}
-int main()
-{
-    insert(1);
-    insert(2);
-    insert(3);
-    insert(4);
+//         if (newList == NULL)
+//         {
+//             temp2 = newList = newNode;
+//         }
+//         else
+//         {
+//             temp2->next = newNode;
+//             temp2 = temp2->next;
+//             temp2->next = newList;
+//         }
+//         temp = temp->next;
 
-    Node *temp = first;
-    while (temp != last)
-    {
-        printf("%d\n", temp->data);
-        temp = temp->next;
-    }
-    printf("%d\n", temp->data);
+//     } while (temp != last->next);
+//     return newList;
+// }
+// int main()
+// {
+//     insert(1);
+//     insert(2);
+//     insert(3);
+//     insert(4);
 
-    Node *first1 = povv(3);
+//     Node *temp = first;
+//     while (temp != last)
+//     {
+//         printf("%d\n", temp->data);
+//         temp = temp->next;
+//     }
+//     printf("%d\n", temp->data);
 
-    while (first1 != temp2)
-    {
-        printf("%d\n", first1->data);
-        first1 = first1->next;
-    }
-    printf("%d", temp2->data);
-    return 0;
-}
+//     Node *first1 = povv(3);
+
+//     while (first1 != temp2)
+//     {
+//         printf("%d\n", first1->data);
+//         first1 = first1->next;
+//     }
+//     printf("%d", temp2->data);
+//     return 0;
+// }
+
+// Zadatak sa redom
+
+// #include <iostream>
+// #include <string.h>
+// using namespace std;
+// #define SIZE 4
+
+// int red[SIZE], first = -1, top = -1;
+
+// void queue(int x)
+// {
+//     printf("%d,%d \n", top, first);
+//     if ((top + 1) % SIZE == first)
+//     {
+//         printf("Red je pun \n");
+//     }
+//     else
+//     {
+
+//         if (first == -1)
+//         {
+
+//             first = top = 0;
+//         }
+//         else
+//         {
+//             top = (top + 1) % SIZE;
+//         }
+//         red[top] = x;
+//     }
+// }
+
+// int dequeue()
+// {
+//     printf("%d,%d \n", top, first);
+
+//     if (first == -1)
+//     {
+//         printf("prazan\n");
+//     }
+//     else
+//     {
+//         int elem = red[first];
+
+//         if (first == top)
+//         {
+//             first = top = -1;
+//         }
+//         else
+//         {
+//             first = (first + 1) % SIZE;
+//         }
+
+//         return elem;
+//     }
+// }
+// void ispis()
+// {
+//     printf("Red sadrzi: ");
+//     if (first == -1)
+//     {
+//         printf("PRAZAN\n");
+//     }
+//     else
+//     {
+//         int i = first;
+//         while (true)
+//         {
+//             printf("%d", red[i]);
+//             if (i == top)
+//             {
+//                 break;
+//             }
+//             i = (i + 1) % SIZE;
+//             printf(", ");
+//         }
+//         printf("\n");
+//     }
+// }
+// int main()
+// {
+//     queue(1);
+//     queue(2);
+//     queue(3);
+//     queue(4);
+//     queue(12);
+//     dequeue();
+//     dequeue();
+//     queue(5);
+//     ispis();
+
+//     return 0;
+// }
