@@ -3919,99 +3919,307 @@
 //     return 0;
 // }
 
-#include <stdio.h>
-#include <stdlib.h>
+// Zadata za pravljenje nove kruzne list od vec postojoce
+// #include <stdio.h>
+// #include <stdlib.h>
 
-typedef struct node
+// typedef struct node
+// {
+//     int data;
+//     struct node *next;
+// } Node;
+// Node *firstList = NULL, *rearList = NULL;
+// Node *first2 = NULL;
+// Node *rear2 = NULL;
+// Node *createElement(int x)
+// {
+//     Node *newNode = (Node *)malloc(sizeof(Node));
+//     newNode->data = x;
+//     newNode->next = NULL;
+// }
+// void insertElement(int x)
+// {
+//     Node *newElement = createElement(x);
+//     if (firstList == NULL)
+//     {
+//         firstList = rearList = newElement;
+//         rearList->next = firstList;
+//     }
+//     else
+//     {
+//         rearList->next = newElement;
+//         rearList = newElement;
+//         rearList->next = firstList;
+//     }
+// }
+
+// void listFnc()
+// {
+//     Node *temp = firstList;
+//     do
+//     {
+
+//         printf("i=%d\n", temp->data);
+//         if (first2 == NULL)
+//         {
+//             Node *current = createElement(temp->data);
+//             first2 = rear2 = current;
+//         }
+//         else
+//         {
+//             Node *help = first2;
+//             int check = 1;
+//             do
+//             {
+//                 printf("temp%d == help%d\n", temp->data, help->data);
+//                 if (temp->data == help->data)
+//                 {
+//                     check = 0;
+//                     help = rear2;
+//                     break;
+//                 }
+//                 help = help->next;
+//             } while (help != rear2->next);
+
+//             if (check)
+//             {
+//                 Node *current = createElement(temp->data);
+//                 rear2->next = current;
+//                 rear2 = rear2->next;
+//                 rear2->next = first2;
+//             }
+//         }
+
+//         temp = temp->next;
+//     } while (temp != rearList->next);
+// }
+
+// int main()
+// {
+//     insertElement(1);
+//     insertElement(2);
+//     insertElement(3);
+//     insertElement(4);
+//     insertElement(4);
+//     insertElement(2);
+//     insertElement(1);
+//     insertElement(3);
+//     insertElement(1);
+//     insertElement(5);
+
+//     listFnc();
+//     printf("rear2=%d,first2=%d \n", rear2->data, first2->data);
+//     do
+//     {
+//         printf("%d\n", first2->data);
+//         first2 = first2->next;
+//     } while (first2 != rear2->next);
+//     return 0;
+// }
+
+// zadatak , prebacivanje sa neparnih mesta dvostruke u jednostruku listu
+
+// #include <iostream>
+// #include <string.h>
+// using namespace std;
+
+// typedef struct node
+// {
+//     int data;
+//     struct node *next;
+//     struct node *prev;
+// } DblNode;
+// DblNode *DblFirst = NULL;
+
+// typedef struct NODE
+// {
+//     int data;
+//     struct NODE *next;
+// } Node;
+// Node *first = NULL, *last = NULL;
+
+// void insertDblNode(int x)
+// {
+//     DblNode *newNode = (DblNode *)malloc(sizeof(DblNode));
+//     newNode->data = x;
+//     newNode->next = NULL;
+//     newNode->prev = NULL;
+//     if (DblFirst == NULL)
+//     {
+//         DblFirst = newNode;
+//     }
+//     else
+//     {
+//         DblFirst->next = newNode;
+//         newNode->prev = DblFirst;
+//         DblFirst = DblFirst->next;
+//     }
+// }
+
+// void insertNode(int x)
+// {
+//     Node *newNode = (Node *)malloc(sizeof(Node));
+//     newNode->data = x;
+//     newNode->next = NULL;
+//     if (first == NULL)
+//     {
+//         last = first = newNode;
+//     }
+//     else
+//     {
+//         last->next = newNode;
+//         last = last->next;
+//     }
+// }
+
+// void sortNode()
+// {
+//     Node *temp = first;
+//     int max = 0;
+//     while (temp != NULL)
+//     {
+//         Node *j = first;
+//         while (j != NULL)
+//         {
+//             if (temp->data > j->data)
+//             {
+//                 int help = temp->data;
+//                 temp->data = j->data;
+//                 j->data = help;
+//             }
+//             j = j->next;
+//         }
+//         temp = temp->next;
+//     }
+// }
+// void change()
+// {
+//     DblNode *temp = DblFirst;
+//     int counter = 0;
+
+//     while (temp != NULL)
+//     {
+//         if (counter % 2 == 0)
+//         {
+//             printf("%d last ,", last->data);
+//             Node *newNode = (Node *)malloc(sizeof(Node));
+//             newNode->data = temp->data;
+//             newNode->next = NULL;
+//             last->next = newNode;
+//             last = last->next;
+//         }
+//         temp = temp->prev;
+//         counter++;
+//     }
+// }
+
+// void print()
+// {
+//     Node *temp = first;
+//     while (temp != NULL)
+//     {
+//         printf("%d\n", temp->data);
+//         temp = temp->next;
+//     }
+// }
+
+// int main()
+// {
+//     insertDblNode(10);
+//     insertDblNode(20);
+//     insertDblNode(30);
+//     insertDblNode(40);
+//     insertNode(1);
+//     insertNode(2);
+//     insertNode(3);
+
+//     change();
+
+//     printf("Node\n");
+//     sortNode();
+//     print();
+//     return 0;
+// }
+
+// Zadatak sa kvadriranjem kruzne lista
+#include <iostream>
+#include <string.h>
+#include <math.h>
+using namespace std;
+
+typedef struct NODE
 {
     int data;
-    struct node *next;
+    struct NODE *next;
 } Node;
-Node *firstList = NULL, *rearList = NULL;
-Node *first2 = NULL;
-Node *rear2 = NULL;
-Node *createElement(int x)
+Node *first = NULL;
+Node *last = NULL;
+Node *temp2 = NULL;
+void insert(int x)
 {
     Node *newNode = (Node *)malloc(sizeof(Node));
     newNode->data = x;
     newNode->next = NULL;
-}
-void insertElement(int x)
-{
-    Node *newElement = createElement(x);
-    if (firstList == NULL)
+
+    if (first == NULL)
     {
-        firstList = rearList = newElement;
-        rearList->next = firstList;
+        last = first = newNode;
     }
     else
     {
-        rearList->next = newElement;
-        rearList = newElement;
-        rearList->next = firstList;
+        last->next = newNode;
+        last = last->next;
+        last->next = first;
     }
 }
 
-void listFnc()
+Node *povv(int x)
 {
-    Node *temp = firstList;
+    Node *temp = first;
+    Node *newList = NULL;
     do
     {
+        Node *newNode = (Node *)malloc(sizeof(Node));
+        newNode->next = NULL;
+        newNode->data = pow(temp->data, x);
 
-        printf("i=%d\n", temp->data);
-        if (first2 == NULL)
+        if (newList == NULL)
         {
-            Node *current = createElement(temp->data);
-            first2 = rear2 = current;
+            temp2 = newList = newNode;
         }
         else
         {
-            Node *help = first2;
-            int check = 1;
-            do
-            {
-                printf("temp%d == help%d\n", temp->data, help->data);
-                if (temp->data == help->data)
-                {
-                    check = 0;
-                    help = rear2;
-                    break;
-                }
-                help = help->next;
-            } while (help != rear2->next);
-
-            if (check)
-            {
-                Node *current = createElement(temp->data);
-                rear2->next = current;
-                rear2 = rear2->next;
-                rear2->next = first2;
-            }
+            temp2->next = newNode;
+            temp2 = temp2->next;
+            temp2->next = newList;
         }
-
         temp = temp->next;
-    } while (temp != rearList->next);
-}
 
+    } while (temp != last->next);
+    return newList;
+}
 int main()
 {
-    insertElement(1);
-    insertElement(2);
-    insertElement(3);
-    insertElement(4);
-    insertElement(4);
-    insertElement(2);
-    insertElement(1);
-    insertElement(3);
-    insertElement(1);
-    insertElement(5);
+    insert(1);
+    insert(2);
+    insert(3);
+    insert(4);
 
-    listFnc();
-    printf("rear2=%d,first2=%d \n", rear2->data, first2->data);
-    do
+    Node *temp = first;
+    while (temp != last)
     {
-        printf("%d\n", first2->data);
-        first2 = first2->next;
-    } while (first2 != rear2->next);
+        printf("%d\n", temp->data);
+        temp = temp->next;
+    }
+    printf("%d\n", temp->data);
+
+    Node *first1 = povv(3);
+
+    while (first1 != temp2)
+    {
+        printf("%d\n", first1->data);
+        first1 = first1->next;
+    }
+    printf("%d", temp2->data);
     return 0;
 }
