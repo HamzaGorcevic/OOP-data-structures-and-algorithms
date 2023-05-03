@@ -4318,3 +4318,85 @@
 
 //     return 0;
 // }
+
+// zadatak sa stablom ,search i dubina
+
+// #include <iostream>
+// #include <string.h>
+// #include <math.h>
+// using namespace std;
+
+// typedef struct NODE
+// {
+//     int data;
+//     struct NODE *left, *right;
+// } Node;
+// void insert(Node **tree, int x)
+// {
+//     Node *newNode = (Node *)malloc(sizeof(Node));
+//     newNode->data = x;
+//     newNode->left = NULL;
+//     newNode->right = NULL;
+//     if (*tree == NULL)
+//     {
+//         *tree = newNode;
+//     }
+//     else
+//     {
+//         if ((*tree)->data > x)
+//         {
+//             insert(&(*tree)->left, x);
+//         }
+//         else
+//         {
+//             insert(&(*tree)->right, x);
+//         }
+//     }
+// }
+
+// void printPreorder(Node *tree)
+// {
+//     if (tree)
+//     {
+
+//         printPreorder((tree)->left);
+//         printPreorder((tree)->right);
+//         printf("%d\n", (tree)->data);
+//     }
+// }
+
+// int search(Node *tree, int x, int dubina)
+// {
+//     if (tree)
+//     {
+
+//         if (tree->data == x)
+//         {
+
+//             printf("dubina = %d\n", dubina);
+//             return 1;
+//         }
+//         else
+//         {
+//             return search(tree->left, x, dubina + 1) || search(tree->right, x, dubina + 1);
+//         }
+//     }
+// }
+// int main(
+
+// )
+// {
+//     Node *tree = NULL;
+//     insert(&tree, 5);
+//     insert(&tree, 6);
+//     insert(&tree, 7);
+//     insert(&tree, 2);
+//     insert(&tree, 2);
+//     insert(&tree, 3);
+//     insert(&tree, 4);
+
+//     printf("search = %d\n", search(tree, 4, 1));
+//     printPreorder(tree);
+
+//     return 0;
+// }
