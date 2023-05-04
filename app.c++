@@ -4400,3 +4400,210 @@
 
 //     return 0;
 // }
+
+// sorting linked list
+
+// #include <iostream>
+// #include <string.h>
+// #include <math.h>
+// using namespace std;
+
+// typedef struct NODE
+// {
+//     int data;
+//     struct NODE *next;
+
+// } Node;
+// Node *first = NULL, *last = NULL;
+
+// void insertNode(int x)
+// {
+//     Node *newNode = (Node *)malloc(sizeof(Node));
+//     newNode->data = x;
+//     newNode->next = NULL;
+//     if (first == NULL)
+//     {
+
+//         last = first = newNode;
+//     }
+//     else
+//     {
+//         last->next = newNode;
+//         last = last->next;
+//     }
+// }
+
+// void sort()
+// {
+
+//     Node *temp = first;
+//     while (temp != NULL)
+//     {
+//         Node *temp2 = first;
+//         while (temp2 != NULL)
+//         {
+//             if (temp->data < temp2->data)
+//             {
+//                 int bigger = temp->data;
+//                 temp->data = temp2->data;
+//                 temp2->data = bigger;
+//             }
+//             temp2 = temp2->next;
+//         }
+//         temp = temp->next;
+//     }
+// }
+// int main()
+// {
+//     insertNode(1);
+//     insertNode(4);
+//     insertNode(2);
+//     insertNode(3);
+
+//     Node *temp = first;
+//     sort();
+//     while (temp != NULL)
+//     {
+//         printf("%d\n", temp->data);
+//         temp = temp->next;
+//     }
+
+//     return 0;
+// }
+
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+using namespace std;
+
+typedef struct NODE
+{
+    int data;
+    struct NODE *next;
+} Node;
+Node *first = NULL;
+Node *last = NULL;
+
+Node *createNode(int x)
+{
+    Node *newNode = (Node *)malloc(sizeof(Node));
+    newNode->next = NULL;
+    newNode->data = x;
+    return newNode;
+}
+
+void insertNode(int x)
+{
+    Node *newNode = createNode(x);
+    if (first == NULL)
+    {
+        first = last = newNode;
+    }
+    else
+    {
+        last->next = newNode;
+        last = last->next;
+    }
+}
+
+void ispis()
+{
+    Node *temp = first;
+
+    while (temp != NULL)
+    {
+        printf("%d\n", temp->data);
+        temp = temp->next;
+    }
+}
+
+void sortNode()
+{
+    Node *i = first;
+    while (i != NULL)
+    {
+        Node *j = first;
+        while (j != NULL)
+        {
+            if (i->data < j->data)
+            {
+                int bigger = i->data;
+                i->data = j->data;
+                j->data = bigger;
+            }
+            j = j->next;
+        }
+        i = i->next;
+    }
+}
+
+Node *search(int x)
+{
+    if (first == NULL)
+    {
+        printf("List is empty \n");
+    }
+    else
+    {
+        Node *temp = first;
+
+        while (temp != NULL && temp->data <= x)
+        {
+            if (temp->data == x)
+            {
+                return temp;
+            }
+            temp = temp->next;
+        }
+    }
+    return NULL;
+}
+
+void sortedInsert(int x)
+{
+    printf("first %d\n", first->data);
+    Node *newNode = createNode(x);
+    if (first == NULL || first->data >= x)
+    {
+        printf("changed");
+        newNode->next = first;
+        first = last = newNode;
+    }
+    else
+    {
+        Node *current = first;
+        while (current->next != NULL && current->next->data < x)
+        {
+            current = current->next;
+        }
+
+        newNode->next = current->next;
+        current->next = newNode;
+    }
+}
+int main()
+{
+    insertNode(1);
+    insertNode(4);
+    insertNode(2);
+    insertNode(7);
+    insertNode(3);
+
+    sortNode();
+
+    sortedInsert(2);
+    sortedInsert(5);
+    sortedInsert(8);
+    sortedInsert(9);
+
+    Node *newNode = search(5);
+    printf("unerd\n");
+    if (newNode != NULL)
+    {
+        printf("Sd");
+        printf("founded %d\n", newNode->data);
+    }
+    ispis();
+    return 0;
+}
