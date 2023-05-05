@@ -4471,139 +4471,285 @@
 //     return 0;
 // }
 
+// zadatak za sortiranje dodavanje insertovano i pretrazivanje soritaranog
+// #include <stdlib.h>
+// #include <stdio.h>
+// #include <string.h>
+// #include <math.h>
+// using namespace std;
+
+// typedef struct NODE
+// {
+//     int data;
+//     struct NODE *next;
+// } Node;
+// Node *first = NULL;
+// Node *last = NULL;
+
+// Node *createNode(int x)
+// {
+//     Node *newNode = (Node *)malloc(sizeof(Node));
+//     newNode->next = NULL;
+//     newNode->data = x;
+//     return newNode;
+// }
+
+// void insertNode(int x)
+// {
+//     Node *newNode = createNode(x);
+//     if (first == NULL)
+//     {
+//         first = last = newNode;
+//     }
+//     else
+//     {
+//         last->next = newNode;
+//         last = last->next;
+//     }
+// }
+
+// void ispis()
+// {
+//     Node *temp = first;
+
+//     while (temp != NULL)
+//     {
+//         printf("%d\n", temp->data);
+//         temp = temp->next;
+//     }
+// }
+
+// void sortNode()
+// {
+//     Node *i = first;
+//     while (i != NULL)
+//     {
+//         Node *j = first;
+//         while (j != NULL)
+//         {
+//             if (i->data < j->data)
+//             {
+//                 int bigger = i->data;
+//                 i->data = j->data;
+//                 j->data = bigger;
+//             }
+//             j = j->next;
+//         }
+//         i = i->next;
+//     }
+// }
+
+// Node *search(int x)
+// {
+//     if (first == NULL)
+//     {
+//         printf("List is empty \n");
+//     }
+//     else
+//     {
+//         Node *temp = first;
+
+//         while (temp != NULL && temp->data <= x)
+//         {
+//             if (temp->data == x)
+//             {
+//                 return temp;
+//             }
+//             temp = temp->next;
+//         }
+//     }
+//     return NULL;
+// }
+
+// void sortedInsert(int x)
+// {
+//     printf("first %d\n", first->data);
+//     Node *newNode = createNode(x);
+//     if (first == NULL || first->data >= x)
+//     {
+//         printf("changed");
+//         newNode->next = first;
+//         first = last = newNode;
+//     }
+//     else
+//     {
+//         Node *current = first;
+//         while (current->next != NULL && current->next->data < x)
+//         {
+//             current = current->next;
+//         }
+
+//         newNode->next = current->next;
+//         current->next = newNode;
+//     }
+// }
+// int main()
+// {
+//     insertNode(1);
+//     insertNode(4);
+//     insertNode(2);
+//     insertNode(7);
+//     insertNode(3);
+
+//     sortNode();
+
+//     sortedInsert(2);
+//     sortedInsert(5);
+//     sortedInsert(8);
+//     sortedInsert(9);
+
+//     Node *newNode = search(5);
+//     printf("unerd\n");
+//     if (newNode != NULL)
+//     {
+//         printf("Sd");
+//         printf("founded %d\n", newNode->data);
+//     }
+//     ispis();
+//     return 0;
+// }
+
+// zadatak sa stekom i redom , dodavanje prostih brojeva iz red u stek
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
 #include <math.h>
-using namespace std;
 
-typedef struct NODE
-{
-    int data;
-    struct NODE *next;
-} Node;
-Node *first = NULL;
-Node *last = NULL;
+#define SIZE 10
 
-Node *createNode(int x)
-{
-    Node *newNode = (Node *)malloc(sizeof(Node));
-    newNode->next = NULL;
-    newNode->data = x;
-    return newNode;
-}
+int stack[SIZE], top = -1;
 
-void insertNode(int x)
+void push(int x)
 {
-    Node *newNode = createNode(x);
-    if (first == NULL)
+    if (top == SIZE - 1)
     {
-        first = last = newNode;
+        printf("Steck je pun\n");
     }
     else
     {
-        last->next = newNode;
-        last = last->next;
+        top++;
+        stack[top] = x;
     }
 }
 
-void ispis()
+int pop()
+{
+    if (top == -1)
+    {
+        printf("stek je prazan\n");
+    }
+    else
+    {
+        int elem = stack[top];
+        top--;
+        return elem;
+    }
+}
+
+typedef struct Node
+{
+    int data;
+    struct Node *next;
+    struct Node *prev;
+} Node;
+
+Node *first = NULL, *last = NULL;
+
+void insert(int x)
+{
+    Node *newNode = (Node *)malloc(sizeof(Node));
+    newNode->data = x;
+    newNode->next = NULL;
+    newNode->prev = NULL;
+    if (first == NULL)
+    {
+        last = first = newNode;
+    }
+    last->next = newNode;
+    newNode->prev = last;
+    last = newNode;
+}
+
+void ispisReda()
 {
     Node *temp = first;
 
+    printf("first = %d,first.prev =%d \n", first->data, first->prev->data);
     while (temp != NULL)
     {
         printf("%d\n", temp->data);
         temp = temp->next;
     }
 }
-
-void sortNode()
-{
-    Node *i = first;
-    while (i != NULL)
-    {
-        Node *j = first;
-        while (j != NULL)
-        {
-            if (i->data < j->data)
-            {
-                int bigger = i->data;
-                i->data = j->data;
-                j->data = bigger;
-            }
-            j = j->next;
-        }
-        i = i->next;
-    }
-}
-
-Node *search(int x)
+int deleteEl()
 {
     if (first == NULL)
     {
-        printf("List is empty \n");
+        printf("red je prazan\n");
     }
     else
     {
         Node *temp = first;
-
-        while (temp != NULL && temp->data <= x)
-        {
-            if (temp->data == x)
-            {
-                return temp;
-            }
-            temp = temp->next;
-        }
+        first = first->next;
+        free(temp);
     }
-    return NULL;
 }
 
-void sortedInsert(int x)
+void fillStack()
 {
-    printf("first %d\n", first->data);
-    Node *newNode = createNode(x);
-    if (first == NULL || first->data >= x)
+    Node *temp = first;
+    while (temp != NULL)
     {
-        printf("changed");
-        newNode->next = first;
-        first = last = newNode;
-    }
-    else
-    {
-        Node *current = first;
-        while (current->next != NULL && current->next->data < x)
+        if (temp->data > 1)
         {
-            current = current->next;
+            int check = 1;
+            for (int i = 2; i <= temp->data / 2; i++)
+            {
+                if (temp->data % i == 0)
+                {
+                    check = 0;
+                    break;
+                }
+                else
+                {
+                    check = 1;
+                    printf("addded in \n");
+                }
+            }
+            if (check)
+            {
+                push(temp->data);
+            }
         }
 
-        newNode->next = current->next;
-        current->next = newNode;
+        temp = temp->next;
+    }
+}
+
+void ispisSteka()
+{
+
+    printf("ISPIS STEKA\n");
+    for (int i = 0; i <= top; i++)
+    {
+        printf("%d\n", stack[i]);
     }
 }
 int main()
 {
-    insertNode(1);
-    insertNode(4);
-    insertNode(2);
-    insertNode(7);
-    insertNode(3);
+    insert(1);
+    insert(2);
+    insert(3);
+    insert(4);
+    insert(5);
+    insert(6);
+    insert(7);
+    insert(8);
+    ispisReda();
 
-    sortNode();
+    fillStack();
+    ispisSteka();
 
-    sortedInsert(2);
-    sortedInsert(5);
-    sortedInsert(8);
-    sortedInsert(9);
-
-    Node *newNode = search(5);
-    printf("unerd\n");
-    if (newNode != NULL)
-    {
-        printf("Sd");
-        printf("founded %d\n", newNode->data);
-    }
-    ispis();
     return 0;
 }
