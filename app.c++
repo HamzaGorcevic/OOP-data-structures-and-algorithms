@@ -4904,6 +4904,95 @@
 // #include <string.h>
 // #include <math.h>
 
+// typedef struct Node
+// {
+//     int data;
+//     struct Node *next;
+// } Node;
+
+// typedef struct Stack
+// {
+//     Node *top;
+// } Stack;
+
+// typedef struct
+// {
+//     Stack s1;
+//     Stack s2;
+// } Queue;
+// Queue q;
+
+// void push(Stack *s, int x)
+// {
+//     Node *newNode = (Node *)malloc(sizeof(Node));
+//     newNode->data = x;
+//     newNode->next = s->top;
+//     s->top = newNode;
+// }
+
+// int pop(Stack *s)
+// {
+//     if (s->top == NULL)
+//     {
+//         printf("Stek je prazan \n");
+//     }
+//     else
+//     {
+//         s->top = s->top->next;
+//     }
+// }
+
+// void enqueue(int x)
+// {
+//     push(&q.s1, x);
+// }
+
+// int dequeue()
+// {
+
+//     if (q.s2.top == NULL)
+//     {
+//         Node *temp = q.s1.top;
+//         while (q.s1.top != NULL)
+//         {
+//             push(&q.s2, q.s1.top->data);
+//             pop(&q.s1);
+//         }
+//     }
+//     int elem = q.s2.top->data;
+//     pop(&q.s2);
+//     return elem;
+// }
+// int main()
+// {
+//     enqueue(1);
+//     enqueue(4);
+//     enqueue(8);
+//     enqueue(9);
+//     dequeue();
+//     enqueue(2);
+//     dequeue();
+//     printf("Ispis\n");
+//     printf("Second stack\n");
+
+//     Stack stack2 = q.s2;
+//     while (stack2.top != NULL)
+//     {
+//         printf("%d\n", stack2.top->data);
+//         stack2.top = stack2.top->next;
+//     }
+//     printf("first stack\n");
+
+//     Stack stack1 = q.s1;
+//     while (stack1.top != NULL)
+//     {
+//         printf("%d\n", stack1.top->data);
+//         stack1.top = stack1.top->next;
+//     }
+
+//     return 0;
+// }
+
 //
 //
 //
@@ -5076,3 +5165,101 @@
 
 //     return 0;
 // }
+
+///
+///
+//
+//
+
+#include <stdlib.h>
+#include <stdio.h>
+
+typedef struct Node
+{
+    int data;
+    struct Node *next;
+} Node;
+
+Node *createNode(int x)
+{
+    Node *newNode = (Node *)malloc(sizeof(Node));
+    newNode->data = x;
+    newNode->next = NULL;
+    return newNode;
+}
+void insert(Node **last, int x)
+{
+    Node *newNode = createNode(x);
+
+    if (*last == NULL)
+    {
+        *last = newNode;
+    }
+    else
+    {
+        newNode->next = *last;
+        *last = newNode;
+    }
+}
+
+Node *prviParan(Node *first)
+{
+    while (first->next != NULL)
+    {
+        first = first->next;
+    }
+    if (first->data % 2 == 0)
+    {
+        return first;
+    }
+    else
+    {
+        return NULL;
+    }
+}
+
+Node *listaParnih(Node *temp)
+{
+    Node *newList = NULL;
+    while (temp != NULL)
+    {
+        if (temp->data % 2 == 0)
+        {
+            Node *newNode = (Node *)malloc(sizeof(Node));
+            newNode->data = temp->data;
+            newNode->next = newList;
+            newList = newNode;
+        }
+        temp = temp->next;
+    }
+    return newList;
+}
+int main()
+{
+    Node *first = NULL;
+
+    insert(&first, 1);
+    insert(&first, 2);
+    insert(&first, 3);
+    insert(&first, 4);
+    insert(&first, 5);
+
+    Node *temp = first;
+
+    while (temp != NULL)
+    {
+        printf("%d\n", temp->data);
+        temp = temp->next;
+    }
+
+    // printf("prvi paran %d", prviParan(first)->data);
+
+    Node *novaLista = listaParnih(first);
+    printf("nova lista \n");
+    while (novaLista != NULL)
+    {
+        printf("%d\n", novaLista->data);
+        novaLista = novaLista->next;
+    }
+    return 0;
+}

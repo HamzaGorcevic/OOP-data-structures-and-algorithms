@@ -1,1 +1,1 @@
-        return elem;
+printf("prvi paran %d", prviParan(first)->data);
