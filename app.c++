@@ -4611,145 +4611,468 @@
 
 // zadatak sa stekom i redom , dodavanje prostih brojeva iz red u stek
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
-#include <math.h>
+// #include <stdlib.h>
+// #include <stdio.h>
+// #include <string.h>
+// #include <math.h>
 
-#define SIZE 10
+// #define SIZE 10
 
-int stack[SIZE], top = -1;
+// int stack[SIZE], top = -1;
 
-void push(int x)
-{
-    if (top == SIZE - 1)
-    {
-        printf("Steck je pun\n");
-    }
-    else
-    {
-        top++;
-        stack[top] = x;
-    }
-}
+// void push(int x)
+// {
+//     if (top == SIZE - 1)
+//     {
+//         printf("Steck je pun\n");
+//     }
+//     else
+//     {
+//         top++;
+//         stack[top] = x;
+//     }
+// }
 
-int pop()
-{
-    if (top == -1)
-    {
-        printf("stek je prazan\n");
-    }
-    else
-    {
-        int elem = stack[top];
-        top--;
-        return elem;
-    }
-}
+// int pop()
+// {
+//     if (top == -1)
+//     {
+//         printf("stek je prazan\n");
+//     }
+//     else
+//     {
+//         int elem = stack[top];
+//         top--;
+//         return elem;
+//     }
+// }
 
-typedef struct Node
-{
-    int data;
-    struct Node *next;
-    struct Node *prev;
-} Node;
+// typedef struct Node
+// {
+//     int data;
+//     struct Node *next;
+//     struct Node *prev;
+// } Node;
 
-Node *first = NULL, *last = NULL;
+// Node *first = NULL, *last = NULL;
 
-void insert(int x)
-{
-    Node *newNode = (Node *)malloc(sizeof(Node));
-    newNode->data = x;
-    newNode->next = NULL;
-    newNode->prev = NULL;
-    if (first == NULL)
-    {
-        last = first = newNode;
-    }
-    last->next = newNode;
-    newNode->prev = last;
-    last = newNode;
-}
+// void insert(int x)
+// {
+//     Node *newNode = (Node *)malloc(sizeof(Node));
+//     newNode->data = x;
+//     newNode->next = NULL;
+//     newNode->prev = NULL;
+//     if (first == NULL)
+//     {
+//         last = first = newNode;
+//     }
+//     last->next = newNode;
+//     newNode->prev = last;
+//     last = newNode;
+// }
 
-void ispisReda()
-{
-    Node *temp = first;
+// void ispisReda()
+// {
+//     Node *temp = first;
 
-    printf("first = %d,first.prev =%d \n", first->data, first->prev->data);
-    while (temp != NULL)
-    {
-        printf("%d\n", temp->data);
-        temp = temp->next;
-    }
-}
-int deleteEl()
-{
-    if (first == NULL)
-    {
-        printf("red je prazan\n");
-    }
-    else
-    {
-        Node *temp = first;
-        first = first->next;
-        free(temp);
-    }
-}
+//     printf("first = %d,first.prev =%d \n", first->data, first->prev->data);
+//     while (temp != NULL)
+//     {
+//         printf("%d\n", temp->data);
+//         temp = temp->next;
+//     }
+// }
+// int deleteEl()
+// {
+//     if (first == NULL)
+//     {
+//         printf("red je prazan\n");
+//     }
+//     else
+//     {
+//         Node *temp = first;
+//         first = first->next;
+//         free(temp);
+//     }
+// }
 
-void fillStack()
-{
-    Node *temp = first;
-    while (temp != NULL)
-    {
-        if (temp->data > 1)
-        {
-            int check = 1;
-            for (int i = 2; i <= temp->data / 2; i++)
-            {
-                if (temp->data % i == 0)
-                {
-                    check = 0;
-                    break;
-                }
-                else
-                {
-                    check = 1;
-                    printf("addded in \n");
-                }
-            }
-            if (check)
-            {
-                push(temp->data);
-            }
-        }
+// void fillStack()
+// {
+//     Node *temp = first;
+//     while (temp != NULL)
+//     {
+//         if (temp->data > 1)
+//         {
+//             int check = 1;
+//             for (int i = 2; i <= temp->data / 2; i++)
+//             {
+//                 if (temp->data % i == 0)
+//                 {
+//                     check = 0;
+//                     break;
+//                 }
+//                 else
+//                 {
+//                     check = 1;
+//                     printf("addded in \n");
+//                 }
+//             }
+//             if (check)
+//             {
+//                 push(temp->data);
+//             }
+//         }
 
-        temp = temp->next;
-    }
-}
+//         temp = temp->next;
+//     }
+// }
 
-void ispisSteka()
-{
+// void ispisSteka()
+// {
 
-    printf("ISPIS STEKA\n");
-    for (int i = 0; i <= top; i++)
-    {
-        printf("%d\n", stack[i]);
-    }
-}
-int main()
-{
-    insert(1);
-    insert(2);
-    insert(3);
-    insert(4);
-    insert(5);
-    insert(6);
-    insert(7);
-    insert(8);
-    ispisReda();
+//     printf("ISPIS STEKA\n");
+//     for (int i = 0; i <= top; i++)
+//     {
+//         printf("%d\n", stack[i]);
+//     }
+// }
+// int main()
+// {
+//     insert(1);
+//     insert(2);
+//     insert(3);
+//     insert(4);
+//     insert(5);
+//     insert(6);
+//     insert(7);
+//     insert(8);
+//     ispisReda();
 
-    fillStack();
-    ispisSteka();
+//     fillStack();
+//     ispisSteka();
 
-    return 0;
-}
+//     return 0;
+// }
+
+//  red123 zadatak sa stekom i redom (red implementiran preko arraya), dodavanje prostih brojeva iz red u stek
+// #include <stdlib.h>
+// #include <stdio.h>
+// #include <string.h>
+// #include <math.h>
+
+// #define size 10
+
+// int queue[size], front = -1, rear = -1;
+
+// void addElement(int x)
+// {
+//     if (rear == size - 1 || (rear + 1) % size == front)
+//     {
+//         printf("Red je pun\n");
+//     }
+//     else
+//     {
+//         if (front == -1)
+//         {
+//             front = rear = 0;
+//         }
+//         else
+//         {
+//             rear = (rear + 1) % 12;
+//         }
+//         queue[rear] = x;
+//     }
+// }
+
+// int deleteElement()
+// {
+//     if (front == -1)
+//     {
+//         printf("RED je prazan\n");
+//     }
+//     else
+//     {
+//         int elem = queue[front];
+//         front = (front + 1) % 12;
+//         return elem;
+//     }
+// }
+
+// void ispisRed()
+// {
+//     if (front < rear)
+//     {
+//         for (int i = front; i < rear; i++)
+//         {
+//             printf("%d\n", queue[i]);
+//         }
+//     }
+//     else
+//     {
+//         for (int i = front; i < size; i++)
+//         {
+//             printf("%d\n", queue[i]);
+//         }
+//         for (int i = 0; i < rear; i++)
+//         {
+//             printf("%d\n", queue[i]);
+//         }
+//     }
+// }
+
+// // ponovimo proces sa stekom
+// int main()
+// {
+//     addElement(1);
+//     addElement(6);
+//     addElement(3);
+//     addElement(9);
+//     addElement(2);
+//     ispisRed();
+
+//     return 0;
+
+// }
+
+// zadatak za pronalazanje elemenata manjih od x (LESS_CNT)
+
+// #include <stdlib.h>
+// #include <stdio.h>
+// #include <string.h>
+// #include <math.h>
+
+// typedef struct Node
+// {
+//     int data;
+//     struct Node *next;
+// } Node;
+// Node *first = NULL, *last = NULL;
+
+// void insert(int x)
+// {
+//     Node *newNode = (Node *)malloc(sizeof(Node));
+//     newNode->data = x;
+//     newNode->next = NULL;
+//     if (first == NULL)
+//     {
+//         first = last = newNode;
+//     }
+//     else
+//     {
+//         last->next = newNode;
+//         last = newNode;
+//     }
+// }
+
+// int LESS_CNT(int x)
+// {
+//     Node *temp = first;
+//     int counter = 0;
+//     while (temp != NULL)
+//     {
+//         if (temp->data <= x)
+//         {
+//             counter++;
+//         }
+//         temp = temp->next;
+//     }
+//     return counter;
+// }
+// int main()
+// {
+
+//     for (int i = 1; i < 25; i += 4)
+//     {
+//         insert(i);
+//     }
+
+//     Node *temp = first;
+
+//     while (temp != NULL)
+//     {
+//         printf("%d\n", temp->data);
+//         temp = temp->next;
+//     }
+
+//     printf("LES %d\n", LESS_CNT(10));
+//     return 0;
+// }
+
+// Uraditit zadatak , imlementirati red preko dva steka , ulancana reprezentacija
+// #include <stdlib.h>
+// #include <stdio.h>
+// #include <string.h>
+// #include <math.h>
+
+//
+//
+//
+//
+//
+// kruzna jednostruca lista , broj pojava
+
+// #include <stdlib.h>
+// #include <stdio.h>
+// #include <string.h>
+// #include <math.h>
+
+// typedef struct Node
+// {
+//     int data;
+//     struct Node *next;
+// } Node;
+// Node *first = NULL, *last = NULL;
+
+// void insert(int x)
+// {
+//     Node *newNode = (Node *)malloc(sizeof(Node));
+//     newNode->data = x;
+//     newNode->next = NULL;
+
+//     if (first == NULL)
+//     {
+//         first = last = newNode;
+//     }
+//     else
+//     {
+//         last->next = newNode;
+//         last = last->next;
+//         last->next = first;
+//     }
+// }
+
+// int deleteEl()
+// {
+//     if (first == NULL)
+//     {
+//         printf("List is empt\n");
+//     }
+//     else
+//     {
+//         Node *help = first;
+//         while (help->next != last)
+//         {
+//             help = help->next;
+//         }
+//         help->next = last->next;
+//         last = help;
+//         last->next = first;
+//     }
+// }
+// int brojPojava(int el)
+// {
+//     Node *temp = first;
+//     int counter = 0;
+//     do
+//     {
+//         if (temp->data == el)
+//         {
+//             counter += 1;
+//         }
+//         temp = temp->next;
+//     } while (temp != last->next);
+//     return counter;
+// }
+// void ispis()
+// {
+
+//     Node *temp = first;
+//     do
+//     {
+//         printf("%d\n", temp->data);
+//         temp = temp->next;
+//     } while (temp != last->next);
+// }
+// int main()
+// {
+//     insert(2);
+//     insert(7);
+//     insert(9);
+//     insert(100);
+//     insert(7);
+
+//     insert(7);
+
+//     insert(7);
+
+//     insert(7);
+
+//     deleteEl();
+//     ispis();
+//     printf("%d", brojPojava(7));
+
+//     return 0;
+// }
+
+// implementirati stek preko niza sa dodatnom funkcijom koja sortira novoubaceni element
+
+// #include <stdlib.h>
+// #include <stdio.h>
+// #include <string.h>
+
+// #define SIZE 10
+
+// int stack[SIZE], top = -1;
+
+// void sort()
+// {
+//     for (int i = 0; i <= top; i++)
+//     {
+//         for (int j = 0; j < top; j++)
+//         {
+//             if (stack[i] > stack[j])
+//             {
+//                 int help = stack[i];
+//                 stack[i] = stack[j];
+//                 stack[j] = help;
+//             }
+//         }
+//     }
+// }
+// void push(int el)
+// {
+//     if (top == SIZE - 1)
+//     {
+//         printf("Stek je pun\n");
+//     }
+//     else
+//     {
+//         top++;
+//         stack[top] = el;
+//         sort();
+//     }
+// }
+
+// int pop()
+// {
+//     if (top == -1)
+//     {
+//         printf("stek je prazan\n");
+//     }
+//     else
+//     {
+//         int elem = stack[top];
+//         top--;
+//         return elem;
+//     }
+// }
+// void ispis()
+// {
+//     for (int i = 0; i <= top; i++)
+//     {
+//         printf("%d\n", stack[i]);
+//     }
+// }
+// int main()
+// {
+//     push(2);
+//     push(8);
+//     push(2);
+//     push(10);
+//     push(1);
+//     pop();
+//     pop();
+//     ispis();
+
+//     return 0;
+// }
