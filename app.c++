@@ -1,8 +1,9 @@
 
-// #include <iostream>
-// #include <cmath>
-// #include <string.h>
-
+#include <iostream>
+#include <cmath>
+#include <string.h>
+#include <string>
+using namespace std;
 // using namespace std;
 
 // void moveFunc(int **matrica,int n){
@@ -5336,93 +5337,396 @@
 // }
 
 // binary zadatak 1 , ulancana reprezentacija search element i prikazati dubinu
-#include <stdio.h>
-#include <stdlib.h>
+// #include <stdio.h>
+// #include <stdlib.h>
 
-typedef struct Node
+// typedef struct Node
+// {
+//     int data;
+//     struct Node *left, *right;
+// } Node;
+
+// int i = 0;
+
+// Node *createNode(int x)
+// {
+//     Node *newNode = (Node *)malloc(sizeof(Node));
+//     newNode->data = x;
+//     newNode->left = NULL;
+//     newNode->right = NULL;
+//     return newNode;
+// }
+
+// void insert(Node **tree, int x)
+// {
+//     Node *newNode = createNode(x);
+//     if (*tree == NULL)
+//     {
+//         *tree = newNode;
+//     }
+//     else
+//     {
+//         if (i % 2 == 0)
+//         {
+//             insert(&((*tree)->left), x);
+//         }
+//         else
+//         {
+//             insert(&((*tree)->right), x);
+//         }
+//         i++;
+//     }
+// }
+
+// int search(Node *tree, int x, int nivo = 1)
+// {
+//     if (tree)
+//     {
+//         if (tree->data == x)
+//         {
+//             printf("nivo %d\n", nivo);
+
+//             return 1;
+//         }
+//         search(tree->left, x, nivo + 1);
+//         search(tree->right, x, nivo + 1);
+//     }
+// }
+
+// void printPreorder(Node *tree)
+// {
+//     if (tree)
+//     {
+//         printf("%d\n", tree->data);
+//         printPreorder(tree->left);
+//         printPreorder(tree->right);
+//     }
+// }
+
+// int main()
+// {
+
+//     Node *tree = NULL;
+//     insert(&tree, 1);
+
+//     insert(&tree, 12);
+
+//     insert(&tree, 2);
+
+//     insert(&tree, 13);
+
+//     printPreorder(tree);
+
+//     search(tree, 13);
+
+//     return 0;
+// }
+
+// Polimofirzam (viseoblicnost)
+
+// class Linearna
+// {
+// protected:
+//     float b, c;
+
+// public:
+//     Linearna(float B, float C)
+//     {
+//         b = B;
+//         c = C;
+//     }
+//     virtual void Resenja()
+//     {
+//         if (b != 0)
+//         {
+
+//             float x = -c / b;
+//             cout << "RESenje lin jednacine je " << x << endl;
+//         }
+//         else
+//         {
+//             cout << "jednacina nema resenja" << endl;
+//         }
+//     }
+
+//     virtual void ispis()
+//     {
+//         cout << "Line jednacina ima oblik " << endl
+//              << b << "x"
+//              << "+" << c << "=" << 0 << endl;
+//     }
+// };
+
+// // ax(na 2) + bc + c=0;
+// class Kvadratana : Linearna
+// {
+// protected:
+//     float a;
+
+// public:
+//     Kvadratana(float A, float B, float C) : Linearna(B, B)
+//     {
+//         a = A;
+//     }
+//     void Resenja()
+//     {
+//         float D = b * b - (sqrt(4 * a * c));
+//         if (D < 0)
+//         {
+//             cout << "Kvadratna nema realnih resenja" << endl;
+//         }
+//         else if (D == 0)
+//         {
+//             float x = -b / 2 * a;
+//             cout << "Jdnacina ima jedno resenje to je " << x << endl;
+//         }
+//         else
+//         {
+//             float x1 = ((-b) + sqrt(D)) / (2 * a);
+//             float x2 = ((-b) - sqrt(D)) / (2 * a);
+//             cout << "Jednacina ima dva realna resenja to su" << x1 << " " << x2 << endl;
+//         }
+//     }
+
+//     void ispis()
+//     {
+//         cout << "Kvadratna jednacina je oblika" << endl;
+//         cout << a << "x2 +" << b << "x +" << c << " = 0" << endl;
+//     }
+// };
+// int main()
+
+// {
+//     Linearna l1(2, 5);
+//     Kvadratana k1(3, 10, 4);
+//     l1.ispis();
+//     l1.Resenja();
+//     k1.ispis();
+//     k1.Resenja();
+
+//     return 0;
+// }
+
+// moj  nacin
+// moglo lakse sa funckzom za swith
+class Izraz1
 {
-    int data;
-    struct Node *left, *right;
-} Node;
+protected:
+    char op1;
+    int a;
+    int b;
 
-int i = 0;
-
-Node *createNode(int x)
-{
-    Node *newNode = (Node *)malloc(sizeof(Node));
-    newNode->data = x;
-    newNode->left = NULL;
-    newNode->right = NULL;
-    return newNode;
-}
-
-void insert(Node **tree, int x)
-{
-    Node *newNode = createNode(x);
-    if (*tree == NULL)
+public:
+    Izraz1()
     {
-        *tree = newNode;
+        a = 2;
+        b = 5;
+        op1 = '+';
     }
-    else
+    Izraz1(int A, char Op1, int B)
     {
-        if (i % 2 == 0)
+        op1 = Op1;
+        a = A;
+        b = B;
+    }
+
+    virtual double Izracunaj()
+    {
+
+        switch (op1)
         {
-            insert(&((*tree)->left), x);
+        case '+':
+            return a + b;
+            break;
+        case '*':
+            return a * b;
+            break;
+        case '/':
+            return a / b;
+            break;
+        case '-':
+            return a - b;
+            break;
+        default:
+            break;
+        }
+    }
+    virtual void ispis()
+    {
+        cout << a << op1 << b << endl;
+    }
+};
+
+class Izraz2 : Izraz1
+{
+protected:
+    char op2;
+    int c;
+
+public:
+    Izraz2()
+    {
+        op2 = '*';
+        c = 3;
+    }
+    Izraz2(int A, char Op1, int B, char Op2, int C) : Izraz1(Op1, A, B)
+    {
+        c = C;
+        op2 = Op2;
+    }
+
+    double Izracunaj()
+    {
+        if (op1 == '*' || op1 == '/')
+        {
+            cout << "Prvi slucaj" << endl;
+            double sum;
+            switch (op1)
+            {
+            case '+':
+                sum = a + b;
+                break;
+            case '*':
+                sum = a * b;
+                break;
+            case '/':
+                sum = a / b;
+                break;
+            case '-':
+                sum = a - b;
+                break;
+            default:
+                break;
+            }
+            switch (op2)
+            {
+            case '+':
+                return sum + c;
+                break;
+            case '*':
+                return sum * c;
+                break;
+            case '/':
+                return sum / c;
+                break;
+            case '-':
+                return sum - c;
+                break;
+            default:
+                break;
+            }
         }
         else
         {
-            insert(&((*tree)->right), x);
+            cout << op1 << op2 << endl;
+
+            double sum;
+
+            switch (op2)
+            {
+            case '+':
+                sum = b + c;
+                break;
+            case '*':
+                sum = b * c;
+                break;
+            case '/':
+                sum = b / c;
+                break;
+            case '-':
+                sum = b - c;
+                break;
+            default:
+                break;
+            }
+            switch (op2)
+            {
+            case '+':
+                return a + sum;
+                break;
+            case '*':
+                return sum * a;
+                break;
+            case '/':
+                return a / sum;
+                break;
+            case '-':
+                return a - sum;
+                break;
+            default:
+                break;
+            }
         }
-        i++;
     }
-}
-
-int search(Node *tree, int x, int nivo = 1)
-{
-    if (tree)
-    {
-        if (tree->data == x)
-        {
-            printf("nivo %d\n", nivo);
-
-            return 1;
-        }
-        search(tree->left, x, nivo + 1);
-        search(tree->right, x, nivo + 1);
-    }
-}
-
-void printPreorder(Node *tree)
-{
-    if (tree)
-    {
-        printf("%d\n", tree->data);
-        printPreorder(tree->left);
-        printPreorder(tree->right);
-    }
-}
+};
 
 int main()
+
 {
+    Izraz1 **izrazi;
+    Izraz1 *i1 = new Izraz1(2, '*', 4);
+    Izraz1 *i2 = new Izraz1(8, '-', 4);
 
-    Node *tree = NULL;
-    insert(&tree, 1);
+    Izraz1 *i3 = new Izraz1(2, '+', 4);
+    Izraz2 *i4 = new Izraz2(2, '*', 3, '-', 1);
 
-    insert(&tree, 1);
-
-    insert(&tree, 2);
-
-    insert(&tree, 13);
-
-    insert(&tree, 13);
-
-    insert(&tree, 33);
-
-    insert(&tree, 43);
-
-    printPreorder(tree);
-
-    search(tree, 13);
+    izrazi[0] = i1;
+    izrazi[1] = i2;
+    izrazi[2] = i3;
+    izrazi[3] = i4;
 
     return 0;
 }
+
+// class Izraz1
+// {
+// protected:
+//     char op1;
+//     int a, b;
+//     double vrednostIzraza(int a, char op1, int b)
+//     {
+//         switch (op1)
+//         {
+
+//         case '+':
+//             return a + b;
+//             break;
+//         case '*':
+//             return a * b;
+//             break;
+//         case '/':
+//             return a / b;
+//             break;
+//         case '-':
+//             return a - b;
+//             break;
+//         default:
+//             break;
+//         }
+//     }
+
+// public:
+//     Izraz1()
+//     {
+//         op1 = '+';
+//         a = 2;
+//         b = 5;
+//     }
+//     Izraz1(int A, char Op1, int B)
+//     {
+//         a = A;
+//         op1 = Op1;
+//         b = B;
+//     }
+// };
+
+// class Izraz2
+// {
+
+// }
+
+// int
+// main()
+// {
+//     return 0;
+// }
