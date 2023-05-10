@@ -5509,174 +5509,176 @@ using namespace std;
 
 // moj  nacin
 // moglo lakse sa funckzom za swith
-class Izraz1
-{
-protected:
-    char op1;
-    int a;
-    int b;
+// class Izraz1
+// {
+// protected:
+//     char op1;
+//     int a;
+//     int b;
 
-public:
-    Izraz1()
-    {
-        a = 2;
-        b = 5;
-        op1 = '+';
-    }
-    Izraz1(int A, char Op1, int B)
-    {
-        op1 = Op1;
-        a = A;
-        b = B;
-    }
+// public:
+//     Izraz1()
+//     {
+//         a = 2;
+//         b = 5;
+//         op1 = '+';
+//     }
+//     Izraz1(int A, char Op1, int B)
+//     {
+//         op1 = Op1;
+//         a = A;
+//         b = B;
+//     }
 
-    virtual double Izracunaj()
-    {
+//     virtual double Izracunaj()
+//     {
 
-        switch (op1)
-        {
-        case '+':
-            return a + b;
-            break;
-        case '*':
-            return a * b;
-            break;
-        case '/':
-            return a / b;
-            break;
-        case '-':
-            return a - b;
-            break;
-        default:
-            break;
-        }
-    }
-    virtual void ispis()
-    {
-        cout << a << op1 << b << endl;
-    }
-};
+//         switch (op1)
+//         {
+//         case '+':
+//             return a + b;
+//             break;
+//         case '*':
+//             return a * b;
+//             break;
+//         case '/':
+//             return a / b;
+//             break;
+//         case '-':
+//             return a - b;
+//             break;
+//         default:
+//             break;
+//         }
+//     }
+//     virtual void ispis()
+//     {
+//         cout << a << op1 << b << endl;
+//     }
+// };
 
-class Izraz2 : Izraz1
-{
-protected:
-    char op2;
-    int c;
+// class Izraz2 : Izraz1
+// {
+// protected:
+//     char op2;
+//     int c;
 
-public:
-    Izraz2()
-    {
-        op2 = '*';
-        c = 3;
-    }
-    Izraz2(int A, char Op1, int B, char Op2, int C) : Izraz1(Op1, A, B)
-    {
-        c = C;
-        op2 = Op2;
-    }
+// public:
+//     Izraz2()
+//     {
+//         op2 = '*';
+//         c = 3;
+//     }
+//     Izraz2(int A, char Op1, int B, char Op2, int C) : Izraz1(Op1, A, B)
+//     {
+//         c = C;
+//         op2 = Op2;
+//     }
 
-    double Izracunaj()
-    {
-        if (op1 == '*' || op1 == '/')
-        {
-            cout << "Prvi slucaj" << endl;
-            double sum;
-            switch (op1)
-            {
-            case '+':
-                sum = a + b;
-                break;
-            case '*':
-                sum = a * b;
-                break;
-            case '/':
-                sum = a / b;
-                break;
-            case '-':
-                sum = a - b;
-                break;
-            default:
-                break;
-            }
-            switch (op2)
-            {
-            case '+':
-                return sum + c;
-                break;
-            case '*':
-                return sum * c;
-                break;
-            case '/':
-                return sum / c;
-                break;
-            case '-':
-                return sum - c;
-                break;
-            default:
-                break;
-            }
-        }
-        else
-        {
-            cout << op1 << op2 << endl;
+//     double Izracunaj()
+//     {
+//         if (op1 == '*' || op1 == '/')
+//         {
+//             cout << "Prvi slucaj" << endl;
+//             double sum;
+//             switch (op1)
+//             {
+//             case '+':
+//                 sum = a + b;
+//                 break;
+//             case '*':
+//                 sum = a * b;
+//                 break;
+//             case '/':
+//                 sum = a / b;
+//                 break;
+//             case '-':
+//                 sum = a - b;
+//                 break;
+//             default:
+//                 break;
+//             }
+//             switch (op2)
+//             {
+//             case '+':
+//                 return sum + c;
+//                 break;
+//             case '*':
+//                 return sum * c;
+//                 break;
+//             case '/':
+//                 return sum / c;
+//                 break;
+//             case '-':
+//                 return sum - c;
+//                 break;
+//             default:
+//                 break;
+//             }
+//         }
+//         else
+//         {
+//             cout << op1 << op2 << endl;
 
-            double sum;
+//             double sum;
 
-            switch (op2)
-            {
-            case '+':
-                sum = b + c;
-                break;
-            case '*':
-                sum = b * c;
-                break;
-            case '/':
-                sum = b / c;
-                break;
-            case '-':
-                sum = b - c;
-                break;
-            default:
-                break;
-            }
-            switch (op2)
-            {
-            case '+':
-                return a + sum;
-                break;
-            case '*':
-                return sum * a;
-                break;
-            case '/':
-                return a / sum;
-                break;
-            case '-':
-                return a - sum;
-                break;
-            default:
-                break;
-            }
-        }
-    }
-};
+//             switch (op2)
+//             {
+//             case '+':
+//                 sum = b + c;
+//                 break;
+//             case '*':
+//                 sum = b * c;
+//                 break;
+//             case '/':
+//                 sum = b / c;
+//                 break;
+//             case '-':
+//                 sum = b - c;
+//                 break;
+//             default:
+//                 break;
+//             }
+//             switch (op2)
+//             {
+//             case '+':
+//                 return a + sum;
+//                 break;
+//             case '*':
+//                 return sum * a;
+//                 break;
+//             case '/':
+//                 return a / sum;
+//                 break;
+//             case '-':
+//                 return a - sum;
+//                 break;
+//             default:
+//                 break;
+//             }
+//         }
+//     }
+// };
 
-int main()
+// int main()
+// // moramo da overidema ispis da bi u array pod Izraz1 mogli sve elemente da ispisemo kad stavimo .ispis , svaka ce raditi sta treba to je svrha
+// {
+//     Izraz1 **izrazi;
+//     Izraz1 *i1 = new Izraz1(2, '*', 4);
+//     Izraz1 *i2 = new Izraz1(8, '-', 4);
 
-{
-    Izraz1 **izrazi;
-    Izraz1 *i1 = new Izraz1(2, '*', 4);
-    Izraz1 *i2 = new Izraz1(8, '-', 4);
+//     Izraz1 *i3 = new Izraz1(2, '+', 4);
+//     Izraz2 *i4 = new Izraz2(2, '*', 3, '-', 1);
 
-    Izraz1 *i3 = new Izraz1(2, '+', 4);
-    Izraz2 *i4 = new Izraz2(2, '*', 3, '-', 1);
+//     izrazi = new Izraz1 *[5];
 
-    izrazi[0] = i1;
-    izrazi[1] = i2;
-    izrazi[2] = i3;
-    izrazi[3] = i4;
+//     izrazi[0] = i1;
+//     izrazi[1] = i2;
+//     izrazi[2] = i3;
+//     izrazi[3] = i4;
 
-    return 0;
-}
+//     return 0;
+// }
 
 // class Izraz1
 // {
@@ -5730,3 +5732,68 @@ int main()
 // {
 //     return 0;
 // }
+
+class Krug
+{
+private:
+    int r;
+
+public:
+    Krug(int R)
+    {
+        r = R;
+    }
+    virtual int Povrsina()
+    {
+
+        return r * r * 3.14;
+    }
+};
+class KruzniIsecak : Krug
+{
+private:
+    int ugao;
+
+public:
+    int pIsecka;
+    KruzniIsecak(int Ugao, int r) : Krug(r)
+    {
+        ugao = Ugao;
+    }
+    int Povrsina()
+    {
+        pIsecka = Krug ::Povrsina() * ugao / 360;
+        return pIsecka;
+    }
+};
+
+class KruzniPrsten : Krug
+{
+private:
+    int unutrasnjiKrug;
+
+public:
+    KruzniPrsten(int ru, int rs) : Krug(rs)
+    {
+        unutrasnjiKrug = ru;
+    }
+    int Povrsina()
+    {
+        int pUnutra = unutrasnjiKrug * unutrasnjiKrug * 3.14;
+
+        return Krug::Povrsina() - pUnutra;
+    }
+};
+
+int main()
+{
+
+    Krug k1(4);
+    KruzniIsecak ki1(360, 4);
+    KruzniPrsten kp(11, 5);
+
+    ki1.Povrsina();
+    kp.Povrsina();
+
+    return 0;
+}
