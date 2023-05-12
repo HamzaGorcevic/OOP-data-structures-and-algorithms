@@ -5733,67 +5733,245 @@ using namespace std;
 //     return 0;
 // }
 
-class Krug
+// class Krug
+// {
+// private:
+//     int r;
+
+// public:
+//     Krug(int R)
+//     {
+//         r = R;
+//     }
+//     virtual int Povrsina()
+//     {
+
+//         return r * r * 3.14;
+//     }
+// };
+// class KruzniIsecak : Krug
+// {
+// private:
+//     int ugao;
+
+// public:
+//     int pIsecka;
+//     KruzniIsecak(int Ugao, int r) : Krug(r)
+//     {
+//         ugao = Ugao;
+//     }
+//     int Povrsina()
+//     {
+//         pIsecka = Krug ::Povrsina() * ugao / 360;
+//         return pIsecka;
+//     }
+// };
+
+// class KruzniPrsten : Krug
+// {
+// private:
+//     int unutrasnjiKrug;
+
+// public:
+//     KruzniPrsten(int ru, int rs) : Krug(rs)
+//     {
+//         unutrasnjiKrug = ru;
+//     }
+//     int Povrsina()
+//     {
+//         int pUnutra = unutrasnjiKrug * unutrasnjiKrug * 3.14;
+
+//         return Krug::Povrsina() - pUnutra;
+//     }
+// };
+
+// int main()
+// {
+
+//     Krug k1(4);
+//     KruzniIsecak ki1(360, 4);
+//     KruzniPrsten kp(11, 5);
+
+//     ki1.Povrsina();
+//     kp.Povrsina();
+
+//     return 0;
+// }
+
+// DRUGI KOLOKVIJUM
+
+#include <iostream>
+#include <string>
+
+class Artikal
 {
-private:
-    int r;
 
 public:
-    Krug(int R)
+    string naziv;
+    float cena;
+    int celobrojniIznosPopusta;
+    Artikal()
     {
-        r = R;
+        naziv = "";
+        cena = 0;
+        celobrojniIznosPopusta = 0;
     }
-    virtual int Povrsina()
+    Artikal(string N, float C, int CIP = 0)
+    {
+        naziv = N;
+        cena = C;
+        celobrojniIznosPopusta = CIP;
+    }
+
+    friend ostream &operator<<(ostream &COUT, Artikal &a)
     {
 
-        return r * r * 3.14;
+        cout << a.naziv << "(" << a.cena << ")";
+        return COUT;
     }
 };
-class KruzniIsecak : Krug
+
+class Stavka
 {
-private:
-    int ugao;
 
 public:
-    int pIsecka;
-    KruzniIsecak(int Ugao, int r) : Krug(r)
+    Artikal art;
+    float kolicina;
+    static int redniBroj;
+    int id;
+
+    Stavka()
     {
-        ugao = Ugao;
+        id = redniBroj;
+        art = Artikal();
+        kolicina = 0;
+        redniBroj++;
+        printf("Called without arguments (%d)\n", redniBroj);
     }
-    int Povrsina()
+    Stavka(Artikal A, float K)
     {
-        pIsecka = Krug ::Povrsina() * ugao / 360;
-        return pIsecka;
+        id = redniBroj;
+        printf("Called with arguments (%d)\n", redniBroj);
+        art = A;
+        kolicina = K;
+
+        redniBroj++;
+    }
+    Stavka(Stavka *stavka)
+    {
+        art = stavka->art;
+        kolicina = stavka->kolicina;
+    }
+
+    void ispis()
+    {
+        cout << art;
+    }
+
+    int getIznos()
+    {
+        return kolicina * (art.cena);
+    }
+
+    friend ostream &operator<<(ostream &COUT, Stavka &stv)
+    {
+        cout << stv.id << "(" << stv.art << ")"
+             << ":" << stv.kolicina << "|" << stv.getIznos() << endl;
+        return COUT;
     }
 };
 
-class KruzniPrsten : Krug
+int Stavka::redniBroj = 0;
+
+class Racun
 {
-private:
-    int unutrasnjiKrug;
+    Stavka *niz;
+    int dodatniPopust;
+    int brojStavki;
 
 public:
-    KruzniPrsten(int ru, int rs) : Krug(rs)
+    Racun(int DP)
     {
-        unutrasnjiKrug = ru;
+        brojStavki = 0;
+        dodatniPopust = DP;
+        niz = new Stavka[brojStavki];
     }
-    int Povrsina()
-    {
-        int pUnutra = unutrasnjiKrug * unutrasnjiKrug * 3.14;
 
-        return Krug::Povrsina() - pUnutra;
+    void operator+=(Stavka stv)
+    {
+        Stavka *temp = new Stavka[brojStavki + 1];
+
+        cout << "RB" << stv.redniBroj << endl;
+
+        for (int i = 0; i < brojStavki; i++)
+        {
+            temp[i] = niz[i];
+        }
+        temp[brojStavki] = stv;
+        delete[] niz;
+        niz = temp;
+        brojStavki++;
+    }
+
+    void setDodatniPopust(int DP)
+    {
+        dodatniPopust = DP;
+    }
+    int sumaRacuna()
+    {
+        int suma = 0;
+
+        cout << brojStavki << ":";
+
+        for (int i = 0; i < brojStavki; i++)
+        {
+            if (niz[i].art.celobrojniIznosPopusta)
+            {
+                suma += niz[i].getIznos();
+            }
+            else
+            {
+
+                suma += niz[i].getIznos() - (niz[i].getIznos() * (dodatniPopust / 100));
+            }
+        }
+
+        return suma;
+    }
+
+    friend ostream &operator<<(ostream &COUT, Racun &racun)
+    {
+        cout << "SUMA RACUNA" << racun.sumaRacuna() << endl;
+        for (int i = 0; i < racun.brojStavki; i++)
+        {
+            cout << racun.niz[i];
+        }
+    }
+    ~Racun()
+    {
+        delete[] niz;
     }
 };
-
 int main()
 {
 
-    Krug k1(4);
-    KruzniIsecak ki1(360, 4);
-    KruzniPrsten kp(11, 5);
+    Artikal a1("jaja", 43, 20);
+    Artikal a2("jogurt", 43, 0);
+    Artikal a3("hleb", 83, 20);
 
-    ki1.Povrsina();
-    kp.Povrsina();
+    Stavka stv1(a1, 5);
+    Stavka stv2(a2, 3);
+    Stavka stv3(a3, 2);
+
+    cout << "works fine" << stv3.redniBroj;
+    Racun r1(50);
+    r1 += stv1;
+    r1 += stv2;
+    r1 += stv3;
+
+    cout << r1;
 
     return 0;
 }
+
+// experienced that static int creates only one copy and that i should make my classes have their one var of that copy at the moment
