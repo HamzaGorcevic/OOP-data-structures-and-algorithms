@@ -5800,178 +5800,310 @@ using namespace std;
 
 // DRUGI KOLOKVIJUM
 
+// #include <iostream>
+// #include <string>
+
+// class Artikal
+// {
+
+// public:
+//     string naziv;
+//     float cena;
+//     int celobrojniIznosPopusta;
+//     Artikal()
+//     {
+//         naziv = "";
+//         cena = 0;
+//         celobrojniIznosPopusta = 0;
+//     }
+//     Artikal(string N, float C, int CIP = 0)
+//     {
+//         naziv = N;
+//         cena = C;
+//         celobrojniIznosPopusta = CIP;
+//     }
+
+//     friend ostream &operator<<(ostream &COUT, Artikal &a)
+//     {
+
+//         cout << a.naziv << "(" << a.cena << ")";
+//         return COUT;
+//     }
+// };
+
+// class Stavka
+// {
+
+// public:
+//     Artikal art;
+//     float kolicina;
+//     static int redniBroj;
+//     int id;
+
+//     Stavka()
+//     {
+//         id = redniBroj;
+//         art = Artikal();
+//         kolicina = 0;
+//         redniBroj++;
+//         printf("Called without arguments (%d)\n", redniBroj);
+//     }
+//     Stavka(Artikal A, float K)
+//     {
+//         id = redniBroj;
+//         printf("Called with arguments (%d)\n", redniBroj);
+//         art = A;
+//         kolicina = K;
+
+//         redniBroj++;
+//     }
+//     Stavka(Stavka *stavka)
+//     {
+//         art = stavka->art;
+//         kolicina = stavka->kolicina;
+//     }
+
+//     void ispis()
+//     {
+//         cout << art;
+//     }
+
+//     int getIznos()
+//     {
+//         return kolicina * (art.cena);
+//     }
+
+//     friend ostream &operator<<(ostream &COUT, Stavka &stv)
+//     {
+//         cout << stv.id << "(" << stv.art << ")"
+//              << ":" << stv.kolicina << "|" << stv.getIznos() << endl;
+//         return COUT;
+//     }
+// };
+
+// int Stavka::redniBroj = 0;
+
+// class Racun
+// {
+//     Stavka *niz;
+//     int dodatniPopust;
+//     int brojStavki;
+
+// public:
+//     Racun(int DP)
+//     {
+//         brojStavki = 0;
+//         dodatniPopust = DP;
+//         niz = new Stavka[brojStavki];
+//     }
+
+//     void operator+=(Stavka stv)
+//     {
+//         Stavka *temp = new Stavka[brojStavki + 1];
+
+//         cout << "RB" << stv.redniBroj << endl;
+
+//         for (int i = 0; i < brojStavki; i++)
+//         {
+//             temp[i] = niz[i];
+//         }
+//         temp[brojStavki] = stv;
+//         delete[] niz;
+//         niz = temp;
+//         brojStavki++;
+//     }
+
+//     void setDodatniPopust(int DP)
+//     {
+//         dodatniPopust = DP;
+//     }
+//     int sumaRacuna()
+//     {
+//         int suma = 0;
+
+//         cout << brojStavki << ":";
+
+//         for (int i = 0; i < brojStavki; i++)
+//         {
+//             if (niz[i].art.celobrojniIznosPopusta)
+//             {
+//                 suma += niz[i].getIznos();
+//             }
+//             else
+//             {
+
+//                 suma += niz[i].getIznos() - (niz[i].getIznos() * (dodatniPopust / 100));
+//             }
+//         }
+
+//         return suma;
+//     }
+
+//     friend ostream &operator<<(ostream &COUT, Racun &racun)
+//     {
+//         cout << "SUMA RACUNA" << racun.sumaRacuna() << endl;
+//         for (int i = 0; i < racun.brojStavki; i++)
+//         {
+//             cout << racun.niz[i];
+//         }
+//     }
+//     ~Racun()
+//     {
+//         delete[] niz;
+//     }
+// };
+// int main()
+// {
+
+//     Artikal a1("jaja", 43, 20);
+//     Artikal a2("jogurt", 43, 0);
+//     Artikal a3("hleb", 83, 20);
+
+//     Stavka stv1(a1, 5);
+//     Stavka stv2(a2, 3);
+//     Stavka stv3(a3, 2);
+
+//     cout << "works fine" << stv3.redniBroj;
+//     Racun r1(50);
+//     r1 += stv1;
+//     r1 += stv2;
+//     r1 += stv3;
+
+//     cout << r1;
+
+//     return 0;
+// }
+
+// experienced that static int creates only one copy and that i should make my classes have their one var of that copy at the moment
+
+/*
+) Klasa Ponuđeni odgovor se sastoji od teksta odgovora(string), koji se zadaje pri stvaranju (podrazumevano ""),
+ informacije da li je tačan i procentualnog udela poena koji taj odgovor nosi (u opsegu od -100 do 100). Svi podaci su privatni.
+  Svi podaci se mogu dohvatiti, a informacija o tačnosti i procentualni udeo se mogu
+ postavljati(prilikom postavljanja proveriti da li su uneti ispravni procenti). Odgovor može da se ispiše na glavnom izlazu (out<<odgovor) u obliku tekst: udeo%.*/
+
 #include <iostream>
 #include <string>
-
-class Artikal
+class PonudjeniOdgovor
 {
+    string odgovori;
+    bool right;
+    int procenatUdela;
 
 public:
-    string naziv;
-    float cena;
-    int celobrojniIznosPopusta;
-    Artikal()
+    PonudjeniOdgovor(string O = "", bool R = false, int PU = 0)
     {
-        naziv = "";
-        cena = 0;
-        celobrojniIznosPopusta = 0;
-    }
-    Artikal(string N, float C, int CIP = 0)
-    {
-        naziv = N;
-        cena = C;
-        celobrojniIznosPopusta = CIP;
+        odgovori = O;
+        right = R;
+        procenatUdela = PU;
     }
 
-    friend ostream &operator<<(ostream &COUT, Artikal &a)
+    string getOdgovor()
     {
+        return odgovori;
+    }
+    bool getRight()
+    {
+        return right;
+    }
+    int getPorcenatUdela()
+    {
+        return procenatUdela;
+    }
+    void setRight(bool R)
+    {
+        right = R;
+    }
+    void setProcenatUdela(int PU)
+    {
+        if (PU <= 100 && PU >= -100)
+        {
+            procenatUdela = PU;
+        }
+    }
 
-        cout << a.naziv << "(" << a.cena << ")";
-        return COUT;
+    friend ostream &operator<<(ostream &COUT, PonudjeniOdgovor &PO)
+    {
+        cout << PO.getOdgovor() << ":" << PO.procenatUdela << "%" << endl;
     }
 };
 
-class Stavka
+/*Klasa Pitanje sadrži zadate podatke koji su zaštićeni: tekst, broj poena koji nosi, broj ponuđenih odgovora (podrazumevano 5),
+ kao i ponuđene odgovore(dinamičko alocirani niz odgovora). Stvara se bez ponuđenih odgovora, nakon čega se oni dodaju pojedinačno (pitanje+=odgovor).
+ Prilikom dodavanja ponuđenog odgovora računaju se jednaki procentualni udeli svih tačnih odgovora dodatih u dato pitanje(u zbiru daju 100%), dok svaki
+  netačan odgovor nosi -100%. Pomoću polimorfne metode može da se odgovori na pitanje, tada se zadaje niz koji sadrži redne brojeve ponuđenih odgovora koje
+   ispitanik smatra tačnim i dužina tog niza(odgovori(int niz[],int br);). Tada se računa koliko je procentualno tačno odgovoreno na to pitanje.
+ Na glavnom izlazu se ispisuje (out<<pitanje)
+tako što se u prvom redu ispiše tekst: poeni(maksimalni koje pitanje nosi), a potom se u zasebnim redovima ispišu sadržani ponuđeni odgovori.*/
+
+class Pitanje
 {
+protected:
+    string tekst;
+    int brojPoena;
+    int brojPonudjenihOdgovora;
+    PonudjeniOdgovor *odgovori;
 
 public:
-    Artikal art;
-    float kolicina;
-    static int redniBroj;
-    int id;
-
-    Stavka()
+    int *tacniOdgovor;
+    int brTacnih;
+    Pitanje()
     {
-        id = redniBroj;
-        art = Artikal();
-        kolicina = 0;
-        redniBroj++;
-        printf("Called without arguments (%d)\n", redniBroj);
+        tekst = "";
+        brojPoena = 0;
+        brojPonudjenihOdgovora = 5;
+        odgovori = new PonudjeniOdgovor[brojPonudjenihOdgovora + 1];
     }
-    Stavka(Artikal A, float K)
+    Pitanje(string T, int BP, int BPO)
     {
-        id = redniBroj;
-        printf("Called with arguments (%d)\n", redniBroj);
-        art = A;
-        kolicina = K;
-
-        redniBroj++;
-    }
-    Stavka(Stavka *stavka)
-    {
-        art = stavka->art;
-        kolicina = stavka->kolicina;
+        tekst = T;
+        brojPoena = BP;
+        brojPonudjenihOdgovora = BPO;
     }
 
-    void ispis()
+    int odgovoriMetoda(int niz[], int br)
     {
-        cout << art;
-    }
-
-    int getIznos()
-    {
-        return kolicina * (art.cena);
-    }
-
-    friend ostream &operator<<(ostream &COUT, Stavka &stv)
-    {
-        cout << stv.id << "(" << stv.art << ")"
-             << ":" << stv.kolicina << "|" << stv.getIznos() << endl;
-        return COUT;
-    }
-};
-
-int Stavka::redniBroj = 0;
-
-class Racun
-{
-    Stavka *niz;
-    int dodatniPopust;
-    int brojStavki;
-
-public:
-    Racun(int DP)
-    {
-        brojStavki = 0;
-        dodatniPopust = DP;
-        niz = new Stavka[brojStavki];
-    }
-
-    void operator+=(Stavka stv)
-    {
-        Stavka *temp = new Stavka[brojStavki + 1];
-
-        cout << "RB" << stv.redniBroj << endl;
-
-        for (int i = 0; i < brojStavki; i++)
+        int ukupno = 0;
+        for (int i = 0; i < br; i++)
         {
-            temp[i] = niz[i];
-        }
-        temp[brojStavki] = stv;
-        delete[] niz;
-        niz = temp;
-        brojStavki++;
-    }
-
-    void setDodatniPopust(int DP)
-    {
-        dodatniPopust = DP;
-    }
-    int sumaRacuna()
-    {
-        int suma = 0;
-
-        cout << brojStavki << ":";
-
-        for (int i = 0; i < brojStavki; i++)
-        {
-            if (niz[i].art.celobrojniIznosPopusta)
+            for (int j = 0; j < brojPonudjenihOdgovora; j++)
             {
-                suma += niz[i].getIznos();
-            }
-            else
-            {
-
-                suma += niz[i].getIznos() - (niz[i].getIznos() * (dodatniPopust / 100));
+                if (odgovori[j].getRight() && niz[i] == j)
+                {
+                    ukupno += odgovori[j].getPorcenatUdela();
+                }
             }
         }
-
-        return suma;
+        return ukupno;
     }
-
-    friend ostream &operator<<(ostream &COUT, Racun &racun)
+    void operator+=(PonudjeniOdgovor &PO)
     {
-        cout << "SUMA RACUNA" << racun.sumaRacuna() << endl;
-        for (int i = 0; i < racun.brojStavki; i++)
+        PonudjeniOdgovor *temp = new PonudjeniOdgovor[brojPonudjenihOdgovora];
+
+        for (int i = 0; i < brojPonudjenihOdgovora; i++)
         {
-            cout << racun.niz[i];
+            if (PO.getRight())
+            {
+                brTacnih++;
+                tacniOdgovor = new int[brTacnih];
+                tacniOdgovor[brTacnih - 1] = i;
+            }
+            temp[i] = odgovori[i];
         }
-    }
-    ~Racun()
-    {
-        delete[] niz;
+        temp[brojPonudjenihOdgovora] = PO;
+
+        delete[] odgovori;
+        odgovori = temp;
     }
 };
 int main()
 {
 
-    Artikal a1("jaja", 43, 20);
-    Artikal a2("jogurt", 43, 0);
-    Artikal a3("hleb", 83, 20);
+    PonudjeniOdgovor a("Pariz", false, 0);
+    PonudjeniOdgovor b("London", false, 0);
 
-    Stavka stv1(a1, 5);
-    Stavka stv2(a2, 3);
-    Stavka stv3(a3, 2);
+    PonudjeniOdgovor c("Oslo", true, 80);
 
-    cout << "works fine" << stv3.redniBroj;
-    Racun r1(50);
-    r1 += stv1;
-    r1 += stv2;
-    r1 += stv3;
-
-    cout << r1;
-
+    cout << c;
     return 0;
 }
-
-// experienced that static int creates only one copy and that i should make my classes have their one var of that copy at the moment
