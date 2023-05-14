@@ -5982,128 +5982,378 @@ using namespace std;
   Svi podaci se mogu dohvatiti, a informacija o tačnosti i procentualni udeo se mogu
  postavljati(prilikom postavljanja proveriti da li su uneti ispravni procenti). Odgovor može da se ispiše na glavnom izlazu (out<<odgovor) u obliku tekst: udeo%.*/
 
+// #include <iostream>
+// #include <string>
+// class PonudjeniOdgovor
+// {
+//     string odgovori;
+//     bool right;
+//     int procenatUdela;
+
+// public:
+//     PonudjeniOdgovor(string O = "", bool R = false, int PU = 0)
+//     {
+//         odgovori = O;
+//         right = R;
+//         procenatUdela = PU;
+//     }
+
+//     string getOdgovor()
+//     {
+//         return odgovori;
+//     }
+//     bool getRight()
+//     {
+//         return right;
+//     }
+//     int getPorcenatUdela()
+//     {
+//         return procenatUdela;
+//     }
+//     void setRight(bool R)
+//     {
+//         right = R;
+//     }
+//     void setProcenatUdela(int PU)
+//     {
+//         if (PU <= 100 && PU >= -100)
+//         {
+//             procenatUdela = PU;
+//         }
+//     }
+
+//     friend ostream &operator<<(ostream &COUT, PonudjeniOdgovor &PO)
+//     {
+//         cout << PO.getOdgovor() << ":" << PO.procenatUdela << "%" << endl;
+//     }
+// };
+
+// /*Klasa Pitanje sadrži zadate podatke koji su zaštićeni: tekst, broj poena koji nosi, broj ponuđenih odgovora (podrazumevano 5),
+//  kao i ponuđene odgovore(dinamičko alocirani niz odgovora). Stvara se bez ponuđenih odgovora, nakon čega se oni dodaju pojedinačno (pitanje+=odgovor).
+//  Prilikom dodavanja ponuđenog odgovora računaju se jednaki procentualni udeli svih tačnih odgovora dodatih u dato pitanje(u zbiru daju 100%), dok svaki
+//   netačan odgovor nosi -100%. Pomoću polimorfne metode može da se odgovori na pitanje, tada se zadaje niz koji sadrži redne brojeve ponuđenih odgovora koje
+//    ispitanik smatra tačnim i dužina tog niza(odgovori(int niz[],int br);). Tada se računa koliko je procentualno tačno odgovoreno na to pitanje.
+//  Na glavnom izlazu se ispisuje (out<<pitanje)
+// tako što se u prvom redu ispiše tekst: poeni(maksimalni koje pitanje nosi), a potom se u zasebnim redovima ispišu sadržani ponuđeni odgovori.*/
+
+// class Pitanje
+// {
+// protected:
+//     string tekst;
+//     int brojPoena;
+//     int brojPonudjenihOdgovora;
+//     PonudjeniOdgovor *odgovori;
+
+// public:
+//     int *tacniOdgovor;
+//     int brTacnih;
+//     Pitanje()
+//     {
+//         tekst = "";
+//         brojPoena = 0;
+//         brojPonudjenihOdgovora = 5;
+//         odgovori = new PonudjeniOdgovor[brojPonudjenihOdgovora + 1];
+//     }
+//     Pitanje(string T, int BP, int BPO)
+//     {
+//         tekst = T;
+//         brojPoena = BP;
+//         brojPonudjenihOdgovora = BPO;
+//     }
+
+//     int odgovoriMetoda(int niz[], int br)
+//     {
+//         int ukupno = 0;
+//         for (int i = 0; i < br; i++)
+//         {
+//             for (int j = 0; j < brojPonudjenihOdgovora; j++)
+//             {
+//                 if (odgovori[j].getRight() && niz[i] == j)
+//                 {
+//                     ukupno += odgovori[j].getPorcenatUdela();
+//                 }
+//             }
+//         }
+//         return ukupno;
+//     }
+//     void operator+=(PonudjeniOdgovor &PO)
+//     {
+//         PonudjeniOdgovor *temp = new PonudjeniOdgovor[brojPonudjenihOdgovora];
+
+//         for (int i = 0; i < brojPonudjenihOdgovora; i++)
+//         {
+//             if (PO.getRight())
+//             {
+//                 brTacnih++;
+//                 tacniOdgovor = new int[brTacnih];
+//                 tacniOdgovor[brTacnih - 1] = i;
+//             }
+//             temp[i] = odgovori[i];
+//         }
+//         temp[brojPonudjenihOdgovora] = PO;
+
+//         delete[] odgovori;
+//         odgovori = temp;
+//     }
+// };
+// int main()
+// {
+
+//     PonudjeniOdgovor a("Pariz", false, 0);
+//     PonudjeniOdgovor b("London", false, 0);
+
+//     PonudjeniOdgovor c("Oslo", true, 80);
+
+//     cout << c;
+//     return 0;
+// }
+
+// #include <iostream>
+// #include <string>
+// #include <cstdlib>
+// #include <time.h>
+
+// enum VRSTA
+// {
+//     SLANO,
+//     SLATKO,
+//     NEUT
+// };
+
+// class Sastojak
+// {
+//     string ime;
+//     int cenaKG;
+//     VRSTA sastojak;
+
+// public:
+//     Sastojak() : ime(""), cenaKG(0), sastojak(NEUT)
+//     {
+//     }
+//     Sastojak(string I, int C, VRSTA sas)
+//     {
+
+//         ime = I;
+//         cenaKG = C;
+//         sastojak = sas;
+//     }
+
+//     string getSastojak()
+//     {
+//         switch (sastojak)
+//         {
+//         case SLANO:
+//             return "slano";
+//         case SLATKO:
+//             return "slatko";
+//         case NEUT:
+//             return "neutralno";
+//         default:
+//             break;
+//         }
+//     }
+//     double getCenu(int kolicina)
+//     {
+//         double gram = cenaKG / 1000;
+
+//         return kolicina * gram;
+//     }
+
+//     friend ostream &operator<<(ostream &COUT, Sastojak &sas)
+//     {
+//         cout << sas.ime << "-" << sas.cenaKG << "/"
+//              << "KG" << endl;
+//         return COUT;
+//     }
+// };
+
+// class Jelo
+// {
+//     string ime;
+//     Sastojak *sastojci;
+//     int brojSastojaka;
+//     float kolicina;
+
+// public:
+//     Jelo(string I, float K, Sastojak *sas, int BS)
+//     {
+//         ime = I;
+//         sastojci = sas;
+//         kolicina = K;
+//         brojSastojaka = BS;
+//     }
+//     int cenaJela()
+//     {
+//         int ukupno = 0;
+//         for (int i = 0; i < brojSastojaka; i++)
+//         {
+//         }
+//     }
+// };
+// int main()
+// {
+//     srand(time(0));
+
+//     int random = rand();
+
+//     cout << random;
+
+//     return 0;
+// }
+
+// etf zadatak gandom
+
 #include <iostream>
 #include <string>
-class PonudjeniOdgovor
+#include <cstdlib>
+#include <time.h>
+
+enum ISHOD
 {
-    string odgovori;
-    bool right;
-    int procenatUdela;
+    JEDAN,
+    IKS,
+    DVA,
+    NEODREDJEN
+
+};
+
+class Par
+{
+    int id;
+    string opis;
+    ISHOD ishod;
+    float niz[3];
 
 public:
-    PonudjeniOdgovor(string O = "", bool R = false, int PU = 0)
+    Par(string O = "", float jedan = 0, float iks = 0, float dva = 0)
     {
-        odgovori = O;
-        right = R;
-        procenatUdela = PU;
+        opis = O;
+        niz[0] = jedan;
+        niz[1] = iks;
+        niz[2] = dva;
+        id = rand();
+        ishod = NEODREDJEN;
     }
-
-    string getOdgovor()
+    string IshodString(ISHOD is)
     {
-        return odgovori;
-    }
-    bool getRight()
-    {
-        return right;
-    }
-    int getPorcenatUdela()
-    {
-        return procenatUdela;
-    }
-    void setRight(bool R)
-    {
-        right = R;
-    }
-    void setProcenatUdela(int PU)
-    {
-        if (PU <= 100 && PU >= -100)
+        switch (is)
         {
-            procenatUdela = PU;
+        case NEODREDJEN:
+            return "Neodredjen";
+            break;
+        case JEDAN:
+            return "JEDAN";
+        case IKS:
+            return "IKS";
+        case DVA:
+            return "DVA";
+        default:
+            break;
         }
     }
-
-    friend ostream &operator<<(ostream &COUT, PonudjeniOdgovor &PO)
+    float getKvota(ISHOD is)
     {
-        cout << PO.getOdgovor() << ":" << PO.procenatUdela << "%" << endl;
+        cout << "ISHOD=" << is << endl;
+        if (is || is == 0)
+        {
+            return niz[is];
+        }
+        else
+        {
+            return -1;
+        }
+    }
+    void setStvarniIshod(ISHOD is)
+    {
+        ishod = is;
+    }
+    ISHOD getStvarniIshod()
+    {
+        return ishod;
+    }
+
+    friend ostream &operator<<(ostream &COUT, Par &p)
+    {
+        cout << p.id << " - " << p.opis << endl;
+
+        cout << "(" << p.niz[0] << "," << p.niz[1] << "," << p.niz[2] << ")" << endl;
     }
 };
 
-/*Klasa Pitanje sadrži zadate podatke koji su zaštićeni: tekst, broj poena koji nosi, broj ponuđenih odgovora (podrazumevano 5),
- kao i ponuđene odgovore(dinamičko alocirani niz odgovora). Stvara se bez ponuđenih odgovora, nakon čega se oni dodaju pojedinačno (pitanje+=odgovor).
- Prilikom dodavanja ponuđenog odgovora računaju se jednaki procentualni udeli svih tačnih odgovora dodatih u dato pitanje(u zbiru daju 100%), dok svaki
-  netačan odgovor nosi -100%. Pomoću polimorfne metode može da se odgovori na pitanje, tada se zadaje niz koji sadrži redne brojeve ponuđenih odgovora koje
-   ispitanik smatra tačnim i dužina tog niza(odgovori(int niz[],int br);). Tada se računa koliko je procentualno tačno odgovoreno na to pitanje.
- Na glavnom izlazu se ispisuje (out<<pitanje)
-tako što se u prvom redu ispiše tekst: poeni(maksimalni koje pitanje nosi), a potom se u zasebnim redovima ispišu sadržani ponuđeni odgovori.*/
-
-class Pitanje
+class Tiket
 {
-protected:
-    string tekst;
-    int brojPoena;
-    int brojPonudjenihOdgovora;
-    PonudjeniOdgovor *odgovori;
+    float uplata;
+    int brojParova;
+    Par *parovi;
 
 public:
-    int *tacniOdgovor;
-    int brTacnih;
-    Pitanje()
+    Tiket(float U)
     {
-        tekst = "";
-        brojPoena = 0;
-        brojPonudjenihOdgovora = 5;
-        odgovori = new PonudjeniOdgovor[brojPonudjenihOdgovora + 1];
+        uplata = U;
+        brojParova = 0;
+        parovi = new Par[brojParova + 1];
     }
-    Pitanje(string T, int BP, int BPO)
+    float sumaProcenta = 0;
+    int tacniTiketi = 0;
+    void dodajPar(Par p, ISHOD is)
     {
-        tekst = T;
-        brojPoena = BP;
-        brojPonudjenihOdgovora = BPO;
-    }
-
-    int odgovoriMetoda(int niz[], int br)
-    {
-        int ukupno = 0;
-        for (int i = 0; i < br; i++)
+        if (p.getStvarniIshod() == is)
         {
-            for (int j = 0; j < brojPonudjenihOdgovora; j++)
-            {
-                if (odgovori[j].getRight() && niz[i] == j)
-                {
-                    ukupno += odgovori[j].getPorcenatUdela();
-                }
-            }
+            tacniTiketi++;
+            cout << p.getKvota(is) << endl;
+            sumaProcenta += p.getKvota(is);
         }
-        return ukupno;
-    }
-    void operator+=(PonudjeniOdgovor &PO)
-    {
-        PonudjeniOdgovor *temp = new PonudjeniOdgovor[brojPonudjenihOdgovora];
 
-        for (int i = 0; i < brojPonudjenihOdgovora; i++)
+        Par *temp = new Par[brojParova + 1];
+
+        for (int i = 0; i < brojParova; i++)
         {
-            if (PO.getRight())
-            {
-                brTacnih++;
-                tacniOdgovor = new int[brTacnih];
-                tacniOdgovor[brTacnih - 1] = i;
-            }
-            temp[i] = odgovori[i];
+            temp[i] = parovi[i];
         }
-        temp[brojPonudjenihOdgovora] = PO;
+        temp[brojParova] = p;
+        brojParova++;
+        delete[] parovi;
+        parovi = temp;
+    }
+    float getVrednostUplate()
+    {
+        return uplata;
+    }
 
-        delete[] odgovori;
-        odgovori = temp;
+    // vrednost isplate
+    float operator*()
+    {
+        cout << "SUMA PROCENTA = " << sumaProcenta << endl;
+        return tacniTiketi == brojParova ? sumaProcenta * uplata : 0;
+    }
+    Tiket operator~()
+    {
+        return tacniTiketi == brojParova ? true : false;
     }
 };
+
 int main()
 {
+    srand(time(0));
+    Par p1("REAL VS PARIS", 3.0, 2.1, 1);
+    Par p2("ZORDAN VS MIKEL", 3, 5, 1.2);
+    Par p3("ZORDAN VS MIKEL", 1.4, 5, 1.2);
 
-    PonudjeniOdgovor a("Pariz", false, 0);
-    PonudjeniOdgovor b("London", false, 0);
+    p1.setStvarniIshod(JEDAN);
+    p2.setStvarniIshod(IKS);
+    p3.setStvarniIshod(DVA);
 
-    PonudjeniOdgovor c("Oslo", true, 80);
+    cout << p1.getStvarniIshod() << endl;
+    cout << p1;
 
-    cout << c;
+    Tiket t1(430);
+    t1.dodajPar(p1, JEDAN);
+    t1.dodajPar(p2, IKS);
+    t1.dodajPar(p3, DVA);
+
+    float dobitak = *t1;
+    cout << endl
+         << dobitak;
+
     return 0;
 }
