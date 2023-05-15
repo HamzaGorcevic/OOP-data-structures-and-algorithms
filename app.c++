@@ -6203,157 +6203,191 @@ using namespace std;
 
 // etf zadatak gandom
 
-#include <iostream>
-#include <string>
-#include <cstdlib>
-#include <time.h>
+// #include <iostream>
+// #include <string>
+// #include <cstdlib>
+// #include <time.h>
 
-enum ISHOD
+// enum ISHOD
+// {
+//     JEDAN,
+//     IKS,
+//     DVA,
+//     NEODREDJEN
+
+// };
+
+// class Par
+// {
+//     int id;
+//     string opis;
+//     ISHOD ishod;
+//     float niz[3];
+
+// public:
+//     Par(string O = "", float jedan = 0, float iks = 0, float dva = 0)
+//     {
+//         opis = O;
+//         niz[0] = jedan;
+//         niz[1] = iks;
+//         niz[2] = dva;
+//         id = rand();
+//         ishod = NEODREDJEN;
+//     }
+//     string IshodString(ISHOD is)
+//     {
+//         switch (is)
+//         {
+//         case NEODREDJEN:
+//             return "Neodredjen";
+//             break;
+//         case JEDAN:
+//             return "JEDAN";
+//         case IKS:
+//             return "IKS";
+//         case DVA:
+//             return "DVA";
+//         default:
+//             break;
+//         }
+//     }
+//     float getKvota(ISHOD is)
+//     {
+//         cout << "ISHOD=" << is << endl;
+//         if (is || is == 0)
+//         {
+//             return niz[is];
+//         }
+//         else
+//         {
+//             return -1;
+//         }
+//     }
+//     void setStvarniIshod(ISHOD is)
+//     {
+//         ishod = is;
+//     }
+//     ISHOD getStvarniIshod()
+//     {
+//         return ishod;
+//     }
+
+//     friend ostream &operator<<(ostream &COUT, Par &p)
+//     {
+//         cout << p.id << " - " << p.opis << endl;
+
+//         cout << "(" << p.niz[0] << "," << p.niz[1] << "," << p.niz[2] << ")" << endl;
+//     }
+// };
+
+// class Tiket
+// {
+//     float uplata;
+//     int brojParova;
+//     Par *parovi;
+
+// public:
+//     Tiket(float U)
+//     {
+//         uplata = U;
+//         brojParova = 0;
+//         parovi = new Par[brojParova + 1];
+//     }
+//     float sumaProcenta = 0;
+//     int tacniTiketi = 0;
+//     void dodajPar(Par p, ISHOD is)
+//     {
+//         if (p.getStvarniIshod() == is)
+//         {
+//             tacniTiketi++;
+//             cout << p.getKvota(is) << endl;
+//             sumaProcenta += p.getKvota(is);
+//         }
+
+//         Par *temp = new Par[brojParova + 1];
+
+//         for (int i = 0; i < brojParova; i++)
+//         {
+//             temp[i] = parovi[i];
+//         }
+//         temp[brojParova] = p;
+//         brojParova++;
+//         delete[] parovi;
+//         parovi = temp;
+//     }
+//     float getVrednostUplate()
+//     {
+//         return uplata;
+//     }
+
+//     // vrednost isplate
+//     float operator*()
+//     {
+//         cout << "SUMA PROCENTA = " << sumaProcenta << endl;
+//         return tacniTiketi == brojParova ? sumaProcenta * uplata : 0;
+//     }
+//     Tiket operator~()
+//     {
+//         return tacniTiketi == brojParova ? true : false;
+//     }
+// };
+
+// int main()
+// {
+//     srand(time(0));
+//     Par p1("REAL VS PARIS", 3.0, 2.1, 1);
+//     Par p2("ZORDAN VS MIKEL", 3, 5, 1.2);
+//     Par p3("ZORDAN VS MIKEL", 1.4, 5, 1.2);
+
+//     p1.setStvarniIshod(JEDAN);
+//     p2.setStvarniIshod(IKS);
+//     p3.setStvarniIshod(DVA);
+
+//     cout << p1.getStvarniIshod() << endl;
+//     cout << p1;
+
+//     Tiket t1(430);
+//     t1.dodajPar(p1, JEDAN);
+//     t1.dodajPar(p2, IKS);
+//     t1.dodajPar(p3, DVA);
+
+//     float dobitak = *t1;
+//     cout << endl
+//          << dobitak;
+
+//     return 0;
+// }
+
+// graphs Grpahs graph
+
+// graph adjacency arrays
+
+#include <stdio.h>
+#include <stdlib.h>
+
+#define V 5
+
+void addEdge(int arr[][V], int u, int v)
 {
-    JEDAN,
-    IKS,
-    DVA,
-    NEODREDJEN
-
-};
-
-class Par
-{
-    int id;
-    string opis;
-    ISHOD ishod;
-    float niz[3];
-
-public:
-    Par(string O = "", float jedan = 0, float iks = 0, float dva = 0)
-    {
-        opis = O;
-        niz[0] = jedan;
-        niz[1] = iks;
-        niz[2] = dva;
-        id = rand();
-        ishod = NEODREDJEN;
-    }
-    string IshodString(ISHOD is)
-    {
-        switch (is)
-        {
-        case NEODREDJEN:
-            return "Neodredjen";
-            break;
-        case JEDAN:
-            return "JEDAN";
-        case IKS:
-            return "IKS";
-        case DVA:
-            return "DVA";
-        default:
-            break;
-        }
-    }
-    float getKvota(ISHOD is)
-    {
-        cout << "ISHOD=" << is << endl;
-        if (is || is == 0)
-        {
-            return niz[is];
-        }
-        else
-        {
-            return -1;
-        }
-    }
-    void setStvarniIshod(ISHOD is)
-    {
-        ishod = is;
-    }
-    ISHOD getStvarniIshod()
-    {
-        return ishod;
-    }
-
-    friend ostream &operator<<(ostream &COUT, Par &p)
-    {
-        cout << p.id << " - " << p.opis << endl;
-
-        cout << "(" << p.niz[0] << "," << p.niz[1] << "," << p.niz[2] << ")" << endl;
-    }
-};
-
-class Tiket
-{
-    float uplata;
-    int brojParova;
-    Par *parovi;
-
-public:
-    Tiket(float U)
-    {
-        uplata = U;
-        brojParova = 0;
-        parovi = new Par[brojParova + 1];
-    }
-    float sumaProcenta = 0;
-    int tacniTiketi = 0;
-    void dodajPar(Par p, ISHOD is)
-    {
-        if (p.getStvarniIshod() == is)
-        {
-            tacniTiketi++;
-            cout << p.getKvota(is) << endl;
-            sumaProcenta += p.getKvota(is);
-        }
-
-        Par *temp = new Par[brojParova + 1];
-
-        for (int i = 0; i < brojParova; i++)
-        {
-            temp[i] = parovi[i];
-        }
-        temp[brojParova] = p;
-        brojParova++;
-        delete[] parovi;
-        parovi = temp;
-    }
-    float getVrednostUplate()
-    {
-        return uplata;
-    }
-
-    // vrednost isplate
-    float operator*()
-    {
-        cout << "SUMA PROCENTA = " << sumaProcenta << endl;
-        return tacniTiketi == brojParova ? sumaProcenta * uplata : 0;
-    }
-    Tiket operator~()
-    {
-        return tacniTiketi == brojParova ? true : false;
-    }
-};
-
+    arr[u][v] = 1;
+}
 int main()
 {
-    srand(time(0));
-    Par p1("REAL VS PARIS", 3.0, 2.1, 1);
-    Par p2("ZORDAN VS MIKEL", 3, 5, 1.2);
-    Par p3("ZORDAN VS MIKEL", 1.4, 5, 1.2);
+    int graph[V][V] = {0};
 
-    p1.setStvarniIshod(JEDAN);
-    p2.setStvarniIshod(IKS);
-    p3.setStvarniIshod(DVA);
-
-    cout << p1.getStvarniIshod() << endl;
-    cout << p1;
-
-    Tiket t1(430);
-    t1.dodajPar(p1, JEDAN);
-    t1.dodajPar(p2, IKS);
-    t1.dodajPar(p3, DVA);
-
-    float dobitak = *t1;
-    cout << endl
-         << dobitak;
-
+    addEdge(graph, 0, 1);
+    addEdge(graph, 0, 4);
+    addEdge(graph, 1, 2);
+    addEdge(graph, 1, 4);
+    addEdge(graph, 3, 2);
+    addEdge(graph, 3, 4);
+    for (int i = 0; i < V; i++)
+    {
+        for (int j = 0; j < V; j++)
+        {
+            printf("%d  ", graph[i][j]);
+        }
+        printf("\n");
+    }
     return 0;
 }
