@@ -6446,76 +6446,82 @@ using namespace std;
 
 // implementacija stabla u c
 
+// #include <iostream>
+
+// typedef struct Node
+// {
+//     int vertex;
+//     struct Node *next;
+// } Node;
+
+// typedef struct Graph
+// {
+//     int numOfVertex;
+//     Node **conections;
+// } Graph;
+
+// Node *createNode(int v)
+// {
+//     Node *newNode = (Node *)malloc(sizeof(Node));
+//     newNode->vertex = v;
+//     newNode->next = NULL;
+//     return newNode;
+// }
+
+// Graph *createGraph(int n)
+// {
+//     Graph *newGraph = (Graph *)malloc(sizeof(Graph));
+//     newGraph->numOfVertex = n;
+//     newGraph->conections = (Node **)malloc(n * sizeof(Node *));
+//     for (int i = 0; i < n; i++)
+//     {
+//         newGraph->conections[i] = NULL;
+//     }
+//     return newGraph;
+// }
+
+// void addEdge(Graph *graph, int src, int des)
+// {
+//     // usmereni
+//     Node *newNode = createNode(des);
+//     newNode->next = graph->conections[src];
+//     graph->conections[src] = newNode;
+
+//     // za neusmereni dodamo jos
+//     newNode = createNode(src);
+//     newNode->next = graph->conections[des];
+//     graph->conections[des] = newNode;
+// }
+// void ispis(Graph *graph)
+// {
+//     int n = graph->numOfVertex;
+
+//     for (int i = 0; i < n; i++)
+//     {
+//         printf("vertex conected to %d ", i);
+//         Node *temp = graph->conections[i];
+//         while (temp)
+//         {
+//             printf("%d ", temp->vertex);
+//             temp = temp->next;
+//         }
+//         printf("\n");
+//     }
+// }
+
+// int main()
+// {
+//     Graph *graph = createGraph(4);
+//     addEdge(graph, 1, 2);
+//     addEdge(graph, 1, 3);
+//     addEdge(graph, 0, 3);
+//     ispis(graph);
+//     return 0;
+// }
+
 #include <iostream>
-
-typedef struct Node
-{
-    int vertex;
-    struct Node *next;
-} Node;
-
-typedef struct Graph
-{
-    int numOfVertex;
-    Node **conections;
-} Graph;
-
-Node *createNode(int v)
-{
-    Node *newNode = (Node *)malloc(sizeof(Node));
-    newNode->vertex = v;
-    newNode->next = NULL;
-    return newNode;
-}
-
-Graph *createGraph(int n)
-{
-    Graph *newGraph = (Graph *)malloc(sizeof(Graph));
-    newGraph->numOfVertex = n;
-    newGraph->conections = (Node **)malloc(n * sizeof(Node *));
-    for (int i = 0; i < n; i++)
-    {
-        newGraph->conections[i] = NULL;
-    }
-    return newGraph;
-}
-
-void addEdge(Graph *graph, int src, int des)
-{
-    // usmereni
-    Node *newNode = createNode(des);
-    newNode->next = graph->conections[src];
-    graph->conections[src] = newNode;
-
-    // za neusmereni dodamo jos
-    newNode = createNode(src);
-    newNode->next = graph->conections[des];
-    graph->conections[des] = newNode;
-}
-void ispis(Graph *graph)
-{
-    int n = graph->numOfVertex;
-
-    for (int i = 0; i < n; i++)
-    {
-        printf("vertex conected to %d ", i);
-        Node *temp = graph->conections[i];
-        while (temp)
-        {
-            printf("%d ", temp->vertex);
-            temp = temp->next;
-        }
-        printf("\n");
-    }
-}
 
 int main()
 {
-    Graph *graph = createGraph(4);
-    addEdge(graph, 1, 2);
-    addEdge(graph, 1, 3);
-    addEdge(graph, 0, 3);
-
-    ispis(graph);
     return 0;
 }
