@@ -6371,6 +6371,7 @@ void addEdge(int arr[][V], int u, int v)
 {
     arr[u][v] = 1;
 }
+
 int main()
 {
     int graph[V][V] = {0};
@@ -6381,6 +6382,13 @@ int main()
     addEdge(graph, 1, 4);
     addEdge(graph, 3, 2);
     addEdge(graph, 3, 4);
+    // dodavanje cvora
+    graph[V + 1][V + 1];
+    // brisanje
+    graph[1][2] = 0;
+
+    // dodavanja
+    graph[3][3] = 1;
     for (int i = 0; i < V; i++)
     {
         for (int j = 0; j < V; j++)
