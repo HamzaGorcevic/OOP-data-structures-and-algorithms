@@ -6362,40 +6362,160 @@ using namespace std;
 
 // graph adjacency arrays
 
-#include <stdio.h>
-#include <stdlib.h>
+// #include <stdio.h>
+// #include <stdlib.h>
 
-#define V 5
+// #define V 5
 
-void addEdge(int arr[][V], int u, int v)
+// void addEdge(int arr[][V], int u, int v)
+// {
+//     arr[u][v] = 1;
+// }
+
+// int main()
+// {
+//     int graph[V][V] = {0};
+
+//     addEdge(graph, 0, 1);
+//     addEdge(graph, 0, 4);
+//     addEdge(graph, 1, 2);
+//     addEdge(graph, 1, 4);
+//     addEdge(graph, 3, 2);
+//     addEdge(graph, 3, 4);
+//     // dodavanje cvora
+//     graph[V + 1][V + 1];
+//     // brisanje
+//     graph[1][2] = 0;
+
+//     // dodavanja
+//     graph[3][3] = 1;
+
+//     // provera da li veza izmedju cvorova postoji
+//     if (graph[3][3])
+//     {
+//         printf("Postoji\n");
+//     }
+//     // ispis
+//     for (int i = 0; i < V; i++)
+//     {
+//         for (int j = 0; j < V; j++)
+//         {
+//             printf("%d  ", graph[i][j]);
+//         }
+//         printf("\n");
+//     }
+//     return 0;
+// }
+
+// #include <stdio.h>
+// #include <stdlib.h>
+// #include <vector>
+// #include <iostream>
+
+// #define SIZE 5
+
+// using namespace std;
+
+// void addEdge(vector<int> graph[SIZE], int u, int v)
+// {
+//     graph[u].emplace_back(v);
+// }
+// int main()
+// {
+//     vector<int> graph[SIZE];
+//     addEdge(graph, 1, 0);
+//     addEdge(graph, 1, 2);
+
+//     addEdge(graph, 3, 4);
+
+//     addEdge(graph, 3, 2);
+
+//     for (int i = 0; i < SIZE; i++)
+//     {
+//         printf("%d", i);
+//         for (int j = 0; j < graph[i].size(); j++)
+//         {
+//             printf("-->%d", graph[i][j]);
+//         }
+//         printf("\n");
+//     }
+
+//     // brisanje veze
+//     return 0;
+// }
+
+// implementacija stabla u c
+
+#include <iostream>
+
+typedef struct Node
 {
-    arr[u][v] = 1;
+    int vertex;
+    struct Node *next;
+} Node;
+
+typedef struct Graph
+{
+    int numOfVertex;
+    Node **conections;
+} Graph;
+
+Node *createNode(int v)
+{
+    Node *newNode = (Node *)malloc(sizeof(Node));
+    newNode->vertex = v;
+    newNode->next = NULL;
+    return newNode;
+}
+
+Graph *createGraph(int n)
+{
+    Graph *newGraph = (Graph *)malloc(sizeof(Graph));
+    newGraph->numOfVertex = n;
+    newGraph->conections = (Node **)malloc(n * sizeof(Node *));
+    for (int i = 0; i < n; i++)
+    {
+        newGraph->conections[i] = NULL;
+    }
+    return newGraph;
+}
+
+void addEdge(Graph *graph, int src, int des)
+{
+    // usmereni
+    Node *newNode = createNode(des);
+    newNode->next = graph->conections[src];
+    graph->conections[src] = newNode;
+
+    // za neusmereni dodamo jos
+    newNode = createNode(src);
+    newNode->next = graph->conections[des];
+    graph->conections[des] = newNode;
+}
+void ispis(Graph *graph)
+{
+    int n = graph->numOfVertex;
+
+    for (int i = 0; i < n; i++)
+    {
+        printf("vertex conected to %d ", i);
+        Node *temp = graph->conections[i];
+        while (temp)
+        {
+            printf("%d ", temp->vertex);
+            temp = temp->next;
+        }
+        printf("\n");
+    }
 }
 
 int main()
 {
-    int graph[V][V] = {0};
-
-    addEdge(graph, 0, 1);
-    addEdge(graph, 0, 4);
+    Graph *graph = createGraph(4);
     addEdge(graph, 1, 2);
-    addEdge(graph, 1, 4);
-    addEdge(graph, 3, 2);
-    addEdge(graph, 3, 4);
-    // dodavanje cvora
-    graph[V + 1][V + 1];
-    // brisanje
-    graph[1][2] = 0;
+    addEdge(graph, 1, 3);
+    addEdge(graph, 0, 3);
 
-    // dodavanja
-    graph[3][3] = 1;
-    for (int i = 0; i < V; i++)
-    {
-        for (int j = 0; j < V; j++)
-        {
-            printf("%d  ", graph[i][j]);
-        }
-        printf("\n");
-    }
+    ispis(graph);
     return 0;
 }
