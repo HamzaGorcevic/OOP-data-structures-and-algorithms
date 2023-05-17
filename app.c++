@@ -6685,6 +6685,7 @@ using namespace std;
 #include <string>
 #include <cstdlib>
 #include <time.h>
+#include <vector>
 using namespace std;
 
 enum STANJE
@@ -6723,10 +6724,10 @@ public:
     JednocelijskiOrganizam() : stanje(ZIV)
     {
     }
-    virtual bool kloniraj()
+    virtual JednocelijskiOrganizam *kloniraj()
     {
         cout << "Jednocelijski organizam je kloniram \n";
-        return true;
+        return new JednocelijskiOrganizam();
     }
     STANJE getStanje()
     {
@@ -6764,20 +6765,18 @@ public:
         verovatnoca = V;
         uspesnaKloniranja = 0;
     }
-    bool kloniraj()
+    Bakterija *kloniraj()
     {
-        cout << getStanje() << "==" << MRTAV << verovatnoca << "<" << rnd() << endl;
         if (getStanje() == MRTAV || verovatnoca < rnd())
         {
-            printf("Umrla je\n");
-
-            return false;
+            cout << "NU" << endl;
+            return nullptr;
         }
         else
         {
-            printf("Klonirano uspesno\n");
+            cout << "U" << endl;
             uspesnaKloniranja++;
-            return true;
+            return new Bakterija(naziv, losaSupstanca, verovatnoca);
         }
     }
     void reaguj(Supstanca &s)
@@ -6793,20 +6792,99 @@ public:
     }
     friend ostream &operator<<(ostream &COUT, Bakterija &b)
     {
-        cout << b.naziv << "/" << b.uspesnaKloniranja << "(organizam)" << endl;
+        COUT << b.naziv << "/" << b.uspesnaKloniranja << "(organizam)" << endl;
+        return COUT;
     }
 };
 
+class Kolonija
+{
+    float id;
+    typedef struct Organizmi
+    {
+        Bakterija *data;
+        struct Organizmi *next;
+    } Organizmi;
+    Organizmi org;
+
+    int brojOrganizama;
+
+public:
+    Kolonija()
+    {
+        id = rnd();
+    }
+    Kolonija(Bakterija *organizam)
+    {
+        brojOrganizama = 1;
+        org.data = organizam;
+        org.next = NULL;
+    }
+    void razmnozi()
+    {
+        Organizmi *temp = &org;
+        Organizmi *newArray = NULL;
+        Organizmi *lastNode = NULL;
+
+        while (temp != NULL)
+        {
+            Bakterija *cloned = temp->data->kloniraj();
+            if (cloned != NULL)
+            {
+                cout << "CLONED" << endl;
+
+                Organizmi *newNode = new Organizmi;
+                newNode->data = cloned;
+                newNode->next = NULL;
+
+                if (newArray == NULL)
+                {
+                    newArray = newNode;
+                    lastNode = newNode;
+                }
+                else
+                {
+                    lastNode->next = newNode;
+                    lastNode = newNode;
+                }
+            }
+
+            temp = temp->next;
+        }
+
+        // Append the cloned organisms to the existing organisms
+        if (newArray != NULL)
+        {
+            lastNode->next = org.next;
+            org.next = newArray;
+        }
+    }
+
+    void ispis()
+    {
+        cout << "ISPIS" << endl;
+
+        Organizmi *temp = &org;
+
+        while (temp != NULL)
+        {
+            cout << *temp->data;
+            temp = temp->next;
+        }
+
+        cout << "ISPIS" << endl;
+    }
+};
 int main()
 {
-    cout << rnd() << endl;
     Supstanca s("krv");
-    Bakterija b1("amonijak", "krv", 0.5);
+    Bakterija b1("amonijak", "krv", 100);
     b1.kloniraj();
     b1.kloniraj();
-    b1.kloniraj();
-    b1.reaguj(s);
-    b1.kloniraj();
-    cout << b1;
-    return 0;
+
+    Kolonija k(&b1);
+    k.razmnozi();
+    k.razmnozi();
+
+    k.ispis();
 }
