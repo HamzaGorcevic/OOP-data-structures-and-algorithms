@@ -6519,9 +6519,294 @@ using namespace std;
 //     return 0;
 // }
 
+// #include <iostream>
+
+// template <class T>
+
+// T srednjaVrednost(T *niz, int n)
+// {
+//     T suma = 0;
+//     for (int i = 0; i < n; i++)
+//     {
+//         suma += niz[i];
+//     }
+//     return suma / n;
+// }
+// int main()
+// {
+
+//     int niz[5];
+//     int i = 0;
+//     cout << "Unesite elemente" << endl;
+//     for (int i = 0; i < 5; i++)
+//     {
+//         cin >> niz[i];
+//     }
+//     cout << srednjaVrednost(niz, i);
+//     return 0;
+// }
+
+// #include <iostream>
+
+// using namespace std;
+// template <class T=int, int k = 10>
+
+// class Vektor
+// {
+//     int n;
+//     T *niz;
+
+// public:
+//     Vektor()
+//     {
+//         n = k;
+//         niz = new T[n];
+//     }
+
+//     T &operator[](int i)
+//     {
+//         return niz[i];
+//     }
+// };
+
+// class A
+// {
+// public:
+//     int p;
+//     A()
+//     {
+//         p = 5;
+//     }
+// };
+// int main()
+// {
+//     Vektor<int, 5> obj1;
+//     Vektor<float, 3> obj2;
+
+//     Vektor<A, 5> obj3;
+
+//     return 0;
+// }
+
+// #include <iostream>
+// using namespace std;
+
+// class Radnik
+// {
+// public:
+//     string ime;
+//     string prezime;
+//     int plata;
+
+//     Radnik()
+//     {
+//         ime = "Engin";
+//         prezime = "Bulic";
+//         plata = 0;
+//     }
+//     Radnik(string ime, string prezime, int plata)
+//     {
+//         this->ime = ime;
+//         this->prezime = prezime;
+//         this->plata = plata;
+//     }
+//     virtual void ispis()
+//     {
+//         cout << "RADNIK:" << ime << " " << prezime << " plata:" << plata;
+//     }
+// };
+
+// class Sef : public Radnik
+// {
+// public:
+//     Sef()
+//     {
+//         ime = "Hamza";
+//         prezime = "Gorcevic";
+//         plata = 3000;
+//     }
+//     Sef(string i, string p, int pl)
+//     {
+//         ime = i;
+//         prezime = p;
+//         plata = pl;
+//     }
+//     void ispis()
+//     {
+//         cout << "SEF:" << ime << " " << prezime << " plata:" << plata;
+//     }
+// };
+// template <class E, int k = 10>
+
+// class Firma
+// {
+
+// public:
+//     E **niz;
+//     int broj;
+//     Firma()
+//     {
+//         broj = k;
+//         niz = new E *[broj];
+//         for (int i = 0; i < broj; i++)
+//         {
+//             niz[i] = new Radnik();
+//         }
+//     }
+//     void plate()
+//     {
+//         for (int i = 0; i < broj; i++)
+//         {
+//             niz[i]->ispis();
+//             cout << endl;
+//         }
+//     }
+// };
+
+// int main()
+// {
+//     Sef *s;
+//     Radnik *r = new Radnik("HAris", "Gorcevic", 4000);
+//     s = new Sef();
+
+//     Firma<Radnik, 10> f1;
+
+//     for (int i = 0; i < 10; i++)
+//     {
+//         f1.niz[i] = r;
+//     }
+//     f1.niz[4] = r;
+//     f1.niz[5] = new Sef("Hamza", "Gorcevic", 5000);
+
+//     f1.plate();
+// }
+
 #include <iostream>
+#include <string>
+#include <cstdlib>
+#include <time.h>
+using namespace std;
+
+enum STANJE
+{
+    ZIV,
+    MRTAV
+};
+
+class Supstanca
+{
+    string naziv;
+
+public:
+    Supstanca(string N)
+    {
+        naziv = N;
+    }
+    string getNaziv()
+    {
+        return naziv;
+    }
+
+    friend ostream &operator<<(ostream &COUT, Supstanca &sup)
+    {
+        cout << sup.naziv << endl;
+        return COUT;
+    }
+};
+class JednocelijskiOrganizam
+{
+
+protected:
+    STANJE stanje;
+
+public:
+    JednocelijskiOrganizam() : stanje(ZIV)
+    {
+    }
+    virtual bool kloniraj()
+    {
+        cout << "Jednocelijski organizam je kloniram \n";
+        return true;
+    }
+    STANJE getStanje()
+    {
+        return stanje;
+    }
+
+    void reaguje(Supstanca &s)
+    {
+        cout << "orgnaizam je reagovo sa " << s.getNaziv() << endl;
+    }
+
+    JednocelijskiOrganizam(JednocelijskiOrganizam &) = delete;
+    JednocelijskiOrganizam &operator=(JednocelijskiOrganizam &) = delete;
+};
+inline double rnd()
+{
+    srand(time(0));
+
+    return rand() / (RAND_MAX + 0.1);
+}
+
+class Bakterija : JednocelijskiOrganizam
+{
+private:
+    string naziv;
+    string losaSupstanca;
+    float verovatnoca;
+    int uspesnaKloniranja;
+
+public:
+    Bakterija(string N, string LS, float V = 0.5) : JednocelijskiOrganizam()
+    {
+        naziv = N;
+        losaSupstanca = LS;
+        verovatnoca = V;
+        uspesnaKloniranja = 0;
+    }
+    bool kloniraj()
+    {
+        cout << getStanje() << "==" << MRTAV << verovatnoca << "<" << rnd() << endl;
+        if (getStanje() == MRTAV || verovatnoca < rnd())
+        {
+            printf("Umrla je\n");
+
+            return false;
+        }
+        else
+        {
+            printf("Klonirano uspesno\n");
+            uspesnaKloniranja++;
+            return true;
+        }
+    }
+    void reaguj(Supstanca &s)
+    {
+        if (s.getNaziv() == losaSupstanca)
+        {
+            stanje = MRTAV;
+        }
+        else
+        {
+            stanje = ZIV;
+        }
+    }
+    friend ostream &operator<<(ostream &COUT, Bakterija &b)
+    {
+        cout << b.naziv << "/" << b.uspesnaKloniranja << "(organizam)" << endl;
+    }
+};
 
 int main()
 {
+    cout << rnd() << endl;
+    Supstanca s("krv");
+    Bakterija b1("amonijak", "krv", 0.5);
+    b1.kloniraj();
+    b1.kloniraj();
+    b1.kloniraj();
+    b1.reaguj(s);
+    b1.kloniraj();
+    cout << b1;
     return 0;
 }
