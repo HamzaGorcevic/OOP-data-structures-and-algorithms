@@ -6681,210 +6681,458 @@ using namespace std;
 //     f1.plate();
 // }
 
+// https://rti.etf.bg.ac.rs/rti/ir2oo1/rokovi/OO1K2SI141205.pdf
+
+// #include <iostream>
+// #include <string>
+// #include <cstdlib>
+// #include <time.h>
+// #include <vector>
+// using namespace std;
+
+// enum STANJE
+// {
+//     ZIV,
+//     MRTAV
+// };
+
+// class Supstanca
+// {
+//     string naziv;
+
+// public:
+//     Supstanca(string N)
+//     {
+//         naziv = N;
+//     }
+//     string getNaziv()
+//     {
+//         return naziv;
+//     }
+
+//     friend ostream &operator<<(ostream &COUT, Supstanca &sup)
+//     {
+//         cout << sup.naziv << endl;
+//         return COUT;
+//     }
+// };
+// class JednocelijskiOrganizam
+// {
+
+// protected:
+//     STANJE stanje;
+
+// public:
+//     JednocelijskiOrganizam() : stanje(ZIV)
+//     {
+//     }
+//     virtual JednocelijskiOrganizam *kloniraj()
+//     {
+//         cout << "Jednocelijski organizam je kloniram \n";
+//         return new JednocelijskiOrganizam();
+//     }
+//     STANJE getStanje()
+//     {
+//         return stanje;
+//     }
+
+//     void reaguje(Supstanca &s)
+//     {
+//         cout << "orgnaizam je reagovo sa " << s.getNaziv() << endl;
+//     }
+
+//     JednocelijskiOrganizam(JednocelijskiOrganizam &) = delete;
+//     JednocelijskiOrganizam &operator=(JednocelijskiOrganizam &) = delete;
+// };
+// inline double rnd()
+// {
+//     srand(time(0));
+
+//     return rand() / (RAND_MAX + 0.1);
+// }
+
+// class Bakterija : JednocelijskiOrganizam
+// {
+// private:
+//     string naziv;
+//     string losaSupstanca;
+//     float verovatnoca;
+//     int uspesnaKloniranja;
+
+// public:
+//     Bakterija(string N, string LS, float V = 0.5) : JednocelijskiOrganizam()
+//     {
+//         naziv = N;
+//         losaSupstanca = LS;
+//         verovatnoca = V;
+//         uspesnaKloniranja = 0;
+//     }
+//     Bakterija *kloniraj()
+//     {
+//         if (getStanje() == MRTAV || verovatnoca < rnd())
+//         {
+//             cout << "NU" << endl;
+//             return nullptr;
+//         }
+//         else
+//         {
+//             cout << "U" << endl;
+//             uspesnaKloniranja++;
+//             return new Bakterija(naziv, losaSupstanca, verovatnoca);
+//         }
+//     }
+//     void reaguj(Supstanca &s)
+//     {
+//         if (s.getNaziv() == losaSupstanca)
+//         {
+//             stanje = MRTAV;
+//         }
+//         else
+//         {
+//             stanje = ZIV;
+//         }
+//     }
+//     friend ostream &operator<<(ostream &COUT, Bakterija &b)
+//     {
+//         COUT << b.naziv << "/" << b.uspesnaKloniranja << "(organizam)" << endl;
+//         return COUT;
+//     }
+// };
+
+// class Kolonija
+// {
+//     float id;
+//     typedef struct Organizmi
+//     {
+//         Bakterija *data;
+//         struct Organizmi *next;
+//     } Organizmi;
+//     Organizmi org;
+
+//     int brojOrganizama;
+
+// public:
+//     Kolonija()
+//     {
+//         id = rnd();
+//     }
+//     Kolonija(Bakterija *organizam)
+//     {
+//         brojOrganizama = 1;
+//         org.data = organizam;
+//         org.next = NULL;
+//     }
+//     void razmnozi()
+//     {
+//         Organizmi *temp = &org;
+//         Organizmi *newArray = NULL;
+//         Organizmi *lastNode = NULL;
+
+//         while (temp != NULL)
+//         {
+//             Bakterija *cloned = temp->data->kloniraj();
+//             if (cloned != NULL)
+//             {
+//                 cout << "CLONED" << endl;
+
+//                 Organizmi *newNode = new Organizmi;
+//                 newNode->data = cloned;
+//                 newNode->next = NULL;
+
+//                 if (newArray == NULL)
+//                 {
+//                     newArray = newNode;
+//                     lastNode = newNode;
+//                 }
+//                 else
+//                 {
+//                     lastNode->next = newNode;
+//                     lastNode = newNode;
+//                 }
+//             }
+
+//             temp = temp->next;
+//         }
+
+//         // Append the cloned organisms to the existing organisms
+//         if (newArray != NULL)
+//         {
+//             lastNode->next = org.next;
+//             org.next = newArray;
+//         }
+//     }
+
+//     void ispis()
+//     {
+//         cout << "ISPIS" << endl;
+
+//         Organizmi *temp = &org;
+
+//         while (temp != NULL)
+//         {
+//             cout << *temp->data;
+//             temp = temp->next;
+//         }
+
+//         cout << "ISPIS" << endl;
+//     }
+//     void reaguje(Supstanca &s)
+//     {
+//         Organizmi *temp = &org;
+
+//         while (temp != NULL)
+//         {
+//             temp->data->reaguj(s);
+//             temp = temp->next;
+//         }
+//     }
+// };
+// int main()
+// {
+//     Supstanca s("krv");
+//     Bakterija b1("amonijak", "krv", 100);
+//     b1.kloniraj();
+//     b1.kloniraj();
+
+//     Kolonija k(&b1);
+//     k.razmnozi();
+//     k.razmnozi();
+//     k.razmnozi();
+//     k.ispis();
+// }
+
 #include <iostream>
 #include <string>
-#include <cstdlib>
+
+// class Poistion
+// {
+//     int x, y;
+
+// public:
+//     Poistion(int x, int y)
+//     {
+//         this->x = x;
+//         this->y = y;
+//     }
+
+//     void operator++()
+//     {
+//         x++;
+//     }
+//     void ispis()
+//     {
+//         cout << "X" << x << "Y" << y << endl;
+//     }
+// };
+// int main()
+// {
+//     Poistion p1(10, 23);
+//     p1.ispis();
+//     ++p1;
+//     p1.ispis();
+
+//     return 0;
+// }
+
 #include <time.h>
-#include <vector>
-using namespace std;
 
-enum STANJE
+class Datum
 {
-    ZIV,
-    MRTAV
-};
-
-class Supstanca
-{
-    string naziv;
+    int dan;
+    int mesec;
+    int godina;
 
 public:
-    Supstanca(string N)
+    Datum(int D = 10, int M = 7, int G = 2003)
     {
-        naziv = N;
-    }
-    string getNaziv()
-    {
-        return naziv;
+        dan = D;
+        mesec = M;
+        godina = G;
     }
 
-    friend ostream &operator<<(ostream &COUT, Supstanca &sup)
+    bool operator>(Datum &d)
     {
-        cout << sup.naziv << endl;
+        int suma1 = (godina * 365) + (mesec * 30) + dan;
+        int suma2 = (d.godina * 365) + (d.mesec * 30) + d.dan;
+        if (suma1 > suma2)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    friend ostream &operator<<(ostream &COUT, Datum &d)
+    {
+        cout << d.dan << "/" << d.mesec << "/" << d.godina << endl;
         return COUT;
     }
+    ~Datum()
+    {
+    }
 };
-class JednocelijskiOrganizam
-{
 
+enum TIP
+{
+    STANDARD,
+    KOMFORT,
+    EKSKLUZIV
+};
+
+class PolisaOsiguranja
+{
 protected:
-    STANJE stanje;
+    int id;
+    Datum pocetakVazenja;
+    Datum istekVazenja;
+    TIP tip;
+    bool active;
 
 public:
-    JednocelijskiOrganizam() : stanje(ZIV)
+    PolisaOsiguranja(Datum pocetak, Datum istek, TIP t = STANDARD)
     {
+        id = rand();
+        pocetakVazenja = pocetak;
+        istekVazenja = istek;
+        tip = t;
+        active = true;
     }
-    virtual JednocelijskiOrganizam *kloniraj()
+    void produziPolisu(Datum d)
     {
-        cout << "Jednocelijski organizam je kloniram \n";
-        return new JednocelijskiOrganizam();
-    }
-    STANJE getStanje()
-    {
-        return stanje;
-    }
-
-    void reaguje(Supstanca &s)
-    {
-        cout << "orgnaizam je reagovo sa " << s.getNaziv() << endl;
+        istekVazenja = d;
+        active = true;
     }
 
-    JednocelijskiOrganizam(JednocelijskiOrganizam &) = delete;
-    JednocelijskiOrganizam &operator=(JednocelijskiOrganizam &) = delete;
-};
-inline double rnd()
-{
-    srand(time(0));
-
-    return rand() / (RAND_MAX + 0.1);
-}
-
-class Bakterija : JednocelijskiOrganizam
-{
-private:
-    string naziv;
-    string losaSupstanca;
-    float verovatnoca;
-    int uspesnaKloniranja;
-
-public:
-    Bakterija(string N, string LS, float V = 0.5) : JednocelijskiOrganizam()
+    bool daLiJeIstekao()
     {
-        naziv = N;
-        losaSupstanca = LS;
-        verovatnoca = V;
-        uspesnaKloniranja = 0;
-    }
-    Bakterija *kloniraj()
-    {
-        if (getStanje() == MRTAV || verovatnoca < rnd())
+        if (pocetakVazenja > istekVazenja)
         {
-            cout << "NU" << endl;
-            return nullptr;
+            return true;
         }
         else
         {
-            cout << "U" << endl;
-            uspesnaKloniranja++;
-            return new Bakterija(naziv, losaSupstanca, verovatnoca);
+            return false;
         }
     }
-    void reaguj(Supstanca &s)
+    virtual int polisa() = 0;
+
+    friend ostream &operator<<(ostream &COUT, PolisaOsiguranja &PO)
     {
-        if (s.getNaziv() == losaSupstanca)
-        {
-            stanje = MRTAV;
-        }
-        else
-        {
-            stanje = ZIV;
-        }
-    }
-    friend ostream &operator<<(ostream &COUT, Bakterija &b)
-    {
-        COUT << b.naziv << "/" << b.uspesnaKloniranja << "(organizam)" << endl;
-        return COUT;
+        cout << PO.id << "-" << PO.polisa();
     }
 };
 
-class Kolonija
+class PolisaPutovanja : public PolisaOsiguranja
 {
-    float id;
-    typedef struct Organizmi
+public:
+    PolisaPutovanja(Datum d1, Datum d2, TIP t) : PolisaOsiguranja(d1, d2, t)
     {
-        Bakterija *data;
-        struct Organizmi *next;
-    } Organizmi;
-    Organizmi org;
+    }
+    int polisa()
+    {
+        int arr[] = {5000, 7000, 10000};
+        return arr[tip];
+    }
+    void ispis()
+    {
+        cout << "Putno_osiguranje " << polisa();
+    }
+};
 
-    int brojOrganizama;
+class Osiguranik
+{
+    int id;
+    string ime;
+    typedef struct Elem
+    {
+        PolisaPutovanja *data;
+        struct Elem *next;
+    } Elem;
+    Elem *first = nullptr;
+    Elem *last = nullptr;
 
 public:
-    Kolonija()
+    Osiguranik(string i)
     {
-        id = rnd();
+        ime = i;
+        id = rand();
     }
-    Kolonija(Bakterija *organizam)
+    void operator+=(PolisaPutovanja *p)
     {
-        brojOrganizama = 1;
-        org.data = organizam;
-        org.next = NULL;
-    }
-    void razmnozi()
-    {
-        Organizmi *temp = &org;
-        Organizmi *newArray = NULL;
-        Organizmi *lastNode = NULL;
-
-        while (temp != NULL)
+        Elem *newNode = new Elem;
+        newNode->data = p;
+        newNode->next = nullptr;
+        if (first == nullptr)
         {
-            Bakterija *cloned = temp->data->kloniraj();
-            if (cloned != NULL)
+            first = last = newNode;
+        }
+        else
+        {
+
+            last->next = newNode;
+            last = last->next;
+        }
+    }
+    void produziPolise()
+    {
+        Elem *temp = first;
+
+        while (temp != nullptr)
+        {
+            if (temp->data->daLiJeIstekao())
             {
-                cout << "CLONED" << endl;
-
-                Organizmi *newNode = new Organizmi;
-                newNode->data = cloned;
-                newNode->next = NULL;
-
-                if (newArray == NULL)
-                {
-                    newArray = newNode;
-                    lastNode = newNode;
-                }
-                else
-                {
-                    lastNode->next = newNode;
-                    lastNode = newNode;
-                }
+                temp->data->produziPolisu(Datum(6, 8, 2030));
             }
-
             temp = temp->next;
-        }
-
-        // Append the cloned organisms to the existing organisms
-        if (newArray != NULL)
-        {
-            lastNode->next = org.next;
-            org.next = newArray;
         }
     }
 
     void ispis()
     {
-        cout << "ISPIS" << endl;
+        Elem *temp = first;
 
-        Organizmi *temp = &org;
+        while (temp != nullptr)
+        {
+            temp->data->ispis();
+            cout << endl;
+            temp = temp->next;
+        }
+    }
+
+    friend ostream &operator<<(ostream &COUT, Osiguranik os)
+    {
+        cout << os.ime << "(" << os.id << ")" << endl;
+
+        Elem *temp = os.first;
 
         while (temp != NULL)
         {
             cout << *temp->data;
+            cout << endl;
             temp = temp->next;
         }
-
-        cout << "ISPIS" << endl;
     }
 };
+
 int main()
 {
-    Supstanca s("krv");
-    Bakterija b1("amonijak", "krv", 100);
-    b1.kloniraj();
-    b1.kloniraj();
+    srand(time(0));
+    Datum d1(4, 5, 2015);
+    Datum d2(4, 2, 2018);
 
-    Kolonija k(&b1);
-    k.razmnozi();
-    k.razmnozi();
+    PolisaPutovanja po(d1, d2, KOMFORT);
+    PolisaPutovanja po1(Datum(1, 1, 2000), (2, 2, 2003), KOMFORT);
+    PolisaPutovanja po2(Datum(1, 1, 2030), (2, 2, 2403), EKSKLUZIV);
+    PolisaPutovanja po3(Datum(1, 1, 2030), (2, 2, 2403), EKSKLUZIV);
 
-    k.ispis();
+    Osiguranik os("Hamza");
+    os += &po;
+    os += &po1;
+    os += &po2;
+    os += &po3;
+
+    cout << os;
+
+    return 0;
 }
