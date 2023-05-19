@@ -6901,8 +6901,8 @@ using namespace std;
 //     k.ispis();
 // }
 
-#include <iostream>
-#include <string>
+// #include <iostream>
+// #include <string>
 
 // class Poistion
 // {
@@ -6934,79 +6934,296 @@ using namespace std;
 //     return 0;
 // }
 
-#include <time.h>
+// #include <time.h>
 
-class Datum
+// class Datum
+// {
+//     int dan;
+//     int mesec;
+//     int godina;
+
+// public:
+//     Datum(int D = 10, int M = 7, int G = 2003)
+//     {
+//         dan = D;
+//         mesec = M;
+//         godina = G;
+//     }
+
+//     bool operator>(Datum &d)
+//     {
+//         int suma1 = (godina * 365) + (mesec * 30) + dan;
+//         int suma2 = (d.godina * 365) + (d.mesec * 30) + d.dan;
+//         if (suma1 > suma2)
+//         {
+//             return true;
+//         }
+//         else
+//         {
+//             return false;
+//         }
+//     }
+//     friend ostream &operator<<(ostream &COUT, Datum &d)
+//     {
+//         cout << d.dan << "/" << d.mesec << "/" << d.godina << endl;
+//         return COUT;
+//     }
+//     ~Datum()
+//     {
+//     }
+// };
+
+// enum TIP
+// {
+//     STANDARD,
+//     KOMFORT,
+//     EKSKLUZIV
+// };
+
+// class PolisaOsiguranja
+// {
+// protected:
+//     int id;
+//     Datum pocetakVazenja;
+//     Datum istekVazenja;
+//     TIP tip;
+//     bool active;
+
+// public:
+//     PolisaOsiguranja(Datum pocetak, Datum istek, TIP t = STANDARD)
+//     {
+//         id = rand();
+//         pocetakVazenja = pocetak;
+//         istekVazenja = istek;
+//         tip = t;
+//         active = true;
+//     }
+//     void produziPolisu(Datum d)
+//     {
+//         istekVazenja = d;
+//         active = true;
+//     }
+
+//     bool daLiJeIstekao()
+//     {
+//         if (pocetakVazenja > istekVazenja)
+//         {
+//             return true;
+//         }
+//         else
+//         {
+//             return false;
+//         }
+//     }
+//     virtual int polisa() = 0;
+
+//     friend ostream &operator<<(ostream &COUT, PolisaOsiguranja &PO)
+//     {
+//         cout << PO.id << "-" << PO.polisa();
+//     }
+// };
+
+// class PolisaPutovanja : public PolisaOsiguranja
+// {
+// public:
+//     PolisaPutovanja(Datum d1, Datum d2, TIP t) : PolisaOsiguranja(d1, d2, t)
+//     {
+//     }
+//     int polisa()
+//     {
+//         int arr[] = {5000, 7000, 10000};
+//         return arr[tip];
+//     }
+//     void ispis()
+//     {
+//         cout << "Putno_osiguranje " << polisa();
+//     }
+// };
+
+// class Osiguranik
+// {
+//     int id;
+//     string ime;
+//     typedef struct Elem
+//     {
+//         PolisaPutovanja *data;
+//         struct Elem *next;
+//     } Elem;
+//     Elem *first = nullptr;
+//     Elem *last = nullptr;
+
+// public:
+//     Osiguranik(string i)
+//     {
+//         ime = i;
+//         id = rand();
+//     }
+//     void operator+=(PolisaPutovanja *p)
+//     {
+//         Elem *newNode = new Elem;
+//         newNode->data = p;
+//         newNode->next = nullptr;
+//         if (first == nullptr)
+//         {
+//             first = last = newNode;
+//         }
+//         else
+//         {
+
+//             last->next = newNode;
+//             last = last->next;
+//         }
+//     }
+//     void produziPolise()
+//     {
+//         Elem *temp = first;
+
+//         while (temp != nullptr)
+//         {
+//             if (temp->data->daLiJeIstekao())
+//             {
+//                 temp->data->produziPolisu(Datum(6, 8, 2030));
+//             }
+//             temp = temp->next;
+//         }
+//     }
+
+//     void ispis()
+//     {
+//         Elem *temp = first;
+
+//         while (temp != nullptr)
+//         {
+//             temp->data->ispis();
+//             cout << endl;
+//             temp = temp->next;
+//         }
+//     }
+
+//     friend ostream &operator<<(ostream &COUT, Osiguranik os)
+//     {
+//         cout << os.ime << "(" << os.id << ")" << endl;
+
+//         Elem *temp = os.first;
+
+//         while (temp != NULL)
+//         {
+//             cout << *temp->data;
+//             cout << endl;
+//             temp = temp->next;
+//         }
+//     }
+// };
+
+// int main()
+// {
+//     srand(time(0));
+//     Datum d1(4, 5, 2015);
+//     Datum d2(4, 2, 2018);
+
+//     PolisaPutovanja po(d1, d2, KOMFORT);
+//     PolisaPutovanja po1(Datum(1, 1, 2000), (2, 2, 2003), KOMFORT);
+//     PolisaPutovanja po2(Datum(1, 1, 2030), (2, 2, 2403), EKSKLUZIV);
+//     PolisaPutovanja po3(Datum(1, 1, 2030), (2, 2, 2403), EKSKLUZIV);
+
+//     Osiguranik os("Hamza");
+//     os += &po;
+//     os += &po1;
+//     os += &po2;
+//     os += &po3;
+
+//     cout << os;
+
+//     return 0;
+// }
+
+// https://rti.etf.bg.ac.rs/rti/ir2oo1/rokovi/OO1K2SI161209.pdf
+#include <iostream>
+#include <string>
+
+class Nalepnica
 {
-    int dan;
-    int mesec;
-    int godina;
+    int id;
+    string naziv;
 
 public:
-    Datum(int D = 10, int M = 7, int G = 2003)
+    static int counter;
+
+    Nalepnica(string N)
     {
-        dan = D;
-        mesec = M;
-        godina = G;
+        naziv = N;
+        counter++;
+        id = counter;
+    }
+    Nalepnica(Nalepnica &n)
+    {
+        naziv = n.naziv;
+        counter++;
+        id = counter;
+    }
+    string getNaziv()
+    {
+        return naziv;
+    }
+    int getId()
+    {
+        return id;
     }
 
-    bool operator>(Datum &d)
+    friend ostream &operator<<(ostream &COUT, Nalepnica &n)
     {
-        int suma1 = (godina * 365) + (mesec * 30) + dan;
-        int suma2 = (d.godina * 365) + (d.mesec * 30) + d.dan;
-        if (suma1 > suma2)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-    friend ostream &operator<<(ostream &COUT, Datum &d)
-    {
-        cout << d.dan << "/" << d.mesec << "/" << d.godina << endl;
+        cout << n.naziv << "(" << n.id << ")" << endl;
         return COUT;
     }
-    ~Datum()
-    {
-    }
 };
 
-enum TIP
+enum VRSTA
 {
-    STANDARD,
-    KOMFORT,
-    EKSKLUZIV
+    BEZALKOHOLNO,
+    ALKOHOLNO
 };
 
-class PolisaOsiguranja
+class Flasa
 {
 protected:
-    int id;
-    Datum pocetakVazenja;
-    Datum istekVazenja;
-    TIP tip;
-    bool active;
+    Nalepnica *nalepnica;
+    float cenaBezKaucije;
+    double zapremina;
+    VRSTA vrsta;
 
 public:
-    PolisaOsiguranja(Datum pocetak, Datum istek, TIP t = STANDARD)
+    Flasa(Nalepnica *n, float CBK, double Z = 0.33, VRSTA vr = BEZALKOHOLNO)
     {
-        id = rand();
-        pocetakVazenja = pocetak;
-        istekVazenja = istek;
-        tip = t;
-        active = true;
+        nalepnica = n;
+        cenaBezKaucije = CBK;
+        zapremina = Z;
+        vrsta = vr;
     }
-    void produziPolisu(Datum d)
+    Nalepnica *getNalepnicu()
     {
-        istekVazenja = d;
-        active = true;
+        return nalepnica;
     }
+    float getCBK()
+    {
+        return cenaBezKaucije;
+    }
+    void setCBK(int c)
+    {
+        cenaBezKaucije = c;
+    }
+    double getZapremina()
+    {
+        return zapremina;
+    }
+    VRSTA getVrstu()
+    {
+        return vrsta;
+    }
+    int izracunajCenu();
 
-    bool daLiJeIstekao()
+    bool operator==(Flasa &f)
     {
-        if (pocetakVazenja > istekVazenja)
+        if (f.nalepnica->getNaziv() == nalepnica->getNaziv() && f.vrsta == vrsta && f.izracunajCenu() == izracunajCenu())
         {
             return true;
         }
@@ -7015,124 +7232,88 @@ public:
             return false;
         }
     }
-    virtual int polisa() = 0;
-
-    friend ostream &operator<<(ostream &COUT, PolisaOsiguranja &PO)
+    virtual void pisi(ostream &COUT)
     {
-        cout << PO.id << "-" << PO.polisa();
+        string arr[2] = {"bezalkoholno", "alkoholno"};
+
+        cout << "called first" << endl;
+        COUT << *nalepnica << "(" << cenaBezKaucije << ":din ," << zapremina << "," << arr[vrsta] << ")" << endl;
+    }
+
+    friend ostream &operator<<(ostream &COUT, Flasa &f)
+    {
+        f.pisi(COUT);
+        return COUT;
     }
 };
 
-class PolisaPutovanja : public PolisaOsiguranja
+class Staklena : public Flasa
 {
 public:
-    PolisaPutovanja(Datum d1, Datum d2, TIP t) : PolisaOsiguranja(d1, d2, t)
+    Staklena(Nalepnica *n, float CBK, double Z = 0.33, VRSTA vr = BEZALKOHOLNO) : Flasa(n, CBK, Z, vr)
     {
     }
-    int polisa()
+    int izracunajCenu()
     {
-        int arr[] = {5000, 7000, 10000};
-        return arr[tip];
-    }
-    void ispis()
-    {
-        cout << "Putno_osiguranje " << polisa();
-    }
-};
-
-class Osiguranik
-{
-    int id;
-    string ime;
-    typedef struct Elem
-    {
-        PolisaPutovanja *data;
-        struct Elem *next;
-    } Elem;
-    Elem *first = nullptr;
-    Elem *last = nullptr;
-
-public:
-    Osiguranik(string i)
-    {
-        ime = i;
-        id = rand();
-    }
-    void operator+=(PolisaPutovanja *p)
-    {
-        Elem *newNode = new Elem;
-        newNode->data = p;
-        newNode->next = nullptr;
-        if (first == nullptr)
+        if (zapremina < 0.5)
         {
-            first = last = newNode;
+            cenaBezKaucije += (cenaBezKaucije * (5 / 100));
         }
         else
         {
-
-            last->next = newNode;
-            last = last->next;
+            cenaBezKaucije += (cenaBezKaucije * (10 / 100));
         }
-    }
-    void produziPolise()
-    {
-        Elem *temp = first;
-
-        while (temp != nullptr)
-        {
-            if (temp->data->daLiJeIstekao())
-            {
-                temp->data->produziPolisu(Datum(6, 8, 2030));
-            }
-            temp = temp->next;
-        }
+        return cenaBezKaucije;
     }
 
-    void ispis()
+    void pisi(ostream &COUT) override
     {
-        Elem *temp = first;
-
-        while (temp != nullptr)
-        {
-            temp->data->ispis();
-            cout << endl;
-            temp = temp->next;
-        }
-    }
-
-    friend ostream &operator<<(ostream &COUT, Osiguranik os)
-    {
-        cout << os.ime << "(" << os.id << ")" << endl;
-
-        Elem *temp = os.first;
-
-        while (temp != NULL)
-        {
-            cout << *temp->data;
-            cout << endl;
-            temp = temp->next;
-        }
+        cout << "called second";
+        Flasa::pisi(COUT);
+        cout << "-staklena";
     }
 };
+
+class Plasticna : public Flasa
+{
+public:
+    Plasticna(Nalepnica *n, float CBK, double Z = 0.33, VRSTA vr = BEZALKOHOLNO) : Flasa(n, CBK, Z, vr) {}
+
+    int izracunajCenu()
+    {
+        if (zapremina < 0.5)
+        {
+            cenaBezKaucije += (cenaBezKaucije * (2.5 / 100));
+        }
+        else
+        {
+            cenaBezKaucije += (cenaBezKaucije * (5 / 100));
+        }
+        return cenaBezKaucije;
+    }
+
+    void pisi(ostream &COUT)
+    {
+        Flasa::pisi(COUT);
+        cout << "-plasticna" << endl;
+    }
+};
+
+int Nalepnica::counter = 0;
 
 int main()
 {
-    srand(time(0));
-    Datum d1(4, 5, 2015);
-    Datum d2(4, 2, 2018);
+    Nalepnica n1("smoki");
+    Nalepnica n2("kivi");
+    Nalepnica n3(n2);
+    cout << n1;
+    cout << n2;
+    cout << n3;
+    Staklena f1(&n2, 40, 100);
 
-    PolisaPutovanja po(d1, d2, KOMFORT);
-    PolisaPutovanja po1(Datum(1, 1, 2000), (2, 2, 2003), KOMFORT);
-    PolisaPutovanja po2(Datum(1, 1, 2030), (2, 2, 2403), EKSKLUZIV);
-    PolisaPutovanja po3(Datum(1, 1, 2030), (2, 2, 2403), EKSKLUZIV);
-
-    Osiguranik os("Hamza");
-    os += &po;
-    os += &po1;
-    os += &po2;
-    os += &po3;
-
-    cout << os;
-
+    Plasticna p1(&n1, 105, 0.5, ALKOHOLNO);
+    cout << "WORK";
+    cout << f1;
+    cout << p1;
     return 0;
 }
