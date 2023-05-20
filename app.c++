@@ -7172,7 +7172,7 @@ public:
 
     friend ostream &operator<<(ostream &COUT, Nalepnica &n)
     {
-        cout << n.naziv << "(" << n.id << ")" << endl;
+        cout << n.naziv << "(" << n.id << ")";
         return COUT;
     }
 };
@@ -7236,8 +7236,7 @@ public:
     {
         string arr[2] = {"bezalkoholno", "alkoholno"};
 
-        cout << "called first" << endl;
-        COUT << *nalepnica << "(" << cenaBezKaucije << ":din ," << zapremina << "," << arr[vrsta] << ")" << endl;
+        COUT << *nalepnica << "(" << cenaBezKaucije << ":din ," << zapremina << "," << arr[vrsta] << ")";
     }
 
     friend ostream &operator<<(ostream &COUT, Flasa &f)
@@ -7268,7 +7267,6 @@ public:
 
     void pisi(ostream &COUT) override
     {
-        cout << "called second";
         Flasa::pisi(COUT);
         cout << "-staklena";
     }
@@ -7299,6 +7297,69 @@ public:
     }
 };
 
+class Diskonti
+{
+    string naziv;
+    struct Flase
+    {
+        Flasa *flasa;
+        Flase *next;
+    };
+    Flase *first;
+    Flase *last;
+
+public:
+    Diskonti(string N)
+    {
+        naziv = N;
+        first = NULL;
+        last = NULL;
+    }
+
+    void operator+=(Flasa *f)
+    {
+        Flase *newNode = new Flase;
+        newNode->flasa = f;
+        newNode->next = NULL;
+        if (first == NULL)
+        {
+            first = last = newNode;
+        }
+        else
+        {
+            last->next = newNode;
+            last = last->next;
+        }
+    }
+    void ispis()
+    {
+        cout << "Podrum\n";
+        Flase *temp = first;
+        while (temp != NULL)
+        {
+            cout << *temp->flasa << endl;
+            temp = temp->next;
+        }
+    }
+    Flasa *operator[](int i)
+    {
+        Flase *temp = first;
+        while (temp != NULL && i > 0)
+        {
+            i--;
+            temp = temp->next;
+        }
+        if (temp != NULL)
+        {
+            return temp->flasa;
+        }
+        else
+        {
+            cout << "NULL returned";
+            return nullptr;
+        }
+    }
+};
 int Nalepnica::counter = 0;
 
 int main()
@@ -7306,14 +7367,120 @@ int main()
     Nalepnica n1("smoki");
     Nalepnica n2("kivi");
     Nalepnica n3(n2);
-    cout << n1;
-    cout << n2;
-    cout << n3;
+
     Staklena f1(&n2, 40, 100);
 
     Plasticna p1(&n1, 105, 0.5, ALKOHOLNO);
-    cout << "WORK";
-    cout << f1;
-    cout << p1;
+
+    Diskonti diskont("Podrum");
+
+    diskont += &f1;
+    diskont += &p1;
+
+    diskont.ispis();
+    cout << "PROBA\n";
+
+    Flasa *f3 = diskont[1];
+
+    cout << "PROBA\n";
+    cout << *f3;
+
     return 0;
 }
+
+// /
+// /
+// /
+// /
+// /
+// class Baza
+// {
+// protected:
+//     int x;
+//     int y;
+
+// public:
+//     Baza(int X = 2, int Y = 7)
+//     {
+//         x = X;
+//         y = Y;
+//     }
+//     virtual void ispis()
+//     {
+//         cout << "X=" << x << ","
+//              << "Y=" << y << endl;
+//     }
+
+//     friend ostream &operator<<(ostream &COUT, Baza &b)
+//     {
+//         b.ispis();
+//         return COUT;
+//     }
+// };
+
+// class Kocka : public Baza
+// {
+//     int z;
+
+// public:
+//     Kocka(int Y = 2, int Z = 23, int X = 5) : Baza(X, Y)
+//     {
+//         z = Z;
+//     }
+//     void ispis()
+//     {
+//         cout << "Kocka" << endl;
+//         cout << "Z=" << z << ",";
+//         Baza::ispis();
+//     }
+// };
+
+// class Krug : public Baza
+// {
+//     int p;
+
+// public:
+//     Krug(int p = 6, int x = 3, int y = 2) : Baza(x, y)
+//     {
+//         this->p = p;
+//     }
+//     void ispis()
+//     {
+//         cout << "KRUG" << endl;
+//         cout << "P=" << p << ",";
+//         Baza::ispis();
+//     }
+// };
+// class Shape : public Krug
+// {
+//     int f;
+
+// public:
+//     Shape(int F = 1, int p = 5, int x = 13, int y = 9) : Krug(p, x, y)
+//     {
+//         f = F;
+//     }
+//     void ispis()
+//     {
+//         cout << "SHAPE" << endl;
+//         cout << "F=" << f << ",";
+//         Krug::ispis();
+//     }
+// };
+
+// int main()
+// {
+//     Baza **arr;
+
+//     arr[0] = new Kocka(4, 5);
+//     arr[1] = new Baza(3, 4);
+//     arr[2] = new Krug(1, 2, 3);
+//     arr[3] = new Shape(2, 3, 4);
+
+//     for (int i = 0; i < 4; i++)
+//     {
+//         cout << *arr[i];
+//     }
+
+//     return 0;
+// }
