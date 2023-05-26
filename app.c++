@@ -7305,28 +7305,28 @@ using namespace std;
 // void BFS(int niz[][size], int visited[], int start)
 // {
 //     int queue[size], front = -1, rear = -1;
-//// dodajemo prvi elementa od kog zelimo da pocnemo
+// // dodajemo prvi elementa od kog zelimo da pocnemo
 
 //     front++;
 //     rear++;
 //     queue[rear] = start;
 //     visited[start] = 1; // oznaciecmo prvi element od kog smo poceli oznazenim
 
-//// prolazimo kroz while petlju dok se stek ne isprazni
+// // prolazimo kroz while petlju dok se stek ne isprazni
 //     while (front <= rear)
 //     {
-////odredjuejmo vrednost start , trenutno ce bit ista kao sto smo je i poslali , ali ce se nakon implementacije front povecati sto znaci da smo je izbrisali
+// //odredjuejmo vrednost start , trenutno ce bit ista kao sto smo je i poslali , ali ce se nakon implementacije front povecati sto znaci da smo je izbrisali
 //         start = queue[front++];
 //         cout << "Q-" << start << endl;
 
 // // prolazimo kroz sve elemnte koji se nalazi u redu start .tj njegove veze sa susedima
 //         for (int i = 0; i < size; i++)
 //         {
-//// ako imamo vezu starta i nekog drugog cvora 'i', znacemo da ce biti jedan (niz[start][i]) , i ako nije posecena , tj ako na tom vertexu nemamo jedan kao visited
-//// npr ako naidjemo na vertex 1 , i vidimo da u tom redu imamo 1 sa nasim startom , postavicemo visited pod indexom 1 da je visited , sto znaci da ga vise necemo obilazti;
+// // ako imamo vezu starta i nekog drugog cvora 'i', znacemo da ce biti jedan (niz[start][i]) , i ako nije posecena , tj ako na tom vertexu nemamo jedan kao visited
+// // npr ako naidjemo na vertex 1 , i vidimo da u tom redu imamo 1 sa nasim startom , postavicemo visited pod indexom 1 da je visited , sto znaci da ga vise necemo obilazti;
 //             if (niz[start][i] && visited[i] == 0)
 //             {
-//// kada pronadjemo takav element dodacemo ga u stek i oznaciti kao vidjen
+// // kada pronadjemo takav element dodacemo ga u stek i oznaciti kao vidjen
 //                 queue[++rear] = i;
 //                 visited[i] = 1;
 //             }
@@ -7495,3 +7495,47 @@ using namespace std;
 
 //     return 0;
 // }
+
+#include <iostream>
+
+#define size 5
+
+void BFS(int arr[size][size], int visited[])
+{
+    int queue[size], front = -1, rear = -1, start;
+
+    queue[++front] = 0;
+    rear++;
+    visited[0] = 1;
+
+    while (front <= rear)
+    {
+        start = queue[front++];
+        cout << start << endl;
+
+        for (int i = 0; i < size; i++)
+        {
+            if (arr[start][i] && visited[i] == 0)
+            {
+                queue[++rear] = i;
+                visited[i] = 1;
+            }
+        }
+    }
+}
+
+int main()
+{
+
+    int visited[size] = {0};
+    int arr[size][size] = {
+        {0, 1, 0, 0, 1},
+        {1, 0, 1, 0, 1},
+        {0, 1, 1, 0, 1},
+        {1, 1, 0, 0, 1},
+        {0, 0, 0, 0, 1}};
+
+    BFS(arr, visited);
+
+    return 0;
+}
