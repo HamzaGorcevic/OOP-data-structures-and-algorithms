@@ -3250,6 +3250,7 @@ using namespace std;
 // int brojElemenataNaNivou(Node *tree, int n)
 // {
 //     if (tree == nullptr)
+
 //     {
 //         return 0;
 //     }
@@ -3266,6 +3267,7 @@ using namespace std;
 //     if (tree)
 //     {
 //         if (n == 0)
+
 //         {
 //             cout << tree->data << endl;
 //         }
@@ -7361,59 +7363,135 @@ using namespace std;
 
 // DPS depth first dps
 
-#include <iostream>
+// #include <iostream>
 
-#define size 6
+// #define size 6
 
-// DFS radi pomocu stacka , ubaci element zatim ga izbaci i doda njegove susede , zatim redom izbacuje pa dodaje susede
-void addEdge(int arr[][size], int x, int y)
-{
-    arr[x][y] = 1;
-}
+// // DFS radi pomocu stacka , ubaci element zatim ga izbaci i doda njegove susede , zatim redom izbacuje pa dodaje susede
+// void addEdge(int arr[][size], int x, int y)
+// {
+//     arr[x][y] = 1;
+// }
 
-void DFS(int arr[][size], int visited[], int start)
-{
-    int stack[size];
-    int top = -1;
+// void DFS(int arr[][size], int visited[], int start)
+// {
+//     int stack[size];
+//     int top = -1;
 
-    top++;
-    stack[top] = start;
-    visited[start] = 1;
-    // dok se ne isprazni stek
-    while (top != -1)
-    {
-        // postavljamo stek na 0
-        start = stack[top];
-        // odma je izbacujemo
-        top--;
-        printf("%d ", start);
-        // prolazimo kroz sve  kolone za red 0 , proveravamo da li ima povezanosti u uslovi if i da li su vec poseceni
-        for (int i = 0; i < size; i++)
-        {
-            if (arr[start][i] && visited[i] != 1)
-            {
-                // kada dodjedmo dodajemo sve grane u stack i grana koja je poslednja ce prva izaci i njene susede cemo prvo dodati
-                top++;
-                stack[top] = i;
-                visited[i] = 1;
-            }
-        }
-    }
-}
-int main()
-{
-    int arr[size][size] = {0};
-    int visited[size] = {0};
+//     top++;
+//     stack[top] = start;
+//     visited[start] = 1;
+//     // dok se ne isprazni stek
+//     while (top != -1)
+//     {
+//         // postavljamo stek na 0
+//         start = stack[top];
+//         // odma je izbacujemo
+//         top--;
+//         printf("%d ", start);
+//         // prolazimo kroz sve  kolone za red 0 , proveravamo da li ima povezanosti u uslovi if i da li su vec poseceni
+//         for (int i = 0; i < size; i++)
+//         {
+//             if (arr[start][i] && visited[i] != 1)
+//             {
+//                 // kada dodjedmo dodajemo sve grane u stack i grana koja je poslednja ce prva izaci i njene susede cemo prvo dodati
+//                 top++;
+//                 stack[top] = i;
+//                 visited[i] = 1;
+//             }
+//         }
+//     }
+// }
+// int main()
+// {
+//     int arr[size][size] = {0};
+//     int visited[size] = {0};
 
-    addEdge(arr, 0, 1);
-    addEdge(arr, 1, 4);
-    addEdge(arr, 4, 0);
-    addEdge(arr, 1, 2);
-    addEdge(arr, 1, 3);
-    addEdge(arr, 4, 5);
-    addEdge(arr, 5, 3);
-    addEdge(arr, 2, 3);
+//     addEdge(arr, 0, 1);
+//     addEdge(arr, 1, 4);
+//     addEdge(arr, 4, 0);
+//     addEdge(arr, 1, 2);
+//     addEdge(arr, 1, 3);
+//     addEdge(arr, 4, 5);
+//     addEdge(arr, 5, 3);
+//     addEdge(arr, 2, 3);
 
-    DFS(arr, visited, 0);
-    return 0;
-}
+//     DFS(arr, visited, 0);
+//     return 0;
+// }
+
+//
+//
+
+// zadatak sa binarnim stablom
+
+// #include <iostream>
+
+// struct Tree
+// {
+//     int data;
+//     Tree *left, *rigth;
+// };
+
+// Tree *createVertex(int x)
+// {
+//     Tree *newTree = (Tree *)malloc(sizeof(Tree));
+//     newTree->data = x;
+//     newTree->left = NULL;
+//     newTree->rigth = NULL;
+// };
+// Tree *mainTree = NULL;
+
+// Tree *makeTree(int *niz, int n, int i, Tree *t = NULL)
+// {
+//     if (i < n)
+//     {
+//         Tree *newTree = createVertex(niz[i]);
+//         t = newTree;
+//         t->left = makeTree(niz, n, 2 * i + 1, t->left);
+//         t->rigth = makeTree(niz, n, 2 * i + 2, t->rigth);
+//     }
+//     return t;
+// }
+
+// int findLevel(int x, Tree *mt, int nivo = 1)
+// {
+//     if (mt)
+//     {
+//         if (x == mt->data)
+//         {
+//             return nivo;
+//         }
+
+//         return max(findLevel(x, mt->left, nivo + 1), findLevel(x, mt->rigth, nivo + 1));
+//     }
+//     return 0;
+// }
+
+// int search(int x)
+// {
+//     return findLevel(x, mainTree);
+// }
+
+// void printInOrder(Tree *t)
+// {
+//     if (t)
+//     {
+//         printInOrder(t->left);
+//         printf("%d \n", t->data);
+//         printInOrder(t->rigth);
+//     }
+// }
+
+// int main()
+// {
+//     int niz[9] = {2, 3, 4, 1, 5, 1, 5, 4, 5};
+
+//     Tree *s = NULL;
+//     mainTree = makeTree(niz, 8, 0);
+
+//     printInOrder(mainTree);
+//     cout << "found " << search(2);
+
+//     return 0;
+// }
