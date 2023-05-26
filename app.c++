@@ -7317,11 +7317,11 @@ using namespace std;
 //         start = queue[front++];
 //         cout << "Q-" << start << endl;
 
-// // prolazimo kroz sve elemnte koji se nalazi u redu start
+// // prolazimo kroz sve elemnte koji se nalazi u redu start .tj njegove veze sa susedima
 //         for (int i = 0; i < size; i++)
 //         {
-//// ako imamo vezu starta i nekog drugog cvora i, znacemo da ce biti jedan (niz[start][i]) , i ako nije posecena , tj ako na tom vertexu nemamo jedan kao visited
-//// npr ako naidjemo na vertex 1 , i vidimo da u tom redu imamo 1 , postavicemo visited pod indexom 1 da je visited , sto znaci da ga vise necemo obilazti;
+//// ako imamo vezu starta i nekog drugog cvora 'i', znacemo da ce biti jedan (niz[start][i]) , i ako nije posecena , tj ako na tom vertexu nemamo jedan kao visited
+//// npr ako naidjemo na vertex 1 , i vidimo da u tom redu imamo 1 sa nasim startom , postavicemo visited pod indexom 1 da je visited , sto znaci da ga vise necemo obilazti;
 //             if (niz[start][i] && visited[i] == 0)
 //             {
 //// kada pronadjemo takav element dodacemo ga u stek i oznaciti kao vidjen
