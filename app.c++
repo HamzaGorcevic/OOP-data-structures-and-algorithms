@@ -2147,203 +2147,6 @@ using namespace std;
 //  mogu postavljati(prilikom postavljanja proveriti da li su uneti ispravni procenti). Odgovor može da se
 //  ispiše na glavnom izlazu (out<<odgovor) u obliku tekst: udeo%.
 
-// #include <string.h>
-// using namespace std;
-// class Ponudjeni
-// {
-// 	string odgovor;
-// 	bool tacan;
-// 	float procenat;
-
-// public:
-// 	Ponudjeni()
-// 	{
-// 		odgovor = "";
-// 	}
-// 	Ponudjeni(string Odgovor, bool Tacan, float Procenat = -100)
-// 	{
-// 		odgovor = Odgovor;
-// 		tacan = Tacan;
-// 		procenat = Procenat;
-// 	}
-// 	string getOdgovor()
-// 	{
-// 		return odgovor;
-// 	}
-// 	bool getTacan()
-// 	{
-// 		return tacan;
-// 	}
-// 	float getProcenat()
-// 	{
-// 		return procenat;
-// 	}
-// 	void setProcenat(int pro)
-// 	{
-// 		if (pro < -100 || pro > 100)
-// 		{
-// 			printf("Uneli ste nevazeci procenat \n");
-// 			procenat = 0;
-// 		}
-// 		else
-// 		{
-// 			procenat = pro;
-// 		}
-// 	}
-// 	void setTacan(bool tac)
-// 	{
-// 		tacan = tac;
-// 	}
-
-// 	friend ostream &operator<<(ostream &COUT, Ponudjeni &pon)
-// 	{
-// 		COUT << pon.odgovor << ":" << pon.procenat << "%";
-// 		return COUT;
-// 	}
-// };
-// // };
-// // // ) Klasa Pitanje sadrži zadate podatke koji su zaštićeni: tekst, broj poena koji nosi,
-// // broj ponuđenih odgovora (podrazumevano 5), kao i ponuđene odgovore(dinamičko alocirani niz odgovora).
-// //  Stvara se bez ponuđenih odgovora, nakon čega se oni dodaju pojedinačno (pitanje+=odgovor). Prilikom dodavanja
-// //   ponuđenog odgovora računaju se jednaki procentualni udeli svih tačnih odgovora dodatih u dato pitanje(u zbiru daju 100%),
-// //    dok svaki netačan odgovor nosi -100%. Pomoću polimorfne metode može da se odgovori na pitanje, tada se zadaje niz koji sadrži
-// //     redne brojeve ponuđenih odgovora koje ispitanik smatra tačnim i dužina tog niza(odgovori(int niz[],int br);).
-// // 	 Tada se računa koliko je procentualno tačno odgovoreno na to pitanje. Na glavnom izlazu se ispisuje (out<<pitanje)
-// // 	 tako što se u prvom redu ispiše tekst: poeni(maksimalni koje pitanje nosi), a potom se u zasebnim redovima ispišu sadržani ponuđeni odgovori.
-
-// class Pitanje
-// {
-// 	string tekst;
-// 	int poeni;
-// 	int brojPonudjenih;
-// 	int counter;
-// 	int ukupanProcenat;
-// 	int osvojeniPoeni;
-// 	Ponudjeni *ponudjeni;
-
-// public:
-// 	Pitanje() {}
-// 	Pitanje(string Tekst, int poeni, int brojPonudjenih = 5)
-// 	{
-// 		tekst = Tekst;
-// 		this->poeni = poeni;
-// 		this->brojPonudjenih = brojPonudjenih;
-// 		counter = 0;
-// 		ponudjeni = new Ponudjeni[brojPonudjenih];
-// 		ukupanProcenat = 0;
-// 	}
-
-// 	friend Pitanje &operator+=(Pitanje &pit, Ponudjeni &pon)
-// 	{
-// 		if (pit.counter < pit.brojPonudjenih)
-// 		{
-// 			pit.ponudjeni[pit.counter] = pon;
-// 			pit.counter++;
-// 		}
-// 		else
-// 		{
-// 			cout << "Presli ste dozvoljeno" << endl;
-// 		}
-// 	}
-
-// 	void ispis()
-// 	{
-// 		cout << tekst << " (" << poeni << ")" << endl;
-// 		for (int i = 0; i < counter; i++)
-// 		{
-// 			cout << i << " " << ponudjeni[i].getOdgovor() << endl;
-// 		}
-// 	}
-// 	friend ostream &operator<<(ostream &COUT, Pitanje &pit)
-// 	{
-// 		pit.ispis();
-// 	}
-
-// 	void odgovori(int *niz, int br)
-// 	{
-// 		for (int j = 0; j < br; j++)
-// 		{
-// 			cout << j << endl;
-// 			if (ponudjeni[niz[j]].getTacan())
-// 			{
-
-// 				ukupanProcenat += ponudjeni[niz[j]].getProcenat();
-// 				osvojeniPoeni = poeni / (100 / ukupanProcenat);
-// 			}
-// 			else
-// 			{
-// 				ukupanProcenat = -100;
-// 				osvojeniPoeni = 0;
-// 			}
-// 		}
-// 	}
-// 	int getPoene()
-// 	{
-// 		return osvojeniPoeni;
-// 	}
-
-// 	~Pitanje()
-// 	{
-// 		delete[] ponudjeni;
-// 	}
-// };
-
-// class Student : Pitanje
-// {
-// 	int indeks;
-// 	string ime;
-// 	double studentPoeni;
-
-// public:
-// 	Student(int indeks, string ime)
-// 	{
-// 		this->indeks = indeks;
-// 		this->ime = ime;
-// 		studentPoeni = 0;
-// 	}
-// 	void Osvoio()
-// 	{
-// 		studentPoeni += getPoene();
-// 	}
-
-// 	friend ostream &operator<<(ostream &COUT, Student &stu)
-// 	{
-// 		COUT << stu.ime << "," << stu.indeks << "," << stu.studentPoeni << endl;
-// 		stu.ispis();
-// 	}
-// };
-
-// main()
-// {
-// 	Ponudjeni pon1("HAmza", true, 50.0);
-// 	Ponudjeni pon2("HAris", true, 50.0);
-// 	Ponudjeni pon3("Semra", false);
-
-// 	Pitanje pit("ko je babo", 10);
-// 	pit += pon1;
-// 	pit += pon2;
-// 	pit += pon3;
-// 	cout << pit;
-// 	int *izabrani;
-// 	int x;
-// 	int i = 0;
-// 	Student s1(23, "hamdija");
-
-// 	while (x != -1)
-// 	{
-// 		cout << "Izaberite " << i << ". odgovor" << endl;
-// 		cin >> x;
-// 		izabrani[i] = x;
-// 		i++;
-// 	}
-
-// 	s1.odgovori(izabrani, i - 1);
-
-// 	cout << s1 << endl;
-
-// 	return 0;
-// }
-
 // ⦁	Klasa Sastojak sadrži zadato ime i cenu po kilogramu.Pomoću metoda može da se dohvati vrsta sastojka i da se izračuna cena za
 // zadatu količinu sastojka u gramima(količina dolazi kao argument metode). Upisuje se u izlazni tok (cout<<s)  u obliku ime-cena/kg.
 // Vrste slanog, slatkog i neutralnog sastojka su SLAN, SLADiNEUT, respektivno. (Odraditi pomoću enumeracije)
@@ -6358,7 +6161,7 @@ using namespace std;
 //     return 0;
 // }
 
-// graphs Grpahs graph
+// graphs Grpahs graph matrica
 
 // graph adjacency arrays
 
@@ -6412,6 +6215,7 @@ using namespace std;
 // #include <vector>
 // #include <iostream>
 
+// graphs graf vector
 // #define SIZE 5
 
 // using namespace std;
@@ -6444,7 +6248,7 @@ using namespace std;
 //     return 0;
 // }
 
-// implementacija stabla u c
+// implementacija grafa u c
 
 // #include <iostream>
 
@@ -7138,255 +6942,255 @@ using namespace std;
 // }
 
 // https://rti.etf.bg.ac.rs/rti/ir2oo1/rokovi/OO1K2SI161209.pdf
-#include <iostream>
-#include <string>
+// #include <iostream>
+// #include <string>
 
-class Nalepnica
-{
-    int id;
-    string naziv;
+// class Nalepnica
+// {
+//     int id;
+//     string naziv;
 
-public:
-    static int counter;
+// public:
+//     static int counter;
 
-    Nalepnica(string N)
-    {
-        naziv = N;
-        counter++;
-        id = counter;
-    }
-    Nalepnica(Nalepnica &n)
-    {
-        naziv = n.naziv;
-        counter++;
-        id = counter;
-    }
-    string getNaziv()
-    {
-        return naziv;
-    }
-    int getId()
-    {
-        return id;
-    }
+//     Nalepnica(string N)
+//     {
+//         naziv = N;
+//         counter++;
+//         id = counter;
+//     }
+//     Nalepnica(Nalepnica &n)
+//     {
+//         naziv = n.naziv;
+//         counter++;
+//         id = counter;
+//     }
+//     string getNaziv()
+//     {
+//         return naziv;
+//     }
+//     int getId()
+//     {
+//         return id;
+//     }
 
-    friend ostream &operator<<(ostream &COUT, Nalepnica &n)
-    {
-        cout << n.naziv << "(" << n.id << ")";
-        return COUT;
-    }
-};
+//     friend ostream &operator<<(ostream &COUT, Nalepnica &n)
+//     {
+//         cout << n.naziv << "(" << n.id << ")";
+//         return COUT;
+//     }
+// };
 
-enum VRSTA
-{
-    BEZALKOHOLNO,
-    ALKOHOLNO
-};
+// enum VRSTA
+// {
+//     BEZALKOHOLNO,
+//     ALKOHOLNO
+// };
 
-class Flasa
-{
-protected:
-    Nalepnica *nalepnica;
-    float cenaBezKaucije;
-    double zapremina;
-    VRSTA vrsta;
+// class Flasa
+// {
+// protected:
+//     Nalepnica *nalepnica;
+//     float cenaBezKaucije;
+//     double zapremina;
+//     VRSTA vrsta;
 
-public:
-    Flasa(Nalepnica *n, float CBK, double Z = 0.33, VRSTA vr = BEZALKOHOLNO)
-    {
-        nalepnica = n;
-        cenaBezKaucije = CBK;
-        zapremina = Z;
-        vrsta = vr;
-    }
-    Nalepnica *getNalepnicu()
-    {
-        return nalepnica;
-    }
-    float getCBK()
-    {
-        return cenaBezKaucije;
-    }
-    void setCBK(int c)
-    {
-        cenaBezKaucije = c;
-    }
-    double getZapremina()
-    {
-        return zapremina;
-    }
-    VRSTA getVrstu()
-    {
-        return vrsta;
-    }
-    int izracunajCenu();
+// public:
+//     Flasa(Nalepnica *n, float CBK, double Z = 0.33, VRSTA vr = BEZALKOHOLNO)
+//     {
+//         nalepnica = n;
+//         cenaBezKaucije = CBK;
+//         zapremina = Z;
+//         vrsta = vr;
+//     }
+//     Nalepnica *getNalepnicu()
+//     {
+//         return nalepnica;
+//     }
+//     float getCBK()
+//     {
+//         return cenaBezKaucije;
+//     }
+//     void setCBK(int c)
+//     {
+//         cenaBezKaucije = c;
+//     }
+//     double getZapremina()
+//     {
+//         return zapremina;
+//     }
+//     VRSTA getVrstu()
+//     {
+//         return vrsta;
+//     }
+//     int izracunajCenu();
 
-    bool operator==(Flasa &f)
-    {
-        if (f.nalepnica->getNaziv() == nalepnica->getNaziv() && f.vrsta == vrsta && f.izracunajCenu() == izracunajCenu())
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-    virtual void pisi(ostream &COUT)
-    {
-        string arr[2] = {"bezalkoholno", "alkoholno"};
+//     bool operator==(Flasa &f)
+//     {
+//         if (f.nalepnica->getNaziv() == nalepnica->getNaziv() && f.vrsta == vrsta && f.izracunajCenu() == izracunajCenu())
+//         {
+//             return true;
+//         }
+//         else
+//         {
+//             return false;
+//         }
+//     }
+//     virtual void pisi(ostream &COUT)
+//     {
+//         string arr[2] = {"bezalkoholno", "alkoholno"};
 
-        COUT << *nalepnica << "(" << cenaBezKaucije << ":din ," << zapremina << "," << arr[vrsta] << ")";
-    }
+//         COUT << *nalepnica << "(" << cenaBezKaucije << ":din ," << zapremina << "," << arr[vrsta] << ")";
+//     }
 
-    friend ostream &operator<<(ostream &COUT, Flasa &f)
-    {
-        f.pisi(COUT);
-        return COUT;
-    }
-};
+//     friend ostream &operator<<(ostream &COUT, Flasa &f)
+//     {
+//         f.pisi(COUT);
+//         return COUT;
+//     }
+// };
 
-class Staklena : public Flasa
-{
-public:
-    Staklena(Nalepnica *n, float CBK, double Z = 0.33, VRSTA vr = BEZALKOHOLNO) : Flasa(n, CBK, Z, vr)
-    {
-    }
-    int izracunajCenu()
-    {
-        if (zapremina < 0.5)
-        {
-            cenaBezKaucije += (cenaBezKaucije * (5 / 100));
-        }
-        else
-        {
-            cenaBezKaucije += (cenaBezKaucije * (10 / 100));
-        }
-        return cenaBezKaucije;
-    }
+// class Staklena : public Flasa
+// {
+// public:
+//     Staklena(Nalepnica *n, float CBK, double Z = 0.33, VRSTA vr = BEZALKOHOLNO) : Flasa(n, CBK, Z, vr)
+//     {
+//     }
+//     int izracunajCenu()
+//     {
+//         if (zapremina < 0.5)
+//         {
+//             cenaBezKaucije += (cenaBezKaucije * (5 / 100));
+//         }
+//         else
+//         {
+//             cenaBezKaucije += (cenaBezKaucije * (10 / 100));
+//         }
+//         return cenaBezKaucije;
+//     }
 
-    void pisi(ostream &COUT) override
-    {
-        Flasa::pisi(COUT);
-        cout << "-staklena";
-    }
-};
+//     void pisi(ostream &COUT) override
+//     {
+//         Flasa::pisi(COUT);
+//         cout << "-staklena";
+//     }
+// };
 
-class Plasticna : public Flasa
-{
-public:
-    Plasticna(Nalepnica *n, float CBK, double Z = 0.33, VRSTA vr = BEZALKOHOLNO) : Flasa(n, CBK, Z, vr) {}
+// class Plasticna : public Flasa
+// {
+// public:
+//     Plasticna(Nalepnica *n, float CBK, double Z = 0.33, VRSTA vr = BEZALKOHOLNO) : Flasa(n, CBK, Z, vr) {}
 
-    int izracunajCenu()
-    {
-        if (zapremina < 0.5)
-        {
-            cenaBezKaucije += (cenaBezKaucije * (2.5 / 100));
-        }
-        else
-        {
-            cenaBezKaucije += (cenaBezKaucije * (5 / 100));
-        }
-        return cenaBezKaucije;
-    }
+//     int izracunajCenu()
+//     {
+//         if (zapremina < 0.5)
+//         {
+//             cenaBezKaucije += (cenaBezKaucije * (2.5 / 100));
+//         }
+//         else
+//         {
+//             cenaBezKaucije += (cenaBezKaucije * (5 / 100));
+//         }
+//         return cenaBezKaucije;
+//     }
 
-    void pisi(ostream &COUT)
-    {
-        Flasa::pisi(COUT);
-        cout << "-plasticna" << endl;
-    }
-};
+//     void pisi(ostream &COUT)
+//     {
+//         Flasa::pisi(COUT);
+//         cout << "-plasticna" << endl;
+//     }
+// };
 
-class Diskonti
-{
-    string naziv;
-    struct Flase
-    {
-        Flasa *flasa;
-        Flase *next;
-    };
-    Flase *first;
-    Flase *last;
+// class Diskonti
+// {
+//     string naziv;
+//     struct Flase
+//     {
+//         Flasa *flasa;
+//         Flase *next;
+//     };
+//     Flase *first;
+//     Flase *last;
 
-public:
-    Diskonti(string N)
-    {
-        naziv = N;
-        first = NULL;
-        last = NULL;
-    }
+// public:
+//     Diskonti(string N)
+//     {
+//         naziv = N;
+//         first = NULL;
+//         last = NULL;
+//     }
 
-    void operator+=(Flasa *f)
-    {
-        Flase *newNode = new Flase;
-        newNode->flasa = f;
-        newNode->next = NULL;
-        if (first == NULL)
-        {
-            first = last = newNode;
-        }
-        else
-        {
-            last->next = newNode;
-            last = last->next;
-        }
-    }
-    void ispis()
-    {
-        cout << "Podrum\n";
-        Flase *temp = first;
-        while (temp != NULL)
-        {
-            cout << *temp->flasa << endl;
-            temp = temp->next;
-        }
-    }
-    Flasa *operator[](int i)
-    {
-        Flase *temp = first;
-        while (temp != NULL && i > 0)
-        {
-            i--;
-            temp = temp->next;
-        }
-        if (temp != NULL)
-        {
-            return temp->flasa;
-        }
-        else
-        {
-            cout << "NULL returned";
-            return nullptr;
-        }
-    }
-};
-int Nalepnica::counter = 0;
+//     void operator+=(Flasa *f)
+//     {
+//         Flase *newNode = new Flase;
+//         newNode->flasa = f;
+//         newNode->next = NULL;
+//         if (first == NULL)
+//         {
+//             first = last = newNode;
+//         }
+//         else
+//         {
+//             last->next = newNode;
+//             last = last->next;
+//         }
+//     }
+//     void ispis()
+//     {
+//         cout << "Podrum\n";
+//         Flase *temp = first;
+//         while (temp != NULL)
+//         {
+//             cout << *temp->flasa << endl;
+//             temp = temp->next;
+//         }
+//     }
+//     Flasa *operator[](int i)
+//     {
+//         Flase *temp = first;
+//         while (temp != NULL && i > 0)
+//         {
+//             i--;
+//             temp = temp->next;
+//         }
+//         if (temp != NULL)
+//         {
+//             return temp->flasa;
+//         }
+//         else
+//         {
+//             cout << "NULL returned";
+//             return nullptr;
+//         }
+//     }
+// };
+// int Nalepnica::counter = 0;
 
-int main()
-{
-    Nalepnica n1("smoki");
-    Nalepnica n2("kivi");
-    Nalepnica n3(n2);
+// int main()
+// {
+//     Nalepnica n1("smoki");
+//     Nalepnica n2("kivi");
+//     Nalepnica n3(n2);
 
-    Staklena f1(&n2, 40, 100);
+//     Staklena f1(&n2, 40, 100);
 
-    Plasticna p1(&n1, 105, 0.5, ALKOHOLNO);
+//     Plasticna p1(&n1, 105, 0.5, ALKOHOLNO);
 
-    Diskonti diskont("Podrum");
+//     Diskonti diskont("Podrum");
 
-    diskont += &f1;
-    diskont += &p1;
+//     diskont += &f1;
+//     diskont += &p1;
 
-    diskont.ispis();
-    cout << "PROBA\n";
+//     diskont.ispis();
+//     cout << "PROBA\n";
 
-    Flasa *f3 = diskont[1];
+//     Flasa *f3 = diskont[1];
 
-    cout << "PROBA\n";
-    cout << *f3;
+//     cout << "PROBA\n";
+//     cout << *f3;
 
-    return 0;
-}
+//     return 0;
+// }
 
 // /
 // /
@@ -7484,3 +7288,132 @@ int main()
 
 //     return 0;
 // }
+
+// BFS bfs breath first
+// #include <iostream>
+// #include <string>
+
+// #define size 6
+
+// void addEdge(int niz[size][size], int x, int y)
+// {
+//     niz[x][y] = 1;
+// }
+
+// void BFS(int niz[][size], int visited[], int start)
+// {
+//     int queue[size], front = -1, rear = -1;
+//// dodajemo prvi elementa od kog zelimo da pocnemo
+
+//     front++;
+//     rear++;
+//     queue[rear] = start;
+//     visited[start] = 1; // oznaciecmo prvi element od kog smo poceli oznazenim
+
+//// prolazimo kroz while petlju dok se stek ne isprazni
+//     while (front <= rear)
+//     {
+////odredjuejmo vrednost start , trenutno ce bit ista kao sto smo je i poslali , ali ce se nakon implementacije front povecati sto znaci da smo je izbrisali
+//         start = queue[front++];
+//         cout << "Q-" << start << endl;
+
+// // prolazimo kroz sve elemnte koji se nalazi u redu start
+//         for (int i = 0; i < size; i++)
+//         {
+//// ako imamo vezu starta i nekog drugog cvora i, znacemo da ce biti jedan (niz[start][i]) , i ako nije posecena , tj ako na tom vertexu nemamo jedan kao visited
+//// npr ako naidjemo na vertex 1 , i vidimo da u tom redu imamo 1 , postavicemo visited pod indexom 1 da je visited , sto znaci da ga vise necemo obilazti;
+//             if (niz[start][i] && visited[i] == 0)
+//             {
+//// kada pronadjemo takav element dodacemo ga u stek i oznaciti kao vidjen
+//                 queue[++rear] = i;
+//                 visited[i] = 1;
+//             }
+//         }
+//     }
+// }
+// int main()
+// {
+//     int niz[size][size] = {0};
+//     int visited[size] = {0};
+//     addEdge(niz, 0, 1);
+//     addEdge(niz, 1, 2);
+//     addEdge(niz, 1, 3);
+//     addEdge(niz, 1, 4);
+//     addEdge(niz, 4, 0);
+//     addEdge(niz, 4, 5);
+//     addEdge(niz, 5, 3);
+
+//     cout << "ISPIS \n";
+//     for (int i = 0; i < size; i++)
+//     {
+//         for (int j = 0; j < size; j++)
+//         {
+//             printf("%d ", niz[i][j]);
+//         }
+//         cout << endl;
+//     }
+
+//     cout << "ISPISUJE\n";
+
+//     BFS(niz, visited, 0);
+//     return 0;
+// }
+
+// DPS depth first dps
+
+#include <iostream>
+
+#define size 6
+
+// DFS radi pomocu stacka , ubaci element zatim ga izbaci i doda njegove susede , zatim redom izbacuje pa dodaje susede
+void addEdge(int arr[][size], int x, int y)
+{
+    arr[x][y] = 1;
+}
+
+void DFS(int arr[][size], int visited[], int start)
+{
+    int stack[size];
+    int top = -1;
+
+    top++;
+    stack[top] = start;
+    visited[start] = 1;
+    // dok se ne isprazni stek
+    while (top != -1)
+    {
+        // postavljamo stek na 0
+        start = stack[top];
+        // odma je izbacujemo
+        top--;
+        printf("%d ", start);
+        // prolazimo kroz sve  kolone za red 0 , proveravamo da li ima povezanosti u uslovi if i da li su vec poseceni
+        for (int i = 0; i < size; i++)
+        {
+            if (arr[start][i] && visited[i] != 1)
+            {
+                // kada dodjedmo dodajemo sve grane u stack i grana koja je poslednja ce prva izaci i njene susede cemo prvo dodati
+                top++;
+                stack[top] = i;
+                visited[i] = 1;
+            }
+        }
+    }
+}
+int main()
+{
+    int arr[size][size] = {0};
+    int visited[size] = {0};
+
+    addEdge(arr, 0, 1);
+    addEdge(arr, 1, 4);
+    addEdge(arr, 4, 0);
+    addEdge(arr, 1, 2);
+    addEdge(arr, 1, 3);
+    addEdge(arr, 4, 5);
+    addEdge(arr, 5, 3);
+    addEdge(arr, 2, 3);
+
+    DFS(arr, visited, 0);
+    return 0;
+}
