@@ -7524,18 +7524,98 @@ void BFS(int arr[size][size], int visited[])
     }
 }
 
+void DFS(int arr[size][size], int visited[], int start = 0)
+{
+    int stack[size], top = -1;
+
+    stack[++top] = start;
+    visited[start] = 1;
+
+    while (top != -1)
+    {
+        start = stack[top];
+        cout << start << "s" << endl;
+        top--;
+
+        for (int i = 0; i < size; i++)
+        {
+            if (arr[start][i] && visited[i] == 0)
+            {
+                stack[++top] = i;
+                visited[i] = 1;
+            }
+        }
+    }
+}
+int minKey(int key[], int mstSet[])
+{
+
+    int min = 998, min_index;
+
+    for (int i = 0; i < size; i++)
+    {
+        if (mstSet[i] == 0 && key[i] < min)
+        {
+            min = key[i], min_index = i;
+        }
+    }
+    return min_index;
+}
+
+void printMST(int parent[], int graph[size][size])
+{
+    printf("Edge \t Weight\n");
+    for (int i = 1; i < size; i++)
+    {
+        printf("%d-%d\t%d\n", parent[i], i, graph[i][parent[i]]);
+    }
+}
+
+void primMST(int arr[size][size], int start = 0)
+{
+    int parent[size];
+    int key[size];
+    int mstSet[size];
+
+    for (int i = 0; i < size; i++)
+    {
+        key[i] = 998;
+        mstSet[i] = 0;
+    }
+    key[0] = 0;
+    parent[0] = -1;
+    for (int count = 0; count < size - 1; count++)
+    {
+        int u = minKey(key, mstSet);
+        mstSet[u] = 1;
+
+        for (int i = 0; i < size; i++)
+        {
+            if (arr[u][i] && mstSet[i] == 0 && arr[u][i] < key[i])
+            {
+                parent[i] = u;
+                key[i] = arr[u][i];
+            }
+        }
+    }
+    printMST(parent, arr);
+}
+
 int main()
 {
 
     int visited[size] = {0};
     int arr[size][size] = {
-        {0, 1, 0, 0, 1},
-        {1, 0, 1, 0, 1},
-        {0, 1, 1, 0, 1},
-        {1, 1, 0, 0, 1},
-        {0, 0, 0, 0, 1}};
+        {0, 2, 0, 1, 4},
+        {2, 0, 5, 0, 0},
+        {0, 5, 0, 2, 0},
+        {1, 0, 2, 0, 0},
+        {4, 0, 0, 0, 0},
+    };
 
-    BFS(arr, visited);
+    // BFS(arr, visited);
+    // DFS(arr, visited);
+    primMST(arr);
 
     return 0;
 }
