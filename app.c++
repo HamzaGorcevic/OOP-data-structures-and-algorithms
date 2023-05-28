@@ -7498,7 +7498,7 @@ using namespace std;
 
 #include <iostream>
 
-#define size 5
+#define size 4
 
 void BFS(int arr[size][size], int visited[])
 {
@@ -7547,58 +7547,74 @@ void DFS(int arr[size][size], int visited[], int start = 0)
         }
     }
 }
-int minKey(int key[], int mstSet[])
-{
 
-    int min = 998, min_index;
-
-    for (int i = 0; i < size; i++)
-    {
-        if (mstSet[i] == 0 && key[i] < min)
-        {
-            min = key[i], min_index = i;
-        }
-    }
-    return min_index;
-}
-
-void printMST(int parent[], int graph[size][size])
+// mst prim , primov , prims algorithm
+void printMST(int parent[], int graph[size][size], int key[size])
 {
     printf("Edge \t Weight\n");
     for (int i = 1; i < size; i++)
     {
+        // printf("%d-%d\t%d\n", parent[i], i, key[i]);
         printf("%d-%d\t%d\n", parent[i], i, graph[i][parent[i]]);
     }
-}
 
-void primMST(int arr[size][size], int start = 0)
-{
-    int parent[size];
-    int key[size];
-    int mstSet[size];
-
+    printf("Printing without change \n");
     for (int i = 0; i < size; i++)
     {
-        key[i] = 998;
-        mstSet[i] = 0;
-    }
-    key[0] = 0;
-    parent[0] = -1;
-    for (int count = 0; count < size - 1; count++)
-    {
-        int u = minKey(key, mstSet);
-        mstSet[u] = 1;
-
-        for (int i = 0; i < size; i++)
+        for (int j = 0; j < size; j++)
         {
-            if (arr[u][i] && mstSet[i] == 0 && arr[u][i] < key[i])
+            if (graph[i][j] != 0)
             {
-                parent[i] = u;
-                key[i] = arr[u][i];
+                printf("%d-%d \t %d\n", i, j, graph[i][j]);
             }
         }
     }
-    printMST(parent, arr);
+}
+
+int minKey(int key[], int selected[])
+{
+
+    int min = 998, minI;
+
+    for (int i = 0; i < size; i++)
+    {
+        if (!selected[i] && key[i] < min)
+        {
+            min = key[i];
+            minI = i;
+        }
+    }
+    return minI;
+}
+
+int primMST(int graph[size][size])
+{
+    int key[size], parents[size], selected[size];
+    for (int i = 0; i < size; i++)
+    {
+        key[i] = 998, selected[i] = 0;
+    }
+    key[0] = 0;
+    parents[0] = -1;
+
+    for (int i = 0; i < size; i++)
+    {
+        int u = minKey(key, selected);
+        selected[u] = 1;
+
+        for (int j = 0; j < size; j++)
+        {
+            // printf("\nU = %d !selected[%d] is %d", u, j, !selected[j]);
+            if (graph[u][j] && graph[u][j] < key[j] && !selected[j])
+            {
+                cout << "U==" << u << "graph=" << graph[u][j] << endl;
+                parents[j] = u;
+                key[j] = graph[u][j];
+            }
+        }
+    }
+
+    printMST(parents, graph, key);
 }
 
 int main()
@@ -7606,11 +7622,10 @@ int main()
 
     int visited[size] = {0};
     int arr[size][size] = {
-        {0, 2, 0, 1, 4},
-        {2, 0, 5, 0, 0},
-        {0, 5, 0, 2, 0},
-        {1, 0, 2, 0, 0},
-        {4, 0, 0, 0, 0},
+        {0, 3, 0, 1},
+        {3, 0, 5, 0},
+        {0, 5, 0, 2},
+        {1, 0, 2, 0},
     };
 
     // BFS(arr, visited);
