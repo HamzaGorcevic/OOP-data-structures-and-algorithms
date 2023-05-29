@@ -7496,115 +7496,115 @@ using namespace std;
 //     return 0;
 // }
 
-#include <iostream>
-#define size 4
+// #include <iostream>
+// #define size 4
 
-using namespace std;
-void BFS(int arr[size][size], int visited[])
-{
-    int queue[size], front = -1, rear = -1, start;
+// using namespace std;
+// void BFS(int arr[size][size], int visited[])
+// {
+//     int queue[size], front = -1, rear = -1, start;
 
-    queue[++front] = 0;
-    rear++;
-    visited[0] = 1;
+//     queue[++front] = 0;
+//     rear++;
+//     visited[0] = 1;
 
-    while (front <= rear)
-    {
-        start = queue[front++];
-        cout << start << endl;
+//     while (front <= rear)
+//     {
+//         start = queue[front++];
+//         cout << start << endl;
 
-        for (int i = 0; i < size; i++)
-        {
-            if (arr[start][i] && visited[i] == 0)
-            {
-                queue[++rear] = i;
-                visited[i] = 1;
-            }
-        }
-    }
-}
+//         for (int i = 0; i < size; i++)
+//         {
+//             if (arr[start][i] && visited[i] == 0)
+//             {
+//                 queue[++rear] = i;
+//                 visited[i] = 1;
+//             }
+//         }
+//     }
+// }
 
-void DFS(int arr[size][size], int visited[], int start = 0)
-{
-    int stack[size], top = -1;
+// void DFS(int arr[size][size], int visited[], int start = 0)
+// {
+//     int stack[size], top = -1;
 
-    stack[++top] = start;
-    visited[start] = 1;
+//     stack[++top] = start;
+//     visited[start] = 1;
 
-    while (top != -1)
-    {
-        start = stack[top];
-        cout << start << "s" << endl;
-        top--;
+//     while (top != -1)
+//     {
+//         start = stack[top];
+//         cout << start << "s" << endl;
+//         top--;
 
-        for (int i = 0; i < size; i++)
-        {
-            if (arr[start][i] && visited[i] == 0)
-            {
-                stack[++top] = i;
-                visited[i] = 1;
-            }
-        }
-    }
-}
+//         for (int i = 0; i < size; i++)
+//         {
+//             if (arr[start][i] && visited[i] == 0)
+//             {
+//                 stack[++top] = i;
+//                 visited[i] = 1;
+//             }
+//         }
+//     }
+// }
 
-// mst prim , primov , prims algorithm
-// prim start
+// // mst prim , primov , prims algorithm
+// // prim start
 
-void printMST(int parent[], int graph[size][size], int key[size])
-{
-    printf("Edge \t Weight\n");
-    for (int i = 1; i < size; i++)
-    {
-        // printf("%d-%d\t%d\n", parent[i], i, key[i]);
-        printf("%d-%d\t%d\n", parent[i], i, graph[i][parent[i]]);
-    }
-}
+// void printMST(int parent[], int graph[size][size], int key[size])
+// {
+//     printf("Edge \t Weight\n");
+//     for (int i = 1; i < size; i++)
+//     {
+//         // printf("%d-%d\t%d\n", parent[i], i, key[i]);
+//         printf("%d-%d\t%d\n", parent[i], i, graph[i][parent[i]]);
+//     }
+// }
 
-int minKey(int key[], int selected[])
-{
+// int minKey(int key[], int selected[])
+// {
 
-    int min = 998, minI;
+//     int min = 998, minI;
 
-    for (int i = 0; i < size; i++)
-    {
-        if (!selected[i] && key[i] < min)
-        {
-            min = key[i];
-            minI = i;
-        }
-    }
-    return minI;
-}
+//     for (int i = 0; i < size; i++)
+//     {
+//         if (!selected[i] && key[i] < min)
+//         {
+//             min = key[i];
+//             minI = i;
+//         }
+//     }
+//     return minI;
+// }
 
-int primMST(int graph[size][size])
-{
-    int key[size], parents[size], selected[size];
-    for (int i = 0; i < size; i++)
-    {
-        key[i] = 998, selected[i] = 0;
-    }
-    key[0] = 0;
-    parents[0] = -1;
+// int primMST(int graph[size][size])
+// {
+//     int key[size], parents[size], selected[size];
+//     for (int i = 0; i < size; i++)
+//     {
+//         key[i] = 998, selected[i] = 0;
+//     }
+//     key[0] = 0;
+//     parents[0] = -1;
 
-    for (int i = 0; i < size; i++)
-    {
-        int u = minKey(key, selected);
-        selected[u] = 1;
+//     for (int i = 0; i < size; i++)
+//     {
+//         int u = minKey(key, selected);
+//         selected[u] = 1;
 
-        for (int j = 0; j < size; j++)
-        {
-            // printf("\nU = %d !selected[%d] is %d", u, j, !selected[j]);
-            if (graph[u][j] && graph[u][j] < key[j] && !selected[j])
-            {
-                parents[j] = u;
-                key[j] = graph[u][j];
-            }
-        }
-    }
+//         for (int j = 0; j < size; j++)
+//         {
+//             // printf("\nU = %d !selected[%d] is %d", u, j, !selected[j]);
+//             if (graph[u][j] && graph[u][j] < key[j] && !selected[j])
+//             {
+//                 parents[j] = u;
+//                 key[j] = graph[u][j];
+//             }
+//         }
+//     }
 
-    printMST(parents, graph, key);
-}
+//     printMST(parents, graph, key);
+// }
 
 ////prim end
 
@@ -7625,60 +7625,172 @@ int primMST(int graph[size][size])
 // }
 // end dijksta
 
-void warshall(int graph[size][size])
+// void warshall(int graph[size][size])
+// {
+
+//     for (int k = 0; k < size; k++)
+//     {
+//         for (int i = 0; i < size; i++)
+//         {
+//             if (graph[i][k] == 1)
+//                 for (int j = 0; j < size; j++)
+//                 {
+//                     graph[i][j] = graph[i][j] || graph[k][j];
+//                 }
+//         }
+//     }
+
+//     cout << "ISPIS\n";
+//     for (int i = 0; i < size; i++)
+//     {
+//         for (int j = 0; j < size; j++)
+//         {
+//             printf("%d ", graph[i][j]);
+//         }
+//         cout << endl;
+//     }
+// }
+
+// void warshallWeight(int graph[size][size])
+// {
+
+//     for (int k = 0; k < size; k++)
+//     {
+//         for (int i = 0; i < size; i++)
+//         {
+//             for (int j = 0; j < size; j++)
+//             {
+//                 if ((graph[k][j] + graph[i][k]) < graph[i][j])
+//                 {
+//                     graph[i][j] = graph[k][j] + graph[i][k];
+//                 }
+//             }
+//         }
+//     }
+//     cout << "ISPIS weight\n";
+//     for (int i = 0; i < size; i++)
+//     {
+//         for (int j = 0; j < size; j++)
+//         {
+//             printf("%d ", graph[i][j]);
+//         }
+//         cout << endl;
+//     }
+// }
+
+#include <iostream>
+#define size 4
+
+using namespace std;
+struct Node
+{
+    int data;
+    Node *left, *right;
+};
+
+Node *createNode(int data)
+{
+    Node *newTree = (Node *)malloc(sizeof(Node));
+    newTree->data = data;
+    newTree->left = NULL;
+    newTree->right = NULL;
+
+    return newTree;
+}
+
+Node *insertNode(Node **tree, int data)
+{
+    if (*tree == NULL)
+    {
+        *tree = createNode(data);
+        return *tree;
+    }
+    if ((*tree)->data > data)
+    {
+        (*tree)->left = insertNode(&((*tree)->left), data);
+    }
+    else if ((*tree)->data < data)
+    {
+
+        (*tree)->right = insertNode(&((*tree)->right), data);
+    }
+    return *tree;
+}
+
+Node *minValueNode(Node *tree)
+{
+    Node *temp = tree;
+    while (temp->left != NULL)
+    {
+        temp = temp->left;
+    }
+    return temp;
+}
+void inorder(Node *tree)
 {
 
-    for (int k = 0; k < size; k++)
+    if (tree)
     {
-        for (int i = 0; i < size; i++)
-        {
-            if (graph[i][k] == 1)
-                for (int j = 0; j < size; j++)
-                {
-                    graph[i][j] = graph[i][j] || graph[k][j];
-                }
-        }
-    }
 
-    cout << "ISPIS\n";
-    for (int i = 0; i < size; i++)
-    {
-        for (int j = 0; j < size; j++)
-        {
-            printf("%d ", graph[i][j]);
-        }
-        cout << endl;
+        inorder(tree->left);
+        cout << tree->data << " ";
+        inorder(tree->right);
     }
 }
 
-void warshallWeight(int graph[size][size])
+Node *deleteNode(Node **tree, int data)
 {
+    if (*tree == NULL)
+    {
+        return *tree;
+    }
+    if ((*tree)->data > data)
+    {
+        (*tree)->left = deleteNode(&(*tree)->left, data);
+    }
+    else if ((*tree)->data < data)
+    {
+        (*tree)->right = deleteNode(&(*tree)->right, data);
+    }
+    else
+    {
+        // we found it
 
-    for (int k = 0; k < size; k++)
-    {
-        for (int i = 0; i < size; i++)
+        if ((*tree)->left == NULL)
         {
-            for (int j = 0; j < size; j++)
-            {
-                if ((graph[k][j] + graph[i][k]) < graph[i][j])
-                {
-                    graph[i][j] = graph[k][j] + graph[i][k];
-                }
-            }
+            Node *temp = (*tree)->right;
+            free(*tree);
+            return temp;
         }
-    }
-    cout << "ISPIS weight\n";
-    for (int i = 0; i < size; i++)
-    {
-        for (int j = 0; j < size; j++)
+        else if ((*tree)->right == NULL)
         {
-            printf("%d ", graph[i][j]);
+            Node *temp = (*tree)->left;
+            free(*tree);
+            return temp;
         }
-        cout << endl;
+        Node *temp = minValueNode((*tree)->right);
+        cout << "MIN FOUNDED FOR THAT SPECIFIC" << temp->data << endl;
+        (*tree)->data = temp->data;
+        (*tree)->right = deleteNode(&(*tree)->right, temp->data);
     }
+    return *tree;
 }
+
 int main()
 {
+
+    Node *tree = NULL;
+
+    insertNode(&tree, 2);
+    insertNode(&tree, 3);
+    insertNode(&tree, 1);
+    insertNode(&tree, 22);
+    insertNode(&tree, 24);
+    insertNode(&tree, 20);
+    insertNode(&tree, 29);
+    tree = deleteNode(&tree, 22);
+    inorder(tree);
+    cout << endl;
 
     int visited[size] = {0};
     int arr[size][size] = {
@@ -7702,8 +7814,14 @@ int main()
     // dijkstra(arr, 0);
 
     // TestPrimMST(arr);
-    warshall(arr0);
+    // warshall(arr0);
     // warshallWeight(arr);
+    // graph *g = creategraph(6);
+    // insertVertex(g, 3, 1);
+    // insertVertex(g, 0, 1);
+    // insertVertex(g, 2, 1);
+    // insertVertex(g, 3, 4);
+    // ispisGrafa(g);
 
     return 0;
 }
