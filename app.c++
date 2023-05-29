@@ -7497,9 +7497,9 @@ using namespace std;
 // }
 
 #include <iostream>
-
 #define size 4
 
+using namespace std;
 void BFS(int arr[size][size], int visited[])
 {
     int queue[size], front = -1, rear = -1, start;
@@ -7549,6 +7549,8 @@ void DFS(int arr[size][size], int visited[], int start = 0)
 }
 
 // mst prim , primov , prims algorithm
+// prim start
+
 void printMST(int parent[], int graph[size][size], int key[size])
 {
     printf("Edge \t Weight\n");
@@ -7556,18 +7558,6 @@ void printMST(int parent[], int graph[size][size], int key[size])
     {
         // printf("%d-%d\t%d\n", parent[i], i, key[i]);
         printf("%d-%d\t%d\n", parent[i], i, graph[i][parent[i]]);
-    }
-
-    printf("Printing without change \n");
-    for (int i = 0; i < size; i++)
-    {
-        for (int j = 0; j < size; j++)
-        {
-            if (graph[i][j] != 0)
-            {
-                printf("%d-%d \t %d\n", i, j, graph[i][j]);
-            }
-        }
     }
 }
 
@@ -7607,7 +7597,6 @@ int primMST(int graph[size][size])
             // printf("\nU = %d !selected[%d] is %d", u, j, !selected[j]);
             if (graph[u][j] && graph[u][j] < key[j] && !selected[j])
             {
-                cout << "U==" << u << "graph=" << graph[u][j] << endl;
                 parents[j] = u;
                 key[j] = graph[u][j];
             }
@@ -7617,6 +7606,77 @@ int primMST(int graph[size][size])
     printMST(parents, graph, key);
 }
 
+////prim end
+
+// dijkstra dijk algoritam
+
+//  start
+
+// void dijkstra(int graph[size][size], int v)
+// {
+//     int count, u, w, visited[size], distance[size], parents[size];
+
+//     for (int i = 0; i < size; i++)
+//     {
+//         visited[i] = 0;
+//         parents[i] = 0;
+//     }
+//     distance[v] = 0;
+// }
+// end dijksta
+
+void warshall(int graph[size][size])
+{
+
+    for (int k = 0; k < size; k++)
+    {
+        for (int i = 0; i < size; i++)
+        {
+            if (graph[i][k] == 1)
+                for (int j = 0; j < size; j++)
+                {
+                    graph[i][j] = graph[i][j] || graph[k][j];
+                }
+        }
+    }
+
+    cout << "ISPIS\n";
+    for (int i = 0; i < size; i++)
+    {
+        for (int j = 0; j < size; j++)
+        {
+            printf("%d ", graph[i][j]);
+        }
+        cout << endl;
+    }
+}
+
+void warshallWeight(int graph[size][size])
+{
+
+    for (int k = 0; k < size; k++)
+    {
+        for (int i = 0; i < size; i++)
+        {
+            for (int j = 0; j < size; j++)
+            {
+                if ((graph[k][j] + graph[i][k]) < graph[i][j])
+                {
+                    graph[i][j] = graph[k][j] + graph[i][k];
+                }
+            }
+        }
+    }
+    cout << "ISPIS weight\n";
+    for (int i = 0; i < size; i++)
+    {
+        for (int j = 0; j < size; j++)
+        {
+            printf("%d ", graph[i][j]);
+        }
+        cout << endl;
+    }
+}
 int main()
 {
 
@@ -7628,9 +7688,22 @@ int main()
         {1, 0, 2, 0},
     };
 
+    // bestezinska
+    int arr0[size][size] = {
+        {0, 1, 0, 1},
+        {0, 0, 1, 1},
+        {1, 0, 0, 0},
+        {0, 0, 0, 0}};
+
     // BFS(arr, visited);
     // DFS(arr, visited);
-    primMST(arr);
+    // primMST(arr);
+    // int distance[size];
+    // dijkstra(arr, 0);
+
+    // TestPrimMST(arr);
+    warshall(arr0);
+    // warshallWeight(arr);
 
     return 0;
 }
