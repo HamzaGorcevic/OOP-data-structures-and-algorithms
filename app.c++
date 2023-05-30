@@ -1,8 +1,8 @@
 
 #include <iostream>
-#include <cmath>
-#include <string.h>
 #include <string>
+#include <string.h>
+#include <math.h>
 using namespace std;
 // using namespace std;
 
@@ -518,8 +518,7 @@ using namespace std;
 // // OOP
 
 // // #include <iostream>
-// // #include <string.h>
-// // /* run this program using the console pauser or add your own getch, system("pause") or input loop */
+// // // /* run this program using the console pauser or add your own getch, system("pause") or input loop */
 
 // // using namespace std;
 // // //class Student{
@@ -597,7 +596,6 @@ using namespace std;
 // }
 
 // #include <iostream>
-// #include <string>
 // #include <cstring>
 // using namespace std;
 
@@ -970,7 +968,6 @@ using namespace std;
 
 // ISPIS IZ OOP FEB
 // #include <iostream>
-// #include <string.h>
 // /* run this program using the console pauser or add your own getch, system("pause") or input loop */
 
 // using namespace std;
@@ -1264,8 +1261,6 @@ using namespace std;
 // }
 
 // #include <iostream>
-// #include <string>
-// #include <string.h>
 
 // using namespace std;
 // class Let{
@@ -2610,7 +2605,6 @@ using namespace std;
 //  int *p2=p1; int *p3=r1; int *p4=&r1; int &r3=r2; int &rn[10]; }
 
 // #include <iostream>
-// #include <string.h>
 
 // using namespace std;
 
@@ -2668,7 +2662,6 @@ using namespace std;
 // линији испише spil(број_карата), а затим се у засебним линијама исписују појединачне
 // карте из шпила.
 // #include <iostream>
-// #include <string.h>
 
 // using namespace std;
 // enum ZNAK
@@ -2877,8 +2870,6 @@ using namespace std;
 // }
 
 // #include <iostream>
-// #include <string.h>
-// #include <cmath>
 // using namespace std;
 
 // class Tacka
@@ -3026,8 +3017,6 @@ using namespace std;
 // }
 
 // #include <iostream>
-// #include <string.h>
-// #include <cmath>
 // using namespace std;
 
 // enum ZANR
@@ -3389,7 +3378,6 @@ using namespace std;
 // Napomena: Ovo je samo primjer zadatka i može biti složen za rješavanje u zavisnosti od nivoa znanja programiranja u jeziku C.
 
 // #include <iostream>
-// #include <string.h>
 // using namespace std;
 
 // typedef struct NODE
@@ -3477,7 +3465,6 @@ using namespace std;
 // }
 
 // #include <iostream>
-// #include <string.h>
 // using namespace std;
 // typedef struct NODE
 // {
@@ -3559,7 +3546,6 @@ using namespace std;
 // }
 
 // #include <iostream>
-// #include <string.h>
 // using namespace std;
 
 // int deck[12];
@@ -3639,7 +3625,6 @@ using namespace std;
 // }
 
 // #include <iostream>
-// #include <string.h>
 // using namespace std;
 
 // //  3/7/2019
@@ -3826,7 +3811,6 @@ using namespace std;
 // zadatak , prebacivanje sa neparnih mesta dvostruke u jednostruku listu
 
 // #include <iostream>
-// #include <string.h>
 // using namespace std;
 
 // typedef struct node
@@ -3950,7 +3934,6 @@ using namespace std;
 // Zadatak sa kvadriranjem kruzne lista
 
 // #include <iostream>
-// #include <string.h>
 // #include <math.h>
 // using namespace std;
 
@@ -4034,7 +4017,6 @@ using namespace std;
 // Zadatak sa redom
 
 // #include <iostream>
-// #include <string.h>
 // using namespace std;
 // #define SIZE 4
 
@@ -4128,7 +4110,6 @@ using namespace std;
 // zadatak sa stablom ,search i dubina
 
 // #include <iostream>
-// #include <string.h>
 // #include <math.h>
 // using namespace std;
 
@@ -4210,7 +4191,6 @@ using namespace std;
 // sorting linked list
 
 // #include <iostream>
-// #include <string.h>
 // #include <math.h>
 // using namespace std;
 
@@ -4280,7 +4260,6 @@ using namespace std;
 // zadatak za sortiranje dodavanje insertovano i pretrazivanje soritaranog
 // #include <stdlib.h>
 // #include <stdio.h>
-// #include <string.h>
 // #include <math.h>
 // using namespace std;
 
@@ -4419,7 +4398,6 @@ using namespace std;
 
 // #include <stdlib.h>
 // #include <stdio.h>
-// #include <string.h>
 // #include <math.h>
 
 // #define SIZE 10
@@ -4563,7 +4541,6 @@ using namespace std;
 //  red123 zadatak sa stekom i redom (red implementiran preko arraya), dodavanje prostih brojeva iz red u stek
 // #include <stdlib.h>
 // #include <stdio.h>
-// #include <string.h>
 // #include <math.h>
 
 // #define size 10
@@ -4644,7 +4621,6 @@ using namespace std;
 
 // #include <stdlib.h>
 // #include <stdio.h>
-// #include <string.h>
 // #include <math.h>
 
 // typedef struct Node
@@ -4707,7 +4683,6 @@ using namespace std;
 // Uraditit zadatak , imlementirati red preko dva steka , ulancana reprezentacija
 // #include <stdlib.h>
 // #include <stdio.h>
-// #include <string.h>
 // #include <math.h>
 
 // typedef struct Node
@@ -4808,7 +4783,6 @@ using namespace std;
 
 // #include <stdlib.h>
 // #include <stdio.h>
-// #include <string.h>
 // #include <math.h>
 
 // typedef struct Node
@@ -4903,7 +4877,6 @@ using namespace std;
 
 // #include <stdlib.h>
 // #include <stdio.h>
-// #include <string.h>
 
 // #define SIZE 10
 
@@ -5606,7 +5579,6 @@ using namespace std;
 // DRUGI KOLOKVIJUM
 
 // #include <iostream>
-// #include <string>
 
 // class Artikal
 // {
@@ -5788,7 +5760,6 @@ using namespace std;
  postavljati(prilikom postavljanja proveriti da li su uneti ispravni procenti). Odgovor može da se ispiše na glavnom izlazu (out<<odgovor) u obliku tekst: udeo%.*/
 
 // #include <iostream>
-// #include <string>
 // class PonudjeniOdgovor
 // {
 //     string odgovori;
@@ -5914,7 +5885,6 @@ using namespace std;
 // }
 
 // #include <iostream>
-// #include <string>
 // #include <cstdlib>
 // #include <time.h>
 
@@ -6009,7 +5979,6 @@ using namespace std;
 // etf zadatak gandom
 
 // #include <iostream>
-// #include <string>
 // #include <cstdlib>
 // #include <time.h>
 
@@ -6490,7 +6459,6 @@ using namespace std;
 // https://rti.etf.bg.ac.rs/rti/ir2oo1/rokovi/OO1K2SI141205.pdf
 
 // #include <iostream>
-// #include <string>
 // #include <cstdlib>
 // #include <time.h>
 // #include <vector>
@@ -6708,7 +6676,6 @@ using namespace std;
 // }
 
 // #include <iostream>
-// #include <string>
 
 // class Poistion
 // {
@@ -6945,7 +6912,6 @@ using namespace std;
 
 // https://rti.etf.bg.ac.rs/rti/ir2oo1/rokovi/OO1K2SI161209.pdf
 // #include <iostream>
-// #include <string>
 
 // class Nalepnica
 // {
@@ -7293,7 +7259,6 @@ using namespace std;
 
 // BFS bfs breath first
 // #include <iostream>
-// #include <string>
 
 // #define size 6
 
@@ -7678,150 +7643,561 @@ using namespace std;
 //     }
 // }
 
-#include <iostream>
-#define size 4
+// #include <iostream>
+// #define size 4
 
-using namespace std;
-struct Node
+// using namespace std;
+// struct Node
+// {
+//     int data;
+//     Node *left, *right;
+// };
+
+// Node *createNode(int data)
+// {
+//     Node *newTree = (Node *)malloc(sizeof(Node));
+//     newTree->data = data;
+//     newTree->left = NULL;
+//     newTree->right = NULL;
+
+//     return newTree;
+// }
+
+// Node *insertNode(Node **tree, int data)
+// {
+//     if (*tree == NULL)
+//     {
+//         *tree = createNode(data);
+//         return *tree;
+//     }
+//     if ((*tree)->data > data)
+//     {
+//         (*tree)->left = insertNode(&((*tree)->left), data);
+//     }
+//     else if ((*tree)->data < data)
+//     {
+
+//         (*tree)->right = insertNode(&((*tree)->right), data);
+//     }
+//     return *tree;
+// }
+
+// Node *minValueNode(Node *tree)
+// {
+//     Node *temp = tree;
+//     while (temp->left != NULL)
+//     {
+//         temp = temp->left;
+//     }
+//     return temp;
+// }
+// void inorder(Node *tree)
+// {
+
+//     if (tree)
+//     {
+
+//         inorder(tree->left);
+//         cout << tree->data << " ";
+//         inorder(tree->right);
+//     }
+// }
+
+// Node *deleteNode(Node **tree, int data)
+// {
+//     if (*tree == NULL)
+//     {
+//         return *tree;
+//     }
+//     if ((*tree)->data > data)
+//     {
+//         (*tree)->left = deleteNode(&(*tree)->left, data);
+//     }
+//     else if ((*tree)->data < data)
+//     {
+//         (*tree)->right = deleteNode(&(*tree)->right, data);
+//     }
+//     else
+//     {
+//         // we found it
+
+//         if ((*tree)->left == NULL)
+//         {
+//             Node *temp = (*tree)->right;
+//             free(*tree);
+//             return temp;
+//         }
+//         else if ((*tree)->right == NULL)
+//         {
+//             Node *temp = (*tree)->left;
+//             free(*tree);
+//             return temp;
+//         }
+//         Node *temp = minValueNode((*tree)->right);
+//         cout << "MIN FOUNDED FOR THAT SPECIFIC" << temp->data << endl;
+//         (*tree)->data = temp->data;
+//         (*tree)->right = deleteNode(&(*tree)->right, temp->data);
+//     }
+//     return *tree;
+// }
+
+// int main()
+// {
+
+// Node *tree = NULL;
+
+// insertNode(&tree, 2);
+// insertNode(&tree, 3);
+// insertNode(&tree, 1);
+// insertNode(&tree, 22);
+// insertNode(&tree, 24);
+// insertNode(&tree, 20);
+// insertNode(&tree, 29);
+// tree = deleteNode(&tree, 22);
+// inorder(tree);
+// cout << endl;
+
+// int visited[size] = {0};
+// int arr[size][size] = {
+//     {0, 3, 0, 1},
+//     {3, 0, 5, 0},
+//     {0, 5, 0, 2},
+//     {1, 0, 2, 0},
+// };
+
+// bestezinska
+// int arr0[size][size] = {
+//     {0, 1, 0, 1},
+//     {0, 0, 1, 1},
+//     {1, 0, 0, 0},
+//     {0, 0, 0, 0}};
+
+// BFS(arr, visited);
+// DFS(arr, visited);
+// primMST(arr);
+// int distance[size];
+// dijkstra(arr, 0);
+
+// TestPrimMST(arr);
+// warshall(arr0);
+// warshallWeight(arr);
+// graph *g = creategraph(6);
+// insertVertex(g, 3, 1);
+// insertVertex(g, 0, 1);
+// insertVertex(g, 2, 1);
+// insertVertex(g, 3, 4);
+// ispisGrafa(g);
+
+//     return 0;
+// }
+
+// #include <iostream>
+// using namespace std;
+
+// struct Tree
+// {
+//     int data;
+//     Tree *left, *right;
+// };
+
+// Tree *createTree(int data)
+// {
+//     Tree *newTree = (Tree *)malloc(sizeof(Tree));
+//     newTree->data = data;
+//     newTree->left = NULL;
+//     newTree->right = NULL;
+//     return newTree;
+// }
+// Tree *insert(Tree **t, int data)
+// {
+//     if ((*t) == NULL)
+//     {
+//         *t = createTree(data);
+//     }
+//     if ((*t)->data < data)
+//     {
+//         (*t)->right = insert(&((*t)->right), data);
+//     }
+//     else if ((*t)->data > data)
+//     {
+//         (*t)->left = insert(&((*t)->left), data);
+//     }
+//     return *t;
+// }
+// Tree *minValue(Tree **t)
+// {
+//     Tree *temp = (*t);
+//     while (temp->left != NULL)
+//     {
+//         temp = temp->left;
+//     }
+//     return temp;
+// }
+// Tree *deleteData(Tree *t, int data)
+// {
+//     if (t == NULL)
+//     {
+//         return nullptr;
+//     }
+//     if (t->data > data)
+//     {
+//         t->left = deleteData(t->left, data);
+//     }
+//     else if (t->data < data)
+//     {
+//         t->right = deleteData(t->right, data);
+//     }
+//     else
+//     {
+//         // nasli smo data
+
+//         if (t->left == NULL)
+//         {
+//             Tree *temp = t->right;
+//             free(t);
+//             return temp;
+//         }
+//         else if (t->right == NULL)
+//         {
+//             Tree *temp = t->left;
+//             free(t);
+//             return temp;
+//         }
+
+//         Tree *min = minValue(&(t->right));
+//         cout << "t->right" << t->right->data << "MIN= " << min->data << endl;
+//         t->data = min->data;
+//         t->right = deleteData(t->right, min->data);
+//     }
+
+//     return t;
+// }
+
+// void findElement(Tree *t, int el)
+// {
+//     if (t->data < el)
+//     {
+//         findElement(t->right, el);
+//     }
+//     else if (t->data > el)
+//     {
+//         findElement(t->left, el);
+//     }
+//     else if (t->data == el)
+//     {
+//         cout << "E = " << el;
+//     }
+//     else
+//     {
+//         cout << "nema ga";
+//     }
+// }
+// void inorder(Tree *t)
+// {
+//     if (t)
+//     {
+//         inorder(t->left);
+//         cout << t->data << " ";
+//         inorder(t->right);
+//     }
+// }
+// int main()
+// {
+//     Tree *t = NULL;
+
+//     insert(&t, 2);
+//     insert(&t, 5);
+//     insert(&t, 3);
+//     insert(&t, 1);
+//     insert(&t, 22);
+//     insert(&t, 23);
+//     insert(&t, 20);
+//     t = deleteData(t, 2);
+//     inorder(t);
+//     findElement(t, 90);
+
+//     return 0;
+// }
+
+#include <iostream>
+
+class Sredstvo
 {
-    int data;
-    Node *left, *right;
+protected:
+    int maxBrzina;
+    int duzina;
+    int povrsina;
+    float tezina;
+    int id;
+
+public:
+    static int counter;
+    Sredstvo(int mB = 0, int d = 0, int p = 0, int t = 0)
+    {
+        maxBrzina = mB;
+        duzina = d;
+        povrsina = p;
+        tezina = t;
+        id = counter;
+        counter += 1;
+    }
+    virtual int getId() = 0;
+    int getTezinu()
+    {
+        return tezina;
+    }
+    virtual void ispisSadrzaja() = 0;
+
+    int getDuzinu()
+    {
+        return duzina;
+    }
+    int getPovrsinu()
+    {
+        return povrsina;
+    }
+    virtual string getVrstu() = 0;
+    friend ostream &operator<<(ostream &os, Sredstvo &s)
+    {
+        os << s.getVrstu() << s.id << "(" << s.maxBrzina << "," << s.duzina << "," << s.povrsina << "," << s.tezina << ")" << endl;
+        s.ispisSadrzaja();
+        return os;
+    }
 };
 
-Node *createNode(int data)
+int Sredstvo::counter = 0;
+
+class Automobil : public Sredstvo
 {
-    Node *newTree = (Node *)malloc(sizeof(Node));
-    newTree->data = data;
-    newTree->left = NULL;
-    newTree->right = NULL;
+protected:
+    int brSedista;
 
-    return newTree;
-}
+public:
+    Automobil(int brSedista = 0, int mB = 0, int d = 0, int p = 0, int t = 0) : Sredstvo(mB, d, p, t)
+    {
+        this->brSedista = brSedista;
+    }
+    int getId()
+    {
+        return id;
+    }
+    string getVrstu()
+    {
+        return "A";
+    }
+    void ispisSadrzaja()
+    {
+        cout << "/";
+    }
+};
 
-Node *insertNode(Node **tree, int data)
+class Transporter
 {
-    if (*tree == NULL)
-    {
-        *tree = createNode(data);
-        return *tree;
-    }
-    if ((*tree)->data > data)
-    {
-        (*tree)->left = insertNode(&((*tree)->left), data);
-    }
-    else if ((*tree)->data < data)
-    {
+protected:
+    int nosivost;
 
-        (*tree)->right = insertNode(&((*tree)->right), data);
-    }
-    return *tree;
-}
+public:
+    Transporter(int n) : nosivost(n) {}
 
-Node *minValueNode(Node *tree)
+    virtual int getNosivost() = 0;
+};
+
+template <class T>
+class Stek
 {
-    Node *temp = tree;
-    while (temp->left != NULL)
-    {
-        temp = temp->left;
-    }
-    return temp;
-}
-void inorder(Node *tree)
-{
+    T **elem;
+    int top;
+    int brElem;
 
-    if (tree)
+public:
+    Stek(int br = 0)
     {
-
-        inorder(tree->left);
-        cout << tree->data << " ";
-        inorder(tree->right);
-    }
-}
-
-Node *deleteNode(Node **tree, int data)
-{
-    if (*tree == NULL)
-    {
-        return *tree;
-    }
-    if ((*tree)->data > data)
-    {
-        (*tree)->left = deleteNode(&(*tree)->left, data);
-    }
-    else if ((*tree)->data < data)
-    {
-        (*tree)->right = deleteNode(&(*tree)->right, data);
-    }
-    else
-    {
-        // we found it
-
-        if ((*tree)->left == NULL)
+        top = -1;
+        brElem = br;
+        elem = new T *[brElem];
+        for (int i = 0; i < br; i++)
         {
-            Node *temp = (*tree)->right;
-            free(*tree);
-            return temp;
+            elem[i] = nullptr;
         }
-        else if ((*tree)->right == NULL)
-        {
-            Node *temp = (*tree)->left;
-            free(*tree);
-            return temp;
-        }
-        Node *temp = minValueNode((*tree)->right);
-        cout << "MIN FOUNDED FOR THAT SPECIFIC" << temp->data << endl;
-        (*tree)->data = temp->data;
-        (*tree)->right = deleteNode(&(*tree)->right, temp->data);
     }
-    return *tree;
-}
+    int getBrElemenata()
+    {
+        return top;
+    }
 
+    void operator+=(T *el)
+    {
+        if (top < brElem)
+        {
+            elem[++top] = el;
+        }
+        else
+        {
+            T **temp = new T *[++top];
+
+            for (int i = 0; i < top; i++)
+            {
+                temp[i] = elem[i];
+            }
+            temp[top] = el;
+            delete[] elem;
+            elem = temp;
+        }
+    }
+
+    friend ostream &operator<<(ostream &os, Stek &s)
+    {
+
+        for (int i = s.top; i >= 0; i--)
+        {
+            os << *(s.elem[i]) << endl;
+        }
+        return os;
+    }
+    T *operator--()
+    {
+        if (brElem >= 0)
+        {
+            return *elem[top];
+            top--;
+            brElem--;
+        }
+        return nullptr;
+    }
+
+    T *operator[](int br)
+    {
+        if (br < brElem || brElem == 0)
+        {
+            int temp = top;
+            while (temp != br)
+            {
+                temp--;
+            }
+            return elem[temp];
+        }
+        else
+        {
+            cout << "GRESKA";
+            return nullptr;
+        }
+    }
+
+    T **getElements()
+    {
+        return elem;
+    }
+
+    ~Stek()
+    {
+        cout << "Called";
+        for (int i = 0; i < brElem; i++)
+        {
+            delete elem[i];
+        }
+        delete[] elem;
+    }
+};
+
+class Sleper : public Sredstvo, Transporter
+{
+    Stek<Automobil> *s;
+
+public:
+    Sleper(Stek<Automobil> *s, int mB = 0, int d = 0, int p = 0, int t = 0, int nosivost = 0) : Transporter(nosivost), Sredstvo(mB, d, p, t)
+    {
+        Automobil **elementi = s->getElements();
+
+        int suma = 0;
+        int duzina = 0;
+        for (int i = 0; i < s->getBrElemenata(); i++)
+        {
+            suma += elementi[i]->getTezinu();
+            duzina += elementi[i]->getDuzinu();
+        }
+        if (this->duzina > duzina && nosivost > suma)
+        {
+            this->s = s;
+            this->tezina += suma;
+        }
+        else
+        {
+            cout << "Pretesko ili predugacko\n";
+        }
+    }
+    void ispisSadrzaja()
+    {
+        cout << *s;
+    }
+    int getId()
+    {
+        return id;
+    }
+    int getNosivost()
+    {
+        return nosivost;
+    }
+    string getVrstu()
+    {
+        return "s";
+    }
+};
+
+class Trajekt : public Sredstvo, Transporter
+{
+    Stek<Sredstvo> *s;
+
+public:
+    Trajekt(Stek<Sredstvo> *s, int mB = 0, int d = 0, int p = 0, int t = 0, int nosivost = 0) : Transporter(nosivost), Sredstvo(mB, d, p, t)
+    {
+        int povrsina = 0;
+        Sredstvo **elements = s->getElements();
+        for (int i = 0; i < s->getBrElemenata(); i++)
+        {
+            povrsina += elements[i]->getPovrsinu();
+        }
+        if (this->povrsina > povrsina)
+        {
+            this->s = s;
+        }
+    }
+    void ispisSadrzaja()
+    {
+        cout << *s;
+    }
+    int getId()
+    {
+        return id;
+    }
+    int getNosivost()
+    {
+        return nosivost;
+    }
+    string getVrstu()
+    {
+        return "t";
+    }
+};
 int main()
 {
+    Automobil *a1 = new Automobil(4, 120, 2, 4, 130);
+    Automobil *a2 = new Automobil(4, 120, 1, 4, 260);
 
-    Node *tree = NULL;
+    Stek<Automobil> s(4);
+    s += a1;
+    s += a2;
 
-    insertNode(&tree, 2);
-    insertNode(&tree, 3);
-    insertNode(&tree, 1);
-    insertNode(&tree, 22);
-    insertNode(&tree, 24);
-    insertNode(&tree, 20);
-    insertNode(&tree, 29);
-    tree = deleteNode(&tree, 22);
-    inorder(tree);
-    cout << endl;
+    Sleper sleper(&s, 80, 10, 20, 4000, 8000);
 
-    int visited[size] = {0};
-    int arr[size][size] = {
-        {0, 3, 0, 1},
-        {3, 0, 5, 0},
-        {0, 5, 0, 2},
-        {1, 0, 2, 0},
-    };
+    Stek<Sredstvo> sr(3);
+    sr += a1;
+    sr += &sleper;
+    // sr += a3;
+    // cout << *sr[1];
 
-    // bestezinska
-    int arr0[size][size] = {
-        {0, 1, 0, 1},
-        {0, 0, 1, 1},
-        {1, 0, 0, 0},
-        {0, 0, 0, 0}};
+    Trajekt trajekt(&sr, 2, 80, 6, 50, 6000);
 
-    // BFS(arr, visited);
-    // DFS(arr, visited);
-    // primMST(arr);
-    // int distance[size];
-    // dijkstra(arr, 0);
-
-    // TestPrimMST(arr);
-    // warshall(arr0);
-    // warshallWeight(arr);
-    // graph *g = creategraph(6);
-    // insertVertex(g, 3, 1);
-    // insertVertex(g, 0, 1);
-    // insertVertex(g, 2, 1);
-    // insertVertex(g, 3, 4);
-    // ispisGrafa(g);
+    cout << trajekt;
 
     return 0;
 }
