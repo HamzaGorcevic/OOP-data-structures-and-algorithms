@@ -1,2 +1,4 @@
- // Sleper sleper(&s, 80, 10, 20, 4000, 8000);
-    // cout << sleper;
+if (start > NN && (start + 1) <= NN && start != (NN - 1))
+    {
+        return 0;
+    }

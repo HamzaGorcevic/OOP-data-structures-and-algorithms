@@ -7919,285 +7919,512 @@ using namespace std;
 //     return 0;
 // }
 
-#include <iostream>
+// link zadatka http://home.etf.rs/~kraus/nastava/oop1/ispiti/isp_2007_07_01.html
+// #include <iostream>
 
-class Sredstvo
-{
-protected:
-    int maxBrzina;
-    int duzina;
-    int povrsina;
-    float tezina;
-    int id;
+// class Sredstvo
+// {
+// protected:
+//     int maxBrzina;
+//     int duzina;
+//     int povrsina;
+//     float tezina;
+//     int id;
 
-public:
-    static int counter;
-    Sredstvo(int mB = 0, int d = 0, int p = 0, int t = 0)
-    {
-        maxBrzina = mB;
-        duzina = d;
-        povrsina = p;
-        tezina = t;
-        id = counter;
-        counter += 1;
-    }
-    virtual int getId() = 0;
-    int getTezinu()
-    {
-        return tezina;
-    }
-    virtual void ispisSadrzaja() = 0;
+// public:
+//     static int counter;
+//     Sredstvo(int mB = 0, int d = 0, int p = 0, int t = 0)
+//     {
+//         maxBrzina = mB;
+//         duzina = d;
+//         povrsina = p;
+//         tezina = t;
+//         id = counter;
+//         counter += 1;
+//     }
+//     virtual int getId() = 0;
+//     int getTezinu()
+//     {
+//         return tezina;
+//     }
+//     virtual void ispisSadrzaja() = 0;
 
-    int getDuzinu()
-    {
-        return duzina;
-    }
-    int getPovrsinu()
-    {
-        return povrsina;
-    }
-    virtual string getVrstu() = 0;
-    friend ostream &operator<<(ostream &os, Sredstvo &s)
-    {
-        os << s.getVrstu() << s.id << "(" << s.maxBrzina << "," << s.duzina << "," << s.povrsina << "," << s.tezina << ")" << endl;
-        s.ispisSadrzaja();
-        return os;
-    }
-};
+//     int getDuzinu()
+//     {
+//         return duzina;
+//     }
+//     int getPovrsinu()
+//     {
+//         return povrsina;
+//     }
+//     virtual string getVrstu() = 0;
+//     friend ostream &operator<<(ostream &os, Sredstvo &s)
+//     {
+//         os << s.getVrstu() << s.id << "(" << s.maxBrzina << "," << s.duzina << "," << s.povrsina << "," << s.tezina << ")" << endl;
+//         s.ispisSadrzaja();
+//         return os;
+//     }
+// };
 
-int Sredstvo::counter = 0;
+// int Sredstvo::counter = 0;
 
-class Automobil : public Sredstvo
-{
-protected:
-    int brSedista;
+// class Automobil : public Sredstvo
+// {
+// protected:
+//     int brSedista;
 
-public:
-    Automobil(int brSedista = 0, int mB = 0, int d = 0, int p = 0, int t = 0) : Sredstvo(mB, d, p, t)
-    {
-        this->brSedista = brSedista;
-    }
-    int getId()
-    {
-        return id;
-    }
-    string getVrstu()
-    {
-        return "A";
-    }
-    void ispisSadrzaja()
-    {
-        cout << "/";
-    }
-};
+// public:
+//     Automobil(int brSedista = 0, int mB = 0, int d = 0, int p = 0, int t = 0) : Sredstvo(mB, d, p, t)
+//     {
+//         this->brSedista = brSedista;
+//     }
+//     int getId()
+//     {
+//         return id;
+//     }
+//     string getVrstu()
+//     {
+//         return "A";
+//     }
+//     void ispisSadrzaja()
+//     {
+//         cout << "/";
+//     }
+// };
 
-class Transporter
-{
-protected:
-    int nosivost;
+// class Transporter
+// {
+// protected:
+//     int nosivost;
 
-public:
-    Transporter(int n) : nosivost(n) {}
+// public:
+//     Transporter(int n) : nosivost(n) {}
 
-    virtual int getNosivost() = 0;
-};
+//     virtual int getNosivost() = 0;
+// };
 
-template <class T>
-class Stek
-{
-    T **elem;
-    int top;
-    int brElem;
+// template <class T>
+// class Stek
+// {
+//     T **elem;
+//     int top;
+//     int brElem;
 
-public:
-    Stek(int br = 0)
-    {
-        top = -1;
-        brElem = br;
-        elem = new T *[brElem];
-        for (int i = 0; i < br; i++)
-        {
-            elem[i] = nullptr;
-        }
-    }
-    int getBrElemenata()
-    {
-        return top;
-    }
+// public:
+//     Stek(int br = 0)
+//     {
+//         top = -1;
+//         brElem = br;
+//         elem = new T *[brElem];
+//         for (int i = 0; i < br; i++)
+//         {
+//             elem[i] = nullptr;
+//         }
+//     }
+//     int getBrElemenata()
+//     {
+//         return top;
+//     }
 
-    void operator+=(T *el)
-    {
-        if (top < brElem)
-        {
-            elem[++top] = el;
-        }
-        else
-        {
-            T **temp = new T *[++top];
+//     void operator+=(T *el)
+//     {
+//         if (top < brElem)
+//         {
+//             elem[++top] = el;
+//         }
+//         else
+//         {
+//             T **temp = new T *[++top];
 
-            for (int i = 0; i < top; i++)
-            {
-                temp[i] = elem[i];
-            }
-            temp[top] = el;
-            delete[] elem;
-            elem = temp;
-        }
-    }
+//             for (int i = 0; i < top; i++)
+//             {
+//                 temp[i] = elem[i];
+//             }
+//             temp[top] = el;
+//             delete[] elem;
+//             elem = temp;
+//         }
+//     }
 
-    friend ostream &operator<<(ostream &os, Stek &s)
-    {
+//     friend ostream &operator<<(ostream &os, Stek &s)
+//     {
 
-        for (int i = s.top; i >= 0; i--)
-        {
-            os << *(s.elem[i]) << endl;
-        }
-        return os;
-    }
-    T *operator--()
-    {
-        if (brElem >= 0)
-        {
-            return *elem[top];
-            top--;
-            brElem--;
-        }
-        return nullptr;
-    }
+//         for (int i = s.top; i >= 0; i--)
+//         {
+//             os << *(s.elem[i]) << endl;
+//         }
+//         return os;
+//     }
+//     T *operator--()
+//     {
+//         if (brElem >= 0)
+//         {
+//             return *elem[top];
+//             top--;
+//             brElem--;
+//         }
+//         return nullptr;
+//     }
 
-    T *operator[](int br)
-    {
-        if (br < brElem || brElem == 0)
-        {
-            int temp = top;
-            while (temp != br)
-            {
-                temp--;
-            }
-            return elem[temp];
-        }
-        else
-        {
-            cout << "GRESKA";
-            return nullptr;
-        }
-    }
+//     T *operator[](int br)
+//     {
+//         if (br < brElem || brElem == 0)
+//         {
+//             int temp = top;
+//             while (temp != br)
+//             {
+//                 temp--;
+//             }
+//             return elem[temp];
+//         }
+//         else
+//         {
+//             cout << "GRESKA";
+//             return nullptr;
+//         }
+//     }
 
-    T **getElements()
-    {
-        return elem;
-    }
+//     T **getElements()
+//     {
+//         return elem;
+//     }
 
-    ~Stek()
-    {
-        cout << "Called";
-        for (int i = 0; i < brElem; i++)
-        {
-            delete elem[i];
-        }
-        delete[] elem;
-    }
-};
+//     ~Stek()
+//     {
+//         cout << "Called";
+//         for (int i = 0; i < brElem; i++)
+//         {
+//             delete elem[i];
+//         }
+//         delete[] elem;
+//     }
+// };
 
-class Sleper : public Sredstvo, Transporter
-{
-    Stek<Automobil> *s;
+// class Sleper : public Sredstvo, Transporter
+// {
+//     Stek<Automobil> *s;
 
-public:
-    Sleper(Stek<Automobil> *s, int mB = 0, int d = 0, int p = 0, int t = 0, int nosivost = 0) : Transporter(nosivost), Sredstvo(mB, d, p, t)
-    {
-        Automobil **elementi = s->getElements();
+// public:
+//     Sleper(Stek<Automobil> *s, int mB = 0, int d = 0, int p = 0, int t = 0, int nosivost = 0) : Transporter(nosivost), Sredstvo(mB, d, p, t)
+//     {
+//         Automobil **elementi = s->getElements();
 
-        int suma = 0;
-        int duzina = 0;
-        for (int i = 0; i < s->getBrElemenata(); i++)
-        {
-            suma += elementi[i]->getTezinu();
-            duzina += elementi[i]->getDuzinu();
-        }
-        if (this->duzina > duzina && nosivost > suma)
-        {
-            this->s = s;
-            this->tezina += suma;
-        }
-        else
-        {
-            cout << "Pretesko ili predugacko\n";
-        }
-    }
-    void ispisSadrzaja()
-    {
-        cout << *s;
-    }
-    int getId()
-    {
-        return id;
-    }
-    int getNosivost()
-    {
-        return nosivost;
-    }
-    string getVrstu()
-    {
-        return "s";
-    }
-};
+//         int suma = 0;
+//         int duzina = 0;
+//         for (int i = 0; i < s->getBrElemenata(); i++)
+//         {
+//             suma += elementi[i]->getTezinu();
+//             duzina += elementi[i]->getDuzinu();
+//         }
+//         if (this->duzina > duzina && nosivost > suma)
+//         {
+//             this->s = s;
+//             this->tezina += suma;
+//         }
+//         else
+//         {
+//             cout << "Pretesko ili predugacko\n";
+//         }
+//     }
+//     void ispisSadrzaja()
+//     {
+//         cout << *s;
+//     }
+//     int getId()
+//     {
+//         return id;
+//     }
+//     int getNosivost()
+//     {
+//         return nosivost;
+//     }
+//     string getVrstu()
+//     {
+//         return "s";
+//     }
+// };
 
-class Trajekt : public Sredstvo, Transporter
-{
-    Stek<Sredstvo> *s;
+// class Trajekt : public Sredstvo, Transporter
+// {
+//     Stek<Sredstvo> *s;
 
-public:
-    Trajekt(Stek<Sredstvo> *s, int mB = 0, int d = 0, int p = 0, int t = 0, int nosivost = 0) : Transporter(nosivost), Sredstvo(mB, d, p, t)
-    {
-        int povrsina = 0;
-        Sredstvo **elements = s->getElements();
-        for (int i = 0; i < s->getBrElemenata(); i++)
-        {
-            povrsina += elements[i]->getPovrsinu();
-        }
-        if (this->povrsina > povrsina)
-        {
-            this->s = s;
-        }
-    }
-    void ispisSadrzaja()
-    {
-        cout << *s;
-    }
-    int getId()
-    {
-        return id;
-    }
-    int getNosivost()
-    {
-        return nosivost;
-    }
-    string getVrstu()
-    {
-        return "t";
-    }
-};
-int main()
-{
-    Automobil *a1 = new Automobil(4, 120, 2, 4, 130);
-    Automobil *a2 = new Automobil(4, 120, 1, 4, 260);
+// public:
+//     Trajekt(Stek<Sredstvo> *s, int mB = 0, int d = 0, int p = 0, int t = 0, int nosivost = 0) : Transporter(nosivost), Sredstvo(mB, d, p, t)
+//     {
+//         int povrsina = 0;
+//         Sredstvo **elements = s->getElements();
+//         for (int i = 0; i < s->getBrElemenata(); i++)
+//         {
+//             povrsina += elements[i]->getPovrsinu();
+//         }
+//         if (this->povrsina > povrsina)
+//         {
+//             this->s = s;
+//         }
+//     }
+//     void ispisSadrzaja()
+//     {
+//         cout << *s;
+//     }
+//     int getId()
+//     {
+//         return id;
+//     }
+//     int getNosivost()
+//     {
+//         return nosivost;
+//     }
+//     string getVrstu()
+//     {
+//         return "t";
+//     }
+// };
+// int main()
+// {
+//     Automobil *a1 = new Automobil(4, 120, 2, 4, 130);
+//     Automobil *a2 = new Automobil(4, 120, 1, 4, 260);
 
-    Stek<Automobil> s(4);
-    s += a1;
-    s += a2;
+//     Stek<Automobil> s(4);
+//     s += a1;
+//     s += a2;
 
-    Sleper sleper(&s, 80, 10, 20, 4000, 8000);
+//     Sleper sleper(&s, 80, 10, 20, 4000, 8000);
 
-    Stek<Sredstvo> sr(3);
-    sr += a1;
-    sr += &sleper;
-    // sr += a3;
-    // cout << *sr[1];
+//     Stek<Sredstvo> sr(3);
+//     sr += a1;
+//     sr += &sleper;
+//     // sr += a3;
+//     // cout << *sr[1];
 
-    Trajekt trajekt(&sr, 2, 80, 6, 50, 6000);
+//     Trajekt trajekt(&sr, 2, 80, 6, 50, 6000);
 
-    cout << trajekt;
+//     cout << trajekt;
 
-    return 0;
-}
+//     return 0;
+// }
+
+// binarno stablo pretrazivanja pretraga BST
+// #include <iostream>
+// struct Node
+// {
+//     int data;
+//     Node *left, *right;
+// };
+
+// Node *minValue(Node **tree)
+// {
+//     Node *temp = *tree;
+
+//     while (temp->left != NULL)
+//     {
+//         temp = temp->left;
+//     }
+//     return temp;
+// }
+
+// Node *createElement(int data)
+// {
+//     Node *newNode = (Node *)malloc(sizeof(Node));
+//     newNode->data = data;
+//     newNode->left = NULL;
+//     newNode->right = NULL;
+//     return newNode;
+// }
+// Node *insertElement(Node **tree, int data)
+// {
+//     if (*tree == NULL)
+//     {
+//         *tree = createElement(data);
+//         return *tree;
+//     }
+//     if ((*tree)->data < data)
+//     {
+//         insertElement(&(*tree)->right, data);
+//     }
+//     else if ((*tree)->data > data)
+//     {
+//         insertElement(&(*tree)->left, data);
+//     }
+//     return *tree;
+// }
+// Node *deleteElement(Node **tree, int data)
+// {
+//     if (*tree == NULL)
+//     {
+//         return nullptr;
+//     }
+//     if ((*tree)->data < data)
+//     {
+//         (*tree)->right = deleteElement(&(*tree)->right, data);
+//     }
+//     else if ((*tree)->data > data)
+//     {
+//         (*tree)->left = deleteElement(&(*tree)->left, data);
+//     }
+//     else
+//     {
+//         if ((*tree)->right == NULL)
+//         {
+//             Node *temp = (*tree)->left;
+//             free(*tree);
+//             return temp;
+//         }
+//         else if ((*tree)->left == NULL)
+//         {
+//             Node *temp = (*tree)->right;
+//             free(*tree);
+//             return temp;
+//         }
+//         Node *temp = minValue(&((*tree)->right));
+//         (*tree)->data = (*tree)->right->data;
+//         (*tree)->right = deleteElement(&((*tree)->right), temp->data);
+//     }
+//     return *tree;
+// }
+// void inorder(Node *tree)
+// {
+//     if (tree)
+//     {
+//         inorder(tree->left);
+//         cout << tree->data << " ";
+//         inorder(tree->right);
+//     }
+// }
+// int main()
+// {
+
+//     Node *tree = NULL;
+//     insertElement(&tree, 4);
+//     insertElement(&tree, 8);
+
+//     insertElement(&tree, 1);
+
+//     insertElement(&tree, 42);
+
+//     insertElement(&tree, 43);
+
+//     tree = deleteElement(&tree, 4);
+//     inorder(tree);
+
+//     return 0;
+// }
+
+// tree sa tri cvora , tree with 3
+// struct Tree
+// {
+//     int data;
+//     Tree *left, *middle, *right;
+// };
+
+// void inorder(Tree *t)
+// {
+//     if (t)
+//     {
+//         cout << t->data << "--";
+//         inorder(t->left);
+//         inorder(t->middle);
+//         inorder(t->right);
+//     }
+// }
+
+// Tree *createVertex(int data)
+// {
+//     Tree *newTree = (Tree *)malloc(sizeof(Tree));
+//     newTree->data = data;
+//     newTree->left = NULL;
+//     newTree->middle = NULL;
+//     newTree->right = NULL;
+//     return newTree;
+// }
+
+// int coundNodes(Tree *tree)
+// {
+
+//     if (tree == NULL)
+//     {
+//         return 0;
+//     }
+//     return 1 + coundNodes(tree->left) + coundNodes(tree->middle) + coundNodes(tree->right);
+// }
+
+// bool completeTree(Tree *t, int start, int NN)
+// {
+
+//     if (t == NULL)
+//     {
+//         return 1;
+//     }
+//     if (start >= NN)
+//     {
+//         return 0;
+//     }
+
+//     return completeTree(t->left, 3 * start + 1, NN) && completeTree(t->middle, 3 * start + 2, NN) && completeTree(t->right, 3 * start + 3, NN);
+// }
+
+// int getLevel(Tree *t)
+// {
+//     if (t == NULL)
+//     {
+//         return 0;
+//     }
+//     int maxLevog = getLevel(t->left);
+//     int maxMiddle = getLevel(t->middle);
+//     int maxRigth = getLevel(t->right);
+//     int maxLM = max(maxLevog, maxMiddle);
+//     return 1 + max(maxLM, maxRigth);
+// }
+
+// bool perfectTree(Tree *t)
+// {
+
+//     printf("%d,%d,%d\n", getLevel(t->left), getLevel(t->right), getLevel(t->middle));
+
+//     int left = getLevel(t->left);
+//     int right = getLevel(t->right);
+//     int middle = getLevel(t->middle);
+//     if (left == right && left == middle)
+//     {
+//         return true;
+//     }
+//     else
+//     {
+//         return 0;
+//     }
+// }
+// int main()
+// {
+//     Tree *head = createVertex(5);
+
+//     head->left = createVertex(7);
+//     head->middle = createVertex(19);
+//     head->right = createVertex(8);
+
+//     head->left->left = createVertex(17);
+//     head->left->middle = createVertex(12);
+//     head->left->right = createVertex(45);
+
+//     //
+//     head->right->left = createVertex(117);
+//     head->right->middle = createVertex(122);
+//     head->right->right = createVertex(451);
+//     //
+//     head->middle->left = createVertex(217);
+//     head->middle->middle = createVertex(134);
+//     head->middle->right = createVertex(452);
+
+//     // head->middle->right->left = createVertex(88);
+
+//     cout << "NN NUMBER " << coundNodes(head) << endl;
+
+//     int isPerfect = perfectTree(head);
+//     cout << "Perfect=" << isPerfect << endl;
+
+//     cout << "LEVEl=" << getLevel(head);
+//     // inorder(head);
+//     cout
+//         << "\nCOMPLETNO="
+//         << completeTree(head, 0, coundNodes(head));
+
+//     return 0;
+// }
