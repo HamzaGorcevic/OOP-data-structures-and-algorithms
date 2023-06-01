@@ -8428,3 +8428,77 @@ using namespace std;
 
 //     return 0;
 // }
+
+// heap je struktura podataka kojoj je element koji je roditelj veci ili manji od svoje deci , tako se lako pristupa min i max
+
+void maxHeapify(int arr[], int v, int n)
+{
+    int max = v, l = v * 2 + 1, r = v * 2 + 2;
+
+    if (l < n && arr[max] < arr[l])
+    {
+        max = l;
+    }
+
+    if (r < n && arr[max] < arr[r])
+    {
+        max = r;
+    }
+
+    if (v != max)
+    {
+        int t = arr[v];
+        arr[v] = arr[max];
+        arr[max] = t;
+        maxHeapify(arr, max, n);
+    }
+}
+
+void maxHeap(int arr[], int start, int n)
+{
+
+    for (int i = n / 2; i >= start; i--)
+    {
+        maxHeapify(arr, i, n);
+    }
+}
+
+void heapSort(int arr[], int n)
+{
+
+    int t;
+    for (int i = n - 1; i > 0; i--)
+    {
+        t = arr[0];
+        arr[0] = arr[i];
+        arr[i] = t;
+        maxHeapify(arr, 0, i);
+    }
+}
+int main()
+{
+    int n;
+
+    printf("Unesi duzinu\n");
+
+    cin >> n;
+    int arr[n];
+    for (int i = 0; i < n; i++)
+    {
+        cin >> arr[i];
+    };
+    cout << "Ispis obicni \n";
+    for (int i = 0; i < n; i++)
+    {
+        cout << arr[i] << " ";
+    }
+    maxHeap(arr, 0, n);
+    heapSort(arr, n);
+    cout << "\nIspis after \n";
+    for (int i = 0; i < n; i++)
+    {
+        cout << arr[i] << " ";
+    }
+
+    return 0;
+}
