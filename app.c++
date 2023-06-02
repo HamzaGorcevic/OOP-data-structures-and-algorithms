@@ -8534,59 +8534,96 @@ using namespace std;
 //     return 0;
 // }
 
-void minHeapify(int *arr, int k, int n)
+// void minHeapify(int *arr, int k, int n)
+// {
+//     int min = k;
+//     int l = k * 2 + 1, r = k * 2 + 2;
+
+//     if (l < n && arr[l] < arr[min])
+//     {
+//         min = l;
+//     }
+//     if (r < n && arr[r] < arr[min])
+//     {
+//         min = r;
+//     }
+
+//     if (k != min)
+//     {
+//         int t = arr[k];
+//         arr[k] = arr[min];
+//         arr[min] = t;
+//         minHeapify(arr, min, n);
+//     }
+// }
+// void minHeap(int *arr, int n)
+// {
+
+//     for (int i = n / 2; i >= 0; i--)
+//     {
+//         minHeapify(arr, i, n);
+//     }
+// }
+
+// void heapSort(int *arr, int n)
+// {
+
+//     for (int i = n - 1; i >= 0; i--)
+//     {
+//         int t = arr[i];
+//         arr[i] = arr[0];
+//         arr[0] = t;
+//         minHeap(arr, i);
+//     }
+// }
+
+// int main()
+// {
+
+//     int n = 5;
+//     int arr[5] = {9, 2, 5, 4, 3};
+
+//     minHeap(arr, n);
+
+//     heapSort(arr, n);
+//     cout << "ISPIS\n";
+//     for (int i = 0; i < n; i++)
+//     {
+//         cout << arr[i] << " ";
+//     }
+// }
+
+// insertion sort
+
+void insertionSort(int arr[], int n)
 {
-    int min = k;
-    int l = k * 2 + 1, r = k * 2 + 2;
 
-    if (l < n && arr[l] < arr[min])
+    int key;
+    for (int i = 1; i < n; i++)
     {
-        min = l;
-    }
-    if (r < n && arr[r] < arr[min])
-    {
-        min = r;
-    }
+        key = arr[i];
+        int j = i - 1;
 
-    if (k != min)
-    {
-        int t = arr[k];
-        arr[k] = arr[min];
-        arr[min] = t;
-        minHeapify(arr, min, n);
-    }
-}
-void minHeap(int *arr, int n)
-{
+        while (j >= 0 && arr[j] > key)
+        {
+            arr[j + 1] = arr[j];
+            j--;
+        }
 
-    for (int i = n / 2; i >= 0; i--)
-    {
-        minHeapify(arr, i, n);
-    }
-}
-
-void heapSort(int *arr, int n)
-{
-
-    for (int i = n - 1; i >= 0; i--)
-    {
-        int t = arr[i];
-        arr[i] = arr[0];
-        arr[0] = t;
-        minHeap(arr, i);
+        arr[j + 1] = key;
     }
 }
 
 int main()
 {
+    int arr[] = {3, 4, 5, 7, 10, 50, 20, 1, 2, 7};
+    int n = sizeof(arr) / sizeof(int);
 
-    int n = 5;
-    int arr[5] = {9, 2, 5, 4, 3};
-
-    minHeap(arr, n);
-
-    heapSort(arr, n);
-    cout << "ISPIS\n";
+    // for (int i = 0; i < n; i++)
+    // {
+    //     cout << arr[i] << " ";
+    // }
+    insertionSort(arr, n);
     for (int i = 0; i < n; i++)
     {
         cout << arr[i] << " ";
