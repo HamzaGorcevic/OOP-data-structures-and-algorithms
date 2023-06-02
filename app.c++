@@ -8431,74 +8431,164 @@ using namespace std;
 
 // heap je struktura podataka kojoj je element koji je roditelj veci ili manji od svoje deci , tako se lako pristupa min i max
 
-void maxHeapify(int arr[], int v, int n)
+// void maxHeapify(int arr[], int v, int n)
+// {
+//     int max = v, l = v * 2 + 1, r = v * 2 + 2;
+
+//     if (l < n && arr[max] < arr[l])
+//     {
+//         max = l;
+//     }
+
+//     if (r < n && arr[max] < arr[r])
+//     {
+//         max = r;
+//     }
+
+//     if (v != max)
+//     {
+//         int t = arr[v];
+//         arr[v] = arr[max];
+//         arr[max] = t;
+//         maxHeapify(arr, max, n);
+//     }
+// }
+
+// void maxHeap(int arr[], int start, int n)
+// {
+
+//     for (int i = n / 2; i >= start; i--)
+//     {
+//         maxHeapify(arr, i, n);
+//     }
+// }
+
+// void heapSort(int arr[], int n)
+// {
+
+//     int t;
+//     for (int i = n - 1; i > 0; i--)
+//     {
+//         t = arr[0];
+//         arr[0] = arr[i];
+//         arr[i] = t;
+//         maxHeapify(arr, 0, i);
+//     }
+// }
+// void insert(int *&arr, int *n, int x)
+// {
+//     int *temp = new int[++*n];
+//     for (int i = 0; i < *n - 1; i++)
+//     {
+//         temp[i] = arr[i];
+//     }
+//     temp[*n - 1] = x;
+//     delete[] arr;
+//     arr = temp;
+//     maxHeap(arr, 0, *n);
+// }
+
+// void deleteMax(int *&arr, int *n)
+// {
+
+//     int x = arr[*n - 1];
+//     arr[0] = x;
+//     *n = *n - 1;
+
+//     int *temp = new int[*n];
+//     for (int i = 0; i < *n; i++)
+//     {
+//         temp[i] = arr[i];
+//     }
+
+//     delete[] arr;
+//     arr = temp;
+
+//     maxHeap(arr, 0, *n);
+// }
+
+// int main()
+// {
+
+//     int n = 5;
+//     int *arr = new int[n]{1, 2, 5, 3, 2};
+
+//     cout << "Ispis obicni \n";
+
+//     for (int i = 0; i < n; i++)
+//     {
+//         cout << arr[i] << " ";
+//     }
+
+//     maxHeap(arr, 0, n);
+//     insert(arr, &n, 9);
+//     deleteMax(arr, &n);
+
+//     // heapSort(arr, n);
+//     cout << "\nIspis after \n";
+//     for (int i = 0; i < n; i++)
+//     {
+//         cout << arr[i] << " ";
+//     }
+
+//     return 0;
+// }
+
+void minHeapify(int *arr, int k, int n)
 {
-    int max = v, l = v * 2 + 1, r = v * 2 + 2;
+    int min = k;
+    int l = k * 2 + 1, r = k * 2 + 2;
 
-    if (l < n && arr[max] < arr[l])
+    if (l < n && arr[l] < arr[min])
     {
-        max = l;
+        min = l;
+    }
+    if (r < n && arr[r] < arr[min])
+    {
+        min = r;
     }
 
-    if (r < n && arr[max] < arr[r])
+    if (k != min)
     {
-        max = r;
+        int t = arr[k];
+        arr[k] = arr[min];
+        arr[min] = t;
+        minHeapify(arr, min, n);
     }
+}
+void minHeap(int *arr, int n)
+{
 
-    if (v != max)
+    for (int i = n / 2; i >= 0; i--)
     {
-        int t = arr[v];
-        arr[v] = arr[max];
-        arr[max] = t;
-        maxHeapify(arr, max, n);
+        minHeapify(arr, i, n);
     }
 }
 
-void maxHeap(int arr[], int start, int n)
+void heapSort(int *arr, int n)
 {
 
-    for (int i = n / 2; i >= start; i--)
+    for (int i = n - 1; i >= 0; i--)
     {
-        maxHeapify(arr, i, n);
+        int t = arr[i];
+        arr[i] = arr[0];
+        arr[0] = t;
+        minHeap(arr, i);
     }
 }
 
-void heapSort(int arr[], int n)
-{
-
-    int t;
-    for (int i = n - 1; i > 0; i--)
-    {
-        t = arr[0];
-        arr[0] = arr[i];
-        arr[i] = t;
-        maxHeapify(arr, 0, i);
-    }
-}
 int main()
 {
-    int n;
 
-    printf("Unesi duzinu\n");
+    int n = 5;
+    int arr[5] = {9, 2, 5, 4, 3};
 
-    cin >> n;
-    int arr[n];
-    for (int i = 0; i < n; i++)
-    {
-        cin >> arr[i];
-    };
-    cout << "Ispis obicni \n";
-    for (int i = 0; i < n; i++)
-    {
-        cout << arr[i] << " ";
-    }
-    maxHeap(arr, 0, n);
+    minHeap(arr, n);
+
     heapSort(arr, n);
-    cout << "\nIspis after \n";
+    cout << "ISPIS\n";
     for (int i = 0; i < n; i++)
     {
         cout << arr[i] << " ";
     }
-
-    return 0;
 }

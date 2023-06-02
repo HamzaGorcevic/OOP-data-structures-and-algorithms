@@ -1,4 +1,1 @@
-if (start > NN && (start + 1) <= NN && start != (NN - 1))
-    {
-        return 0;
-    }
+    maxHeap(arr, 0, n);
