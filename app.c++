@@ -8693,76 +8693,113 @@ using namespace std;
 //     }
 //     return 0;
 // }
-#include <stdio.h>
 
-void swap(int *a, int *b)
+// // quick sort , // perfomanse O(n*logn)
+// void swap(int *a, int *b)
+// {
+//     int temp = *a;
+//     *a = *b;
+//     *b = temp;
+// }
+
+// int partition(int arr[], int down, int up)
+// {
+//     int pivot = arr[up - 1];
+//     int i = up - 1;
+//     int j = down - 1;
+
+//     while (i > j)
+//     {
+//         do
+//         {
+//             j++;
+//         } while (arr[j] < pivot);
+
+//         do
+//         {
+//             i--;
+//         } while (arr[i] > pivot);
+
+//         if (i > j)
+//         {
+//             swap(&arr[i], &arr[j]);
+//         }
+//     }
+
+//     swap(&arr[up - 1], &arr[j]);
+//     printf("Returned %d\n", j);
+//     return j;
+// }
+
+// void quickSort(int arr[], int low, int high)
+// {
+//     if (low < high)
+//     {
+//         int pivotFinished = partition(arr, low, high);
+//         quickSort(arr, low, pivotFinished);
+
+//         quickSort(arr, pivotFinished + 1, high);
+//     }
+// }
+
+// void printArray(int arr[], int size)
+// {
+//     for (int i = 0; i < size; i++)
+//     {
+//         printf("%d ", arr[i]);
+//     }
+//     printf("\n");
+// }
+
+// int main()
+// {
+//     int arr[] = {2, 4, 8, 1, 5, 6, 10, 1};
+//     int size = sizeof(arr) / sizeof(arr[0]);
+
+//     printf("Original array: ");
+//     printArray(arr, size);
+
+//     quickSort(arr, 0, size);
+
+//     printf("Sorted array: ");
+//     printArray(arr, size);
+
+//     return 0;
+// }
+
+int hesiraj(int key)
 {
-    int temp = *a;
-    *a = *b;
-    *b = temp;
+    return key % 7;
 }
-
-int partition(int arr[], int down, int up)
+int hesirajOpet(int key, int last)
 {
-    int pivot = arr[up - 1];
-    int i = up - 1;
-    int j = down - 1;
+    return ((last + 2) + (key % 3)) % 7;
+}
+int main()
+{
+    int arr[] = {18, 23, 4, 13, 8};
+    int hesh[7] = {0};
 
-    while (i > j)
+    for (int i = 0; i < 5; i++)
     {
-        do
+        int index = hesiraj(arr[i]);
+        if (hesh[index] == 0)
         {
-            j++;
-        } while (arr[j] < pivot);
+            hesh[index] = arr[i];
+        }
+        else
+        {
 
-        do
-        {
-            i--;
-        } while (arr[i] > pivot);
+            index = hesirajOpet(arr[i], index);
 
-        if (i > j)
-        {
-            swap(&arr[i], &arr[j]);
+            hesh[index] = arr[i];
         }
     }
 
-    swap(&arr[up - 1], &arr[j]);
-    printf("Returned %d\n", j);
-    return j;
-}
-
-void quickSort(int arr[], int low, int high)
-{
-    if (low < high)
+    for (int i = 0; i < 7; i++)
     {
-        int pivotFinished = partition(arr, low, high);
-        quickSort(arr, low, pivotFinished);
-
-        quickSort(arr, pivotFinished + 1, high);
+        cout << hesh[i] << " ";
     }
-}
-
-void printArray(int arr[], int size)
-{
-    for (int i = 0; i < size; i++)
-    {
-        printf("%d ", arr[i]);
-    }
-    printf("\n");
-}
-
-int main()
-{
-    int arr[] = {2, 4, 8, 1, 5, 6, 10, 1};
-    int size = sizeof(arr) / sizeof(arr[0]);
-
-    printf("Original array: ");
-    printArray(arr, size);
-
-    quickSort(arr, 0, size);
-
-    printf("Sorted array: ");
-    printArray(arr, size);
 
     return 0;
 }
