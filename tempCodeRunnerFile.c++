@@ -1,4 +1,7 @@
-  // for (int i = 0; i < n; i++)
-    // {
-    //     cout << arr[i] << " ";
-    // }
+  printf("Original array: ");
+    printArray(arr, size);
+
+    quickSort(arr, 0, size - 1);
+
+    printf("Sorted array: ");
+    printArray(arr, size);

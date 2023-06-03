@@ -8577,8 +8577,9 @@ using namespace std;
 //     }
 // }
 
-// int main()
-// {
+// perfomanse O(n*log n)
+//  int main()
+//  {
 
 //     int n = 5;
 //     int arr[5] = {9, 2, 5, 4, 3};
@@ -8595,37 +8596,173 @@ using namespace std;
 
 // insertion sort
 
-void insertionSort(int arr[], int n)
+// void insertionSort(int arr[], int n)
+// {
+
+//     int key;
+//     for (int i = 1; i < n; i++)
+//     {
+//         key = arr[i];
+//         int j = i - 1;
+
+//         while (j >= 0 && arr[j] > key)
+//         {
+//             arr[j + 1] = arr[j];
+//             j--;
+//         }
+
+//         arr[j + 1] = key;
+//     }
+// }
+
+// void shellSort(int arr[], int n, int gaps[], int gapsSize)
+// {
+//     for (int i = 0; i < gapsSize; i++)
+//     {
+//         int gap = gaps[i];
+
+//         for (int j = gap; j < n; j++)
+//         {
+//             int k = arr[j];
+//             int f = j - gap;
+
+//             while (f >= 0 && k > arr[f])
+//             {
+//                 arr[f + gap] = arr[f];
+//                 f -= gap;
+//             }
+//             arr[f + gap] = k;
+//         }
+//     }
+// }
+
+// // brzina je u najboljem slucaju O(n) u najgorem je O(n^2)
+// int main()
+// {
+//     int arr[] = {3, 4, 5, 7, 10, 50, 20, 1, 2, 7};
+//     int n = sizeof(arr) / sizeof(int);
+
+//     int gaps[] = {5, 2, 1};
+//     int gapsSize = sizeof(gaps) / sizeof(gaps[0]);
+//     for (int i = 0; i < n; i++)
+//     {
+//         cout << arr[i] << " ";
+//     }
+//     cout << "\nAfter\n";
+//     shellSort(arr, n, gaps, gapsSize);
+//     // insertionSort(arr, n);
+//     for (int i = 0; i < n; i++)
+//     {
+//         cout << arr[i] << " ";
+//     }
+// }
+
+// selection srot
+// perfomanse najbolja i najgora O(n^2)
+
+// void selectionSort(int arr[], int n)
+// {
+
+//     for (int i = 0; i < n; i++)
+//     {
+//         int min = arr[i];
+//         int pos = i;
+//         for (int j = i + 1; j < n; j++)
+//         {
+//             if (arr[j] > min)
+//             {
+//                 min = arr[j];
+//                 pos = j;
+//             }
+//         }
+//         arr[pos] = arr[i];
+//         arr[i] = min;
+//     }
+// }
+
+// int main()
+// {
+
+//     int arr[] = {2, 5, 2, 1, 4, 7, 8, 1, 3, 5};
+
+//     int leng = sizeof(arr) / sizeof(arr[0]);
+//     selectionSort(arr, leng);
+//     for (int i = 0; i < leng; i++)
+//     {
+//         cout << arr[i] << " ";
+//     }
+//     return 0;
+// }
+#include <stdio.h>
+
+void swap(int *a, int *b)
 {
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
 
-    int key;
-    for (int i = 1; i < n; i++)
+int partition(int arr[], int down, int up)
+{
+    int pivot = arr[up - 1];
+    int i = up - 1;
+    int j = down - 1;
+
+    while (i > j)
     {
-        key = arr[i];
-        int j = i - 1;
-
-        while (j >= 0 && arr[j] > key)
+        do
         {
-            arr[j + 1] = arr[j];
-            j--;
-        }
+            j++;
+        } while (arr[j] < pivot);
 
-        arr[j + 1] = key;
+        do
+        {
+            i--;
+        } while (arr[i] > pivot);
+
+        if (i > j)
+        {
+            swap(&arr[i], &arr[j]);
+        }
     }
+
+    swap(&arr[up - 1], &arr[j]);
+    printf("Returned %d\n", j);
+    return j;
+}
+
+void quickSort(int arr[], int low, int high)
+{
+    if (low < high)
+    {
+        int pivotFinished = partition(arr, low, high);
+        quickSort(arr, low, pivotFinished);
+
+        quickSort(arr, pivotFinished + 1, high);
+    }
+}
+
+void printArray(int arr[], int size)
+{
+    for (int i = 0; i < size; i++)
+    {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
 }
 
 int main()
 {
-    int arr[] = {3, 4, 5, 7, 10, 50, 20, 1, 2, 7};
-    int n = sizeof(arr) / sizeof(int);
+    int arr[] = {2, 4, 8, 1, 5, 6, 10, 1};
+    int size = sizeof(arr) / sizeof(arr[0]);
 
-    // for (int i = 0; i < n; i++)
-    // {
-    //     cout << arr[i] << " ";
-    // }
-    insertionSort(arr, n);
-    for (int i = 0; i < n; i++)
-    {
-        cout << arr[i] << " ";
-    }
+    printf("Original array: ");
+    printArray(arr, size);
+
+    quickSort(arr, 0, size);
+
+    printf("Sorted array: ");
+    printArray(arr, size);
+
+    return 0;
 }
