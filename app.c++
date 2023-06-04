@@ -8767,39 +8767,326 @@ using namespace std;
 //     return 0;
 // }
 
-int hesiraj(int key)
+// hesiranje
+// int hesiraj(int key)
+// {
+//     return key % 7;
+// }
+// int hesirajOpet(int key, int last)
+// {
+//     return ((last + 2) + (key % 3)) % 7;
+// }
+// int main()
+// {
+//     int arr[] = {18, 23, 4, 13, 8};
+//     int hesh[7] = {0};
+
+//     for (int i = 0; i < 5; i++)
+//     {
+//         int index = hesiraj(arr[i]);
+//         if (hesh[index] == 0)
+//         {
+//             hesh[index] = arr[i];
+//         }
+//         else
+//         {
+
+//             index = hesirajOpet(arr[i], index);
+
+//             hesh[index] = arr[i];
+//         }
+//     }
+
+//     for (int i = 0; i < 7; i++)
+//     {
+//         cout << hesh[i] << " ";
+//     }
+
+//     return 0;
+// }
+
+// hesiranje sa ulancanom listom , odvojeno ulancavanje
+
+// struct Node
+// {
+//     int data;
+//     Node *next;
+// };
+
+// struct Table
+// {
+//     Node **lista;
+// };
+
+// Table *createTable(int size)
+// {
+//     Table *newTable = (Table *)malloc(sizeof(Table));
+//     newTable->lista = (Node **)malloc(size * sizeof(Node));
+
+//     for (int i = 0; i < size; i++)
+//     {
+//         newTable->lista[i] = nullptr;
+//     }
+//     return newTable;
+// }
+// int hesiraj(int key, int size)
+// {
+//     return key % size;
+// }
+// void insertElements(int arr[], Table *tabla, int size)
+// {
+//     for (int i = 0; i < size; i++)
+//     {
+//         int newI = hesiraj(arr[i], size);
+//         if (tabla->lista[newI] == nullptr)
+//         {
+//             Node *newNode = (Node *)malloc(sizeof(Node));
+//             newNode->data = arr[i];
+//             newNode->next = nullptr;
+
+//             tabla->lista[newI] = newNode;
+//         }
+//         else
+//         {
+//             Node *newNode = (Node *)malloc(sizeof(Node));
+//             newNode->data = arr[i];
+//             newNode->next = tabla->lista[i];
+//             tabla->lista[i] = newNode;
+//         }
+//     }
+// }
+// void ispis(Table *tabla, int size)
+// {
+//     cout << "Called ispis\n";
+//     for (int i = 0; i < size; i++)
+//     {
+//         Node *temp = tabla->lista[i];
+
+//         while (temp != nullptr)
+//         {
+
+//             cout << temp->data << "-";
+//             temp = temp->next;
+//         }
+//         cout << endl;
+//     }
+// }
+// int main()
+// {
+//     int arr[5] = {3, 44, 21, 18, 184};
+
+//     Table *tabla = createTable(5);
+//     insertElements(arr, tabla, 5);
+
+//     ispis(tabla, 5);
+//     return 0;
+// }
+
+// hesiranje objedinjeno
+// #define TABLE_SIZE 10
+
+// typedef struct
+// {
+//     int key;
+//     int next;
+// } Node;
+
+// int hashiraj(int key)
+// {
+//     return key % TABLE_SIZE;
+// }
+
+// int searchInsertCH(Node T[], int K)
+// {
+//     int i = hashiraj(K);
+
+//     while (T[i].key != K && T[i].next != -1)
+//     {
+//         i = T[i].next;
+//     }
+
+//     if (T[i].key == K)
+//     {
+//         return i;
+//     }
+
+//     int j;
+//     if (T[i].key == -1)
+//     {
+//         j = i;
+//     }
+//     else
+//     {
+//         int free = TABLE_SIZE - 1;
+//         while (T[free].key != -1)
+//         {
+//             free--;
+//             if (free < 0)
+//             {
+//                 printf("ERROR: Table is full\n");
+//                 return -1;
+//             }
+//         }
+//         j = free;
+//         T[i].next = free;
+//     }
+
+//     T[j].key = K;
+//     T[j].next = -1;
+//     return j;
+// }
+
+// int main()
+// {
+//     Node table[TABLE_SIZE];
+
+//     // Initialize the table
+//     for (int i = 0; i < TABLE_SIZE; i++)
+//     {
+//         table[i].key = -1;
+//         table[i].next = -1;
+//     }
+
+//     // Test the searchInsertCH function
+//     int key1 = 42;
+//     int key2 = 17;
+
+//     int index1 = searchInsertCH(table, key1);
+//     printf("Index of key1 (%d): %d\n", key1, index1);
+
+//     int index2 = searchInsertCH(table, key2);
+//     searchInsertCH(table, 44);
+//     searchInsertCH(table, 65);
+//     searchInsertCH(table, 8);
+//     searchInsertCH(table, 9);
+//     searchInsertCH(table, 109);
+//     printf("Index of key2 (%d): %d\n", key2, index2);
+
+//     // Print the table
+//     printf("\nTable:\n");
+//     for (int i = 0; i < TABLE_SIZE; i++)
+//     {
+//         printf("[%d] - Key: %d, Next: %d\n", i, table[i].key, table[i].next);
+//     }
+
+//     return 0;
+// }
+
+// merge sort
+
+// PIRMOV ALGORITAM primov moja nacin primmst
+#define size 9
+void BFS(int arr[][size])
 {
-    return key % 7;
+
+    int queue[size], front = -1, rear;
+    int visited[size] = {0};
+    rear = -1;
+    rear++;
+    front++;
+    queue[front] = 0;
+    visited[0] = 1;
+    while (front <= rear)
+    {
+        int start = queue[front++];
+        cout << start << " ";
+
+        for (int i = 0; i < size; i++)
+        {
+            if (!visited[i] && arr[start][i])
+            {
+                rear++;
+                queue[rear] = i;
+
+                visited[i] = 1;
+            }
+        }
+    }
 }
-int hesirajOpet(int key, int last)
+
+void DFS(int arr[][size])
 {
-    return ((last + 2) + (key % 3)) % 7;
+    int stack[size], top = -1;
+    int visited[size] = {0};
+
+    top++;
+    stack[top] = 0;
+    visited[top] = 0;
+    while (top != -1)
+    {
+
+        int start = stack[top--];
+        cout << start << " ";
+        for (int i = 0; i < size; i++)
+        {
+            if (!visited[i] && arr[start][i])
+            {
+                visited[i] = 1;
+                stack[++top] = i;
+            }
+        }
+    }
+}
+
+int minEdge(int keys[], int visited[])
+{
+    int min = 500;
+    int index;
+    for (int i = 0; i < size; i++)
+    {
+        if (!visited[i] && keys[i] < min)
+        {
+            min = keys[i];
+            index = i;
+        }
+    }
+    cout << "returned=" << index << "Min=" << min << endl;
+    return index;
+}
+
+void primMST(int arr[][size])
+{
+    int parents[size];
+    int edges[size];
+
+    for (int i = 0; i < size; i++)
+    {
+        int index;
+        int min = 500;
+
+        for (int j = 0; j < size; j++)
+        {
+            if (arr[i][j] && arr[i][j] < min)
+            {
+                min = arr[i][j];
+                index = j;
+            }
+        }
+        edges[i] = min;
+        parents[i] = index;
+    }
+
+    cout << "ISPIS\n";
+    for (int i = 0; i < size; i++)
+    {
+        printf("%d-%d costs %d\n", i, parents[i], edges[i]);
+    }
 }
 int main()
 {
-    int arr[] = {18, 23, 4, 13, 8};
-    int hesh[7] = {0};
 
-    for (int i = 0; i < 5; i++)
-    {
-        int index = hesiraj(arr[i]);
-        if (hesh[index] == 0)
-        {
-            hesh[index] = arr[i];
-        }
-        else
-        {
+    int arr[size][size] = {{0, 3, 0, 6, 1, 0, 0, 0, 0},
+                           {1, 0, 12, 0, 11, 0, 0, 0, 0},
+                           {0, 21, 0, 0, 0, 1, 0, 0, 0},
+                           {1, 0, 0, 0, 0, 0, 1, 0, 0},
+                           {1, 10, 0, 0, 0, 0, 1, 0, 0},
+                           {0, 0, 21, 0, 0, 0, 0, 0, 0},
+                           {0, 0, 0, 13, 1, 0, 0, 1, 0},
+                           {0, 0, 0, 0, 0, 0, 31, 0, 1},
+                           {0, 0, 0, 0, 0, 0, 0, 2, 0}};
 
-            index = hesirajOpet(arr[i], index);
-
-            hesh[index] = arr[i];
-        }
-    }
-
-    for (int i = 0; i < 7; i++)
-    {
-        cout << hesh[i] << " ";
-    }
-
+    // BFS(arr);
+    // DFS(arr);
+    primMST(arr);
     return 0;
 }
