@@ -8204,110 +8204,7 @@ using namespace std;
 // }
 
 // binarno stablo pretrazivanja pretraga BST
-// #include <iostream>
-// struct Node
-// {
-//     int data;
-//     Node *left, *right;
-// };
-
-// Node *minValue(Node **tree)
-// {
-//     Node *temp = *tree;
-
-//     while (temp->left != NULL)
-//     {
-//         temp = temp->left;
-//     }
-//     return temp;
-// }
-
-// Node *createElement(int data)
-// {
-//     Node *newNode = (Node *)malloc(sizeof(Node));
-//     newNode->data = data;
-//     newNode->left = NULL;
-//     newNode->right = NULL;
-//     return newNode;
-// }
-// Node *insertElement(Node **tree, int data)
-// {
-//     if (*tree == NULL)
-//     {
-//         *tree = createElement(data);
-//         return *tree;
-//     }
-//     if ((*tree)->data < data)
-//     {
-//         insertElement(&(*tree)->right, data);
-//     }
-//     else if ((*tree)->data > data)
-//     {
-//         insertElement(&(*tree)->left, data);
-//     }
-//     return *tree;
-// }
-// Node *deleteElement(Node **tree, int data)
-// {
-//     if (*tree == NULL)
-//     {
-//         return nullptr;
-//     }
-//     if ((*tree)->data < data)
-//     {
-//         (*tree)->right = deleteElement(&(*tree)->right, data);
-//     }
-//     else if ((*tree)->data > data)
-//     {
-//         (*tree)->left = deleteElement(&(*tree)->left, data);
-//     }
-//     else
-//     {
-//         if ((*tree)->right == NULL)
-//         {
-//             Node *temp = (*tree)->left;
-//             free(*tree);
-//             return temp;
-//         }
-//         else if ((*tree)->left == NULL)
-//         {
-//             Node *temp = (*tree)->right;
-//             free(*tree);
-//             return temp;
-//         }
-//         Node *temp = minValue(&((*tree)->right));
-//         (*tree)->data = (*tree)->right->data;
-//         (*tree)->right = deleteElement(&((*tree)->right), temp->data);
-//     }
-//     return *tree;
-// }
-// void inorder(Node *tree)
-// {
-//     if (tree)
-//     {
-//         inorder(tree->left);
-//         cout << tree->data << " ";
-//         inorder(tree->right);
-//     }
-// }
-// int main()
-// {
-
-//     Node *tree = NULL;
-//     insertElement(&tree, 4);
-//     insertElement(&tree, 8);
-
-//     insertElement(&tree, 1);
-
-//     insertElement(&tree, 42);
-
-//     insertElement(&tree, 43);
-
-//     tree = deleteElement(&tree, 4);
-//     inorder(tree);
-
-//     return 0;
-// }
+// 111
 
 // tree sa tri cvora , tree with 3
 // struct Tree
@@ -8975,118 +8872,242 @@ using namespace std;
 // merge sort
 
 // PIRMOV ALGORITAM primov moja nacin primmst
-#define size 9
-void BFS(int arr[][size])
+// #define size 9
+// void BFS(int arr[][size])
+// {
+
+//     int queue[size], front = -1, rear;
+//     int visited[size] = {0};
+//     rear = -1;
+//     rear++;
+//     front++;
+//     queue[front] = 0;
+//     visited[0] = 1;
+//     while (front <= rear)
+//     {
+//         int start = queue[front++];
+//         cout << start << " ";
+
+//         for (int i = 0; i < size; i++)
+//         {
+//             if (!visited[i] && arr[start][i])
+//             {
+//                 rear++;
+//                 queue[rear] = i;
+
+//                 visited[i] = 1;
+//             }
+//         }
+//     }
+// }
+
+// void DFS(int arr[][size])
+// {
+//     int stack[size], top = -1;
+//     int visited[size] = {0};
+
+//     top++;
+//     stack[top] = 0;
+//     visited[top] = 0;
+//     while (top != -1)
+//     {
+
+//         int start = stack[top--];
+//         cout << start << " ";
+//         for (int i = 0; i < size; i++)
+//         {
+//             if (!visited[i] && arr[start][i])
+//             {
+//                 visited[i] = 1;
+//                 stack[++top] = i;
+//             }
+//         }
+//     }
+// }
+
+// int minEdge(int keys[], int visited[])
+// {
+//     int min = 500;
+//     int index;
+//     for (int i = 0; i < size; i++)
+//     {
+//         if (!visited[i] && keys[i] < min)
+//         {
+//             min = keys[i];
+//             index = i;
+//         }
+//     }
+//     cout << "returned=" << index << "Min=" << min << endl;
+//     return index;
+// }
+
+// void primMST(int arr[][size])
+// {
+//     int parents[size];
+//     int edges[size];
+
+//     for (int i = 0; i < size; i++)
+//     {
+//         int index;
+//         int min = 500;
+
+//         for (int j = 0; j < size; j++)
+//         {
+//             if (arr[i][j] && arr[i][j] < min)
+//             {
+//                 min = arr[i][j];
+//                 index = j;
+//             }
+//         }
+//         edges[i] = min;
+//         parents[i] = index;
+//     }
+
+//     cout << "ISPIS\n";
+//     for (int i = 0; i < size; i++)
+//     {
+//         printf("%d-%d costs %d\n", i, parents[i], edges[i]);
+//     }
+// }
+// int main()
+// {
+
+//     int arr[size][size] = {{0, 3, 0, 6, 1, 0, 0, 0, 0},
+//                            {1, 0, 12, 0, 11, 0, 0, 0, 0},
+//                            {0, 21, 0, 0, 0, 1, 0, 0, 0},
+//                            {1, 0, 0, 0, 0, 0, 1, 0, 0},
+//                            {1, 10, 0, 0, 0, 0, 1, 0, 0},
+//                            {0, 0, 21, 0, 0, 0, 0, 0, 0},
+//                            {0, 0, 0, 13, 1, 0, 0, 1, 0},
+//                            {0, 0, 0, 0, 0, 0, 31, 0, 1},
+//                            {0, 0, 0, 0, 0, 0, 0, 2, 0}};
+
+//     // BFS(arr);
+//     // DFS(arr);
+//     primMST(arr);
+//     return 0;
+// }
+
+// void insert(int table[], int size, int x)
+// {
+//     int index = x % size;
+
+//     if (table[index] == 0)
+//     {
+//         table[index] = x;
+//     }
+//     else
+//     {
+//         int i = 1;
+//         while (table[index] == 0 && i != size)
+//         {
+
+//             index = (x + i) % size;
+//             i++;
+//         }
+//         table[index] = x;
+//     }
+// }
+
+// int main()
+// {
+//     int indeksi[8] = {23, 17, 16, 8, 3, 5, 11, 31};
+//     int table[8];
+
+//     for (int i = 0; i < 8; i++)
+//     {
+//         insert(table, 8, indeksi[i]);
+//     }
+
+//     for (int j = 0; j < 8; j++)
+//     {
+//         printf("%d na indeksu %d\n", indeksi[j], j);
+//     }
+//     return 0;
+// }
+
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct Member
 {
+    int key;
+    int next;
+} Member;
 
-    int queue[size], front = -1, rear;
-    int visited[size] = {0};
-    rear = -1;
-    rear++;
-    front++;
-    queue[front] = 0;
-    visited[0] = 1;
-    while (front <= rear)
+typedef struct Tabela
+{
+    int length;
+    Member *members;
+} Tabela;
+
+int SEARCH_INSERT_CH(Tabela *T, int K)
+{
+    int i = K % T->length;
+
+    while (T->members[i].key != K && T->members[i].next != -1)
     {
-        int start = queue[front++];
-        cout << start << " ";
+        i = T->members[i].next;
+    }
 
-        for (int i = 0; i < size; i++)
+    if (T->members[i].key == K)
+    {
+        return i;
+    }
+
+    int j;
+    if (T->members[i].key == 0)
+    {
+        j = i;
+    }
+    else
+    {
+        int freeIndex = T->length - 1;
+        while (T->members[freeIndex].key != 0)
         {
-            if (!visited[i] && arr[start][i])
+            freeIndex--;
+            if (freeIndex < 0)
             {
-                rear++;
-                queue[rear] = i;
-
-                visited[i] = 1;
+                printf("ERROR: Tabela puna.\n");
+                exit(1);
             }
         }
+        j = freeIndex;
+        T->members[i].next = freeIndex;
     }
+
+    T->members[j].key = K;
+    return j;
 }
 
-void DFS(int arr[][size])
-{
-    int stack[size], top = -1;
-    int visited[size] = {0};
-
-    top++;
-    stack[top] = 0;
-    visited[top] = 0;
-    while (top != -1)
-    {
-
-        int start = stack[top--];
-        cout << start << " ";
-        for (int i = 0; i < size; i++)
-        {
-            if (!visited[i] && arr[start][i])
-            {
-                visited[i] = 1;
-                stack[++top] = i;
-            }
-        }
-    }
-}
-
-int minEdge(int keys[], int visited[])
-{
-    int min = 500;
-    int index;
-    for (int i = 0; i < size; i++)
-    {
-        if (!visited[i] && keys[i] < min)
-        {
-            min = keys[i];
-            index = i;
-        }
-    }
-    cout << "returned=" << index << "Min=" << min << endl;
-    return index;
-}
-
-void primMST(int arr[][size])
-{
-    int parents[size];
-    int edges[size];
-
-    for (int i = 0; i < size; i++)
-    {
-        int index;
-        int min = 500;
-
-        for (int j = 0; j < size; j++)
-        {
-            if (arr[i][j] && arr[i][j] < min)
-            {
-                min = arr[i][j];
-                index = j;
-            }
-        }
-        edges[i] = min;
-        parents[i] = index;
-    }
-
-    cout << "ISPIS\n";
-    for (int i = 0; i < size; i++)
-    {
-        printf("%d-%d costs %d\n", i, parents[i], edges[i]);
-    }
-}
 int main()
 {
+    Tabela T;
+    int length = 9;
+    T.length = length;
+    T.members = (Member *)malloc(length * sizeof(Member));
+    for (int i = 0; i < length; i++)
+    {
+        T.members[i].key = 0;
+        T.members[i].next = -1;
+    }
 
-    int arr[size][size] = {{0, 3, 0, 6, 1, 0, 0, 0, 0},
-                           {1, 0, 12, 0, 11, 0, 0, 0, 0},
-                           {0, 21, 0, 0, 0, 1, 0, 0, 0},
-                           {1, 0, 0, 0, 0, 0, 1, 0, 0},
-                           {1, 10, 0, 0, 0, 0, 1, 0, 0},
-                           {0, 0, 21, 0, 0, 0, 0, 0, 0},
-                           {0, 0, 0, 13, 1, 0, 0, 1, 0},
-                           {0, 0, 0, 0, 0, 0, 31, 0, 1},
-                           {0, 0, 0, 0, 0, 0, 0, 2, 0}};
+    SEARCH_INSERT_CH(&T, 17);
+    SEARCH_INSERT_CH(&T, 5);
+    SEARCH_INSERT_CH(&T, 12);
+    SEARCH_INSERT_CH(&T, 33);
+    SEARCH_INSERT_CH(&T, 24);
+    SEARCH_INSERT_CH(&T, 2);
+    SEARCH_INSERT_CH(&T, 45);
+    SEARCH_INSERT_CH(&T, 11);
+    SEARCH_INSERT_CH(&T, 56);
 
-    // BFS(arr);
-    // DFS(arr);
-    primMST(arr);
+    for (int i = 0; i < length; i++)
+    {
+        printf("%d| %d -> %d\n", i, T.members[i].key, T.members[i].next);
+    }
+
+    free(T.members);
+
     return 0;
 }
