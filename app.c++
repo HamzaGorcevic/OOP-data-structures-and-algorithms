@@ -8871,7 +8871,7 @@ using namespace std;
 
 // merge sort
 
-// PIRMOV ALGORITAM primov moja nacin primmst
+// PIRMOV ALGORITAM primov moj nacin primmst
 // #define size 9
 // void BFS(int arr[][size])
 // {
@@ -9026,88 +9026,252 @@ using namespace std;
 //     return 0;
 // }
 
-#include <stdio.h>
-#include <stdlib.h>
+// objedinjeno ulancavanje
 
-typedef struct Member
+// typedef struct Member
+// {
+//     int key;
+//     int next;
+// } Member;
+
+// typedef struct Tabela
+// {
+//     int length;
+//     Member *members;
+// } Tabela;
+
+// int SEARCH_INSERT_CH(Tabela *T, int K)
+// {
+//     int i = K % T->length;
+
+//     while (T->members[i].key != K && T->members[i].next != -1)
+//     {
+//         i = T->members[i].next;
+//     }
+
+//     if (T->members[i].key == K)
+//     {
+//         return i;
+//     }
+
+//     int j;
+//     if (T->members[i].key == 0)
+//     {
+//         j = i;
+//     }
+//     else
+//     {
+//         int freeIndex = T->length - 1;
+//         while (T->members[freeIndex].key != 0)
+//         {
+//             freeIndex--;
+//             if (freeIndex < 0)
+//             {
+//                 printf("ERROR: Tabela puna.\n");
+//                 exit(1);
+//             }
+//         }
+//         j = freeIndex;
+//         T->members[i].next = freeIndex;
+//     }
+
+//     T->members[j].key = K;
+//     return j;
+// }
+
+// int main()
+// {
+//     Tabela T;
+//     int length = 9;
+//     T.length = length;
+//     T.members = (Member *)malloc(length * sizeof(Member));
+//     for (int i = 0; i < length; i++)
+//     {
+//         T.members[i].key = 0;
+//         T.members[i].next = -1;
+//     }
+
+//     SEARCH_INSERT_CH(&T, 17);
+//     SEARCH_INSERT_CH(&T, 5);
+//     SEARCH_INSERT_CH(&T, 12);
+//     SEARCH_INSERT_CH(&T, 33);
+//     SEARCH_INSERT_CH(&T, 24);
+//     SEARCH_INSERT_CH(&T, 2);
+//     SEARCH_INSERT_CH(&T, 45);
+//     SEARCH_INSERT_CH(&T, 11);
+//     SEARCH_INSERT_CH(&T, 56);
+
+//     for (int i = 0; i < length; i++)
+//     {
+//         printf("%d| %d -> %d\n", i, T.members[i].key, T.members[i].next);
+//     }
+
+//     free(T.members);
+
+//     return 0;
+// }
+// #define size 11
+
+// typedef struct Queue
+// {
+//     int arr[size];
+//     int front = -1, rear = -1;
+// } Queue;
+
+// void enqueue(Queue *q, int e)
+// {
+//     if ((q->rear + 1) % size == q->front)
+//     {
+//         cout << "Red je pun\n";
+//     }
+//     else
+//     {
+//         if (q->front == -1)
+//         {
+//             q->front = 0;
+//             q->rear = 0;
+//             q->arr[q->front] = e;
+//         }
+//         else
+//         {
+//             q->rear = (q->rear + 1) % size;
+//             q->arr[q->rear] = e;
+//         }
+//     }
+// }
+
+// int main()
+// {
+//     Queue q1;
+//     Queue q2;
+
+//     int i = 2018;
+//     while (q1.rear < size - 1)
+//     {
+//         if (i % 2018 == 0)
+//         {
+//             enqueue(&q1, i);
+//         }
+//         i += 2018;
+//     }
+
+//     cout << "ISPIS\n";
+//     for (int i = q1.front; i <= q1.rear; i++)
+//     {
+//         if (q1.arr[i] % 6 == 0)
+//         {
+//             enqueue(&q2, q1.arr[i]);
+//         }
+//     }
+//     for (int i = q2.front; i <= q2.rear; i++)
+//     {
+//         cout << q2.arr[i] << " ";
+//     }
+
+//     return 0;
+// }
+
+#include <iostream>
+using namespace std;
+
+struct Node
 {
-    int key;
-    int next;
-} Member;
+    int data;
+    Node *left;
+    Node *right;
+};
 
-typedef struct Tabela
+// Kreiranje novog čvora
+Node *createNode(int data)
 {
-    int length;
-    Member *members;
-} Tabela;
-
-int SEARCH_INSERT_CH(Tabela *T, int K)
-{
-    int i = K % T->length;
-
-    while (T->members[i].key != K && T->members[i].next != -1)
+    Node *newNode = new Node();
+    if (!newNode)
     {
-        i = T->members[i].next;
+        cout << "Greška pri alokaciji memorije!" << endl;
+        return NULL;
+    }
+    newNode->data = data;
+    newNode->left = newNode->right = NULL;
+    return newNode;
+}
+
+int isComplete(Node *t, int pos, int n)
+{
+    if (t == nullptr)
+    {
+        return true;
+    }
+    if (n < pos)
+    {
+        return false;
+    }
+    return isComplete(t->left, pos * 2 + 1, n) && isComplete(t->right, pos * 2 + 2, n);
+}
+// Funkcija za izračunavanje zbira elemenata u levom podstablu
+int sumLeftSubtree(Node *root)
+{
+    int sum = 0;
+    if (root && root->left)
+    {
+        sum += root->left->data + sumLeftSubtree(root->left) + sumLeftSubtree(root->right);
     }
 
-    if (T->members[i].key == K)
-    {
-        return i;
-    }
+    return sum;
+}
 
-    int j;
-    if (T->members[i].key == 0)
+// kruskal and prim
+#define size 4
+void kruskalMST(int arr[][size])
+{
+    int visited[size];
+    int parents[size];
+    int edges[size];
+
+    for (int i = 0; i < size; i++)
     {
-        j = i;
-    }
-    else
-    {
-        int freeIndex = T->length - 1;
-        while (T->members[freeIndex].key != 0)
+        int min = 100;
+        int index;
+        for (int j = 0; j < size; j++)
         {
-            freeIndex--;
-            if (freeIndex < 0)
+            if (arr[i][j] && arr[i][j] < min)
             {
-                printf("ERROR: Tabela puna.\n");
-                exit(1);
+                min = arr[i][j];
+                index = j;
             }
         }
-        j = freeIndex;
-        T->members[i].next = freeIndex;
+        parents[i] = index;
+        edges[i] = min;
     }
-
-    T->members[j].key = K;
-    return j;
 }
 
 int main()
 {
-    Tabela T;
-    int length = 9;
-    T.length = length;
-    T.members = (Member *)malloc(length * sizeof(Member));
-    for (int i = 0; i < length; i++)
-    {
-        T.members[i].key = 0;
-        T.members[i].next = -1;
-    }
 
-    SEARCH_INSERT_CH(&T, 17);
-    SEARCH_INSERT_CH(&T, 5);
-    SEARCH_INSERT_CH(&T, 12);
-    SEARCH_INSERT_CH(&T, 33);
-    SEARCH_INSERT_CH(&T, 24);
-    SEARCH_INSERT_CH(&T, 2);
-    SEARCH_INSERT_CH(&T, 45);
-    SEARCH_INSERT_CH(&T, 11);
-    SEARCH_INSERT_CH(&T, 56);
+    int arr[size][size] = {
+        {0, 3, 0, 1},
+        {3, 0, 5, 0},
+        {0, 5, 0, 2},
+        {1, 0, 2, 0},
+    };
 
-    for (int i = 0; i < length; i++)
-    {
-        printf("%d| %d -> %d\n", i, T.members[i].key, T.members[i].next);
-    }
+    primMst(arr, 0);
 
-    free(T.members);
+    // Kreiranje stabla
+    Node *root = createNode(5);
+    root->left = createNode(3);
+    root->right = createNode(8);
+    root->left->left = createNode(2);
+    root->left->right = createNode(4);
+    root->right->left = createNode(7);
+    root->right->right = createNode(9);
+    root->right->right->right = createNode(19);
+    //
+    // Izračunavanje zbira elemenata u levom podstablu
+
+    int sum = sumLeftSubtree(root);
+    cout << "Zbir elemenata u levom podstablu: " << sum << endl;
+
+    cout << "Is complete :" << isComplete(root, 0, 7);
 
     return 0;
 }
