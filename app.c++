@@ -7643,153 +7643,163 @@ using namespace std;
 //     }
 // }
 
-// #include <iostream>
-// #define size 4
+#include <iostream>
+#define size 4
+// BST BSP
+using namespace std;
+struct Node
+{
+    int data;
+    Node *left, *right;
+};
 
-// using namespace std;
-// struct Node
-// {
-//     int data;
-//     Node *left, *right;
-// };
+Node *createNode(int data)
+{
+    Node *newTree = (Node *)malloc(sizeof(Node));
+    newTree->data = data;
+    newTree->left = NULL;
+    newTree->right = NULL;
 
-// Node *createNode(int data)
-// {
-//     Node *newTree = (Node *)malloc(sizeof(Node));
-//     newTree->data = data;
-//     newTree->left = NULL;
-//     newTree->right = NULL;
+    return newTree;
+}
 
-//     return newTree;
-// }
+Node *insertNode(Node **tree, int data)
+{
+    if (*tree == NULL)
+    {
+        *tree = createNode(data);
+        return *tree;
+    }
+    if ((*tree)->data > data)
+    {
+        (*tree)->left = insertNode(&((*tree)->left), data);
+    }
+    else if ((*tree)->data < data)
+    {
 
-// Node *insertNode(Node **tree, int data)
-// {
-//     if (*tree == NULL)
-//     {
-//         *tree = createNode(data);
-//         return *tree;
-//     }
-//     if ((*tree)->data > data)
-//     {
-//         (*tree)->left = insertNode(&((*tree)->left), data);
-//     }
-//     else if ((*tree)->data < data)
-//     {
+        (*tree)->right = insertNode(&((*tree)->right), data);
+    }
+    return *tree;
+}
 
-//         (*tree)->right = insertNode(&((*tree)->right), data);
-//     }
-//     return *tree;
-// }
+Node *minValueNode(Node *tree)
+{
+    Node *temp = tree;
+    while (temp->left != NULL)
+    {
+        temp = temp->left;
+    }
+    return temp;
+}
+void inorder(Node *tree)
+{
 
-// Node *minValueNode(Node *tree)
-// {
-//     Node *temp = tree;
-//     while (temp->left != NULL)
-//     {
-//         temp = temp->left;
-//     }
-//     return temp;
-// }
-// void inorder(Node *tree)
-// {
+    if (tree)
+    {
 
-//     if (tree)
-//     {
+        inorder(tree->left);
+        cout << tree->data << " ";
+        inorder(tree->right);
+    }
+}
 
-//         inorder(tree->left);
-//         cout << tree->data << " ";
-//         inorder(tree->right);
-//     }
-// }
+Node *deleteNode(Node **tree, int data)
+{
+    if (*tree == NULL)
+    {
+        return *tree;
+    }
+    if ((*tree)->data > data)
+    {
+        (*tree)->left = deleteNode(&(*tree)->left, data);
+    }
+    else if ((*tree)->data < data)
+    {
+        (*tree)->right = deleteNode(&(*tree)->right, data);
+    }
+    else
+    {
+        // we found it
 
-// Node *deleteNode(Node **tree, int data)
-// {
-//     if (*tree == NULL)
-//     {
-//         return *tree;
-//     }
-//     if ((*tree)->data > data)
-//     {
-//         (*tree)->left = deleteNode(&(*tree)->left, data);
-//     }
-//     else if ((*tree)->data < data)
-//     {
-//         (*tree)->right = deleteNode(&(*tree)->right, data);
-//     }
-//     else
-//     {
-//         // we found it
+        if ((*tree)->left == NULL)
+        {
+            Node *temp = (*tree)->right;
+            free(*tree);
+            return temp;
+        }
+        else if ((*tree)->right == NULL)
+        {
+            Node *temp = (*tree)->left;
+            free(*tree);
+            return temp;
+        }
+        Node *temp = minValueNode((*tree)->right);
+        cout << "MIN FOUNDED FOR THAT SPECIFIC" << temp->data << endl;
+        (*tree)->data = temp->data;
+        (*tree)->right = deleteNode(&(*tree)->right, temp->data);
+    }
+    return *tree;
+}
 
-//         if ((*tree)->left == NULL)
-//         {
-//             Node *temp = (*tree)->right;
-//             free(*tree);
-//             return temp;
-//         }
-//         else if ((*tree)->right == NULL)
-//         {
-//             Node *temp = (*tree)->left;
-//             free(*tree);
-//             return temp;
-//         }
-//         Node *temp = minValueNode((*tree)->right);
-//         cout << "MIN FOUNDED FOR THAT SPECIFIC" << temp->data << endl;
-//         (*tree)->data = temp->data;
-//         (*tree)->right = deleteNode(&(*tree)->right, temp->data);
-//     }
-//     return *tree;
-// }
+int zbirT(Node *t)
+{
+    if (t == NULL)
+    {
+        return 0;
+    }
+    return t->data + zbirT(t->left) + zbirT(t->right);
+}
 
-// int main()
-// {
+int main()
+{
 
-// Node *tree = NULL;
+    Node *tree = NULL;
 
-// insertNode(&tree, 2);
-// insertNode(&tree, 3);
-// insertNode(&tree, 1);
-// insertNode(&tree, 22);
-// insertNode(&tree, 24);
-// insertNode(&tree, 20);
-// insertNode(&tree, 29);
-// tree = deleteNode(&tree, 22);
-// inorder(tree);
-// cout << endl;
+    insertNode(&tree, 2);
+    insertNode(&tree, 3);
+    insertNode(&tree, 1);
+    insertNode(&tree, 22);
+    insertNode(&tree, 24);
+    insertNode(&tree, 20);
+    insertNode(&tree, 29);
+    tree = deleteNode(&tree, 22);
+    inorder(tree);
+    cout << endl;
 
-// int visited[size] = {0};
-// int arr[size][size] = {
-//     {0, 3, 0, 1},
-//     {3, 0, 5, 0},
-//     {0, 5, 0, 2},
-//     {1, 0, 2, 0},
-// };
+    cout << "zbir:" << zbirT(tree);
 
-// bestezinska
-// int arr0[size][size] = {
-//     {0, 1, 0, 1},
-//     {0, 0, 1, 1},
-//     {1, 0, 0, 0},
-//     {0, 0, 0, 0}};
+    // int visited[size] = {0};
+    // int arr[size][size] = {
+    //     {0, 3, 0, 1},
+    //     {3, 0, 5, 0},
+    //     {0, 5, 0, 2},
+    //     {1, 0, 2, 0},
+    // };
 
-// BFS(arr, visited);
-// DFS(arr, visited);
-// primMST(arr);
-// int distance[size];
-// dijkstra(arr, 0);
+    // int arr0[size][size] = {
+    //     {0, 1, 0, 1},
+    //     {0, 0, 1, 1},
+    //     {1, 0, 0, 0},
+    //     {0, 0, 0, 0}};
 
-// TestPrimMST(arr);
-// warshall(arr0);
-// warshallWeight(arr);
-// graph *g = creategraph(6);
-// insertVertex(g, 3, 1);
-// insertVertex(g, 0, 1);
-// insertVertex(g, 2, 1);
-// insertVertex(g, 3, 4);
-// ispisGrafa(g);
+    // BFS(arr, visited);
+    // DFS(arr, visited);
+    // primMST(arr);
+    // int distance[size];
+    // dijkstra(arr, 0);
 
-//     return 0;
-// }
+    // TestPrimMST(arr);
+    // warshall(arr0);
+    // warshallWeight(arr);
+    // graph *g = creategraph(6);
+    // insertVertex(g, 3, 1);
+    // insertVertex(g, 0, 1);
+    // insertVertex(g, 2, 1);
+    // insertVertex(g, 3, 4);
+    // ispisGrafa(g);
+
+    return 0;
+}
 
 // #include <iostream>
 // using namespace std;
@@ -9171,107 +9181,105 @@ using namespace std;
 //     return 0;
 // }
 
-#include <iostream>
-using namespace std;
+// #include <iostream>
+// using namespace std;
 
-struct Node
-{
-    int data;
-    Node *left;
-    Node *right;
-};
+// struct Node
+// {
+//     int data;
+//     Node *left;
+//     Node *right;
+// };
 
-// Kreiranje novog čvora
-Node *createNode(int data)
-{
-    Node *newNode = new Node();
-    if (!newNode)
-    {
-        cout << "Greška pri alokaciji memorije!" << endl;
-        return NULL;
-    }
-    newNode->data = data;
-    newNode->left = newNode->right = NULL;
-    return newNode;
-}
+// // Kreiranje novog čvora
+// Node *createNode(int data)
+// {
+//     Node *newNode = new Node();
+//     if (!newNode)
+//     {
+//         cout << "Greška pri alokaciji memorije!" << endl;
+//         return NULL;
+//     }
+//     newNode->data = data;
+//     newNode->left = newNode->right = NULL;
+//     return newNode;
+// }
 
-int isComplete(Node *t, int pos, int n)
-{
-    if (t == nullptr)
-    {
-        return true;
-    }
-    if (n < pos)
-    {
-        return false;
-    }
-    return isComplete(t->left, pos * 2 + 1, n) && isComplete(t->right, pos * 2 + 2, n);
-}
-// Funkcija za izračunavanje zbira elemenata u levom podstablu
-int sumLeftSubtree(Node *root)
-{
-    int sum = 0;
-    if (root && root->left)
-    {
-        sum += root->left->data + sumLeftSubtree(root->left) + sumLeftSubtree(root->right);
-    }
+// int isComplete(Node *t, int pos, int n)
+// {
+//     if (t == nullptr)
+//     {
+//         return true;
+//     }
+//     if (n < pos)
+//     {
+//         return false;
+//     }
+//     return isComplete(t->left, pos * 2 + 1, n) && isComplete(t->right, pos * 2 + 2, n);
+// }
+// // Funkcija za izračunavanje zbira elemenata u levom podstablu
+// int sumLeftSubtree(Node *root)
+// {
+//     int sum = 0;
+//     if (root && root->left)
+//     {
+//         sum += root->left->data + sumLeftSubtree(root->left) + sumLeftSubtree(root->right);
+//     }
 
-    return sum;
-}
+//     return sum;
+// }
 
-// kruskal and prim
-#define size 4
-void kruskalMST(int arr[][size])
-{
-    int visited[size];
-    int parents[size];
-    int edges[size];
+// // kruskal and prim
+// #define size 4
+// void kruskalMST(int arr[][size])
+// {
+//     int visited[size];
+//     int parents[size];
+//     int edges[size];
 
-    for (int i = 0; i < size; i++)
-    {
-        int min = 100;
-        int index;
-        for (int j = 0; j < size; j++)
-        {
-            if (arr[i][j] && arr[i][j] < min)
-            {
-                min = arr[i][j];
-                index = j;
-            }
-        }
-        parents[i] = index;
-        edges[i] = min;
-    }
-}
+//     for (int i = 0; i < size; i++)
+//     {
+//         int min = 100;
+//         int index;
+//         for (int j = 0; j < size; j++)
+//         {
+//             if (arr[i][j] && arr[i][j] < min)
+//             {
+//                 min = arr[i][j];
+//                 index = j;
+//             }
+//         }
+//         parents[i] = index;
+//         edges[i] = min;
+//     }
+// }
 
-int main()
-{
+// int main()
+// {
 
-    int arr[size][size] = {
-        {0, 3, 0, 1},
-        {3, 0, 5, 0},
-        {0, 5, 0, 2},
-        {1, 0, 2, 0},
-    };
+//     int arr[size][size] = {
+//         {0, 3, 0, 1},
+//         {3, 0, 5, 0},
+//         {0, 5, 0, 2},
+//         {1, 0, 2, 0},
+//     };
+//     string ime = "hamza";
+//     // Kreiranje stabla
+//     Node *root = createNode(5);
+//     root->left = createNode(3);
+//     root->right = createNode(8);
+//     root->left->left = createNode(2);
+//     root->left->right = createNode(4);
+//     root->right->left = createNode(7);
+//     root->right->right = createNode(9);
+//     root->right->right->right = createNode(19);
+//     //
+//     // Izračunavanje zbira elemenata u levom podstablu
 
-    primMst(arr, 0);
+//     int sum = sumLeftSubtree(root);
+//     cout << "Zbir elemenata u levom podstablu: " << sum << endl;
 
-    // Kreiranje stabla
-    Node *root = createNode(5);
-    root->left = createNode(3);
-    root->right = createNode(8);
-    root->left->left = createNode(2);
-    root->left->right = createNode(4);
-    root->right->left = createNode(7);
-    root->right->right = createNode(9);
-    root->right->right->right = createNode(19);
-    //
-    // Izračunavanje zbira elemenata u levom podstablu
+//     cout << "Is complete :" << isComplete(root, 0, 7);
 
-    int sum = sumLeftSubtree(root);
-    cout << "Zbir elemenata u levom podstablu: " << sum << endl;
-
-    cout << "Is complete :" << isComplete(root, 0, 7);
-
-    return 0;
-}
+//     return 0;
+// }
