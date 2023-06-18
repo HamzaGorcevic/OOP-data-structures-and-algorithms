@@ -7643,163 +7643,162 @@ using namespace std;
 //     }
 // }
 
-#include <iostream>
-#define size 4
-// BST BSP
-using namespace std;
-struct Node
-{
-    int data;
-    Node *left, *right;
-};
+// #define size 4
+// // BST BSP
+// using namespace std;
+// struct Node
+// {
+//     int data;
+//     Node *left, *right;
+// };
 
-Node *createNode(int data)
-{
-    Node *newTree = (Node *)malloc(sizeof(Node));
-    newTree->data = data;
-    newTree->left = NULL;
-    newTree->right = NULL;
+// Node *createNode(int data)
+// {
+//     Node *newTree = (Node *)malloc(sizeof(Node));
+//     newTree->data = data;
+//     newTree->left = NULL;
+//     newTree->right = NULL;
 
-    return newTree;
-}
+//     return newTree;
+// }
 
-Node *insertNode(Node **tree, int data)
-{
-    if (*tree == NULL)
-    {
-        *tree = createNode(data);
-        return *tree;
-    }
-    if ((*tree)->data > data)
-    {
-        (*tree)->left = insertNode(&((*tree)->left), data);
-    }
-    else if ((*tree)->data < data)
-    {
+// Node *insertNode(Node **tree, int data)
+// {
+//     if (*tree == NULL)
+//     {
+//         *tree = createNode(data);
+//         return *tree;
+//     }
+//     if ((*tree)->data > data)
+//     {
+//         (*tree)->left = insertNode(&((*tree)->left), data);
+//     }
+//     else if ((*tree)->data < data)
+//     {
 
-        (*tree)->right = insertNode(&((*tree)->right), data);
-    }
-    return *tree;
-}
+//         (*tree)->right = insertNode(&((*tree)->right), data);
+//     }
+//     return *tree;
+// }
 
-Node *minValueNode(Node *tree)
-{
-    Node *temp = tree;
-    while (temp->left != NULL)
-    {
-        temp = temp->left;
-    }
-    return temp;
-}
-void inorder(Node *tree)
-{
+// Node *minValueNode(Node *tree)
+// {
+//     Node *temp = tree;
+//     while (temp->left != NULL)
+//     {
+//         temp = temp->left;
+//     }
+//     return temp;
+// }
+// void inorder(Node *tree)
+// {
 
-    if (tree)
-    {
+//     if (tree)
+//     {
 
-        inorder(tree->left);
-        cout << tree->data << " ";
-        inorder(tree->right);
-    }
-}
+//         inorder(tree->left);
+//         cout << tree->data << " ";
+//         inorder(tree->right);
+//     }
+// }
 
-Node *deleteNode(Node **tree, int data)
-{
-    if (*tree == NULL)
-    {
-        return *tree;
-    }
-    if ((*tree)->data > data)
-    {
-        (*tree)->left = deleteNode(&(*tree)->left, data);
-    }
-    else if ((*tree)->data < data)
-    {
-        (*tree)->right = deleteNode(&(*tree)->right, data);
-    }
-    else
-    {
-        // we found it
+// Node *deleteNode(Node **tree, int data)
+// {
+//     if (*tree == NULL)
+//     {
+//         return *tree;
+//     }
+//     if ((*tree)->data > data)
+//     {
+//         (*tree)->left = deleteNode(&(*tree)->left, data);
+//     }
+//     else if ((*tree)->data < data)
+//     {
+//         (*tree)->right = deleteNode(&(*tree)->right, data);
+//     }
+//     else
+//     {
+//         // we found it
 
-        if ((*tree)->left == NULL)
-        {
-            Node *temp = (*tree)->right;
-            free(*tree);
-            return temp;
-        }
-        else if ((*tree)->right == NULL)
-        {
-            Node *temp = (*tree)->left;
-            free(*tree);
-            return temp;
-        }
-        Node *temp = minValueNode((*tree)->right);
-        cout << "MIN FOUNDED FOR THAT SPECIFIC" << temp->data << endl;
-        (*tree)->data = temp->data;
-        (*tree)->right = deleteNode(&(*tree)->right, temp->data);
-    }
-    return *tree;
-}
+//         if ((*tree)->left == NULL)
+//         {
+//             Node *temp = (*tree)->right;
+//             free(*tree);
+//             return temp;
+//         }
+//         else if ((*tree)->right == NULL)
+//         {
+//             Node *temp = (*tree)->left;
+//             free(*tree);
+//             return temp;
+//         }
+//         Node *temp = minValueNode((*tree)->right);
+//         cout << "MIN FOUNDED FOR THAT SPECIFIC" << temp->data << endl;
+//         (*tree)->data = temp->data;
+//         (*tree)->right = deleteNode(&(*tree)->right, temp->data);
+//     }
+//     return *tree;
+// }
 
-int zbirT(Node *t)
-{
-    if (t == NULL)
-    {
-        return 0;
-    }
-    return t->data + zbirT(t->left) + zbirT(t->right);
-}
+// int zbirT(Node *t)
+// {
+//     if (t == NULL)
+//     {
+//         return 0;
+//     }
+//     return t->data + zbirT(t->left) + zbirT(t->right);
+// }
 
-int main()
-{
+// int main()
+// {
 
-    Node *tree = NULL;
+//     Node *tree = NULL;
 
-    insertNode(&tree, 2);
-    insertNode(&tree, 3);
-    insertNode(&tree, 1);
-    insertNode(&tree, 22);
-    insertNode(&tree, 24);
-    insertNode(&tree, 20);
-    insertNode(&tree, 29);
-    tree = deleteNode(&tree, 22);
-    inorder(tree);
-    cout << endl;
+//     insertNode(&tree, 2);
+//     insertNode(&tree, 3);
+//     insertNode(&tree, 1);
+//     insertNode(&tree, 22);
+//     insertNode(&tree, 24);
+//     insertNode(&tree, 20);
+//     insertNode(&tree, 29);
+//     tree = deleteNode(&tree, 22);
+//     inorder(tree);
+//     cout << endl;
 
-    cout << "zbir:" << zbirT(tree);
+//     cout << "zbir:" << zbirT(tree);
 
-    // int visited[size] = {0};
-    // int arr[size][size] = {
-    //     {0, 3, 0, 1},
-    //     {3, 0, 5, 0},
-    //     {0, 5, 0, 2},
-    //     {1, 0, 2, 0},
-    // };
+// int visited[size] = {0};
+// int arr[size][size] = {
+//     {0, 3, 0, 1},
+//     {3, 0, 5, 0},
+//     {0, 5, 0, 2},
+//     {1, 0, 2, 0},
+// };
 
-    // int arr0[size][size] = {
-    //     {0, 1, 0, 1},
-    //     {0, 0, 1, 1},
-    //     {1, 0, 0, 0},
-    //     {0, 0, 0, 0}};
+// int arr0[size][size] = {
+//     {0, 1, 0, 1},
+//     {0, 0, 1, 1},
+//     {1, 0, 0, 0},
+//     {0, 0, 0, 0}};
 
-    // BFS(arr, visited);
-    // DFS(arr, visited);
-    // primMST(arr);
-    // int distance[size];
-    // dijkstra(arr, 0);
+// BFS(arr, visited);
+// DFS(arr, visited);
+// primMST(arr);
+// int distance[size];
+// dijkstra(arr, 0);
 
-    // TestPrimMST(arr);
-    // warshall(arr0);
-    // warshallWeight(arr);
-    // graph *g = creategraph(6);
-    // insertVertex(g, 3, 1);
-    // insertVertex(g, 0, 1);
-    // insertVertex(g, 2, 1);
-    // insertVertex(g, 3, 4);
-    // ispisGrafa(g);
+// TestPrimMST(arr);
+// warshall(arr0);
+// warshallWeight(arr);
+// graph *g = creategraph(6);
+// insertVertex(g, 3, 1);
+// insertVertex(g, 0, 1);
+// insertVertex(g, 2, 1);
+// insertVertex(g, 3, 4);
+// ispisGrafa(g);
 
-    return 0;
-}
+//     return 0;
+// }
 
 // #include <iostream>
 // using namespace std;
@@ -9283,3 +9282,236 @@ int main()
 
 //     return 0;
 // }
+
+// // Napisati program u programskom jeziku
+// C za rad sa hash tabelom implementiranom preko lančane liste dužine 11.
+//  U glavnom programu demonstirati upisivanje brojeva 12, 1, 7, 8, 4, 18, 9, 3.
+
+// #define size 11
+// typedef struct Node
+// {
+//     int data;
+//     struct Node *next;
+
+// } Node;
+
+// Node *createNode(int data)
+// {
+//     Node *newNode = (Node *)malloc(sizeof(Node));
+//     newNode->data = data;
+//     newNode->next = NULL;
+//     return newNode;
+// }
+
+// void initilze(Node *has[size])
+// {
+//     for (int i = 0; i < size; i++)
+//     {
+//         has[i] = NULL;
+//     }
+// }
+// void insert(Node *hash[size], int data)
+// {
+//     int indeks = data % size;
+
+//     if (hash[indeks] == NULL)
+//     {
+//         hash[indeks] = createNode(data);
+//     }
+//     else
+//     {
+//         Node *temp = hash[indeks];
+//         while (temp->next != NULL)
+//         {
+
+//             temp = temp->next;
+//         }
+//         temp->next = createNode(data);
+//     }
+// }
+// void display(Node *hash[size])
+// {
+//     cout << "ISPIs\n";
+//     for (int i = 0; i < size; i++)
+//     {
+//         cout << "ineds " << i << " ";
+//         Node *temp = hash[i];
+//         while (temp != NULL)
+//         {
+//             cout << temp->data << "-";
+//             temp = temp->next;
+//         }
+//         cout << endl;
+//     }
+// }
+
+// int main()
+// {
+//     Node *hashTabla[size];
+//     initilze(hashTabla);
+//     insert(hashTabla, 12);
+//     insert(hashTabla, 1);
+//     insert(hashTabla, 7);
+//     insert(hashTabla, 8);
+//     insert(hashTabla, 4);
+//     insert(hashTabla, 18);
+//     insert(hashTabla, 9);
+//     insert(hashTabla, 3);
+//     insert(hashTabla, 11);
+
+//     display(hashTabla);
+// }
+
+// void Node_to_root(int arr[], int k, int size)
+// {
+
+//     int pos = k;
+//     while (pos != 0)
+//     {
+//         pos = (pos - 1) / 2;
+//         if (pos >= 0)
+//         {
+//             cout << arr[pos] << endl;
+//         }
+//     }
+// }
+
+// void childNode(int arr[], int k, int n)
+// {
+
+//     cout << arr[k * 2 + 1] << " " << arr[k * 2 + 2];
+// }
+// struct Tree
+// {
+//     int data;
+//     Tree *left, *right;
+// };
+
+// Tree *createT(int data)
+// {
+//     Tree *t = (Tree *)malloc(sizeof(Tree));
+//     t->data = data;
+//     t->left = NULL;
+//     t->right = NULL;
+//     return t;
+// }
+
+// int zbir(Tree *t, int n)
+// {
+//     if (t == NULL)
+//     {
+//         return 0;
+//     }
+
+//     if (n == 0)
+//     {
+//         return t->data;
+//     }
+
+//     return zbir(t->left, n - 1) + zbir(t->right, n - 1);
+// }
+// int main()
+// {
+//     Tree *t;
+//     t = createT(5);
+//     t->left = createT(32);
+//     t->right = createT(31);
+//     t->left->left = createT(12);
+//     t->left->right=createT(42);
+
+//     int n = (2 * 2 * 2 - 1);
+
+//     int arr[n];
+//     for (int i = 0; i < n; i++)
+//     {
+//         cin >> arr[i];
+//     }
+
+//     // Node_to_root(arr, 4, 7);
+//     // childNode(arr, 2, 7);
+
+//     return 0;
+// }
+
+struct Tabla
+{
+    int prostor;
+    int *keys;
+    int *next;
+};
+void init(Tabla *t, int n)
+{
+
+    t->prostor = n;
+
+    t->keys = (int *)malloc(n * sizeof(int));
+    t->next = (int *)malloc(n * sizeof(int));
+
+    for (int i = 0; i < n; i++)
+    {
+        cout << "here";
+
+        t->keys[i] = -1;
+        t->next[i] = -1;
+    }
+}
+void searchInsert(Tabla *t, int data)
+{
+    int indeks = data % t->prostor;
+    if (t->keys[indeks] == -1)
+    {
+        t->keys[indeks] = data;
+    }
+    else
+    {
+        int j = t->prostor - 1;
+        while (t->keys[j] != -1)
+        {
+
+            j--;
+        }
+
+        if (t->next[indeks] == -1)
+        {
+            t->next[indeks] = j;
+        }
+        else
+        {
+
+            int i = t->prostor - 1;
+            while (t->next[i] != -1)
+            {
+                i--;
+            }
+            t->next[i] = j;
+        }
+        t->keys[j] = data;
+    }
+}
+
+void display(Tabla *t)
+{
+    cout << "ISPIS\n";
+    for (int i = 0; i < t->prostor; i++)
+    {
+        cout << t->keys[i] << ":" << t->next[i] << endl;
+    }
+}
+
+int main()
+{
+    Tabla *t;
+
+    init(t, 7);
+
+    searchInsert(t, 5);
+    searchInsert(t, 3);
+    searchInsert(t, 21);
+    searchInsert(t, 7);
+    searchInsert(t, 23);
+    searchInsert(t, 65);
+
+    display(t);
+
+    return 0;
+}
