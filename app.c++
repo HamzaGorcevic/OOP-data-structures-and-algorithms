@@ -9433,85 +9433,128 @@ using namespace std;
 //     return 0;
 // }
 
-struct Tabla
+// struct Tabla
+// {
+//     int prostor;
+//     int *keys;
+//     int *next;
+// };
+// void init(Tabla *t, int n)
+// {
+
+//     t->prostor = n;
+
+//     t->keys = (int *)malloc(n * sizeof(int));
+//     t->next = (int *)malloc(n * sizeof(int));
+
+//     for (int i = 0; i < n; i++)
+//     {
+//         cout << "here";
+
+//         t->keys[i] = -1;
+//         t->next[i] = -1;
+//     }
+// }
+// void searchInsert(Tabla *t, int data)
+// {
+//     int indeks = data % t->prostor;
+//     if (t->keys[indeks] == -1)
+//     {
+//         t->keys[indeks] = data;
+//     }
+//     else
+//     {
+//         int j = t->prostor - 1;
+//         while (t->keys[j] != -1)
+//         {
+
+//             j--;
+//         }
+
+//         if (t->next[indeks] == -1)
+//         {
+//             t->next[indeks] = j;
+//         }
+//         else
+//         {
+
+//             int i = t->prostor - 1;
+//             while (t->next[i] != -1)
+//             {
+//                 i--;
+//             }
+//             t->next[i] = j;
+//         }
+//         t->keys[j] = data;
+//     }
+// }
+
+// void display(Tabla *t)
+// {
+//     cout << "ISPIS\n";
+//     for (int i = 0; i < t->prostor; i++)
+//     {
+//         cout << t->keys[i] << ":" << t->next[i] << endl;
+//     }
+// }
+
+// int main()
+// {
+//     Tabla *t;
+
+//     init(t, 7);
+
+//     searchInsert(t, 5);
+//     searchInsert(t, 3);
+//     searchInsert(t, 21);
+//     searchInsert(t, 7);
+//     searchInsert(t, 23);
+//     searchInsert(t, 65);
+
+//     display(t);
+
+//     return 0;
+// }
+
+// FLOYD-Warshall
+#define size 4
+
+void floydWarshall(int w[][size])
 {
-    int prostor;
-    int *keys;
-    int *next;
-};
-void init(Tabla *t, int n)
-{
-
-    t->prostor = n;
-
-    t->keys = (int *)malloc(n * sizeof(int));
-    t->next = (int *)malloc(n * sizeof(int));
-
-    for (int i = 0; i < n; i++)
+    for (int i = 0; i < size; i++)
     {
-        cout << "here";
-
-        t->keys[i] = -1;
-        t->next[i] = -1;
-    }
-}
-void searchInsert(Tabla *t, int data)
-{
-    int indeks = data % t->prostor;
-    if (t->keys[indeks] == -1)
-    {
-        t->keys[indeks] = data;
-    }
-    else
-    {
-        int j = t->prostor - 1;
-        while (t->keys[j] != -1)
+        for (int j = 0; j < size; j++)
         {
-
-            j--;
-        }
-
-        if (t->next[indeks] == -1)
-        {
-            t->next[indeks] = j;
-        }
-        else
-        {
-
-            int i = t->prostor - 1;
-            while (t->next[i] != -1)
+            for (int k = 0; k < size; k++)
             {
-                i--;
+                if (w[i][j] > w[j][k] + w[j][i])
+                {
+                    w[i][j] = w[j][k] + w[j][i];
+                }
             }
-            t->next[i] = j;
         }
-        t->keys[j] = data;
-    }
-}
-
-void display(Tabla *t)
-{
-    cout << "ISPIS\n";
-    for (int i = 0; i < t->prostor; i++)
-    {
-        cout << t->keys[i] << ":" << t->next[i] << endl;
     }
 }
 
 int main()
 {
-    Tabla *t;
 
-    init(t, 7);
+    int w[size][size]{
+        {0, 99, -2, 9},
+        {4, 0, 3, 99},
+        {99, 99, 0, 2},
+        {99, -1, 99, 99}};
 
-    searchInsert(t, 5);
-    searchInsert(t, 3);
-    searchInsert(t, 21);
-    searchInsert(t, 7);
-    searchInsert(t, 23);
-    searchInsert(t, 65);
+    cout << "ISPIS\n";
 
-    display(t);
-
+    floydWarshall(w);
+    for (int i = 0; i < size; i++)
+    {
+        for (int j = 0; j < size; j++)
+        {
+            cout << w[i][j] << " ";
+        }
+        cout << endl;
+    }
     return 0;
 }
