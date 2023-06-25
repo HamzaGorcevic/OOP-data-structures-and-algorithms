@@ -9517,44 +9517,196 @@ using namespace std;
 // }
 
 // FLOYD-Warshall
-#define size 4
+// #define size 7
 
-void floydWarshall(int w[][size])
+// void floydWarshall(int w[][size])
+// {
+//     for (int i = 0; i < size; i++)
+//     {
+//         for (int j = 0; j < size; j++)
+//         {
+//             for (int k = 0; k < size; k++)
+//             {
+//                 if (w[i][j] > w[j][k] + w[j][i])
+//                 {
+//                     w[i][j] = w[j][k] + w[j][i];
+//                 }
+//             }
+//         }
+//     }
+// }
+
+// void insertionSort(int arr[])
+// {
+//     for (int i = 1; i < size; i++)
+//     {
+//         int k = arr[i];
+//         int j = i - 1;
+//         while (j >= 0 && arr[j] > k)
+//         {
+//             arr[j + 1] = arr[j];
+//             j--;
+//         }
+//         arr[j + 1] = k;
+//     }
+
+//     cout << "ISPIS\n";
+//     for (int j = 0; j < size; j++)
+//     {
+//         cout << arr[j] << " ";
+//     }
+// }
+
+// void shellSort(int arr[], int h[])
+// {
+//     for (int i = 0; i < 3; i++)
+//     {
+//         int dist = h[i];
+//         for (int d = dist; d < size; d++)
+//         {
+//             int k = arr[d];
+//             int j = d - dist;
+//             while (j >= 0 && arr[j] > k)
+//             {
+//                 arr[j + dist] = arr[j];
+//                 j -= dist;
+//             }
+//             arr[j + dist] = k;
+//         }
+//     }
+//     cout << "ISPIS\n";
+//     for (int j = 0; j < size; j++)
+//     {
+//         cout << arr[j] << " ";
+//     }
+// }
+
+// void selectionSort(int arr[])
+// {
+//     for (int i = 0; i < size; i++)
+//     {
+
+//         int min = arr[i];
+//         int pos = i;
+//         for (int j = i + 1; j < size; j++)
+//         {
+//             if (arr[j] < min)
+//             {
+//                 min = arr[j];
+//                 pos = j;
+//             }
+//         }
+//         arr[pos] = arr[i];
+//         arr[i] = min;
+//     }
+
+//     cout << "ISPIS\n";
+//     for (int j = 0; j < size; j++)
+//     {
+//         cout << arr[j] << " ";
+//     }
+// }
+// int main()
+// {
+// int arr[size] = {8, 3, 4, 6, 5, 2, 7};
+
+// int h[3] = {4, 2, 1};
+// insertionSort(arr);
+
+// shellSort(arr, h);
+// selectionSort(arr);
+// int w[size][size]{
+//     {0, 99, -2, 9},
+//     {4, 0, 3, 99},
+//     {99, 99, 0, 2},
+//     {99, -1, 99, 99}};
+
+// cout << "ISPIS\n";
+
+// floydWarshall(w);
+// for (int i = 0; i < size; i++)
+// {
+//     for (int j = 0; j < size; j++)
+//     {
+//         cout << w[i][j] << " ";
+//     }
+//     cout << endl;
+// }
+
+//     return 0;
+// }
+
+// Dijakstra Algoritam , optimizovati i zavrsiti
+#define size 9
+
+void Dijakstra(int arr[][size], int start)
 {
-    for (int i = 0; i < size; i++)
+    int visited[size] = {0};
+    int stack[size];
+    stack[0] = start;
+    int counter = 1;
+    int edges[size];
+    visited[start] = 1;
+
+    for (int f = 0; f < size; f++)
     {
-        for (int j = 0; j < size; j++)
+        edges[f] = 99;
+    }
+    while (counter < size)
+    {
+        for (int l = 0; l < size; l++)
         {
-            for (int k = 0; k < size; k++)
+            if (!visited[l] && arr[start][l] && arr[start][l] + (edges[start] % 99) < (edges[l]) && l != start)
             {
-                if (w[i][j] > w[j][k] + w[j][i])
-                {
-                    w[i][j] = w[j][k] + w[j][i];
-                }
+                edges[l] = arr[start][l] + edges[start];
+                edges[l] %= 99;
             }
         }
+        int minVal = 99;
+        int minI;
+        for (int j = 0; j < size; j++)
+        {
+
+            if (!visited[j] && edges[j] && edges[j] < minVal)
+            {
+
+                minVal = edges[j];
+                minI = j;
+            }
+        }
+
+        visited[minI] = 1;
+        start = minI;
+        stack[counter] = minI;
+        counter++;
     }
+
+    cout << "Stack\n";
+    for (int j = 0; j < size; j++)
+    {
+        cout << stack[j] << " ";
+    }
+    cout << "\n Cene\n";
+    for (int j = 0; j < size; j++)
+    {
+        cout << edges[j] << " ";
+    }
+    cout << "fali mi jos T\n";
 }
 
 int main()
 {
+    int arr[size][size] = {{0, 0, 5, 4, 0, 0, 0, 0, 0},
+                           {2, 0, 0, 0, 3, 0, 0, 0, 0},
+                           {0, 0, 0, 0, 0, 5, 4, 0, 0},
+                           {0, 0, 2, 0, 0, 0, 5, 0, 0},
+                           {0, 0, 0, 0, 0, 5, 0, 0, 5},
+                           {0, 6, 0, 0, 0, 0, 0, 2, 3},
+                           {0, 0, 0, 0, 0, 0, 0, 0, 4},
+                           {0, 0, 0, 0, 5, 0, 0, 0, 0},
+                           {0, 0, 0, 0, 0, 0, 0, 4, 0}
 
-    int w[size][size]{
-        {0, 99, -2, 9},
-        {4, 0, 3, 99},
-        {99, 99, 0, 2},
-        {99, -1, 99, 99}};
-
-    cout << "ISPIS\n";
-
-    floydWarshall(w);
-    for (int i = 0; i < size; i++)
-    {
-        for (int j = 0; j < size; j++)
-        {
-            cout << w[i][j] << " ";
-        }
-        cout << endl;
-    }
+    };
+    Dijakstra(arr, 5);
     return 0;
 }
