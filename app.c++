@@ -9637,40 +9637,62 @@ using namespace std;
 // }
 
 // Dijakstra Algoritam , optimizovati i zavrsiti
+
 #define size 9
 
-void Dijakstra(int arr[][size], int start)
+typedef struct cvor
 {
+    int data;
+    cvor *next;
+};
+
+typedef struct puteviDoCvora
+{
+    int cene[size];
+    cvor *niz[size];
+};
+
+puteviDoCvora *Dijakstra(int arr[][size], int start)
+{
+    puteviDoCvora *ways = (puteviDoCvora *)malloc(sizeof(puteviDoCvora));
+
     int visited[size] = {0};
     int stack[size];
     stack[0] = start;
     int counter = 1;
-    int edges[size];
     visited[start] = 1;
 
     for (int f = 0; f < size; f++)
     {
-        edges[f] = 99;
+        ways->niz[f] = nullptr;
+        ways->cene[f] = 99;
     }
     while (counter < size)
     {
         for (int l = 0; l < size; l++)
         {
-            if (!visited[l] && arr[start][l] && arr[start][l] + (edges[start] % 99) < (edges[l]) && l != start)
+            if (!visited[l] && arr[start][l] && arr[start][l] + (ways->cene[start] % 99) < (ways->cene[l]) && l != start)
             {
-                edges[l] = arr[start][l] + edges[start];
-                edges[l] %= 99;
+
+                cvor *noviCvor = (cvor *)malloc(sizeof(cvor));
+                noviCvor->data = start;
+                noviCvor->next = ways->niz[l];
+                ways->niz[l] = noviCvor;
+
+                ways->cene[l] = arr[start][l] + ways->cene[start];
+                ways->cene[l] %= 99;
             }
         }
         int minVal = 99;
         int minI;
+
         for (int j = 0; j < size; j++)
         {
 
-            if (!visited[j] && edges[j] && edges[j] < minVal)
+            if (!visited[j] && ways->cene[j] && ways->cene[j] < minVal)
             {
 
-                minVal = edges[j];
+                minVal = ways->cene[j];
                 minI = j;
             }
         }
@@ -9681,17 +9703,27 @@ void Dijakstra(int arr[][size], int start)
         counter++;
     }
 
-    cout << "Stack\n";
-    for (int j = 0; j < size; j++)
+    // cout << "Stack\n";
+    // for (int j = 0; j < size; j++)
+    // {
+    //     cout << stack[j] << " ";
+    // }
+    // cout << "\n Cene\n";
+    // for (int j = 0; j < size; j++)
+    // {
+    //     cout << ways->cene[j] << " ";
+    // }
+
+    return ways;
+}
+
+void printWays(puteviDoCvora *ways, int x = 0)
+{
+    if (ways->niz[x])
     {
-        cout << stack[j] << " ";
+        cout << ways->niz[x]->data << "-";
+        printWays(ways, ways->niz[x]->data);
     }
-    cout << "\n Cene\n";
-    for (int j = 0; j < size; j++)
-    {
-        cout << edges[j] << " ";
-    }
-    cout << "fali mi jos T\n";
 }
 
 int main()
@@ -9707,6 +9739,14 @@ int main()
                            {0, 0, 0, 0, 0, 0, 0, 4, 0}
 
     };
-    Dijakstra(arr, 5);
+    puteviDoCvora *ways = Dijakstra(arr, 5);
+    cout << "PUTEVI DO CVORA\n";
+    for (int i = 0; i < size; i++)
+    {
+        cout << endl;
+        cout << i << "=";
+        printWays(ways, i);
+        cout << "$" << ways->cene[i];
+    }
     return 0;
 }
