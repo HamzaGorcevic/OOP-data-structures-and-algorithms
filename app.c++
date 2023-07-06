@@ -9638,115 +9638,168 @@ using namespace std;
 
 // Dijakstra Algoritam , optimizovati i zavrsiti
 
-#define size 9
+// #define size 9
 
-typedef struct cvor
+// typedef struct cvor
+// {
+//     int data;
+//     cvor *next;
+// };
+
+// typedef struct puteviDoCvora
+// {
+//     int cene[size];
+//     cvor *niz[size];
+// };
+
+// puteviDoCvora *Dijakstra(int arr[][size], int start)
+// {
+//     puteviDoCvora *ways = (puteviDoCvora *)malloc(sizeof(puteviDoCvora));
+
+//     int visited[size] = {0};
+//     int stack[size];
+//     stack[0] = start;
+//     int counter = 1;
+//     visited[start] = 1;
+
+//     for (int f = 0; f < size; f++)
+//     {
+//         ways->niz[f] = nullptr;
+//         ways->cene[f] = 99;
+//     }
+//     while (counter < size)
+//     {
+//         for (int l = 0; l < size; l++)
+//         {
+//             if (!visited[l] && arr[start][l] && arr[start][l] + (ways->cene[start] % 99) < (ways->cene[l]) && l != start)
+//             {
+
+//                 cvor *noviCvor = (cvor *)malloc(sizeof(cvor));
+//                 noviCvor->data = start;
+//                 noviCvor->next = ways->niz[l];
+//                 ways->niz[l] = noviCvor;
+
+//                 ways->cene[l] = arr[start][l] + ways->cene[start];
+//                 ways->cene[l] %= 99;
+//             }
+//         }
+//         int minVal = 99;
+//         int minI;
+
+//         for (int j = 0; j < size; j++)
+//         {
+
+//             if (!visited[j] && ways->cene[j] && ways->cene[j] < minVal)
+//             {
+
+//                 minVal = ways->cene[j];
+//                 minI = j;
+//             }
+//         }
+
+//         visited[minI] = 1;
+//         start = minI;
+//         stack[counter] = minI;
+//         counter++;
+//     }
+
+//     // cout << "Stack\n";
+//     // for (int j = 0; j < size; j++)
+//     // {
+//     //     cout << stack[j] << " ";
+//     // }
+//     // cout << "\n Cene\n";
+//     // for (int j = 0; j < size; j++)
+//     // {
+//     //     cout << ways->cene[j] << " ";
+//     // }
+
+//     return ways;
+// }
+
+// void printWays(puteviDoCvora *ways, int x = 0)
+// {
+//     if (ways->niz[x])
+//     {
+//         cout << ways->niz[x]->data << "-";
+//         printWays(ways, ways->niz[x]->data);
+//     }
+// }
+
+// int main()
+// {
+//     int arr[size][size] = {{0, 0, 5, 4, 0, 0, 0, 0, 0},
+//                            {2, 0, 0, 0, 3, 0, 0, 0, 0},
+//                            {0, 0, 0, 0, 0, 5, 4, 0, 0},
+//                            {0, 0, 2, 0, 0, 0, 5, 0, 0},
+//                            {0, 0, 0, 0, 0, 5, 0, 0, 5},
+//                            {0, 6, 0, 0, 0, 0, 0, 2, 3},
+//                            {0, 0, 0, 0, 0, 0, 0, 0, 4},
+//                            {0, 0, 0, 0, 5, 0, 0, 0, 0},
+//                            {0, 0, 0, 0, 0, 0, 0, 4, 0}
+
+//     };
+//     puteviDoCvora *ways = Dijakstra(arr, 5);
+//     cout << "PUTEVI DO CVORA\n";
+//     for (int i = 0; i < size; i++)
+//     {
+//         cout << endl;
+//         cout << i << "=";
+//         printWays(ways, i);
+//         cout << "$" << ways->cene[i];
+//     }
+//     return 0;
+// }
+
+int next_smaller_number(int n)
 {
-    int data;
-    cvor *next;
-};
-
-typedef struct puteviDoCvora
-{
-    int cene[size];
-    cvor *niz[size];
-};
-
-puteviDoCvora *Dijakstra(int arr[][size], int start)
-{
-    puteviDoCvora *ways = (puteviDoCvora *)malloc(sizeof(puteviDoCvora));
-
-    int visited[size] = {0};
-    int stack[size];
-    stack[0] = start;
-    int counter = 1;
-    visited[start] = 1;
-
-    for (int f = 0; f < size; f++)
+    // insert code here
+    int arr[6];
+    int count = 0;
+    if (n / 10 > 1)
     {
-        ways->niz[f] = nullptr;
-        ways->cene[f] = 99;
-    }
-    while (counter < size)
-    {
-        for (int l = 0; l < size; l++)
+        while (n >= 1)
         {
-            if (!visited[l] && arr[start][l] && arr[start][l] + (ways->cene[start] % 99) < (ways->cene[l]) && l != start)
-            {
 
-                cvor *noviCvor = (cvor *)malloc(sizeof(cvor));
-                noviCvor->data = start;
-                noviCvor->next = ways->niz[l];
-                ways->niz[l] = noviCvor;
-
-                ways->cene[l] = arr[start][l] + ways->cene[start];
-                ways->cene[l] %= 99;
-            }
+            arr[count] = n % 10;
+            n = n / 10;
+            count++;
         }
-        int minVal = 99;
-        int minI;
 
-        for (int j = 0; j < size; j++)
+        int i = count - 1;
+        while (i > 0 && arr[i] > arr[i - 1])
         {
-
-            if (!visited[j] && ways->cene[j] && ways->cene[j] < minVal)
-            {
-
-                minVal = ways->cene[j];
-                minI = j;
-            }
+            i++;
         }
+        cout << "i=" << i << endl;
+        int temp = arr[i];
+        arr[i] = arr[i - 1];
+        arr[i - 1] = temp;
 
-        visited[minI] = 1;
-        start = minI;
-        stack[counter] = minI;
-        counter++;
+        int broj = 0;
+        if (arr[count - 1])
+        {
+            for (int i = 0; i < count; i++)
+            {
+                cout << arr[i] << "\n";
+                broj += arr[i] * pow(10, i);
+            }
+            return broj;
+        }
+        else
+        {
+            return -1;
+        }
     }
-
-    // cout << "Stack\n";
-    // for (int j = 0; j < size; j++)
-    // {
-    //     cout << stack[j] << " ";
-    // }
-    // cout << "\n Cene\n";
-    // for (int j = 0; j < size; j++)
-    // {
-    //     cout << ways->cene[j] << " ";
-    // }
-
-    return ways;
-}
-
-void printWays(puteviDoCvora *ways, int x = 0)
-{
-    if (ways->niz[x])
+    else
     {
-        cout << ways->niz[x]->data << "-";
-        printWays(ways, ways->niz[x]->data);
+        return -1;
     }
 }
 
 int main()
 {
-    int arr[size][size] = {{0, 0, 5, 4, 0, 0, 0, 0, 0},
-                           {2, 0, 0, 0, 3, 0, 0, 0, 0},
-                           {0, 0, 0, 0, 0, 5, 4, 0, 0},
-                           {0, 0, 2, 0, 0, 0, 5, 0, 0},
-                           {0, 0, 0, 0, 0, 5, 0, 0, 5},
-                           {0, 6, 0, 0, 0, 0, 0, 2, 3},
-                           {0, 0, 0, 0, 0, 0, 0, 0, 4},
-                           {0, 0, 0, 0, 5, 0, 0, 0, 0},
-                           {0, 0, 0, 0, 0, 0, 0, 4, 0}
 
-    };
-    puteviDoCvora *ways = Dijakstra(arr, 5);
-    cout << "PUTEVI DO CVORA\n";
-    for (int i = 0; i < size; i++)
-    {
-        cout << endl;
-        cout << i << "=";
-        printWays(ways, i);
-        cout << "$" << ways->cene[i];
-    }
+    cout << next_smaller_number(315);
     return 0;
 }
