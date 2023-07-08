@@ -9751,55 +9751,86 @@ using namespace std;
 //     return 0;
 // }
 
-int next_smaller_number(int n)
-{
-    // insert code here
-    int arr[6];
-    int count = 0;
-    if (n / 10 > 1)
-    {
-        while (n >= 1)
-        {
+// Next smaller number with the same digits
 
-            arr[count] = n % 10;
-            n = n / 10;
-            count++;
-        }
+// #include <iostream>
+// #include <math.h>
 
-        int i = count - 1;
-        while (i > 0 && arr[i] > arr[i - 1])
-        {
-            i++;
-        }
-        cout << "i=" << i << endl;
-        int temp = arr[i];
-        arr[i] = arr[i - 1];
-        arr[i - 1] = temp;
+// using namespace std;
+// long long nextSmallertNum(unsigned long long n)
+// {
+//     int arr[10];
+//     int count = 0;
+//     while (n >= 1)
+//     {
 
-        int broj = 0;
-        if (arr[count - 1])
-        {
-            for (int i = 0; i < count; i++)
-            {
-                cout << arr[i] << "\n";
-                broj += arr[i] * pow(10, i);
-            }
-            return broj;
-        }
-        else
-        {
-            return -1;
-        }
-    }
-    else
-    {
-        return -1;
-    }
-}
+//         arr[count] = n % 10;
+//         n = n / 10;
+//         count++;
+//     }
 
-int main()
-{
+//     int index = 0;
+//     int times = 0;
 
-    cout << next_smaller_number(315);
-    return 0;
-}
+//     for (int i = 0; i < count - 1; i++)
+//     {
+//         if (arr[i] < arr[i + 1])
+//         {
+
+//             if (arr[i + 1] > arr[i - 1] && arr[i - 1])
+//             {
+//                 times++;
+//                 int temp = arr[i - 1];
+//                 arr[i - 1] = arr[i + 1];
+//                 arr[i + 1] = temp;
+//                 index = i;
+//             }
+//             else
+//             {
+//                 times++;
+//                 index = i;
+//                 int temp = arr[i];
+//                 arr[i] = arr[i + 1];
+//                 arr[i + 1] = temp;
+//             }
+
+//             break;
+//         }
+//     }
+//     for (int j = 0; j < index + 1; j++)
+//     {
+//         for (int k = 0; k < index + 1; k++)
+//         {
+//             if (arr[j] < arr[k])
+//             {
+//                 times++;
+//                 int temp = arr[j];
+//                 arr[j] = arr[k];
+//                 arr[k] = temp;
+//             }
+//         }
+//     }
+//     cout << "times=" << times << endl;
+
+//     if (arr[count - 1] && times)
+//     {
+//         int num = 0;
+//         for (int i = count - 1; i >= 0; i--)
+//         {
+
+//             num = num * 10 + arr[i];
+//         }
+//         return num;
+//     }
+//     else
+//     {
+//         return -1;
+//     }
+// }
+
+// int main()
+// {
+//     cout << nextSmallertNum(2013);
+
+//     return 0;
+// }
