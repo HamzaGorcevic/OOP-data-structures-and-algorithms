@@ -9753,87 +9753,88 @@ using namespace std;
 
 // Next smaller number with the same digits
 
-#include <iostream>
-#include <math.h>
+// #include <iostream>
+// #include <math.h>
 
-using namespace std;
-long long nextSmallertNum(unsigned long long n)
-{
-    int arr[10];
-    int count = 0;
-    while (n >= 1)
-    {
+// using namespace std;
+// long long nextSmallertNum(unsigned long long n)
+// {
+//     int arr[20];
+//     int count = 0;
+//     while (n >= 1)
+//     {
 
-        arr[count] = n % 10;
-        n = n / 10;
-        count++;
-    }
+//         arr[count] = n % 10;
+//         n = n / 10;
+//         count++;
+//     }
 
-    int index = 0;
-    int times = 0;
+//     int index = 0;
+//     int times = 0;
 
-    for (int i = 0; i < count - 1; i++)
-    {
-        if (arr[i] < arr[i + 1])
-        {
+//     for (int i = 0; i < count - 1; i++)
+//     {
+//         if (arr[i] < arr[i + 1])
+//         {
 
-            if (arr[i + 1] > arr[i - 1] && arr[i - 1])
-            {
-                times++;
-                int temp = arr[i - 1];
-                arr[i - 1] = arr[i + 1];
-                arr[i + 1] = temp;
-                index = i;
-            }
-            else
-            {
-                times++;
-                index = i;
-                int temp = arr[i];
-                arr[i] = arr[i + 1];
-                arr[i + 1] = temp;
-            }
+//             int temp;
+//             if (i - 1 > -1 && arr[i + 1] > arr[i - 1])
+//             {
+//                 times++;
+//                 temp = arr[i - 1];
+//                 arr[i - 1] = arr[i + 1];
+//                 arr[i + 1] = temp;
+//                 index = i;
+//             }
+//             else
+//             {
+//                 times++;
+//                 index = i;
+//                 temp = arr[i];
+//                 arr[i] = arr[i + 1];
+//                 arr[i + 1] = temp;
+//             }
 
-            break;
-        }
-    }
-    for (int j = 0; j < index + 1; j++)
-    {
-        for (int k = 0; k < index + 1; k++)
-        {
-            if (arr[j] < arr[k])
-            {
-                times++;
-                int temp = arr[j];
-                arr[j] = arr[k];
-                arr[k] = temp;
-            }
-        }
-    }
-    cout << "times=" << times << endl;
+//             break;
+//         }
+//     }
+//     for (int j = 0; j < index + 1; j++)
+//     {
+//         for (int k = 0; k < index + 1; k++)
+//         {
+//             if (arr[j] < arr[k])
+//             {
+//                 times++;
+//                 int temp = arr[j];
+//                 arr[j] = arr[k];
+//                 arr[k] = temp;
+//             }
+//         }
+//     }
+//     cout << "times=" << times << endl;
 
-    if (arr[count - 1] && times)
-    {
-        int num = 0;
-        for (int i = count - 1; i >= 0; i--)
-        {
+//     if (arr[count - 1] && times)
+//     {
+//         long long num = 0;
+//         for (int i = count - 1; i >= 0; i--)
+//         {
 
-            num = num * 10 + arr[i];
-        }
-        return num;
-    }
-    else
-    {
-        return -1;
-    }
-}
+//             num = num * 10 + arr[i];
+//         }
+//         return num;
+//     }
+//     else
+//     {
+//         return -1;
+//     }
+// }
 
-int main()
-{
-    cout << nextSmallertNum(2013);
+// int main()
+// {
+//     cout << nextSmallertNum(59884848483559);
 
-    return 0;
-}
+//     return 0;
+// }
 
 // Camel case Kata
 //  void to_camel_case(const char *text, char *camel)
