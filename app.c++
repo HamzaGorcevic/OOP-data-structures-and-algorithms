@@ -9831,7 +9831,7 @@ using namespace std;
 
 // int main()
 // {
-//     cout << nextSmallertNum(59884848483559);
+//     cout << nextSmallertNum(315);
 
 //     return 0;
 // }
@@ -9873,3 +9873,14 @@ using namespace std;
 //     to_camel_case(word, word);
 //     return 0;
 // }
+
+#define size 6
+void BFS(int niz[size][size], int start)
+{
+}
+
+int main()
+{
+
+    return 0;
+}
