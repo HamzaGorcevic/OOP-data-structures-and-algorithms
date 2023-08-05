@@ -7277,7 +7277,7 @@ using namespace std;
 //     queue[rear] = start;
 //     visited[start] = 1; // oznaciecmo prvi element od kog smo poceli oznazenim
 
-// // prolazimo kroz while petlju dok se stek ne isprazni
+// // prolazimo kroz while petlju dok se red ne isprazni
 //     while (front <= rear)
 //     {
 // //odredjuejmo vrednost start , trenutno ce bit ista kao sto smo je i poslali , ali ce se nakon implementacije front povecati sto znaci da smo je izbrisali
@@ -7287,6 +7287,7 @@ using namespace std;
 // // prolazimo kroz sve elemnte koji se nalazi u redu start .tj njegove veze sa susedima
 //         for (int i = 0; i < size; i++)
 //         {
+
 // // ako imamo vezu starta i nekog drugog cvora 'i', znacemo da ce biti jedan (niz[start][i]) , i ako nije posecena , tj ako na tom vertexu nemamo jedan kao visited
 // // npr ako naidjemo na vertex 1 , i vidimo da u tom redu imamo 1 sa nasim startom , postavicemo visited pod indexom 1 da je visited , sto znaci da ga vise necemo obilazti;
 //             if (niz[start][i] && visited[i] == 0)
@@ -9874,13 +9875,50 @@ using namespace std;
 //     return 0;
 // }
 
-#define size 6
+#define size 7
 void BFS(int niz[size][size], int start)
 {
+    int queue[size], front = -1, rear = -1;
+    int visited[size] = {0};
+    ++front;
+    ++rear;
+    visited[start] = 1;
+    queue[rear] = start;
+
+    while (front <= rear)
+    {
+
+        start = queue[front++];
+        cout << start << " Q \n";
+
+        for (int i = 0; i < size; i++)
+        {
+            if (niz[start][i] && !visited[i])
+            {
+                queue[++rear] = i;
+                visited[i] = 1;
+            }
+        }
+    }
+}
+
+void addEdge(int niz[size][size], int x, int y)
+{
+    niz[x][y] = 1;
 }
 
 int main()
 {
+    int niz[size][size] = {0};
+    int visited[size] = {0};
+    addEdge(niz, 0, 1);
+    addEdge(niz, 1, 2);
+    addEdge(niz, 1, 3);
+    addEdge(niz, 1, 4);
+    addEdge(niz, 4, 0);
+    addEdge(niz, 4, 5);
+    addEdge(niz, 5, 3);
+    BFS(niz, 0);
 
     return 0;
 }
